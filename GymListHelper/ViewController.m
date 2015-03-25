@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
 //
 // Danilo
+// Rodrigo
 
 #import "ViewController.h"
 #import "DoExerciseScreen.h"
