@@ -7,6 +7,7 @@
 //
 // Danilo
 // Rodrigo
+//Bruno
 
 #import "ViewController.h"
 #import "DoExerciseScreen.h"
