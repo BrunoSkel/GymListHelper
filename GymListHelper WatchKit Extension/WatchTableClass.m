@@ -7,3 +7,9 @@
 //
 
 #import "WatchTableClass.h"
+
+@interface WatchTableClass ()
+@end
+
+@implementation WatchTableClass
+@end
