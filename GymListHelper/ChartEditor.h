@@ -14,9 +14,7 @@
 //@property BOOL completed;
 @property (readonly) NSDate *creationDate;
   @property (strong,nonatomic)  NSMutableArray *tableData;
-@property (strong, nonatomic)NSMutableArray *chartA;
-@property (strong, nonatomic)NSMutableArray *chartB;
-@property (strong, nonatomic)NSMutableArray *chartC;
+@property (strong,nonatomic)  NSMutableArray *allChartData;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property int saveToChart;
 @end

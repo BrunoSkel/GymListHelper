@@ -28,35 +28,16 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *filePath;
         
-        if (controller.saveToChart==0){
-                    [controller.chartA addObject:_newitem];
-            filePath = [documentsDirectory stringByAppendingPathComponent:@"chartA"];
-                [controller.chartA writeToFile:filePath atomically:YES];
-        }
-            else if (controller.saveToChart==1){
-                        [controller.chartB addObject:_newitem];
-            filePath = [documentsDirectory stringByAppendingPathComponent:@"chartB"];
-                [controller.chartB writeToFile:filePath atomically:YES];
-            }
-                else if (controller.saveToChart==2){
-                            [controller.chartC addObject:_newitem];
-            filePath = [documentsDirectory stringByAppendingPathComponent:@"chartC"];
-                [controller.chartC writeToFile:filePath atomically:YES];
-                }
+    [[[controller.allChartData objectAtIndex:0] objectAtIndex:controller.saveToChart] addObject:_newitem];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+        [controller.allChartData writeToFile:filePath atomically:YES];
         
         //SAVE CHART END
         
         //Update Data
         [controller.tableData removeAllObjects];
-        if (controller.saveToChart==0){
-            controller.tableData=[NSMutableArray arrayWithArray:controller.chartA];
-        }
-        else if (controller.saveToChart==1){
-            controller.tableData=[NSMutableArray arrayWithArray:controller.chartB];
-        }
-        else if (controller.saveToChart==2){
-            controller.tableData=[NSMutableArray arrayWithArray:controller.chartC];
-        }
+         controller.tableData=[NSMutableArray arrayWithArray:[[controller.allChartData objectAtIndex:0] objectAtIndex:controller.saveToChart]];
 
     }
 }

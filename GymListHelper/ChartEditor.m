@@ -9,16 +9,22 @@
 #import "ChartEditor.h"
 
 @interface ChartEditor ()
+@property int ChosenWorkout;
 @end
 
 @implementation ChartEditor
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     _saveToChart=0;
-    self.chartA = [[NSMutableArray alloc]init];
+    self.allChartData = [NSMutableArray array];
+    
     [self loadInitialData];
-    _tableData=[NSMutableArray arrayWithArray:_chartA];
+    //When he opens the app, workout A from the first chart will show up.
+    //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
+    _ChosenWorkout=0;
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     [self.tableView reloadData];
 }
 
@@ -26,54 +32,29 @@
     //Loads Chart data. Doesn't need the null check this time, as they will be filled by now
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartA"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
-    _chartA = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
-    NSString *filePathB = [documentsDirectory stringByAppendingPathComponent:@"chartB"];
-    
-    _chartB = [NSMutableArray arrayWithContentsOfFile:filePathB];
-    
-    NSString *filePathC = [documentsDirectory stringByAppendingPathComponent:@"chartC"];
-    
-    _chartC = [NSMutableArray arrayWithContentsOfFile:filePathC];
+    _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
 }
 
 - (void)SaveCharts{
-    //SAVE CHART A
+    //SAVE CHARTS
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartA"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
-    [_chartA writeToFile:filePath atomically:YES];
-    
-    //SAVE CHART B
-    NSString *filePathB = [documentsDirectory stringByAppendingPathComponent:@"chartB"];
-    
-    [_chartB writeToFile:filePathB atomically:YES];
-    
-    //SAVE CHART C
-    NSString *filePathC = [documentsDirectory stringByAppendingPathComponent:@"chartC"];
-    
-    [_chartC writeToFile:filePathC atomically:YES];
-    //SAVE CHART END
+    [_allChartData writeToFile:filePath atomically:YES];
 }
 
 //Deletes the exercise, when it's touched, according to the chosen segment
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_tableData removeAllObjects];
-    if (_saveToChart==0){
-    [self.chartA removeObjectAtIndex:indexPath.row];
-            _tableData=[NSMutableArray arrayWithArray:_chartA];
-    }
-    else if (_saveToChart==1){
-    [self.chartB removeObjectAtIndex:indexPath.row];
-        _tableData=[NSMutableArray arrayWithArray:_chartB];
-    }
-    else if (_saveToChart==2){
-    [self.chartC removeObjectAtIndex:indexPath.row];
-        _tableData=[NSMutableArray arrayWithArray:_chartC];
-    }
+    //Remove object at the touched index, inside the chosen subworkout, inside a workout.
+    
+    [[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] removeObjectAtIndex:indexPath.row];
+    
+    
+        _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
     [self SaveCharts];
     [self.tableView reloadData];
 }
@@ -100,23 +81,13 @@
 - (IBAction)OnSegmentPressed:(id)sender {
     [_tableData removeAllObjects];
     UISegmentedControl *s = (UISegmentedControl *)sender;
-    switch (s.selectedSegmentIndex) {
-        case 0:
-            _tableData=[NSMutableArray arrayWithArray:_chartA];
-            _saveToChart=0;
-            break;
-        case 1:
-            _tableData=[NSMutableArray arrayWithArray:_chartB];
-            _saveToChart=1;
-            break;
-        case 2:
-            _tableData=[NSMutableArray arrayWithArray:_chartC];
-            _saveToChart=2;
-            break;
-    }
+    //When the segment is touched, change tableData to the according correct new chart
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
+    _saveToChart=s.selectedSegmentIndex;
     [self.tableView reloadData];
 }
 
+//Required method for not losing data after changing viewcontrollers. Its supposed to be empty
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
 

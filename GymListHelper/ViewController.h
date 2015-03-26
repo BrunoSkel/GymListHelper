@@ -12,9 +12,7 @@
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate>
   @property (strong,nonatomic)  NSMutableArray *tableData;
-  @property (strong,nonatomic)  NSMutableArray *chartA;
-  @property (strong,nonatomic)  NSMutableArray *chartB;
-  @property (strong,nonatomic)  NSMutableArray *chartC;
+  @property (strong,nonatomic)  NSMutableArray *allChartData;
   @property (strong, nonatomic) IBOutlet UIPickerView *PickerView;
   @property NSUserDefaults *SharedData;
 @end

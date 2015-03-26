@@ -21,6 +21,7 @@
 @property (strong) IBOutlet UITableView *tableView;
 @property NSArray *pickerData;
 @property NSString *selectedCooldown;
+@property int ChosenWorkout;
 
 @end
 
@@ -43,7 +44,6 @@
     //Real stuff begins here
     
     [super viewDidLoad];
-    
     //Initialize Watch syncing.
     _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
     
@@ -52,18 +52,41 @@
     _tableData= [[NSMutableArray alloc]init];
     //The chart data is loaded from a file.
     [self LoadChartsFromFile];
-    //When he opens the app, chartA is the first to show up, so we add the _chartA data to the _tableData.
-    _tableData=[NSMutableArray arrayWithArray:_chartA];
+    //When he opens the app, workout A from the first chart will show up.
+    //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
+    _ChosenWorkout=0;
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
     //Pickerview default stuff
     self.PickerView.dataSource = self;
     self.PickerView.delegate = self;
-    
+    //Test
+    //[self MultiDimensionTest];
     //Now let's send the _tableData contents to the Watch
     [self SyncWithWatch];
     
+}
+
+
+//Testing the three dimension array
+- (void)MultiDimensionTest{
+    NSLog(@"Starting Test");
+    NSMutableArray *strings = [NSMutableArray array];
+    for(int i = 0; i < 2; i++)
+    {
+        [strings addObject: [NSMutableArray array]];
+        [[strings objectAtIndex:i] addObject:[NSMutableArray array]];
+        [[strings objectAtIndex:i] addObject:[NSMutableArray array]];
+    }
+    
+    [[[strings objectAtIndex:0] objectAtIndex:0] addObject:@"This is 0,0,0"];
+    [[[strings objectAtIndex:1] objectAtIndex:0] addObject:@"This is 1,0,0"];
+    [[[strings objectAtIndex:1] objectAtIndex:0] addObject:@"This is 1,0,1"];
+    NSLog(@"Test: %@",[[[strings objectAtIndex:0] objectAtIndex:0] objectAtIndex:0]);
+    NSLog(@"Test: %@",[[[strings objectAtIndex:1] objectAtIndex:0] objectAtIndex:0]);
+    NSLog(@"Test: %@",[[[strings objectAtIndex:1] objectAtIndex:0] objectAtIndex:1]);
 }
 
 - (void)SyncWithWatch{
@@ -78,50 +101,36 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartA"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
-    _chartA = [NSMutableArray arrayWithContentsOfFile:filePath];
+    _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    NSString *filePathB = [documentsDirectory stringByAppendingPathComponent:@"chartB"];
-    
-    _chartB = [NSMutableArray arrayWithContentsOfFile:filePathB];
-    
-    NSString *filePathC = [documentsDirectory stringByAppendingPathComponent:@"chartC"];
-    
-    _chartC = [NSMutableArray arrayWithContentsOfFile:filePathC];
-    
-    if (_chartA==NULL){
-        NSLog(@"Chart A is Null");
-    _chartA = [[NSMutableArray alloc]init];
-    [_chartA addObject:@"Example A1 | 4x8"];
-    [_chartA addObject:@"Example A2 | 4x8"];
-    [_chartA addObject:@"Example A3 | 4x8"];
-    [_chartA addObject:@"Example A4 | 4x8"];
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartA"];
+    if (_allChartData==NULL){
         
-        [_chartA writeToFile:filePath atomically:YES];
-    }
-    
-    if (_chartB==NULL){
-        NSLog(@"Chart B is Null");
-        _chartB = [[NSMutableArray alloc]init];
-        [_chartB addObject:@"Example B1 | 3x15"];
-        [_chartB addObject:@"Example B2 | 3x15"];
-        [_chartB addObject:@"Example B3 | 3x15"];
-        NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"chartB"];
+        NSLog(@"There is no Chart data. Filling up");
+        _allChartData = [NSMutableArray array];
+        //Adding a new chart
+        [_allChartData addObject: [NSMutableArray array]];
+        //Adding charts A/B/C to the new chart
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        //Filling A
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 | 4x8"];
+        //Filling B
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 | 4x10"];
+        //Filling C
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 | 3x15"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 | 3x15"];
         
-        [_chartB writeToFile:filePath2 atomically:YES];
-    }
-     NSLog(@"%@",_chartB);
-    
-    if (_chartC==NULL){
-        NSLog(@"Chart C is Null");
-        _chartC = [[NSMutableArray alloc]init];
-        [_chartC addObject:@"Example C1 | 4x10"];
-        [_chartC addObject:@"Example C2 | 4x10"];
-        NSString *filePath3 = [documentsDirectory stringByAppendingPathComponent:@"chartC"];
         
-        [_chartC writeToFile:filePath3 atomically:YES];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+        [_allChartData writeToFile:filePath atomically:YES];
     }
 }
 
@@ -183,17 +192,7 @@
     
     [_tableData removeAllObjects];
     UISegmentedControl *s = (UISegmentedControl *)sender;
-    switch (s.selectedSegmentIndex) {
-        case 0:
-            _tableData=[NSMutableArray arrayWithArray:_chartA];
-            break;
-        case 1:
-            _tableData=[NSMutableArray arrayWithArray:_chartB];
-            break;
-        case 2:
-            _tableData=[NSMutableArray arrayWithArray:_chartC];
-            break;
-    }
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
     [self.tableView reloadData];
     
     //And then, I sync the tableData with the Watch
