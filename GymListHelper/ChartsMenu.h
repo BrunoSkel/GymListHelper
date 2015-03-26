@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChartsMenu : UIViewController
+@interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong,nonatomic)  NSMutableArray *allChartData;
 
 @end

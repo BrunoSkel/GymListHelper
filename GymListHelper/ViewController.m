@@ -20,8 +20,9 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;
 @property (strong) IBOutlet UITableView *tableView;
 @property NSArray *pickerData;
+@property NSMutableArray *ChartNamesArray;
 @property NSString *selectedCooldown;
-@property int ChosenWorkout;
+@property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
 
 @end
 
@@ -54,7 +55,8 @@
     [self LoadChartsFromFile];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
-    _ChosenWorkout=0;
+    //_ChosenWorkout=0;
+    _ChartNameLabel.text=[NSString stringWithFormat:@"%@",[_ChartNamesArray objectAtIndex:_ChosenWorkout]];
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
@@ -105,33 +107,10 @@
     
     _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    if (_allChartData==NULL){
-        
-        NSLog(@"There is no Chart data. Filling up");
-        _allChartData = [NSMutableArray array];
-        //Adding a new chart
-        [_allChartData addObject: [NSMutableArray array]];
-        //Adding charts A/B/C to the new chart
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
-        //Filling A
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 | 4x8"];
-        //Filling B
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 | 4x10"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 | 4x10"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 | 4x10"];
-        //Filling C
-        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 | 3x15"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 | 3x15"];
-        
-        
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
-        [_allChartData writeToFile:filePath atomically:YES];
-    }
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+    
+    _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 #pragma mark Delegate Methods

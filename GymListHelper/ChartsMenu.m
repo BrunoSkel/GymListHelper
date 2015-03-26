@@ -7,15 +7,24 @@
 //
 
 #import "ChartsMenu.h"
+#import "ViewController.h"
 
-@interface ChartsMenu ()
+@interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
+@property (strong) IBOutlet UITableView *tableView;
+@property (strong,nonatomic)  NSMutableArray *tableData;
+@property int TouchedIndex;
 @end
 
 @implementation ChartsMenu
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Load charts
+    [self LoadChartData];
+    _tableData=[NSMutableArray arrayWithArray:_allChartData];
+    [self.tableView reloadData];
     // Do any additional setup after loading the view.
 }
 
@@ -23,6 +32,91 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)LoadChartData{
+    
+    //Load the saved charts. If there's nothing, fill the charts with the example data.
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+    
+    _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+    
+    _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    if (_allChartData==NULL){
+        
+        NSLog(@"There is no Chart data. Filling up");
+        _allChartData = [NSMutableArray array];
+        //Adding a new chart
+        [_allChartData addObject: [NSMutableArray array]];
+        //Adding charts A/B/C to the new chart
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        //Filling A
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 | 4x8"];
+        //Filling B
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 | 4x10"];
+        //Filling C
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 | 3x15"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 | 3x15"];
+        
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+        [_allChartData writeToFile:filePath atomically:YES];
+        
+    }
+    if (_ChartNamesArray==NULL){
+        _ChartNamesArray = [NSMutableArray array];
+        //Adding a new chart
+        [_ChartNamesArray addObject: @"Example Workout"];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+        [_ChartNamesArray writeToFile:filePath atomically:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //When the chart is touched, open the start screen, sending the chart ID to the next screen
+    _TouchedIndex=indexPath.row;
+    [self performSegueWithIdentifier: @ "GoToMain" sender: self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"GoToMain"]){
+        ViewController *controller = (ViewController *)segue.destinationViewController;
+        controller.ChosenWorkout=_TouchedIndex;
+    }
+}
+
+#pragma mark Delegate Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_tableData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = [_ChartNamesArray objectAtIndex:indexPath.row];
+    return cell;
+}
+
 
 /*
 #pragma mark - Navigation

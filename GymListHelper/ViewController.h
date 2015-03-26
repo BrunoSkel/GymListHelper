@@ -15,5 +15,6 @@
   @property (strong,nonatomic)  NSMutableArray *allChartData;
   @property (strong, nonatomic) IBOutlet UIPickerView *PickerView;
   @property NSUserDefaults *SharedData;
+@property int ChosenWorkout;
 @end
 
