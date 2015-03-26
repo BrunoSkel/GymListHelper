@@ -26,6 +26,10 @@
 		15A40BA71AC17E09008C82C4 /* GymListHelper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
+		76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E631AC441E8007599B9 /* DownloadCategories.m */; };
+		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
+		76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* ChartsMenu.m */; };
+		76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +108,14 @@
 		15A40BB11AC18528008C82C4 /* WatchTableClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WatchTableClass.h; path = "../GymListHelper WatchKit Extension/WatchTableClass.h"; sourceTree = "<group>"; };
 		15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GymListHelper.entitlements; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		76661E621AC441E8007599B9 /* DownloadCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCategories.h; sourceTree = "<group>"; };
+		76661E631AC441E8007599B9 /* DownloadCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCategories.m; sourceTree = "<group>"; };
+		76661E651AC442D6007599B9 /* StartScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreen.h; sourceTree = "<group>"; };
+		76661E661AC442D6007599B9 /* StartScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreen.m; sourceTree = "<group>"; };
+		76661E681AC44330007599B9 /* ChartsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartsMenu.h; sourceTree = "<group>"; };
+		76661E691AC44330007599B9 /* ChartsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsMenu.m; sourceTree = "<group>"; };
+		76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChartDescriptionEditor.h; sourceTree = "<group>"; };
+		76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChartDescriptionEditor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,13 +173,21 @@
 				154F094A1AB9948A00EC8087 /* AppDelegate.m */,
 				154F094C1AB9948A00EC8087 /* ViewController.h */,
 				154F094D1AB9948A00EC8087 /* ViewController.m */,
+				154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */,
 				154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */,
 				154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */,
-				154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */,
 				154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */,
 				154DEAC21ABAF98500CDBC27 /* ChartEditor.h */,
 				154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */,
 				154F094F1AB9948A00EC8087 /* Main.storyboard */,
+				76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */,
+				76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */,
+				76661E681AC44330007599B9 /* ChartsMenu.h */,
+				76661E691AC44330007599B9 /* ChartsMenu.m */,
+				76661E651AC442D6007599B9 /* StartScreen.h */,
+				76661E661AC442D6007599B9 /* StartScreen.m */,
+				76661E621AC441E8007599B9 /* DownloadCategories.h */,
+				76661E631AC441E8007599B9 /* DownloadCategories.m */,
 				154DEAC51ABB013000CDBC27 /* AddItem.m */,
 				154DEAC71ABB013900CDBC27 /* AddItem.h */,
 				154F09521AB9948A00EC8087 /* Images.xcassets */,
@@ -424,7 +444,11 @@
 				154DEAC01ABAEDAE00CDBC27 /* EndScreen.m in Sources */,
 				154DEAC61ABB013000CDBC27 /* AddItem.m in Sources */,
 				154DEAC41ABAFA0800CDBC27 /* ChartEditor.m in Sources */,
+				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
+				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
+				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
+				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
 				154F09481AB9948A00EC8087 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
