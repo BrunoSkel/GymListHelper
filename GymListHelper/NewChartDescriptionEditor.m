@@ -9,9 +9,6 @@
 #import "NewChartDescriptionEditor.h"
 #import "ChartsMenu.h"
 
-#define PICKER_MIN 1
-#define PICKER_MAX 60
-
 @interface NewChartDescriptionEditor ()
 @property (strong, nonatomic) IBOutlet UITextField *ChartNameNew;
 @property (strong, nonatomic) IBOutlet UITextField *ChartObjective;
@@ -51,9 +48,30 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
-        [controller.ChartNamesArray addObject: self.ChartNameNew.text];
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+        //Adding new chart name
+        [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
+        
+        //And A and B string names
+        [controller.ChartNamesArray addObject: [NSMutableArray array]];
+        
+        [[controller.ChartNamesArray objectAtIndex:newposition] addObject: @"A"];
+        [[controller.ChartNamesArray objectAtIndex:newposition] addObject: @"B"];
+        
+        [controller.WaitTimesArray addObject: [NSMutableArray array]];
+        [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
+        [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"chartNamesFile"];
         [controller.ChartNamesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"routineNamesFile"];
+        [controller.RoutineNamesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"waitTimesFile"];
+        [controller.WaitTimesArray writeToFile:filePath atomically:YES];
         
         //SAVE CHART END
         
@@ -65,26 +83,6 @@
 }
 
 //Picker stuff
-
-// The number of rows of data
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return (PICKER_MAX-PICKER_MIN+1);
-}
-
-//The data to return for the row and component (column) that's being passed in
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
-    //[_PickerView selectedRowInComponent:0];
-}
-
-// The number of columns of data
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
 /*
 #pragma mark - Navigation
 

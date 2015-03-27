@@ -12,6 +12,8 @@
 
 @property (strong,nonatomic)  NSMutableArray *allChartData;
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
+@property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
+@property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
 @property (strong,nonatomic)  NSMutableArray *tableData;
 
 @end

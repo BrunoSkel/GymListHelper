@@ -15,6 +15,7 @@
 @property (readonly) NSDate *creationDate;
   @property (strong,nonatomic)  NSMutableArray *tableData;
 @property (strong,nonatomic)  NSMutableArray *allChartData;
+@property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property int ChosenWorkout;
 @property int saveToChart;

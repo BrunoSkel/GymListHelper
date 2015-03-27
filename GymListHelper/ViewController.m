@@ -54,13 +54,11 @@
     
     //Check number of subroutines
     NSLog(@"%d",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
-    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
-        [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
-    }
+    [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     //_ChosenWorkout=0;
-    _ChartNameLabel.text=[NSString stringWithFormat:@"%@",[_ChartNamesArray objectAtIndex:_ChosenWorkout]];
+    _ChartNameLabel.text=[NSString stringWithFormat:@"%@",[_RoutineNamesArray objectAtIndex:_ChosenWorkout]];
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
@@ -114,6 +112,14 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+    
+    _RoutineNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
+    
+    _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
 }
 
@@ -171,9 +177,9 @@
         controller.exercisedata=_tableData;
         controller.chartname=[NSString stringWithFormat:@"%@ Chart",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
-        //   _selectedCooldown = [self pickerView:_PickerView titleForRow:[_PickerView selectedRowInComponent:0] forComponent:0];
-        //controller.cooldownAmount=[_selectedCooldown intValue];
-        controller.cooldownAmount=2;
+        _selectedCooldown = [[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+        controller.cooldownAmount=[_selectedCooldown intValue];
+        //controller.cooldownAmount=2;
     }
     
     if([segue.identifier isEqualToString:@"EditRoutine"]){
@@ -189,10 +195,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)FillSegment{
+    //Starts with 2 segments. Searches chartData to see if there are more, and add them
+    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+        [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:i animated:NO];
+    }
+    
+    //Apply subroutine names to segmented control
+    
+    [self UpdateSegmentNames];
+}
+
+-(void)UpdateSegmentNames{
+    for (int i=0;i<_SegmentControlOutlet.numberOfSegments;i++){
+        [_SegmentControlOutlet setTitle:[[_ChartNamesArray objectAtIndex:_ChosenWorkout] objectAtIndex:i] forSegmentAtIndex:i];
+    }
+}
 
 //When it unwinds
 -(void)Unwinded{
     [self LoadChartsFromFile];
+    [self UpdateSegmentNames];
+    //Reset Segment Outlet, as there are new subroutines, or deleted ones
+    if (_SegmentControlOutlet.numberOfSegments!=[[_allChartData objectAtIndex:_ChosenWorkout] count]){
+        while (_SegmentControlOutlet.numberOfSegments>2){
+            [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.numberOfSegments-1 animated:NO];
+        }
+        NSLog(@"NumberOfSegments: %d | Count: %d",_SegmentControlOutlet.numberOfSegments,[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+        [self FillSegment];
+    }
+    _SegmentControlOutlet.selectedSegmentIndex=0;
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:[_SegmentControlOutlet selectedSegmentIndex]]];
     [self.tableView reloadData];
 }

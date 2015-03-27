@@ -13,6 +13,8 @@
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UIPickerViewDataSource, UIPickerViewDelegate>
   @property (strong,nonatomic)  NSMutableArray *tableData;
   @property (strong,nonatomic)  NSMutableArray *allChartData;
+@property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
+@property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
   @property (strong, nonatomic) IBOutlet UIPickerView *PickerView;
   @property NSUserDefaults *SharedData;
 @property int ChosenWorkout;

@@ -44,6 +44,14 @@
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+    
+    _RoutineNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
+    
+    _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
     if (_allChartData==NULL){
         
         NSLog(@"There is no Chart data. Filling up");
@@ -70,13 +78,36 @@
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [_allChartData writeToFile:filePath atomically:YES];
         
+        
+        //Adding new WaitTime array
+        _WaitTimesArray = [NSMutableArray array];
+        [_WaitTimesArray addObject: [NSMutableArray array]];
+        //Adding example times to the new chart
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"30"];
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"20"];
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"10"];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
+        [_WaitTimesArray writeToFile:filePath atomically:YES];
+        
     }
     if (_ChartNamesArray==NULL){
+        
+        _RoutineNamesArray = [NSMutableArray array];
+        [_RoutineNamesArray addObject: @"Example Workout"];
+        
         _ChartNamesArray = [NSMutableArray array];
         //Adding a new chart
-        [_ChartNamesArray addObject: @"Example Workout"];
+        [_ChartNamesArray addObject: [NSMutableArray array]];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"A"];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"B"];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"C"];
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
         [_ChartNamesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+        [_RoutineNamesArray writeToFile:filePath atomically:YES];
+        
     }
 }
 
@@ -111,7 +142,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [_ChartNamesArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [_RoutineNamesArray objectAtIndex:indexPath.row];
     return cell;
 }
 

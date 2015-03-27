@@ -8,9 +8,15 @@
 
 #import "ChartEditor.h"
 #import "ViewController.h"
+#define PICKER_MIN 0
+#define PICKER_MAX 60
 
 @interface ChartEditor ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;
+@property (strong, nonatomic) IBOutlet UIButton *AddSubRoutine;
+@property (strong, nonatomic) IBOutlet UIButton *DeleteSubRoutine;
+@property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
+@property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
 @end
 
 @implementation ChartEditor
@@ -22,13 +28,19 @@
     self.allChartData = [NSMutableArray array];
     
     [self loadInitialData];
-    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
-        [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
-    }
+    [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     [self.tableView reloadData];
+    
+    //Delete only shows up if it's C onwards. Cant have less than 2 segments.
+    _DeleteSubRoutine.hidden=YES;
+    [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    //Namefield initial text=Subroutine saved name
+        _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    
 }
 
 - (void)loadInitialData {
@@ -38,6 +50,10 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
     _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+    
+    _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
 }
 
 - (void)SaveCharts{
@@ -47,6 +63,10 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
     [_allChartData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+    
+    [_ChartNamesArray writeToFile:filePath atomically:YES];
 }
 
 //Deletes the exercise, when it's touched, according to the chosen segment
@@ -88,10 +108,101 @@
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
     _saveToChart=s.selectedSegmentIndex;
     [self.tableView reloadData];
+    
+    //
+    
+    [_DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+        [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    if (s.selectedSegmentIndex>1)
+        _DeleteSubRoutine.hidden=NO;
+    else
+        _DeleteSubRoutine.hidden=YES;
+    
+    _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    
+}
+
+
+//When he types a new name
+- (IBAction)textFieldChange:(id)sender {
+    [_SegmentControlOutlet setTitle:_RoutineNameField.text forSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    
+    [[_ChartNamesArray objectAtIndex:_ChosenWorkout]replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:_RoutineNameField.text];
+    
+    [self SaveCharts];
+    
+}
+
+- (IBAction)DeleteSubRoutine:(id)sender {
+    //Delete chart and name array objects
+  [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    
+    [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex animated:YES];
+    
+    _SegmentControlOutlet.selectedSegmentIndex=0;
+    
+    if (_SegmentControlOutlet.selectedSegmentIndex>1)
+        _DeleteSubRoutine.hidden=NO;
+    else
+        _DeleteSubRoutine.hidden=YES;
+    
+    //Update table data to the first segment
+    
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex]];
+    _saveToChart=_SegmentControlOutlet.selectedSegmentIndex;
+    [self.tableView reloadData];
+    
+    [self SaveCharts];
+}
+
+- (IBAction)AddSubRoutine:(id)sender {
+    [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
+    [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
+    
+    [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
+    
+    [self SaveCharts];
+}
+
+-(void)FillSegment{
+    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+        [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
+    }
+    
+    for (int i=0;i<_SegmentControlOutlet.numberOfSegments;i++){
+        [_SegmentControlOutlet setTitle:[[_ChartNamesArray objectAtIndex:_ChosenWorkout] objectAtIndex:i] forSegmentAtIndex:i];
+    }
+    
+    
 }
 
 //Required method for not losing data after changing viewcontrollers. Its supposed to be empty
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
+
+//PickerStuff
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return (PICKER_MAX-PICKER_MIN+1);
+}
+
+//The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
+    //[_PickerView selectedRowInComponent:0];
+}
+
+// The number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
 
 @end
