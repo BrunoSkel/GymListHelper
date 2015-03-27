@@ -13,6 +13,7 @@
 
 @interface ChartEditor ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;
+@property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (strong, nonatomic) IBOutlet UIButton *AddSubRoutine;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteSubRoutine;
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
@@ -41,6 +42,8 @@
     //Namefield initial text=Subroutine saved name
         _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
+    [self UpdateWaitPicker];
+    
 }
 
 - (void)loadInitialData {
@@ -54,6 +57,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
+    
+    _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
 }
 
 - (void)SaveCharts{
@@ -67,6 +74,21 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     [_ChartNamesArray writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
+    
+    [_WaitTimesArray writeToFile:filePath atomically:YES];
+    
+}
+
+//When Pickerview Updates
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString *newObject=[NSString stringWithFormat:@"%d",[_pickerView selectedRowInComponent:0]];
+    
+    [[_WaitTimesArray objectAtIndex:_ChosenWorkout] replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:newObject];
+    
+    [self SaveCharts];
 }
 
 //Deletes the exercise, when it's touched, according to the chosen segment
@@ -122,6 +144,14 @@
     
     _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
+    //Set Pickerview to the correct WaitTime
+    [self UpdateWaitPicker];
+    
+}
+
+-(void) UpdateWaitPicker{
+    NSString *thiscooldown=[[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    [_pickerView selectRow:[thiscooldown intValue] inComponent:0 animated:YES];
 }
 
 
