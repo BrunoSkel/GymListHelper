@@ -28,7 +28,7 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *filePath;
         
-    [[[controller.allChartData objectAtIndex:0] objectAtIndex:controller.saveToChart] addObject:_newitem];
+    [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
@@ -37,7 +37,7 @@
         
         //Update Data
         [controller.tableData removeAllObjects];
-         controller.tableData=[NSMutableArray arrayWithArray:[[controller.allChartData objectAtIndex:0] objectAtIndex:controller.saveToChart]];
+         controller.tableData=[NSMutableArray arrayWithArray:[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart]];
 
     }
 }

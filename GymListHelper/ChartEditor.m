@@ -7,9 +7,10 @@
 //
 
 #import "ChartEditor.h"
+#import "ViewController.h"
 
 @interface ChartEditor ()
-@property int ChosenWorkout;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;
 @end
 
 @implementation ChartEditor
@@ -21,9 +22,11 @@
     self.allChartData = [NSMutableArray array];
     
     [self loadInitialData];
+    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+        [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
+    }
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
-    _ChosenWorkout=0;
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
     [self.tableView reloadData];
 }

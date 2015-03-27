@@ -10,10 +10,7 @@
 #import "ViewController.h"
 
 @interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
-
-@property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
 @property (strong) IBOutlet UITableView *tableView;
-@property (strong,nonatomic)  NSMutableArray *tableData;
 @property int TouchedIndex;
 @end
 
@@ -86,6 +83,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
     _TouchedIndex=indexPath.row;
+    NSLog(@"Touched index: %d",indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
 
@@ -127,5 +125,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//Required method for not losing data after changing viewcontrollers. Its supposed to be empty
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+}
 
 @end

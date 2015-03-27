@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewChartDescriptionEditor : UIViewController
+@interface NewChartDescriptionEditor : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
 
 @end

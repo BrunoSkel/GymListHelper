@@ -16,5 +16,6 @@
   @property (strong, nonatomic) IBOutlet UIPickerView *PickerView;
   @property NSUserDefaults *SharedData;
 @property int ChosenWorkout;
+-(void)Unwinded;
 @end
 

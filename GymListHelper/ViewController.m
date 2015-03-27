@@ -11,9 +11,7 @@
 
 #import "ViewController.h"
 #import "DoExerciseScreen.h"
-
-#define PICKER_MIN 1
-#define PICKER_MAX 60
+#import "ChartEditor.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -53,6 +51,12 @@
     _tableData= [[NSMutableArray alloc]init];
     //The chart data is loaded from a file.
     [self LoadChartsFromFile];
+    
+    //Check number of subroutines
+    NSLog(@"%d",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+        [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
+    }
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     //_ChosenWorkout=0;
@@ -134,25 +138,6 @@
     return cell;
 }
 
-// The number of columns of data
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-// The number of rows of data
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return (PICKER_MAX-PICKER_MIN+1);
-}
-
- //The data to return for the row and component (column) that's being passed in
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [NSString stringWithFormat:@"%ld", (row+PICKER_MIN)];
-    //[_PickerView selectedRowInComponent:0];
-}
-
 //- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //
     //_selectedCooldown = [self pickerView:_PickerView titleForRow:[_PickerView selectedRowInComponent:0] forComponent:0];
@@ -186,14 +171,36 @@
         controller.exercisedata=_tableData;
         controller.chartname=[NSString stringWithFormat:@"%@ Chart",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
-           _selectedCooldown = [self pickerView:_PickerView titleForRow:[_PickerView selectedRowInComponent:0] forComponent:0];
-        controller.cooldownAmount=[_selectedCooldown intValue];
+        //   _selectedCooldown = [self pickerView:_PickerView titleForRow:[_PickerView selectedRowInComponent:0] forComponent:0];
+        //controller.cooldownAmount=[_selectedCooldown intValue];
+        controller.cooldownAmount=2;
     }
+    
+    if([segue.identifier isEqualToString:@"EditRoutine"]){
+        ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
+        controller.ChosenWorkout=_ChosenWorkout;
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+//When it unwinds
+-(void)Unwinded{
+    [self LoadChartsFromFile];
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:[_SegmentControlOutlet selectedSegmentIndex]]];
+    [self.tableView reloadData];
+}
+
+//Required method for not losing data after changing viewcontrollers. Its supposed to be empty
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    NSLog(@"Called");
+    [self Unwinded];
 }
 
 @end
