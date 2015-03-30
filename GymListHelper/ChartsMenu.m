@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Danilo S Marshall on 3/26/15.
-//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
+//  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
 #import "ChartsMenu.h"
@@ -114,7 +114,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
     _TouchedIndex=indexPath.row;
-    NSLog(@"Touched index: %d",indexPath.row);
+    NSLog(@"Touched index: %ld",indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
 

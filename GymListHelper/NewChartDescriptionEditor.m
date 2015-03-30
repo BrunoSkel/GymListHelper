@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Danilo S Marshall on 3/26/15.
-//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
+//  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
 #import "NewChartDescriptionEditor.h"
@@ -41,7 +41,7 @@
         //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
         [controller.allChartData addObject: [NSMutableArray array]];
         NSInteger newposition=[controller.allChartData count]-1;
-        NSLog(@"New position = %d",newposition);
+        NSLog(@"New position = %ld",newposition);
         [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
         [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
         

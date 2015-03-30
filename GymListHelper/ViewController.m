@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Bruno Henrique da Rocha e Silva on 3/18/15.
-//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
+//  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 // DanMarsh
 // Rodrigo
@@ -53,7 +53,7 @@
     [self LoadChartsFromFile];
     
     //Check number of subroutines
-    NSLog(@"%d",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+    NSLog(@"%ld",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
     [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
@@ -63,9 +63,7 @@
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
-    //Pickerview default stuff
-    self.PickerView.dataSource = self;
-    self.PickerView.delegate = self;
+    
     //Test
     //[self MultiDimensionTest];
     //Now let's send the _tableData and resttime contents to the Watch
@@ -223,7 +221,7 @@
         while (_SegmentControlOutlet.numberOfSegments>2){
             [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.numberOfSegments-1 animated:NO];
         }
-        NSLog(@"NumberOfSegments: %d | Count: %d",_SegmentControlOutlet.numberOfSegments,[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+        NSLog(@"NumberOfSegments: %ld | Count: %ld",_SegmentControlOutlet.numberOfSegments,[[_allChartData objectAtIndex:_ChosenWorkout] count]);
         [self FillSegment];
     }
     [self UpdateSegmentNames];

@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Bruno Henrique da Rocha e Silva on 3/19/15.
-//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
+//  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
 #import "AddItem.h"
