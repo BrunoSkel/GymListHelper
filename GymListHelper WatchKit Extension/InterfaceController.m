@@ -45,7 +45,7 @@
 
 - (void)PullSyncedData{
     //Code below pulls the shared data inside a specific suite name. Sending method on ViewController.m
-    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
+    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
     //Use example
     //self.myLabel.text = [SharedData stringForKey:@"savedUserInput"];
     

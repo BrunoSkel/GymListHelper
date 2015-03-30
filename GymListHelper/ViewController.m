@@ -44,7 +44,7 @@
     
     [super viewDidLoad];
     //Initialize Watch syncing.
-    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
+    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
     
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
@@ -53,7 +53,7 @@
     [self LoadChartsFromFile];
     
     //Check number of subroutines
-    NSLog(@"%d",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+    NSLog(@"%ld",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
     [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
@@ -63,9 +63,7 @@
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
-    //Pickerview default stuff
-    self.PickerView.dataSource = self;
-    self.PickerView.delegate = self;
+    
     //Test
     //[self MultiDimensionTest];
     //Now let's send the _tableData and resttime contents to the Watch

@@ -84,7 +84,7 @@
 //When Pickerview Updates
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *newObject=[NSString stringWithFormat:@"%d",[_pickerView selectedRowInComponent:0]];
+    NSString *newObject=[NSString stringWithFormat:@"%ld",[_pickerView selectedRowInComponent:0]];
     
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:newObject];
     
@@ -224,7 +224,7 @@
 //The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
+    return [NSString stringWithFormat:@"%ld", (row+PICKER_MIN)];
     //[_PickerView selectedRowInComponent:0];
 }
 
