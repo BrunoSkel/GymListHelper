@@ -68,7 +68,7 @@
     self.PickerView.delegate = self;
     //Test
     //[self MultiDimensionTest];
-    //Now let's send the _tableData contents to the Watch
+    //Now let's send the _tableData and resttime contents to the Watch
     [self SyncWithWatch];
     
 }
@@ -96,6 +96,8 @@
 - (void)SyncWithWatch{
     //Adding tableData to PlayerPref currentChart
     [_SharedData setObject:_tableData forKey:@"currentChart"];
+    //Adding Wait Time (string: converted on Watch) to PlayerPref currentWaitTime
+    [_SharedData setObject:[[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex] forKey:@"currentWaitTime"];
     [_SharedData synchronize];
 }
 

@@ -157,7 +157,7 @@
 
 //When he types a new name
 - (IBAction)textFieldChange:(id)sender {
-    [_SegmentControlOutlet setTitle:_RoutineNameField.text forSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+[_SegmentControlOutlet setTitle:_RoutineNameField.text forSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout]replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:_RoutineNameField.text];
     
