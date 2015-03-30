@@ -169,6 +169,7 @@
     //Delete chart and name array objects
   [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_WaitTimesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
     [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex animated:YES];
     
@@ -191,7 +192,7 @@
 - (IBAction)AddSubRoutine:(id)sender {
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
-    
+    [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
     [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
     
     [self SaveCharts];

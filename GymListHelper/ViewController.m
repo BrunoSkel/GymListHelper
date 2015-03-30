@@ -217,7 +217,7 @@
 //When it unwinds
 -(void)Unwinded{
     [self LoadChartsFromFile];
-    [self UpdateSegmentNames];
+    //[self UpdateSegmentNames];
     //Reset Segment Outlet, as there are new subroutines, or deleted ones
     if (_SegmentControlOutlet.numberOfSegments!=[[_allChartData objectAtIndex:_ChosenWorkout] count]){
         while (_SegmentControlOutlet.numberOfSegments>2){
@@ -226,6 +226,7 @@
         NSLog(@"NumberOfSegments: %d | Count: %d",_SegmentControlOutlet.numberOfSegments,[[_allChartData objectAtIndex:_ChosenWorkout] count]);
         [self FillSegment];
     }
+    [self UpdateSegmentNames];
     _SegmentControlOutlet.selectedSegmentIndex=0;
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:[_SegmentControlOutlet selectedSegmentIndex]]];
     [self.tableView reloadData];

@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstScreenPages : UIViewController <UIPageViewControllerDataSource>
+@interface FirstScreenPages : UIViewController
 
-@property (strong, nonatomic) UIPageViewController *pageController;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (strong, nonatomic) IBOutlet UIButton *GetStarted;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property NSUInteger pageIndex;
+@property NSString *titleText;
+@property NSString *imageFile;
 
 @end

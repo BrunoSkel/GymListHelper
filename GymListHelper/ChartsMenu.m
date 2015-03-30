@@ -127,6 +127,18 @@
 
 #pragma mark Delegate Methods
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        default:
+            sectionName = @"Tap to Select";
+            break;
+    }
+    return sectionName;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_tableData count];
