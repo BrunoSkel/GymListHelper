@@ -32,6 +32,13 @@
 		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
 		76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* ChartsMenu.m */; };
 		76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */; };
+		CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */; };
+		CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14701ACAFEE4009BE1FA /* CJSONSerializer.m */; };
+		CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14731ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m */; };
+		CBAE147A1ACB0F47009BE1FA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14771ACB0F47009BE1FA /* FBSDKCoreKit.framework */; };
+		CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */; };
+		CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */; };
+		CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +129,18 @@
 		76661E691AC44330007599B9 /* ChartsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsMenu.m; sourceTree = "<group>"; };
 		76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChartDescriptionEditor.h; sourceTree = "<group>"; };
 		76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChartDescriptionEditor.m; sourceTree = "<group>"; };
+		CBAE146D1ACAFEE4009BE1FA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		CBAE146F1ACAFEE4009BE1FA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		CBAE14701ACAFEE4009BE1FA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		CBAE14711ACAFEE4009BE1FA /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		CBAE14721ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		CBAE14731ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		CBAE14771ACB0F47009BE1FA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = GymListHelper/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = GymListHelper/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = GymListHelper/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		CBAE147D1ACB12EB009BE1FA /* LoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreen.h; sourceTree = "<group>"; };
+		CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +148,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBAE147A1ACB0F47009BE1FA /* FBSDKCoreKit.framework in Frameworks */,
+				CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */,
+				CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +174,10 @@
 		154F09391AB9948A00EC8087 = {
 			isa = PBXGroup;
 			children = (
+				CBAE14771ACB0F47009BE1FA /* FBSDKCoreKit.framework */,
+				CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */,
+				CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */,
+				CBAE146C1ACAFEE4009BE1FA /* libTouchJSON */,
 				154F09441AB9948A00EC8087 /* GymListHelper */,
 				154F095E1AB9948A00EC8087 /* GymListHelperTests */,
 				15A40B8B1AC17E08008C82C4 /* GymListHelper WatchKit Extension */,
@@ -203,6 +229,8 @@
 				154F09521AB9948A00EC8087 /* Images.xcassets */,
 				154F09541AB9948A00EC8087 /* LaunchScreen.xib */,
 				154F09451AB9948A00EC8087 /* Supporting Files */,
+				CBAE147D1ACB12EB009BE1FA /* LoginScreen.h */,
+				CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */,
 			);
 			path = GymListHelper;
 			sourceTree = "<group>";
@@ -274,6 +302,21 @@
 				15A40B9F1AC17E09008C82C4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBAE146C1ACAFEE4009BE1FA /* libTouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				CBAE146D1ACAFEE4009BE1FA /* CJSONDeserializer.h */,
+				CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */,
+				CBAE146F1ACAFEE4009BE1FA /* CJSONSerializer.h */,
+				CBAE14701ACAFEE4009BE1FA /* CJSONSerializer.m */,
+				CBAE14711ACAFEE4009BE1FA /* JSONRepresentation.h */,
+				CBAE14721ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.h */,
+				CBAE14731ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m */,
+			);
+			name = libTouchJSON;
+			path = GymListHelper/libTouchJSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,7 +403,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2YVM85P4VJ;
+						DevelopmentTeam = A5JJ9T4T2M;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -449,6 +492,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */,
+				CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */,
 				154F096C1AB9B41E00EC8087 /* DoExerciseScreen.m in Sources */,
 				154F094E1AB9948A00EC8087 /* ViewController.m in Sources */,
 				154DEAC01ABAEDAE00CDBC27 /* EndScreen.m in Sources */,
@@ -456,10 +501,12 @@
 				154DEAC41ABAFA0800CDBC27 /* ChartEditor.m in Sources */,
 				157C7AB11AC9713800EE25A2 /* FirstScreenPages.m in Sources */,
 				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
+				CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */,
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
+				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
 				154F09481AB9948A00EC8087 /* main.m in Sources */,
 			);
@@ -614,6 +661,10 @@
 				CODE_SIGN_ENTITLEMENTS = GymListHelper/GymListHelper.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GymListHelper",
+				);
 				INFOPLIST_FILE = GymListHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,6 +679,10 @@
 				CODE_SIGN_ENTITLEMENTS = GymListHelper/GymListHelper.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GymListHelper",
+				);
 				INFOPLIST_FILE = GymListHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

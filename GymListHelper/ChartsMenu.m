@@ -9,8 +9,16 @@
 #import "ChartsMenu.h"
 #import "ViewController.h"
 
-@interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
+#import "CJSONSerializer.h"
+#import "CJSONDeserializer.h"
+
+@interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
 @property (strong) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImg;
+@property (weak, nonatomic) IBOutlet UILabel *profileName;
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *FBLoginBtn;
+
+
 @property NSTimer *timer;
 @property int TouchedIndex;
 @end
@@ -24,6 +32,21 @@
     _tableData=[NSMutableArray arrayWithArray:_allChartData];
     [self.tableView reloadData];
     // Do any additional setup after loading the view.
+    
+    
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){
+        self.profileImg.image = [UIImage imageNamed:@"guest"];
+        self.profileName.text = @"Guest";
+    }else{
+        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage * image = [UIImage imageWithData:imageData];
+        
+        self.profileImg.image = image;
+        
+        self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
+        
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -66,6 +89,13 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    
+    //Social
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
+    
+    self.ByUserArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     if (_allChartData==NULL){
         
@@ -123,6 +153,12 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
         [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
+        self.ByUserArray = [NSMutableArray array];
+        [self.ByUserArray addObject: @"0§myself§0"]; // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
+        [self.ByUserArray writeToFile:filePath atomically:YES];
+        
     }
 }
 
@@ -170,6 +206,26 @@
     }
     
     cell.textLabel.text = [_RoutineNamesArray objectAtIndex:indexPath.row];
+    
+    UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
+    [editButton setTag:indexPath.row];
+    [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
+    
+    
+    // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
+    
+    NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
+    if([params[2] isEqualToString:@"0"]){
+        
+        [shareButton setTag:indexPath.row];
+        [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }else{
+        [shareButton setEnabled:NO];
+    }
+    
     return cell;
 }
 
@@ -185,7 +241,225 @@
 */
 
 //Required method for not losing data after changing viewcontrollers. Its supposed to be empty
--(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue{
+    
+}
+
+
+-(IBAction)editButtonPressed:(UIButton*)sender{
+    NSLog(@"%ld",sender.tag);
+    NSLog(@"%@",self.ChartNamesArray[sender.tag]);
+    NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
+    NSLog(@"%@",self.WaitTimesArray[sender.tag]);
+    NSLog(@"%@",self.allChartData[sender.tag]);
+    NSLog(@"%@",self.ByUserArray[sender.tag]);
+
+}
+
+-(IBAction)shareButtonPressed:(UIButton*)sender{
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){ //0 means user is not logged in, go to login screen
+        
+        [self performSegueWithIdentifier:@"GoToLogin" sender:self];
+        
+    }else{
+    
+        NSLog(@"%ld",sender.tag);
+        NSLog(@"%@",self.ChartNamesArray[sender.tag]);
+        NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
+        NSLog(@"%@",self.WaitTimesArray[sender.tag]);
+        NSLog(@"%@",self.allChartData[sender.tag]);
+        NSLog(@"%@",self.ByUserArray[sender.tag]);
+        
+        [sender setEnabled:NO];
+        
+
+        NSError *error = NULL;
+        
+        //Serialize ChartNamesArray
+        NSData *jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartNamesArray[sender.tag] error:&error];
+        NSString* jsonSrtChartNames = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Serialize WaitTimesArray
+        jsonData = [[CJSONSerializer serializer] serializeObject:self.WaitTimesArray[sender.tag] error:&error];
+        NSString* jsonSrtWaitTimes = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Serialize allChartData
+        jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[sender.tag] error:&error];
+        NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Create "form" data
+        NSString *sendData = @"userid=";
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&name="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
+        
+        sendData = [sendData stringByAppendingString:@"&category1="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&category2="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&category3="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&estimatedTime="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+        
+        sendData = [sendData stringByAppendingString:@"&waitTime="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
+        
+        sendData = [sendData stringByAppendingString:@"&language="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&comment="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+        
+        sendData = [sendData stringByAppendingString:@"&chartNames="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtChartNames]];
+        
+        sendData = [sendData stringByAppendingString:@"&exercises="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
+        
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        //Here you send your data
+        [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [request setHTTPMethod:@"POST"];
+        NSURLResponse *response = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        
+        if (error)
+        {
+            NSLog(@"Error");
+        }
+        else
+        {
+            //The response is in data
+            NSLog(@"%@", results);
+            
+            if([results isEqualToString:@"ERROR2"]){
+                NSLog(@"Error2");
+            }else{
+                NSLog(@"Compartilhado");
+                
+                self.ByUserArray[sender.tag] = [NSString stringWithFormat:@"0§myself§%@", results];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
+                [self.ByUserArray writeToFile:filePath atomically:YES];
+                
+            }
+        }
+    }
+}
+
+- (IBAction)LogInOutAction:(id)sender {
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){
+        //Go To Login Screen
+        [self performSegueWithIdentifier:@"GoToLogin" sender:self];
+    }else{
+        //Logout
+        self.profileImg.image = [UIImage imageNamed:@"guest"];
+        self.profileName.text = @"Guest";
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
+        //[FBSDKLoginManager finalize];
+        //[FBSDKAccessToken ];
+    }
+    
+}
+
+- (void) loginButtonDidLogOut:(FBSDKLoginButton *)FBLoginBtn{
+    NSLog(@"LOGOUT");
+
+    self.profileImg.image = [UIImage imageNamed:@"guest"];
+    self.profileName.text = @"Guest";
+
+}
+
+- (void)
+loginButton:	(FBSDKLoginButton *)FBLoginBtn
+didCompleteWithResult:	(FBSDKLoginManagerLoginResult *)result
+error:	(NSError *)error
+{
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             if (!error) {
+                 
+                 NSLog(@"fetched user:%@", result);
+                 
+                 [[NSUserDefaults standardUserDefaults] setValue: result[@"id"] forKey:@"loggedUserFacebookId"];
+                 
+                 [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@ %@", result[@"first_name"],result[@"last_name"]] forKey:@"loggedUserName"];
+                 
+                 NSString *sendData = @"facebookid=";
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", result[@"id"]]];
+                 
+                 sendData = [sendData stringByAppendingString:@"&name="];
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+                 
+                 sendData = [sendData stringByAppendingString:@"&email="];
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+                 
+                 sendData = [sendData stringByAppendingString:@"&password="];
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+                 
+                 sendData = [sendData stringByAppendingString:@"&pic="];
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+                 
+                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertUser.php"]];
+                 
+                 [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                 
+                 //Here you send your data
+                 [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
+                 
+                 [request setHTTPMethod:@"POST"];
+                 NSURLResponse *response = nil;
+                 NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+                 
+                 NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                 
+                 
+                 if (error)
+                 {
+                     NSLog(@"Error");
+                 }
+                 else
+                 {
+                     //The response is in data
+                     NSLog(@"%@", results);
+                     
+                     if([results isEqualToString:@"ERROR2"]){
+                         NSLog(@"InsertUser Error2");
+                     }else{
+                         NSLog(@"InsertUser ok = %@",results);
+                         
+                         [[NSUserDefaults standardUserDefaults] setInteger:[results intValue] forKey:@"loggedUserId"];
+                         
+                         NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
+                         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+                         UIImage * image = [UIImage imageWithData:imageData];
+                         
+                         self.profileImg.image = image;
+                         
+                         self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
+                     }
+                 }
+                 
+             }
+         }];
+    }else{
+        NSLog(@"Not Logged");
+    }
 }
 
 @end
