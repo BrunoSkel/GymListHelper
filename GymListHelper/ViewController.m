@@ -44,7 +44,7 @@
     
     [super viewDidLoad];
     //Initialize Watch syncing.
-    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
+    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
     
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
@@ -53,7 +53,7 @@
     [self LoadChartsFromFile];
     
     //Check number of subroutines
-    NSLog(@"%ld",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+    NSLog(@"%ud",[[_allChartData objectAtIndex:_ChosenWorkout] count]);
     [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
@@ -221,7 +221,7 @@
         while (_SegmentControlOutlet.numberOfSegments>2){
             [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.numberOfSegments-1 animated:NO];
         }
-        NSLog(@"NumberOfSegments: %ld | Count: %ld",_SegmentControlOutlet.numberOfSegments,[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+        NSLog(@"NumberOfSegments: %ld | Count: %ld",(unsigned long)_SegmentControlOutlet.numberOfSegments,(unsigned long)[[_allChartData objectAtIndex:_ChosenWorkout] count]);
         [self FillSegment];
     }
     [self UpdateSegmentNames];

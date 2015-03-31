@@ -41,7 +41,7 @@
         //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
         [controller.allChartData addObject: [NSMutableArray array]];
         NSInteger newposition=[controller.allChartData count]-1;
-        NSLog(@"New position = %ld",newposition);
+        NSLog(@"New position = %ld",(long)newposition);
         [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
         [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
         

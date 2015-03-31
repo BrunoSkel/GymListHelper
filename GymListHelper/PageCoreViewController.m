@@ -101,8 +101,8 @@
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-    {
-        return 0;
-    }
+{
+    return 0;
+}
 
 @end
