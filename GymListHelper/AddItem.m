@@ -13,12 +13,13 @@
 @property (strong, nonatomic) IBOutlet UITextField *repField;
 @property (strong, nonatomic) IBOutlet UILabel *saveButton;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
+@property (strong, nonatomic) IBOutlet UIButton *cancelBut;
 @end
 
 @implementation AddItem
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if (self.nameField.text.length > 0) {
+    if (self.nameField.text.length > 0 && sender!=self.cancelBut) {
         _newitem=[NSString stringWithFormat:@"%@ | %@x%@",self.nameField.text,self.seriesField.text,self.repField.text];
         NSLog(@"%@",_newitem);
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;

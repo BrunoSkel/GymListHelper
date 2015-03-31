@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *DeleteSubRoutine;
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
 @property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
+//Timer to flash the scroll indicator
+@property NSTimer *timer;
 @end
 
 @implementation ChartEditor
@@ -44,6 +46,20 @@
     
     [self UpdateWaitPicker];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_timer invalidate];
+}
+
+-(void)indicator:(BOOL)animated{
+    [_tableView flashScrollIndicators];
 }
 
 - (void)loadInitialData {
@@ -104,6 +120,18 @@
     [self.tableView reloadData];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        default:
+            sectionName = @"Exercise List";
+            break;
+    }
+    return sectionName;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.tableData count];
@@ -111,7 +139,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    static NSString *simpleTableIdentifier = @"SimpleTableItem2";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     

@@ -11,6 +11,7 @@
 
 @interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
 @property (strong) IBOutlet UITableView *tableView;
+@property NSTimer *timer;
 @property int TouchedIndex;
 @end
 
@@ -23,6 +24,20 @@
     _tableData=[NSMutableArray arrayWithArray:_allChartData];
     [self.tableView reloadData];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_timer invalidate];
+}
+
+-(void)indicator:(BOOL)animated{
+    [_tableView flashScrollIndicators];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,7 +161,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    static NSString *simpleTableIdentifier = @"TableModel";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     

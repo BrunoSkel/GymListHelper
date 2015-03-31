@@ -8,11 +8,15 @@
 
 #import "InterfaceController.h"
 #import "WatchTableClass.h"
+@import WatchKit;
+@import UIKit;
 
 @interface InterfaceController()
 @property (strong, nonatomic) IBOutlet WKInterfaceTable *tableView;
 @property (strong,nonatomic)  NSMutableArray *WatchTableData;
 @property (strong,nonatomic)  NSString *WaitTimeString;
+@property (strong, nonatomic) IBOutlet WKInterfaceLabel *iPhoneWarningLabel;
+@property (strong, nonatomic) IBOutlet WKInterfaceButton *StartButton;
 @property (strong,nonatomic) NSTimer *syncTimer; //Store the timer
 @end
 
@@ -23,19 +27,35 @@
     [super awakeWithContext:context];
 
     // Configure interface objects here.
-        [self PullSyncedData];
-        [self populateData];
+        [self CheckTableData];
+        //[self PullSyncedData];
+        //[self populateData];
         [self StartTimer];
+}
+
+- (void)CheckTableData{
+    //Show the iPhone warning if there's no data to load
+    if (_WatchTableData==NULL){
+        [_iPhoneWarningLabel setHidden:NO];
+        [_StartButton setHidden:YES];
+    }
+    else{
+        [_iPhoneWarningLabel setHidden:YES];
+        [_StartButton setHidden:NO];
+    }
+    
 }
 
 - (void)StartTimer{
     //Pulls synced data every second
-    self.syncTimer= [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+    [self CheckTableData];
+    self.syncTimer= [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 }
 
 -(void)updateTimer{
     [self PullSyncedData];
     [self populateData];
+    [self CheckTableData];
 }
 
 -(void)StopTimer{
@@ -69,7 +89,13 @@
     }
 }
 
-
+- (IBAction)OnStartPressed {
+    [self StopTimer];
+    NSLog(@"Prepare for Segue");
+    //Since the WatchKit only lets me send one object, I have to add the WaitTime inside the exercises array and sort it out later
+    [_WatchTableData addObject:_WaitTimeString];
+    [self pushControllerWithName:@"DoExerciseWATCH" context:_WatchTableData];
+}
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
