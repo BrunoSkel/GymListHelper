@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Chart Editor-->
@@ -253,8 +254,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5m-X5-wJo">
-                                <rect key="frame" x="66" y="521" width="189" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5m-X5-wJo">
+                                <rect key="frame" x="99" y="513" width="122" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Get Started!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -265,6 +266,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91422334558823526" green="0.91422334558823526" blue="0.91422334558823526" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="w8o-a9-APd" firstAttribute="top" secondItem="p5m-X5-wJo" secondAttribute="bottom" constant="15" id="5c3-9e-04O"/>
+                            <constraint firstAttribute="centerX" secondItem="p5m-X5-wJo" secondAttribute="centerX" id="y26-4g-HnA"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="GetStartedBut" destination="p5m-X5-wJo" id="7Z7-Gb-vx3"/>
@@ -272,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfX-gk-idd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2442" y="-1353"/>
+            <point key="canvasLocation" x="-2540" y="-1329"/>
         </scene>
         <!--Start Screen-->
         <scene sceneID="99Q-eb-vTr">
@@ -286,18 +291,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gym Helper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEj-dh-6tl">
-                                <rect key="frame" x="0.0" y="37" width="320" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gym Helper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEj-dh-6tl">
+                                <rect key="frame" x="65" y="35" width="191" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="40"/>
                                 <color key="textColor" red="0.090196078430000007" green="0.60784313729999995" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xb6-kn-EfU">
-                                <rect key="frame" x="52" y="93" width="217" height="387"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xb6-kn-EfU">
+                                <rect key="frame" x="51" y="93" width="218" height="425"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xb6-kn-EfU" secondAttribute="trailing" constant="35" id="BiA-7r-Sdr"/>
+                            <constraint firstItem="tEj-dh-6tl" firstAttribute="top" secondItem="tgm-VA-JPz" secondAttribute="bottom" constant="15" id="FW4-EK-FWF"/>
+                            <constraint firstAttribute="centerX" secondItem="Xb6-kn-EfU" secondAttribute="centerX" id="IfF-e8-Ywr"/>
+                            <constraint firstAttribute="centerX" secondItem="tEj-dh-6tl" secondAttribute="centerX" id="U7P-gA-9tr"/>
+                            <constraint firstItem="mJd-Ch-1iI" firstAttribute="top" secondItem="Xb6-kn-EfU" secondAttribute="bottom" constant="50" id="d2I-a9-86r"/>
+                            <constraint firstItem="Xb6-kn-EfU" firstAttribute="top" secondItem="tEj-dh-6tl" secondAttribute="bottom" constant="10" id="dvJ-EU-NGq"/>
+                            <constraint firstItem="Xb6-kn-EfU" firstAttribute="leading" secondItem="j14-RR-fmf" secondAttribute="leadingMargin" constant="35" id="eAF-8M-UVl"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="Xb6-kn-EfU" id="YIx-MB-5xr"/>
@@ -787,6 +801,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pba-Sb-qyS"/>
+        <segue reference="kqB-SW-aXI"/>
     </inferredMetricsTieBreakers>
 </document>
