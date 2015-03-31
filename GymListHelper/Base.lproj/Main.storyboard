@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -448,7 +448,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ade-xh-Szc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1137" y="-2761"/>
+            <point key="canvasLocation" x="432" y="-2187"/>
         </scene>
         <!--Charts Menu-->
         <scene sceneID="afb-zD-eZH">
@@ -556,11 +556,9 @@
             </objects>
             <point key="canvasLocation" x="-562" y="-2043"/>
         </scene>
-<<<<<<< HEAD
         <!--Login Scene-->
         <scene sceneID="1P9-bg-Hed">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HHU-2Q-pND" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="KV1-2q-3MG" userLabel="Login Scene" customClass="LoginScreen" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KLl-yd-pMI"/>
@@ -599,8 +597,9 @@
                         <segue destination="9qR-FV-Wah" kind="modal" identifier="BackToChartsMenu" id="bck-QQ-APH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HHU-2Q-pND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15" y="-2188"/>
+            <point key="canvasLocation" x="46" y="-3075"/>
         </scene>
         <!--New Chart Description Editor-->
         <scene sceneID="2VT-vV-2XO">
@@ -980,6 +979,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pba-Sb-qyS"/>
+        <segue reference="BjJ-0k-RTe"/>
     </inferredMetricsTieBreakers>
 </document>
