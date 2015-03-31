@@ -39,7 +39,8 @@
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     _DeleteSubRoutine.hidden=YES;
-    [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    //[_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
         _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
@@ -157,20 +158,20 @@
     //When the segment is touched, change tableData to the according correct new chart
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
     _saveToChart=s.selectedSegmentIndex;
+    
     [self.tableView reloadData];
     
-    //
     
-    [_DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    //[self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-        [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    if (s.selectedSegmentIndex>1) {
+        [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+        
+        self.DeleteSubRoutine.hidden=NO;
+    } else
+        self.DeleteSubRoutine.hidden=YES;
     
-    if (s.selectedSegmentIndex>1)
-        _DeleteSubRoutine.hidden=NO;
-    else
-        _DeleteSubRoutine.hidden=YES;
-    
-    _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+    self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
     
     //Set Pickerview to the correct WaitTime
     [self UpdateWaitPicker];
@@ -178,8 +179,8 @@
 }
 
 -(void) UpdateWaitPicker{
-    NSString *thiscooldown=[[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
-    [_pickerView selectRow:[thiscooldown intValue] inComponent:0 animated:YES];
+    NSString *thiscooldown=[[self.WaitTimesArray objectAtIndex:self.ChosenWorkout] objectAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
+    [self.pickerView selectRow:[thiscooldown intValue] inComponent:0 animated:YES];
 }
 
 
