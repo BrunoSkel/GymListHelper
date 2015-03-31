@@ -61,6 +61,9 @@
         [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
         [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
         
+        //Adding owner user for this new Chart
+        [controller.ByUserArray addObject: @"0§myself§0"];
+        
         filePath = [documentsDirectory
                     stringByAppendingPathComponent:@"chartNamesFile"];
         [controller.ChartNamesArray writeToFile:filePath atomically:YES];
@@ -72,6 +75,10 @@
         filePath = [documentsDirectory
                     stringByAppendingPathComponent:@"waitTimesFile"];
         [controller.WaitTimesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"byUserFile"];
+        [controller.ByUserArray writeToFile:filePath atomically:YES];
         
         //SAVE CHART END
         

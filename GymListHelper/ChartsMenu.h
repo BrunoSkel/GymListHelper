@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
 
 @property (strong,nonatomic)  NSMutableArray *allChartData;
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
 @property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
 @property (strong,nonatomic)  NSMutableArray *tableData;
+
+//Social
+@property (strong,nonatomic)  NSMutableArray *ByUserArray;
 
 @end
