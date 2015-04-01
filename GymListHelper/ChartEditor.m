@@ -8,6 +8,7 @@
 
 #import "ChartEditor.h"
 #import "ViewController.h"
+#import "EditChartTableCell.h"
 #import "AddItem.h"
 #define PICKER_MIN 0
 #define PICKER_MAX 60
@@ -137,6 +138,8 @@
     }
     
     [self SaveCharts];
+    [_tableData removeAllObjects];
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
     [self.tableView reloadData];
 }
 
@@ -144,13 +147,16 @@
     NSIndexPath *indexPath = [self getButtonIndexPath:sender];
     
     // If row is the last row, btn shouldn't be available
-    if(!(indexPath.row > [self.tableView numberOfRowsInSection:indexPath.section] - 1)) {
+    if(indexPath.row < [[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1) {
+        NSLog(@"asd");
         id aux = self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row];
         [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row+1] atIndexedSubscript:indexPath.row];
         [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:aux atIndexedSubscript:(indexPath.row+1)];
     }
     
     [self SaveCharts];
+    [_tableData removeAllObjects];
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
     [self.tableView reloadData];
 }
 
@@ -189,6 +195,24 @@
     }
     
     cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+    
+    int max=[[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1;
+    
+    EditChartTableCell *thiscell = cell;
+    
+    if (indexPath.row==max){
+        thiscell.DownButton.hidden=YES;
+    }
+    
+    else if (indexPath.row==0){
+        thiscell.UpButton.hidden=YES;
+    }
+    
+    else{
+        thiscell.DownButton.hidden=NO;
+        thiscell.UpButton.hidden=NO;
+    }
+    
     return cell;
 }
 

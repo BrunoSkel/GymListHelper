@@ -28,6 +28,7 @@
 		15A40BA71AC17E09008C82C4 /* GymListHelper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
+		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
 		76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E631AC441E8007599B9 /* DownloadCategories.m */; };
 		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
 		76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* ChartsMenu.m */; };
@@ -129,6 +130,8 @@
 		15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
 		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChartTableCell.m; sourceTree = "<group>"; };
+		15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChartTableCell.h; sourceTree = "<group>"; };
 		76661E621AC441E8007599B9 /* DownloadCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCategories.h; sourceTree = "<group>"; };
 		76661E631AC441E8007599B9 /* DownloadCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCategories.m; sourceTree = "<group>"; };
 		76661E651AC442D6007599B9 /* StartScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreen.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				154F094D1AB9948A00EC8087 /* ViewController.m */,
 				154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */,
 				154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */,
+				15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */,
+				15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */,
 				157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */,
 				157C7AB21AC9715200EE25A2 /* FirstScreenPages.h */,
 				154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */,
@@ -425,9 +430,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-
 						DevelopmentTeam = 2YVM85P4VJ;
-
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -528,6 +531,7 @@
 				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
 				CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */,
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
+				15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */,
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
