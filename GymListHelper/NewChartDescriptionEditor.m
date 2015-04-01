@@ -10,9 +10,8 @@
 #import "ChartsMenu.h"
 
 @interface NewChartDescriptionEditor ()
-@property (strong, nonatomic) IBOutlet UITextField *ChartNameNew;
+@property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property (strong, nonatomic) IBOutlet UITextField *ChartObjective;
-
 @end
 
 @implementation NewChartDescriptionEditor
@@ -20,7 +19,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //Pickerview default stuff
+    //_isEdit=NO;
+}
+
+-(void)editMode{
+    NSLog(@"cheguei");
+    _isEdit=YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"view will appear");
+    if (_isEdit==YES){
+        _ChartNameNew.text=[_sentNameArray objectAtIndex:_EditThisRoutine];
+        [_MainLabel setText:@"Edit Routine"];
+        _DeleteButton.hidden=NO;
+    }
+    else{
+        _DeleteButton.hidden=YES;
+        _ChartNameNew.text=@"New Routine";
+        [_MainLabel setText:@"Add New Routine"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +48,93 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //Checking if he pressed the delete button
+    UIButton *button = (UIButton *)sender;
+    if (button==_DeleteButton){
+        ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
+        //SAVE CHART
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath;
+        
+        //Delete the Exercises from this routine
+        
+        [controller.allChartData removeObjectAtIndex:_EditThisRoutine];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+        [controller.allChartData writeToFile:filePath atomically:YES];
+        
+        //Delete the routine name
+        [controller.RoutineNamesArray removeObjectAtIndex:_EditThisRoutine];
+        
+        //Delete the subroutine names
+        [controller.ChartNamesArray removeObjectAtIndex:_EditThisRoutine];
+        
+        //Delete wait times associated to this chart
+        [controller.WaitTimesArray removeObjectAtIndex:_EditThisRoutine];
+        
+        //Delete the owner data
+        [controller.ByUserArray removeObjectAtIndex:_EditThisRoutine];
+        
+        //And save everything
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"chartNamesFile"];
+        [controller.ChartNamesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"routineNamesFile"];
+        [controller.RoutineNamesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"waitTimesFile"];
+        [controller.WaitTimesArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"byUserFile"];
+        [controller.ByUserArray writeToFile:filePath atomically:YES];
+        
+        //Now reload
+        [controller.tableData removeAllObjects];
+        controller.tableData=[NSMutableArray arrayWithArray:controller.allChartData];
+        [controller.tableView reloadData];
+        
+        return;
+    }
+    //Check if hes editing or creating a new chart
+    if (_isEdit==YES){
+        NSLog(@"Saving Edition");
+        if (self.ChartNameNew.text.length > 0) {
+            ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
+            
+            //SAVE CHART
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *filePath;
+            
+            //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
+            
+            
+            //Adding new chart name
+            NSLog(@"Old: %@",[controller.RoutineNamesArray objectAtIndex:_EditThisRoutine]);
+            [controller.RoutineNamesArray replaceObjectAtIndex:_EditThisRoutine withObject:self.ChartNameNew.text];
+                        NSLog(@"New: %@",[controller.RoutineNamesArray objectAtIndex:_EditThisRoutine]);
+            
+            filePath = [documentsDirectory
+                        stringByAppendingPathComponent:@"routineNamesFile"];
+            [controller.RoutineNamesArray writeToFile:filePath atomically:YES];
+            
+            
+            //SAVE CHART END
+            
+            //Update Data
+            [controller.tableData removeAllObjects];
+            controller.tableData=[NSMutableArray arrayWithArray:controller.allChartData];
+            [controller.tableView reloadData];
+            
+        }
+
+        return;
+    }
     
     if (self.ChartNameNew.text.length > 0) {
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;

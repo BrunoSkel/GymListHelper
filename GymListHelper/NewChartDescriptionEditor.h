@@ -10,4 +10,10 @@
 
 @interface NewChartDescriptionEditor : UIViewController
 
+@property int EditThisRoutine;
+-(void)editMode;
+@property NSMutableArray* sentNameArray;
+@property BOOL isEdit;
+@property (strong, nonatomic) IBOutlet UITextField *ChartNameNew;
+@property (strong, nonatomic) IBOutlet UILabel *MainLabel;
 @end

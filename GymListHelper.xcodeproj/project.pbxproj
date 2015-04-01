@@ -32,6 +32,8 @@
 		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
 		76661E6A1AC44330007599B9 /* chartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* chartsMenu.m */; };
 		76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */; };
+		76CEA5071ACB203F00625DA9 /* DoExerciseScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */; };
+		76CEA50A1ACB206900625DA9 /* EndScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */; };
 		CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */; };
 		CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14701ACAFEE4009BE1FA /* CJSONSerializer.m */; };
 		CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14731ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m */; };
@@ -39,9 +41,6 @@
 		CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */; };
 		CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */; };
 		CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */; };
-		76CEA5071ACB203F00625DA9 /* DoExerciseScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */; };
-		76CEA50A1ACB206900625DA9 /* EndScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +107,10 @@
 		157C7AB21AC9715200EE25A2 /* FirstScreenPages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstScreenPages.h; sourceTree = "<group>"; };
 		157C7AB31AC97FB300EE25A2 /* PageCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCoreViewController.m; sourceTree = "<group>"; };
 		157C7AB51AC97FC400EE25A2 /* PageCoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageCoreViewController.h; sourceTree = "<group>"; };
+		158DF0391ACAD280004E294A /* PageViewOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewOverride.m; sourceTree = "<group>"; };
+		158DF03B1ACAD2B8004E294A /* PageViewOverride.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewOverride.h; sourceTree = "<group>"; };
+		158DF03C1ACAE3B2004E294A /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
+		158DF03E1ACAE3C2004E294A /* EndScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndScreenWATCH.h; sourceTree = "<group>"; };
 		15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GymListHelper WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A40B8D1AC17E08008C82C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A40B8E1AC17E08008C82C4 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 		15A40BAF1AC18513008C82C4 /* WatchTableClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchTableClass.m; path = "../GymListHelper WatchKit Extension/WatchTableClass.m"; sourceTree = "<group>"; };
 		15A40BB11AC18528008C82C4 /* WatchTableClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WatchTableClass.h; path = "../GymListHelper WatchKit Extension/WatchTableClass.h"; sourceTree = "<group>"; };
 		15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GymListHelper.entitlements; sourceTree = "<group>"; };
+		15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
+		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		76661E621AC441E8007599B9 /* DownloadCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCategories.h; sourceTree = "<group>"; };
 		76661E631AC441E8007599B9 /* DownloadCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCategories.m; sourceTree = "<group>"; };
@@ -132,6 +137,10 @@
 		76661E691AC44330007599B9 /* chartsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chartsMenu.m; sourceTree = "<group>"; };
 		76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChartDescriptionEditor.h; sourceTree = "<group>"; };
 		76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChartDescriptionEditor.m; sourceTree = "<group>"; };
+		76CEA5051ACB203F00625DA9 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
+		76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
+		76CEA5081ACB206900625DA9 /* EndScreenWATCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreenWATCH.h; sourceTree = "<group>"; };
+		76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
 		CBAE146D1ACAFEE4009BE1FA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		CBAE146F1ACAFEE4009BE1FA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -144,10 +153,7 @@
 		CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = GymListHelper/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CBAE147D1ACB12EB009BE1FA /* LoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreen.h; sourceTree = "<group>"; };
 		CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreen.m; sourceTree = "<group>"; };
-		76CEA5051ACB203F00625DA9 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
-		76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
-		76CEA5081ACB206900625DA9 /* EndScreenWATCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreenWATCH.h; sourceTree = "<group>"; };
-		76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };/* End PBXFileReference section */
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		154F093F1AB9948A00EC8087 /* Frameworks */ = {
@@ -216,7 +222,9 @@
 				157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */,
 				157C7AB21AC9715200EE25A2 /* FirstScreenPages.h */,
 				154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */,
+				158DF0391ACAD280004E294A /* PageViewOverride.m */,
 				154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */,
+				158DF03B1ACAD2B8004E294A /* PageViewOverride.h */,
 				154DEAC21ABAF98500CDBC27 /* ChartEditor.h */,
 				154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */,
 				154F094F1AB9948A00EC8087 /* Main.storyboard */,
@@ -277,6 +285,10 @@
 				15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */,
 				15A40B8F1AC17E08008C82C4 /* InterfaceController.h */,
 				15A40B901AC17E08008C82C4 /* InterfaceController.m */,
+				15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */,
+				15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */,
+				158DF03C1ACAE3B2004E294A /* EndScreenWATCH.m */,
+				158DF03E1ACAE3C2004E294A /* EndScreenWATCH.h */,
 				15A40B921AC17E08008C82C4 /* NotificationController.h */,
 				15A40B931AC17E08008C82C4 /* NotificationController.m */,
 				15A40B951AC17E08008C82C4 /* Images.xcassets */,
@@ -413,7 +425,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = A5JJ9T4T2M;
+						DevelopmentTeam = WZ2UP2QF9G;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -426,7 +438,7 @@
 					};
 					15A40B891AC17E08008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 2YVM85P4VJ;
+						DevelopmentTeam = WZ2UP2QF9G;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
