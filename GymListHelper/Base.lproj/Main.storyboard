@@ -43,22 +43,22 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yye-hO-Vjb" id="l3a-6X-Vls">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edC-kb-RzY">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edC-kb-RzY">
                                                     <rect key="frame" x="250" y="13" width="30" height="17"/>
                                                     <state key="normal" title="Edit">
                                                         <color key="titleColor" red="0.047428310285136013" green="0.60031960227272729" blue="0.013853633818013758" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80O-EN-JVt">
-                                                    <rect key="frame" x="215" y="7" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80O-EN-JVt">
+                                                    <rect key="frame" x="250" y="7" width="30" height="30"/>
                                                     <state key="normal" title="⬇︎">
                                                         <color key="titleColor" red="0.047428310289999998" green="0.60031960230000003" blue="0.013853633820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRe-ZL-7JP">
-                                                    <rect key="frame" x="180" y="7" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRe-ZL-7JP">
+                                                    <rect key="frame" x="215" y="7" width="30" height="30"/>
                                                     <state key="normal" title="⬆︎">
                                                         <color key="titleColor" red="0.047428310289999998" green="0.60031960230000003" blue="0.013853633820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,36 +82,26 @@
                                     <outlet property="delegate" destination="euR-uM-ek8" id="5tR-Ws-gj3"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-dZ-A2S">
-                                <rect key="frame" x="32" y="512" width="207" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Add Exercise to &quot;A&quot;">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-dZ-A2S">
+                                <rect key="frame" x="16" y="404" width="302" height="41"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Add Exercise to '123456789'">
                                     <color key="titleColor" red="0.20392156862745098" green="0.67450980392156867" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="9Xy-mE-G5y" kind="modal" id="HVw-Hb-giL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2t-UW-RaH">
-                                <rect key="frame" x="16" y="25" width="35" height="30"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.24313725490196078" green="0.61960784313725492" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ixh-6g-J72" kind="unwind" unwindAction="prepareForUnwind:" id="Jdb-GA-ra4"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXQ-fw-0a5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXQ-fw-0a5">
                                 <rect key="frame" x="69" y="460" width="83" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldChange:" destination="euR-uM-ek8" eventType="editingChanged" id="PAl-PD-vtR"/>
+                                    <outlet property="delegate" destination="euR-uM-ek8" id="syB-Cq-MB9"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rest Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKL-WW-Z58">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rest Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKL-WW-Z58">
                                 <rect key="frame" x="160" y="466" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,12 +138,22 @@
                                     <outlet property="delegate" destination="euR-uM-ek8" id="Eoc-kA-xYa"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-NV-ciD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-NV-ciD">
                                 <rect key="frame" x="16" y="466" width="51" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2t-UW-RaH">
+                                <rect key="frame" x="16" y="30" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.24313725490196078" green="0.61960784313725492" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ixh-6g-J72" kind="unwind" unwindAction="prepareForUnwind:" id="Jdb-GA-ra4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -193,6 +193,7 @@
                         <outlet property="SegmentControlOutlet" destination="foe-z1-6da" id="wMS-re-B49"/>
                         <outlet property="pickerView" destination="NuL-h3-YbG" id="1ne-71-2zF"/>
                         <outlet property="tableView" destination="fCg-es-th7" id="j1O-wD-vLM"/>
+                        <segue destination="9Xy-mE-G5y" kind="modal" identifier="EditExercise" id="2mv-nd-GGP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hun-qa-m4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,8 +263,8 @@
                                     <segue destination="UeS-FG-UTu" kind="unwind" unwindAction="prepareForUnwind:" id="N4p-0N-mcQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jS2-aZ-c5c">
-                                <rect key="frame" x="133" y="79" width="54" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jS2-aZ-c5c">
+                                <rect key="frame" x="25" y="75" width="54" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="1" green="0.0" blue="0.018539993604963279" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,6 +272,17 @@
                                 </state>
                                 <connections>
                                     <segue destination="UeS-FG-UTu" kind="unwind" unwindAction="prepareForUnwind:" id="mFo-v1-4pS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8s-hf-2uX">
+                                <rect key="frame" x="242" y="75" width="49" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.018539993599999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="UeS-FG-UTu" kind="unwind" unwindAction="prepareForUnwind:" id="7nz-Pf-7AA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -304,6 +316,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="jh8-36-bGV"/>
                     <connections>
+                        <outlet property="DeleteButton" destination="R8s-hf-2uX" id="hwI-x6-E99"/>
+                        <outlet property="MainLabel" destination="Cdf-fA-8l0" id="c5d-t0-Lhh"/>
                         <outlet property="cancelBut" destination="jS2-aZ-c5c" id="bTY-YO-Qld"/>
                         <outlet property="nameField" destination="fdZ-24-C6z" id="uGw-gV-3nK"/>
                         <outlet property="repField" destination="UxM-oc-wyf" id="RsS-Ne-Ykw"/>
@@ -342,7 +356,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9qR-FV-Wah" kind="modal" id="5SP-CZ-hrW"/>
+                                    <segue destination="9qR-FV-Wah" kind="modal" identifier="ToMain" id="5SP-CZ-hrW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -718,6 +732,7 @@
                         <outlet property="ChartObjective" destination="aBN-Qe-WEN" id="1gt-P0-oRz"/>
                         <outlet property="DeleteButton" destination="J5s-kc-w7c" id="2uF-IS-4H9"/>
                         <outlet property="MainLabel" destination="pHG-IF-CXL" id="F1S-Fi-FcD"/>
+                        <outlet property="cancelBut" destination="ZY8-ef-zNj" id="s24-O5-1au"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vp5-3m-hbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -861,7 +876,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#Chart_Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKd-7k-5Sb">
-                                <rect key="frame" x="67" y="25" width="187" height="39"/>
+                                <rect key="frame" x="0.0" y="25" width="320" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -984,7 +999,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="But next time, try not to skip." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX2-me-l6O">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="But next time, try not to skip." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX2-me-l6O">
                                 <rect key="frame" x="0.0" y="245" width="320" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1013,7 +1028,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kqB-SW-aXI"/>
+        <segue reference="5SP-CZ-hrW"/>
         <segue reference="omY-P0-a6Z"/>
+        <segue reference="2mv-nd-GGP"/>
     </inferredMetricsTieBreakers>
 </document>

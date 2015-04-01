@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChartEditor : UIViewController <UITableViewDelegate, UITableViewDataSource, NSObject>
+@interface ChartEditor : UIViewController <UITableViewDelegate, UITableViewDataSource, NSObject, UITextFieldDelegate>
 
 @property NSString *itemName;
 //@property BOOL completed;

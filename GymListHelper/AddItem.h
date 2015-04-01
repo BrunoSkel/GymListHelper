@@ -12,5 +12,10 @@
 @interface AddItem: UIViewController
 
 @property NSString *newitem;
+-(void)editMode;
+@property int EditThisExercise;
+@property int ChosenSubWorkout;
+@property int ChosenWorkout;
+@property NSMutableArray *sentArray;
 
 @end

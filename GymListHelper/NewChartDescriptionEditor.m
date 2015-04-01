@@ -11,6 +11,7 @@
 
 @interface NewChartDescriptionEditor ()
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelBut;
 @property (strong, nonatomic) IBOutlet UITextField *ChartObjective;
 @end
 
@@ -103,7 +104,7 @@
     //Check if hes editing or creating a new chart
     if (_isEdit==YES){
         NSLog(@"Saving Edition");
-        if (self.ChartNameNew.text.length > 0) {
+        if (self.ChartNameNew.text.length > 0 && sender!=self.cancelBut) {
             ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
             
             //SAVE CHART
@@ -136,7 +137,7 @@
         return;
     }
     
-    if (self.ChartNameNew.text.length > 0) {
+    if (self.ChartNameNew.text.length > 0 && sender!=self.cancelBut) {
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
         
         //SAVE CHART
