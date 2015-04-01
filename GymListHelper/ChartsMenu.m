@@ -165,7 +165,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
     _TouchedIndex=indexPath.row;
-    NSLog(@"Touched index: %ld",indexPath.row);
+    NSLog(@"Touched index: %ld",(long)indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
 
@@ -262,7 +262,7 @@
 
 
 -(IBAction)editButtonPressed:(UIButton*)sender{
-    NSLog(@"%ld",sender.tag);
+    NSLog(@"%ld",(long)sender.tag);
     NSLog(@"%@",self.ChartNamesArray[sender.tag]);
     NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
     NSLog(@"%@",self.WaitTimesArray[sender.tag]);
@@ -278,7 +278,7 @@
         
     }else{
     
-        NSLog(@"%ld",sender.tag);
+        NSLog(@"%ld",(long)sender.tag);
         NSLog(@"%@",self.ChartNamesArray[sender.tag]);
         NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
         NSLog(@"%@",self.WaitTimesArray[sender.tag]);

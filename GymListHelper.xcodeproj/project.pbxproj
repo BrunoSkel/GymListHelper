@@ -30,7 +30,7 @@
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E631AC441E8007599B9 /* DownloadCategories.m */; };
 		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
-		76661E6A1AC44330007599B9 /* chartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* chartsMenu.m */; };
+		76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* ChartsMenu.m */; };
 		76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */; };
 		76CEA5071ACB203F00625DA9 /* DoExerciseScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */; };
 		76CEA50A1ACB206900625DA9 /* EndScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */; };
@@ -134,7 +134,7 @@
 		76661E651AC442D6007599B9 /* StartScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreen.h; sourceTree = "<group>"; };
 		76661E661AC442D6007599B9 /* StartScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreen.m; sourceTree = "<group>"; };
 		76661E681AC44330007599B9 /* ChartsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartsMenu.h; sourceTree = "<group>"; };
-		76661E691AC44330007599B9 /* chartsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chartsMenu.m; sourceTree = "<group>"; };
+		76661E691AC44330007599B9 /* ChartsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsMenu.m; sourceTree = "<group>"; };
 		76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChartDescriptionEditor.h; sourceTree = "<group>"; };
 		76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChartDescriptionEditor.m; sourceTree = "<group>"; };
 		76CEA5051ACB203F00625DA9 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 				76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */,
 				76661E6C1AC4435A007599B9 /* NewChartDescriptionEditor.m */,
 				76661E681AC44330007599B9 /* ChartsMenu.h */,
-				76661E691AC44330007599B9 /* chartsMenu.m */,
+				76661E691AC44330007599B9 /* ChartsMenu.m */,
 				76661E651AC442D6007599B9 /* StartScreen.h */,
 				76661E661AC442D6007599B9 /* StartScreen.m */,
 				76661E621AC441E8007599B9 /* DownloadCategories.h */,
@@ -425,7 +425,9 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = WZ2UP2QF9G;
+
+						DevelopmentTeam = 2YVM85P4VJ;
+
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -447,6 +449,7 @@
 					};
 					15A40B981AC17E09008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 2YVM85P4VJ;
 					};
 				};
 			};
@@ -525,7 +528,7 @@
 				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
 				CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */,
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
-				76661E6A1AC44330007599B9 /* chartsMenu.m in Sources */,
+				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
@@ -790,6 +793,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -810,6 +814,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = GymListHelper_WatchKit_Extension;
