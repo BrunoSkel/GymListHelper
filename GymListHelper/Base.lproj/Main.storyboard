@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -641,18 +641,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Objective" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYv-7S-4rp">
-                                <rect key="frame" x="113" y="367" width="94" height="29"/>
+                                <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Resistance" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBN-Qe-WEN">
-                                <rect key="frame" x="16" y="401" width="288" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="118" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-in-mMf">
-                                <rect key="frame" x="128" y="465" width="66" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-in-mMf">
+                                <rect key="frame" x="127" y="465" width="66" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.090196078430000007" green="0.60784313729999995" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -662,8 +662,8 @@
                                     <segue destination="kve-lR-2fq" kind="unwind" unwindAction="prepareForUnwind:" id="LdV-oy-ShV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZY8-ef-zNj">
-                                <rect key="frame" x="43" y="82" width="56" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZY8-ef-zNj">
+                                <rect key="frame" x="46" y="84" width="56" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="1" green="0.0" blue="0.15770537013376007" alpha="1" colorSpace="calibratedRGB"/>
@@ -684,8 +684,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5s-kc-w7c">
-                                <rect key="frame" x="214" y="86" width="64" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5s-kc-w7c">
+                                <rect key="frame" x="222" y="84" width="52" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" red="0.96470588235294119" green="0.0" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -698,14 +698,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="J5s-kc-w7c" secondAttribute="trailing" constant="30" id="3jl-0X-wyA"/>
                             <constraint firstItem="vMA-Ck-ck7" firstAttribute="top" secondItem="K5N-in-mMf" secondAttribute="bottom" constant="55" id="6jH-N4-WwD"/>
                             <constraint firstItem="ZY8-ef-zNj" firstAttribute="top" secondItem="pHG-IF-CXL" secondAttribute="bottom" constant="10" id="Fg2-W1-R9T"/>
                             <constraint firstAttribute="centerX" secondItem="K5N-in-mMf" secondAttribute="centerX" id="Hjq-cT-eZP"/>
-                            <constraint firstAttribute="centerX" secondItem="ZY8-ef-zNj" secondAttribute="centerX" id="JAc-a1-KA9"/>
                             <constraint firstAttribute="centerX" secondItem="pHG-IF-CXL" secondAttribute="centerX" id="JEt-t1-EzY"/>
                             <constraint firstItem="7Ob-Z4-KYu" firstAttribute="leading" secondItem="B5a-8e-nla" secondAttribute="leadingMargin" id="Lik-87-fUC"/>
+                            <constraint firstItem="ZY8-ef-zNj" firstAttribute="leading" secondItem="B5a-8e-nla" secondAttribute="leadingMargin" constant="30" id="N6N-SZ-Je0"/>
                             <constraint firstAttribute="centerY" secondItem="7Ob-Z4-KYu" secondAttribute="centerY" id="OCH-c8-CBA"/>
                             <constraint firstAttribute="centerX" secondItem="ZSm-MM-U2A" secondAttribute="centerX" id="YI2-Nr-Wn8"/>
+                            <constraint firstItem="J5s-kc-w7c" firstAttribute="top" secondItem="pHG-IF-CXL" secondAttribute="bottom" constant="10" id="ZFn-bg-hCf"/>
                             <constraint firstItem="7Ob-Z4-KYu" firstAttribute="trailing" secondItem="B5a-8e-nla" secondAttribute="trailingMargin" id="e8B-Ee-M57"/>
                             <constraint firstItem="pHG-IF-CXL" firstAttribute="top" secondItem="fiA-h7-1e3" secondAttribute="bottom" constant="15" id="lB9-Dm-0dk"/>
                             <constraint firstAttribute="centerX" secondItem="7Ob-Z4-KYu" secondAttribute="centerX" id="ofb-sg-mCK"/>
