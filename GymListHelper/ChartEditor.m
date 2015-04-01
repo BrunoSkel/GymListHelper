@@ -8,6 +8,7 @@
 
 #import "ChartEditor.h"
 #import "ViewController.h"
+#import "AddItem.h"
 #define PICKER_MIN 0
 #define PICKER_MAX 60
 
@@ -18,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *DeleteSubRoutine;
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
 @property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
-
+@property int TouchedIndex;
 //Timer to flash the scroll indicator
 @property NSTimer *timer;
 @end
@@ -40,14 +41,27 @@
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     _DeleteSubRoutine.hidden=YES;
-    //[_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
+    [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+   // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
         _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
     [self UpdateWaitPicker];
     
+}
+
+
+//Character Limit on Sub-routine Names
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return (newLength > 10) ? NO : YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -109,6 +123,7 @@
     [self SaveCharts];
 }
 
+
 - (IBAction)moveCellUp:(UIButton *)sender {
     //UITableViewCell *cell = (UITableViewCell *)sender.superview.superview;
     //NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -140,15 +155,10 @@
 }
 
 //Deletes the exercise, when it's touched, according to the chosen segment
+//When Touched, trigger the Edit window
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_tableData removeAllObjects];
-    //Remove object at the touched index, inside the chosen subworkout, inside a workout.
-    //[self.allChartData[self.ChosenWorkout][self.saveToChart]obj
-    [self.allChartData[self.ChosenWorkout][self.saveToChart] removeObjectAtIndex:indexPath.row];
-    
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
-    [self SaveCharts];
-    [self.tableView reloadData];
+    _TouchedIndex=indexPath.row;
+    [self performSegueWithIdentifier:@"EditExercise" sender:self];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -157,7 +167,7 @@
     switch (section)
     {
         default:
-            sectionName = @"Exercise List";
+            sectionName = @"Exercise List: Touch to Edit";
             break;
     }
     return sectionName;
@@ -192,7 +202,7 @@
     [self.tableView reloadData];
     
     
-    //[self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
     if (s.selectedSegmentIndex>1) {
         [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
@@ -269,6 +279,25 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"EditExercise"]){
+        AddItem *controller = (AddItem *)segue.destinationViewController;
+        controller.EditThisExercise=_TouchedIndex;
+        controller.ChosenSubWorkout=_saveToChart;
+        controller.ChosenWorkout=_ChosenWorkout;
+        controller.sentArray=[NSMutableArray arrayWithArray:_allChartData];
+        [controller editMode];
+    }
+    
+}
+
+-(NSIndexPath *) getButtonIndexPath:(UIButton *) button
+{
+    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
+    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
+}
+
 //Required method for not losing data after changing viewcontrollers. Its supposed to be empty
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
@@ -292,12 +321,6 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
-}
-
--(NSIndexPath *) getButtonIndexPath:(UIButton *) button
-{
-    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
-    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
 }
 
 

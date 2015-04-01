@@ -20,9 +20,16 @@
 
 @implementation PageCoreViewController
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:NO];
+    
+    //Check if it's not the first time he sees this screen..
+    BOOL isfirst=[self CheckifnotFirst];
+    if (isfirst==NO){
+        [self performSegueWithIdentifier:@"ToMain" sender:self];
+        return;
+    }
     // Create the data model
     _pageTitles = @[@"Welcome!", @"Easy", @"Helpful", @"Apple Watch"];
     _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
@@ -45,6 +52,20 @@
     
 
     
+}
+
+-(BOOL)CheckifnotFirst{
+    int firsttime = [[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
+    if (firsttime==0){
+        firsttime++;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:firsttime] forKey:@"firstTimeFile"];
+                return YES;
+    }
+    else{
+        return NO;
+    }
+    //anti bug
+    return NO;
 }
 
 - (FirstScreenPages *)viewControllerAtIndex:(NSUInteger)index
