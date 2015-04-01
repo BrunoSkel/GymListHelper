@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *DeleteSubRoutine;
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
 @property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
+
 //Timer to flash the scroll indicator
 @property NSTimer *timer;
 @end
@@ -108,15 +109,44 @@
     [self SaveCharts];
 }
 
+- (IBAction)moveCellUp:(UIButton *)sender {
+    //UITableViewCell *cell = (UITableViewCell *)sender.superview.superview;
+    //NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *indexPath = [self getButtonIndexPath:sender];
+    
+    // If row is 0, btn shouldn't be available
+    if(!(indexPath.row < 1)) {
+        id aux = self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row];
+        [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row-1] atIndexedSubscript:indexPath.row];
+        [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:aux atIndexedSubscript:(indexPath.row-1)];
+    }
+    
+    [self SaveCharts];
+    [self.tableView reloadData];
+}
+
+- (IBAction)moveCellDown:(UIButton *)sender {
+    NSIndexPath *indexPath = [self getButtonIndexPath:sender];
+    
+    // If row is the last row, btn shouldn't be available
+    if(!(indexPath.row > [self.tableView numberOfRowsInSection:indexPath.section] - 1)) {
+        id aux = self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row];
+        [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row+1] atIndexedSubscript:indexPath.row];
+        [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:aux atIndexedSubscript:(indexPath.row+1)];
+    }
+    
+    [self SaveCharts];
+    [self.tableView reloadData];
+}
+
 //Deletes the exercise, when it's touched, according to the chosen segment
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_tableData removeAllObjects];
     //Remove object at the touched index, inside the chosen subworkout, inside a workout.
+    //[self.allChartData[self.ChosenWorkout][self.saveToChart]obj
+    [self.allChartData[self.ChosenWorkout][self.saveToChart] removeObjectAtIndex:indexPath.row];
     
-    [[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] removeObjectAtIndex:indexPath.row];
-    
-    
-        _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
+    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
     [self SaveCharts];
     [self.tableView reloadData];
 }
@@ -262,6 +292,12 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
+}
+
+-(NSIndexPath *) getButtonIndexPath:(UIButton *) button
+{
+    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
+    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
 }
 
 
