@@ -17,7 +17,7 @@
 @property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
 @property (strong,nonatomic)  NSMutableArray *tableData;
-
+@property (strong) IBOutlet UITableView *tableView;
 //Social
 @property (strong,nonatomic)  NSMutableArray *ByUserArray;
 

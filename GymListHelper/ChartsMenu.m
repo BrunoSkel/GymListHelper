@@ -8,12 +8,12 @@
 
 #import "ChartsMenu.h"
 #import "ViewController.h"
+#import "NewChartDescriptionEditor.h"
 
 #import "CJSONSerializer.h"
 #import "CJSONDeserializer.h"
 
 @interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
-@property (strong) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImg;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *FBLoginBtn;
@@ -174,6 +174,21 @@
         ViewController *controller = (ViewController *)segue.destinationViewController;
         controller.ChosenWorkout=_TouchedIndex;
     }
+    
+    else if([segue.identifier isEqualToString:@"EditRoutine"]){
+        NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
+        NSIndexPath *indexPath = [self getButtonIndexPath:sender];
+        controller.EditThisRoutine=indexPath.row;
+        controller.sentNameArray=[NSMutableArray arrayWithArray:_RoutineNamesArray];
+        [controller editMode];
+    }
+    
+}
+
+-(NSIndexPath *) getButtonIndexPath:(UIButton *) button
+{
+    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
+    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
 }
 
 #pragma mark Delegate Methods
