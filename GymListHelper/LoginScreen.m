@@ -181,6 +181,9 @@ error:	(NSError *)error
                          
                          [[NSUserDefaults standardUserDefaults] setInteger:[results intValue] forKey:@"loggedUserId"];
                          
+                         
+                         
+                         
                          [self performSegueWithIdentifier:@"BackToChartsMenu" sender:self];
                      }
                  }
