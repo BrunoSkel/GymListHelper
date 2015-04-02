@@ -11,9 +11,10 @@
 @interface FirstScreenPages : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (strong, nonatomic) IBOutlet UIButton *GetStarted;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *StartBut;
 
+@property BOOL ShouldHide;
 @property NSUInteger pageIndex;
 @property NSString *titleText;
 @property NSString *imageFile;

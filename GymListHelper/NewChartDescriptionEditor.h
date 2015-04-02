@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewChartDescriptionEditor : UIViewController
+@interface NewChartDescriptionEditor : UIViewController <UITextFieldDelegate>
 
 @property int EditThisRoutine;
 -(void)editMode;

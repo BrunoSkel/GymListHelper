@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PageViewOverride : UIPageViewController
-
++(void)_bugFix;
 @end

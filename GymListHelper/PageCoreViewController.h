@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PageCoreViewController : UIViewController <UIPageViewControllerDataSource>
-@property (strong, nonatomic) IBOutlet UIButton *GetStartedBut;
 
 @end

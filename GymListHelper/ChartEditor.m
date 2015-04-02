@@ -47,10 +47,23 @@
     
     //Namefield initial text=Subroutine saved name
         self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
+        self.RoutineNameField.delegate=self;
     
     [self UpdateWaitPicker];
     
 }
+
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//================================================================
 
 
 //Character Limit on Sub-routine Names

@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "PageCoreViewController.h"
 #import "FirstScreenPages.h"
+//#import "PageViewOverride.h"
 
 @interface PageCoreViewController ()
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
+@property (weak, nonatomic) IBOutlet UIButton *StartBut;
 
 @end
 
@@ -23,7 +25,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:NO];
-    
+    //XCODE BUG FIXER
+    //[PageViewOverride _bugFix];
+    //
     //Check if it's not the first time he sees this screen..
     BOOL isfirst=[self CheckifnotFirst];
     if (isfirst==NO){
@@ -43,7 +47,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50);
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
@@ -78,10 +82,12 @@
     FirstScreenPages *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentController"];
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.titleText = self.pageTitles[index];
+    pageContentViewController.ShouldHide=YES;
     if (index==3){
-        pageContentViewController.GetStarted.hidden=NO;
+       pageContentViewController.ShouldHide=NO;
         NSLog(@"ShowGetStarted");
     }
+   // else
     pageContentViewController.pageIndex = index;
     
     return pageContentViewController;

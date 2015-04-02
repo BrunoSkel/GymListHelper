@@ -29,6 +29,25 @@
     _isEdit=YES;
 }
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.seriesField.delegate=self;
+    self.repField.delegate=self;
+    self.nameField.delegate=self;
+}
+
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//================================================================
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"view will appear");

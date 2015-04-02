@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChartEditor.h"
 
-@interface AddItem: UIViewController
+@interface AddItem: UIViewController <UITextFieldDelegate>
 
 @property NSString *newitem;
 -(void)editMode;

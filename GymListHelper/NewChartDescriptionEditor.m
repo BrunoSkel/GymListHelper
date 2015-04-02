@@ -20,8 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.ChartNameNew.delegate=self;
     //_isEdit=NO;
 }
+
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+        [theTextField resignFirstResponder];
+    return YES;
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//================================================================
 
 -(void)editMode{
     NSLog(@"cheguei");

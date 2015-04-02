@@ -29,6 +29,7 @@
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
+		1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DF0391ACAD280004E294A /* PageViewOverride.m */; };
 		76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E631AC441E8007599B9 /* DownloadCategories.m */; };
 		76661E671AC442D6007599B9 /* StartScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E661AC442D6007599B9 /* StartScreen.m */; };
 		76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 76661E691AC44330007599B9 /* ChartsMenu.m */; };
@@ -526,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB297FB21ACC0DCE00849FD2 /* GalleryScreen.m in Sources */,
+				1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */,
 				CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */,
 				CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */,
 				154F096C1AB9B41E00EC8087 /* DoExerciseScreen.m in Sources */,
