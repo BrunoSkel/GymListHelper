@@ -8,25 +8,9 @@ GymListHelper.xcodeproj/xcuserdata/Bruno.xcuserdatad/xcdebugger/Breakpoints_v2.x
 =======
 *.plist
 
-*.plist
-
-GymListHelper WatchKit App/Info.plist
-
 *.entitlements
-
-GymListHelper WatchKit Extension/GymListHelper WatchKit Extension.entitlements
-
-GymListHelper WatchKit Extension/Info.plist
 
 *.xcuserstate
-
-*.entitlements
-
-GymListHelper/GymListHelper.entitlements
-
-GymListHelper/Info.plist
-
-GymListHelperTests/Info.plist
 >>>>>>> origin/master
 
 *.entitlements
