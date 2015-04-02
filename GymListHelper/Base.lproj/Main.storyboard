@@ -554,7 +554,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N9N-JA-DGe" id="fXn-iN-if8">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSp-dN-9ad">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSp-dN-9ad">
                                                     <rect key="frame" x="250" y="14" width="30" height="30"/>
                                                     <state key="normal" title="Edit">
                                                         <color key="titleColor" red="0.048477147487704805" green="0.60031960227272729" blue="0.014749584455580372" alpha="1" colorSpace="calibratedRGB"/>
@@ -564,8 +564,8 @@
                                                         <segue destination="nPV-eu-LoU" kind="modal" identifier="EditRoutine" id="omY-P0-a6Z"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izJ-F6-rUX">
-                                                    <rect key="frame" x="8" y="27" width="40" height="30"/>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izJ-F6-rUX">
+                                                    <rect key="frame" x="8" y="28" width="64" height="30"/>
                                                     <state key="normal" title="Share">
                                                         <color key="titleColor" red="0.048477147489999997" green="0.60031960230000003" blue="0.01474958446" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -580,15 +580,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxQ-eL-OJH">
+                                                    <rect key="frame" x="8" y="33" width="20" height="20"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="by Guest User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JI-wR-2fs">
-                                                    <rect key="frame" x="33" y="33" width="209" height="17"/>
+                                                    <rect key="frame" x="33" y="35" width="209" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxQ-eL-OJH">
-                                                    <rect key="frame" x="8" y="33" width="20" height="20"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tSp-dN-9ad" firstAttribute="trailing" secondItem="fXn-iN-if8" secondAttribute="trailingMargin" id="AZo-kG-t9H"/>

@@ -163,7 +163,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
-    _TouchedIndex=indexPath.row;
+    _TouchedIndex=(int)indexPath.row;
     NSLog(@"Touched index: %ld",(long)indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
@@ -177,7 +177,7 @@
     else if([segue.identifier isEqualToString:@"EditRoutine"]){
         NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
         NSIndexPath *indexPath = [self getButtonIndexPath:sender];
-        controller.EditThisRoutine=indexPath.row;
+        controller.EditThisRoutine=(int)indexPath.row;
         controller.sentNameArray=[NSMutableArray arrayWithArray:_RoutineNamesArray];
         [controller editMode];
     }

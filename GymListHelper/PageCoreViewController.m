@@ -55,7 +55,7 @@
 }
 
 -(BOOL)CheckifnotFirst{
-    int firsttime = [[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
+    int firsttime = (int)[[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
     if (firsttime==0){
         firsttime++;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:firsttime] forKey:@"firstTimeFile"];

@@ -435,7 +435,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -448,7 +448,7 @@
 					};
 					15A40B891AC17E08008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -457,7 +457,7 @@
 					};
 					15A40B981AC17E09008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 					};
 				};
 			};

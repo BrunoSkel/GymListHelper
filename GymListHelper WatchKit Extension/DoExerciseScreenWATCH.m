@@ -56,7 +56,7 @@
     //Hide the Cooldown Stuff
     [self HideCooldown];
     //Get the amount of exercises from the chosen chart, and show the first one
-    _ExerciseAmount=[_exercisedata count];
+    _ExerciseAmount=(int)[_exercisedata count];
     NSLog(@"Exercise Amount on this Chart: %d",_ExerciseAmount);
     if (_ExerciseAmount!=0)
         [self ShowExercise:_currentExerciseIndex];

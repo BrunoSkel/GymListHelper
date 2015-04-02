@@ -117,7 +117,7 @@
 //When Pickerview Updates
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *newObject=[NSString stringWithFormat:@"%d",[self.pickerView selectedRowInComponent:0]];
+    NSString *newObject=[NSString stringWithFormat:@"%ld",(long)[self.pickerView selectedRowInComponent:0]];
     
     [[self.WaitTimesArray objectAtIndex:self.ChosenWorkout] replaceObjectAtIndex:self.SegmentControlOutlet.selectedSegmentIndex withObject:newObject];
     
@@ -162,7 +162,7 @@
 //Deletes the exercise, when it's touched, according to the chosen segment
 //When Touched, trigger the Edit window
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _TouchedIndex=indexPath.row;
+    _TouchedIndex=(int)indexPath.row;
     [self performSegueWithIdentifier:@"EditExercise" sender:self];
 }
 
@@ -221,7 +221,7 @@
     UISegmentedControl *s = (UISegmentedControl *)sender;
     //When the segment is touched, change tableData to the according correct new chart
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
-    _saveToChart=s.selectedSegmentIndex;
+    _saveToChart=(int)s.selectedSegmentIndex;
     
     [self.tableView reloadData];
     
@@ -276,7 +276,7 @@
     //Update table data to the first segment
     
     _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex]];
-    _saveToChart=_SegmentControlOutlet.selectedSegmentIndex;
+    _saveToChart=(int)_SegmentControlOutlet.selectedSegmentIndex;
     [self.tableView reloadData];
     
     [self SaveCharts];
@@ -337,7 +337,7 @@
 //The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
+    return [NSString stringWithFormat:@"%ld", (row+PICKER_MIN)];
     //[_PickerView selectedRowInComponent:0];
 }
 
