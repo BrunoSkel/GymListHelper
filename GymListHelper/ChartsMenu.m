@@ -324,7 +324,7 @@
         
         //Create "form" data
         NSString *sendData = @"userid=";
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
         
         sendData = [sendData stringByAppendingString:@"&name="];
         sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];

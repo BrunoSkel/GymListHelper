@@ -42,7 +42,7 @@
     switch (section)
     {
         default:
-            sectionName = @"Tap to Select";
+            sectionName = @"";
             break;
     }
     return sectionName;
