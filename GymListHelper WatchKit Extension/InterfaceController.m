@@ -35,7 +35,7 @@
 
 - (void)CheckTableData{
     //Show the iPhone warning if there's no data to load
-    if (_WatchTableData==NULL){
+    if ([_WatchTableData count]==0){
         [_iPhoneWarningLabel setHidden:NO];
         [_StartButton setHidden:YES];
     }
@@ -65,7 +65,7 @@
 
 - (void)PullSyncedData{
     //Code below pulls the shared data inside a specific suite name. Sending method on ViewController.m
-    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
+    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
     //Use example
     //self.myLabel.text = [SharedData stringForKey:@"savedUserInput"];
     
@@ -90,6 +90,8 @@
 }
 
 - (IBAction)OnStartPressed {
+    if ([_WatchTableData count]==0)
+        return;
     [self StopTimer];
     NSLog(@"Prepare for Segue");
     //Since the WatchKit only lets me send one object, I have to add the WaitTime inside the exercises array and sort it out later
