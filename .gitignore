@@ -6,10 +6,12 @@ GymListHelper.xcodeproj/project.xcworkspace/xcuserdata/Bruno.xcuserdatad/UserInt
 
 GymListHelper.xcodeproj/xcuserdata/Bruno.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 =======
+*.plist
 
 *.entitlements
 
 *.xcuserstate
 >>>>>>> origin/master
+*.plist
 
 *.entitlements
