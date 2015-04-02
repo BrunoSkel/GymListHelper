@@ -33,11 +33,7 @@
     [self.tableView reloadData];
     // Do any additional setup after loading the view.
     
-    
-    if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){
-        self.profileImg.image = [UIImage imageNamed:@"guest"];
-        self.profileName.text = @"Guest";
-    }else{
+    if ([FBSDKAccessToken currentAccessToken]) {
         NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
@@ -45,7 +41,10 @@
         self.profileImg.image = image;
         
         self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
-        
+    }else{
+        self.profileImg.image = [UIImage imageNamed:@"guest"];
+        self.profileName.text = @"Guest";
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     }
 }
 
@@ -205,26 +204,47 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [_RoutineNamesArray objectAtIndex:indexPath.row];
-    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
     [editButton setTag:indexPath.row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
     
+    UILabel *lbChartName = (UILabel *)[cell.contentView.subviews objectAtIndex:2];
+    UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
+    UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     
+    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
-    if([params[2] isEqualToString:@"0"]){
+    
+    if([params[1] isEqualToString:@"myself"]){
+        if([params[2] isEqualToString:@"0"]){
+            
+            [shareButton setTag:indexPath.row];
+            [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            
+        }else{
+            [shareButton setEnabled:NO];
+        }
         
-        [shareButton setTag:indexPath.row];
-        [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [shareButton setHidden:NO];
+        [lbUserName setHidden:YES];
+        [imgUserPic setHidden:YES];
     }else{
-        [shareButton setEnabled:NO];
+        [shareButton setHidden:YES];
+        [lbUserName setHidden:NO];
+        [imgUserPic setHidden:NO];
+        lbUserName.text = [NSString stringWithFormat:@"by %@",params[1]];
+        
+        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=100&height=100",params[0]]];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage * image = [UIImage imageWithData:imageData];
+        imgUserPic.image = image;
+
     }
+
     
     return cell;
 }
@@ -293,6 +313,9 @@
         
         sendData = [sendData stringByAppendingString:@"&name="];
         sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
+        
+        sendData = [sendData stringByAppendingString:@"&category="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
         
         sendData = [sendData stringByAppendingString:@"&category1="];
         sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
@@ -404,7 +427,7 @@ error:	(NSError *)error
                  sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", result[@"id"]]];
                  
                  sendData = [sendData stringByAppendingString:@"&name="];
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@ %@", result[@"first_name"],result[@"last_name"]]]];
                  
                  sendData = [sendData stringByAppendingString:@"&email="];
                  sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
