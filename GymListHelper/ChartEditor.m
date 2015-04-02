@@ -198,7 +198,7 @@
     
     int max=[[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1;
     
-    EditChartTableCell *thiscell = cell;
+   /* EditChartTableCell *thiscell = cell;
     
     if (indexPath.row==max){
         thiscell.DownButton.hidden=YES;
@@ -211,7 +211,7 @@
     else{
         thiscell.DownButton.hidden=NO;
         thiscell.UpButton.hidden=NO;
-    }
+    }*/
     
     return cell;
 }
