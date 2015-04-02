@@ -30,23 +30,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
-    _saveToChart=0;
+    self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
     
     [self loadInitialData];
     [self FillSegment];
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
+    self.tableData=[NSMutableArray arrayWithArray:[[self.allChartData objectAtIndex:self.ChosenWorkout] objectAtIndex:0]];
     [self.tableView reloadData];
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
-    _DeleteSubRoutine.hidden=YES;
-    [_AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    self.DeleteSubRoutine.hidden=YES;
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
    // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
-        _RoutineNameField.text=[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+        self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
     
     [self UpdateWaitPicker];
     
@@ -102,24 +102,24 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
-    [_allChartData writeToFile:filePath atomically:YES];
+    [self.allChartData writeToFile:filePath atomically:YES];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
-    [_ChartNamesArray writeToFile:filePath atomically:YES];
+    [self.ChartNamesArray writeToFile:filePath atomically:YES];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
-    [_WaitTimesArray writeToFile:filePath atomically:YES];
+    [self.WaitTimesArray writeToFile:filePath atomically:YES];
     
 }
 
 //When Pickerview Updates
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *newObject=[NSString stringWithFormat:@"%d",[_pickerView selectedRowInComponent:0]];
+    NSString *newObject=[NSString stringWithFormat:@"%d",[self.pickerView selectedRowInComponent:0]];
     
-    [[_WaitTimesArray objectAtIndex:_ChosenWorkout] replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:newObject];
+    [[self.WaitTimesArray objectAtIndex:self.ChosenWorkout] replaceObjectAtIndex:self.SegmentControlOutlet.selectedSegmentIndex withObject:newObject];
     
     [self SaveCharts];
 }
@@ -138,8 +138,8 @@
     }
     
     [self SaveCharts];
-    [_tableData removeAllObjects];
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart]];
+    [self.tableData removeAllObjects];
+    self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][self.saveToChart]];
     [self.tableView reloadData];
 }
 
@@ -148,7 +148,6 @@
     
     // If row is the last row, btn shouldn't be available
     if(indexPath.row < [[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1) {
-        NSLog(@"asd");
         id aux = self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row];
         [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:self.allChartData[self.ChosenWorkout][self.saveToChart][indexPath.row+1] atIndexedSubscript:indexPath.row];
         [self.allChartData[self.ChosenWorkout][self.saveToChart] setObject:aux atIndexedSubscript:(indexPath.row+1)];
@@ -196,9 +195,10 @@
     
     cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
     
+    /*
     int max=[[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1;
     
-   /* EditChartTableCell *thiscell = cell;
+    EditChartTableCell *thiscell = cell;
     
     if (indexPath.row==max){
         thiscell.DownButton.hidden=YES;

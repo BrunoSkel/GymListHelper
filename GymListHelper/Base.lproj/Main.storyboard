@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdf-KZ-w0x">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -273,8 +273,8 @@
                                     <segue destination="UeS-FG-UTu" kind="unwind" unwindAction="prepareForUnwind:" id="N4p-0N-mcQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jS2-aZ-c5c">
-                                <rect key="frame" x="25" y="75" width="54" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jS2-aZ-c5c">
+                                <rect key="frame" x="31" y="79" width="54" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="1" green="0.0" blue="0.018539993604963279" alpha="1" colorSpace="calibratedRGB"/>
@@ -284,8 +284,8 @@
                                     <segue destination="UeS-FG-UTu" kind="unwind" unwindAction="prepareForUnwind:" id="mFo-v1-4pS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8s-hf-2uX">
-                                <rect key="frame" x="242" y="75" width="49" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8s-hf-2uX">
+                                <rect key="frame" x="240" y="79" width="49" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" red="1" green="0.0" blue="0.018539993599999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -302,6 +302,8 @@
                             <constraint firstAttribute="centerX" secondItem="6go-3h-WG0" secondAttribute="centerX" id="21h-4x-2bq"/>
                             <constraint firstItem="sjm-xt-R5h" firstAttribute="top" secondItem="KAy-aA-NbQ" secondAttribute="bottom" constant="50" id="4dh-Dq-QTe"/>
                             <constraint firstItem="Cdf-fA-8l0" firstAttribute="top" secondItem="pf9-tO-Y37" secondAttribute="bottom" constant="15" id="4mJ-0i-o9e"/>
+                            <constraint firstItem="jS2-aZ-c5c" firstAttribute="leading" secondItem="hvC-zt-pEq" secondAttribute="leadingMargin" constant="15" id="9wK-tH-46L"/>
+                            <constraint firstItem="R8s-hf-2uX" firstAttribute="top" secondItem="Cdf-fA-8l0" secondAttribute="bottom" constant="5" id="Ai3-mX-yGF"/>
                             <constraint firstItem="fdZ-24-C6z" firstAttribute="leading" secondItem="hvC-zt-pEq" secondAttribute="leadingMargin" id="B0C-uE-JOl"/>
                             <constraint firstItem="fdZ-24-C6z" firstAttribute="top" secondItem="VLo-h6-Aoe" secondAttribute="bottom" constant="5" id="GmP-Gk-Cgc"/>
                             <constraint firstItem="VLo-h6-Aoe" firstAttribute="top" secondItem="jS2-aZ-c5c" secondAttribute="bottom" constant="30" id="PMV-Il-G0e"/>
@@ -314,6 +316,7 @@
                             <constraint firstItem="UxM-oc-wyf" firstAttribute="top" secondItem="XDT-GQ-VNs" secondAttribute="bottom" constant="5" id="Zpj-Nt-OkJ"/>
                             <constraint firstAttribute="centerX" secondItem="KAy-aA-NbQ" secondAttribute="centerX" id="bRh-IT-DwL"/>
                             <constraint firstItem="6go-3h-WG0" firstAttribute="top" secondItem="WRd-aF-Xk3" secondAttribute="bottom" constant="5" id="bqU-9J-NDz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R8s-hf-2uX" secondAttribute="trailing" constant="15" id="chB-eN-pm0"/>
                             <constraint firstAttribute="centerX" secondItem="XDT-GQ-VNs" secondAttribute="centerX" id="d5g-Rj-nm5"/>
                             <constraint firstAttribute="centerX" secondItem="WRd-aF-Xk3" secondAttribute="centerX" id="dDx-gF-O1J"/>
                             <constraint firstItem="UxM-oc-wyf" firstAttribute="leading" secondItem="hvC-zt-pEq" secondAttribute="leadingMargin" id="hKk-TY-lPQ"/>
@@ -321,7 +324,6 @@
                             <constraint firstAttribute="centerX" secondItem="UxM-oc-wyf" secondAttribute="centerX" id="nWf-4L-rhW"/>
                             <constraint firstAttribute="centerX" secondItem="VLo-h6-Aoe" secondAttribute="centerX" id="sG8-9a-TTb"/>
                             <constraint firstAttribute="centerX" secondItem="Cdf-fA-8l0" secondAttribute="centerX" id="yq0-7R-c6p"/>
-                            <constraint firstAttribute="centerX" secondItem="jS2-aZ-c5c" secondAttribute="centerX" id="zg5-eL-H6d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jh8-36-bGV"/>
@@ -519,7 +521,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ade-xh-Szc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cZq-5Z-ywy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="432" y="-2187"/>
+            <point key="canvasLocation" x="-562" y="-3075"/>
         </scene>
         <!--Charts Menu-->
         <scene sceneID="afb-zD-eZH">
@@ -688,7 +690,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HHU-2Q-pND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="46" y="-3075"/>
+            <point key="canvasLocation" x="170" y="-3075"/>
         </scene>
         <!--New Chart Description Editor-->
         <scene sceneID="2VT-vV-2XO">
@@ -1084,7 +1086,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5SP-CZ-hrW"/>
+        <segue reference="BjJ-0k-RTe"/>
         <segue reference="omY-P0-a6Z"/>
         <segue reference="2mv-nd-GGP"/>
         <segue reference="Em1-7x-R75"/>
