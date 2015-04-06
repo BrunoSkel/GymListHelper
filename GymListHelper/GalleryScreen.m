@@ -11,10 +11,14 @@
 #import "CJSONDeserializer.h"
 
 @interface GalleryScreen () <UITableViewDelegate, UITableViewDataSource>
+
+    @property (weak, nonatomic) IBOutlet UILabel *lbCategoryName;
+
     @property (strong,nonatomic)  NSMutableArray *tableData;
     @property (strong) IBOutlet UITableView *tableView;
 
     @property ChartsMenu *controller;
+
 @end
 
 @implementation GalleryScreen
@@ -25,6 +29,8 @@
     self.tableData = [NSMutableArray new];
     
     [self getChartsFromDB];
+
+    self.lbCategoryName.text = self.ChosenCategoryName;
     
 }
 
@@ -79,7 +85,7 @@
             UIImage * image = [UIImage imageWithData:imageData];
             imgPic.image = image;
             
-            UIButton *downloadBtn = (UIButton *)cell.contentView.subviews[4];
+            UIButton *downloadBtn = (UIButton *)cell.contentView.subviews[3];
                 [downloadBtn setTag:indexPath.row];
                 [downloadBtn addTarget:self action:@selector(downloadBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -93,7 +99,7 @@
     NSError *error = NULL;
     
     NSString *sendData = @"category=";
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"ALL"]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", (self.ChosenCategory + 1)]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/getChartsWithCategory.php"]];
     

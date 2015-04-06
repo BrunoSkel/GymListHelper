@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DownloadCategories : UIViewController
+@interface DownloadCategories : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
