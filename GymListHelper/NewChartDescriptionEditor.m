@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.ChartNameNew.delegate=self;
+    self.ChartNameNew.delegate = self;
     //_isEdit=NO;
 }
 
@@ -29,12 +29,13 @@
         [theTextField resignFirstResponder];
     return YES;
 }
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
-//================================================================
+//==========================================================================
 
 -(void)editMode{
     NSLog(@"cheguei");
@@ -44,15 +45,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"view will appear");
-    if (_isEdit==YES){
-        _ChartNameNew.text=[_sentNameArray objectAtIndex:_EditThisRoutine];
-        [_MainLabel setText:@"Edit Routine"];
-        _DeleteButton.hidden=NO;
+    if (self.isEdit==YES){
+        self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
+        [self.MainLabel setText:@"Edit Routine"];
+        self.DeleteButton.hidden = NO;
     }
     else{
-        _DeleteButton.hidden=YES;
-        _ChartNameNew.text=@"New Routine";
-        [_MainLabel setText:@"Add New Routine"];
+        self.DeleteButton.hidden = YES;
+        self.ChartNameNew.text = @"New Routine";
+        [self.MainLabel setText:@"Add New Routine"];
     }
 }
 
@@ -66,28 +67,29 @@
     UIButton *button = (UIButton *)sender;
     if (button==_DeleteButton){
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
+        
         //SAVE CHART
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *documentsDirectory = paths[0];
         NSString *filePath;
         
         //Delete the Exercises from this routine
         
-        [controller.allChartData removeObjectAtIndex:_EditThisRoutine];
+        [controller.allChartData removeObjectAtIndex:self.EditThisRoutine];
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
         //Delete the routine name
-        [controller.RoutineNamesArray removeObjectAtIndex:_EditThisRoutine];
+        [controller.RoutineNamesArray removeObjectAtIndex:self.EditThisRoutine];
         
         //Delete the subroutine names
-        [controller.ChartNamesArray removeObjectAtIndex:_EditThisRoutine];
+        [controller.ChartNamesArray removeObjectAtIndex:self.EditThisRoutine];
         
         //Delete wait times associated to this chart
-        [controller.WaitTimesArray removeObjectAtIndex:_EditThisRoutine];
+        [controller.WaitTimesArray removeObjectAtIndex:self.EditThisRoutine];
         
         //Delete the owner data
-        [controller.ByUserArray removeObjectAtIndex:_EditThisRoutine];
+        [controller.ByUserArray removeObjectAtIndex:self.EditThisRoutine];
         
         //And save everything
         
@@ -115,7 +117,7 @@
         return;
     }
     //Check if hes editing or creating a new chart
-    if (_isEdit==YES){
+    if (self.isEdit==YES){
         NSLog(@"Saving Edition");
         if (self.ChartNameNew.text.length > 0 && sender!=self.cancelBut) {
             ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
@@ -129,9 +131,9 @@
             
             
             //Adding new chart name
-            NSLog(@"Old: %@",[controller.RoutineNamesArray objectAtIndex:_EditThisRoutine]);
-            [controller.RoutineNamesArray replaceObjectAtIndex:_EditThisRoutine withObject:self.ChartNameNew.text];
-                        NSLog(@"New: %@",[controller.RoutineNamesArray objectAtIndex:_EditThisRoutine]);
+            NSLog(@"Old: %@",controller.RoutineNamesArray[self.EditThisRoutine]);
+            [controller.RoutineNamesArray replaceObjectAtIndex:self.EditThisRoutine withObject:self.ChartNameNew.text];
+                        NSLog(@"New: %@",[controller.RoutineNamesArray objectAtIndex:self.EditThisRoutine]);
             
             filePath = [documentsDirectory
                         stringByAppendingPathComponent:@"routineNamesFile"];
@@ -142,7 +144,7 @@
             
             //Update Data
             [controller.tableData removeAllObjects];
-            controller.tableData=[NSMutableArray arrayWithArray:controller.allChartData];
+            controller.tableData = [NSMutableArray arrayWithArray:controller.allChartData];
             [controller.tableView reloadData];
             
         }
@@ -155,15 +157,15 @@
         
         //SAVE CHART
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *documentsDirectory = paths[0];
         NSString *filePath;
         
         //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
         [controller.allChartData addObject: [NSMutableArray array]];
         NSInteger newposition=[controller.allChartData count]-1;
         NSLog(@"New position = %ld",(long)newposition);
-        [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
-        [[controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
+        [controller.allChartData[newposition] addObject: [NSMutableArray array]];
+        [controller.allChartData[newposition] addObject: [NSMutableArray array]];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
@@ -174,12 +176,12 @@
         //And A and B string names
         [controller.ChartNamesArray addObject: [NSMutableArray array]];
         
-        [[controller.ChartNamesArray objectAtIndex:newposition] addObject: @"A"];
-        [[controller.ChartNamesArray objectAtIndex:newposition] addObject: @"B"];
+        [controller.ChartNamesArray[newposition] addObject: @"A"];
+        [controller.ChartNamesArray[newposition] addObject: @"B"];
         
         [controller.WaitTimesArray addObject: [NSMutableArray array]];
-        [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
-        [[controller.WaitTimesArray objectAtIndex:newposition] addObject: @"30"];
+        [controller.WaitTimesArray[newposition] addObject: @"30"];
+        [controller.WaitTimesArray[newposition] addObject: @"30"];
         
         //Adding owner user for this new Chart
         [controller.ByUserArray addObject: @"0§myself§0"];

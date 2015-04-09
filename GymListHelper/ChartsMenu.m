@@ -89,6 +89,19 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDescriptionsFile"];
+    
+    _ChartDescriptionsArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
+    
+    _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"charthartEstimatedTimesFile"];
+    
+    _ChartEstimatedTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    
     
     //Social
     
@@ -103,21 +116,21 @@
         //Adding a new chart
         [_allChartData addObject: [NSMutableArray array]];
         //Adding charts A/B/C to the new chart
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [_allChartData[0] addObject: [NSMutableArray array]];
+        [_allChartData[0] addObject: [NSMutableArray array]];
+        [_allChartData[0] addObject: [NSMutableArray array]];
         //Filling A
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 | 4x8"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 | 4x8"];
+        [_allChartData[0][0] addObject:@"Example A1 | 4x8"];
+        [_allChartData[0][0] addObject:@"Example A2 | 4x8"];
+        [_allChartData[0][0] addObject:@"Example A3 | 4x8"];
+        [_allChartData[0][0] addObject:@"Example A4 | 4x8"];
         //Filling B
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 | 4x10"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 | 4x10"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 | 4x10"];
+        [_allChartData[0][1] addObject:@"Example B1 | 4x10"];
+        [_allChartData[0][1] addObject:@"Example B2 | 4x10"];
+        [_allChartData[0][1] addObject:@"Example B3 | 4x10"];
         //Filling C
-        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 | 3x15"];
-        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 | 3x15"];
+        [_allChartData[0][2] addObject:@"Example C1 | 3x15"];
+        [_allChartData[0][2] addObject:@"Example C2 | 3x15"];
         
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [_allChartData writeToFile:filePath atomically:YES];
@@ -127,30 +140,51 @@
         _WaitTimesArray = [NSMutableArray array];
         [_WaitTimesArray addObject: [NSMutableArray array]];
         //Adding example times to the new chart
-        [[_WaitTimesArray objectAtIndex:0] addObject: @"30"];
-        [[_WaitTimesArray objectAtIndex:0] addObject: @"20"];
-        [[_WaitTimesArray objectAtIndex:0] addObject: @"10"];
+        [_WaitTimesArray[0] addObject: @"30"];
+        [_WaitTimesArray[0] addObject: @"20"];
+        [_WaitTimesArray[0] addObject: @"10"];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
         [_WaitTimesArray writeToFile:filePath atomically:YES];
         
     }
     if (_ChartNamesArray==NULL){
-        
+        //Addind a new routine name
         _RoutineNamesArray = [NSMutableArray array];
         [_RoutineNamesArray addObject: @"Example Workout"];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+        [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
+        
+        //Adding charts for the new routine
         _ChartNamesArray = [NSMutableArray array];
-        //Adding a new chart
         [_ChartNamesArray addObject: [NSMutableArray array]];
-        [[_ChartNamesArray objectAtIndex:0] addObject:@"A"];
-        [[_ChartNamesArray objectAtIndex:0] addObject:@"B"];
-        [[_ChartNamesArray objectAtIndex:0] addObject:@"C"];
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+        [_ChartNamesArray[0] addObject:@"A"];
+        [_ChartNamesArray[0] addObject:@"B"];
+        [_ChartNamesArray[0] addObject:@"C"];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
         [_ChartNamesArray writeToFile:filePath atomically:YES];
         
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
-        [_RoutineNamesArray writeToFile:filePath atomically:YES];
+        //Adding a categorie for the new routine
+        _ChartCategoriesArray = [NSMutableArray array];
+        [_ChartCategoriesArray addObject:@"Hypertrophy"];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
+        [_ChartCategoriesArray writeToFile:filePath atomically:YES];
+        
+        //Adding a description for the new routine
+        _ChartDescriptionsArray = [NSMutableArray array];
+        [_ChartDescriptionsArray addObject:@"Hypertrophy workout"];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDescriptionsFile"];
+        [_ChartDescriptionsArray writeToFile:filePath atomically:YES];
+        
+        //Adding a estimated time for the new routine
+        _ChartEstimatedTimesArray = [NSMutableArray array];
+        [_ChartEstimatedTimesArray addObject: [NSMutableArray array]];
+        [_ChartEstimatedTimesArray[0] addObject:@"1"];
+        [_ChartEstimatedTimesArray[0] addObject:@"30"];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"charthartEstimatedTimesFile"];
+        [_ChartEstimatedTimesArray writeToFile:filePath atomically:YES];
+        
         
         self.ByUserArray = [NSMutableArray array];
         [self.ByUserArray addObject: @"0§myself§0"]; // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
@@ -177,8 +211,11 @@
     else if([segue.identifier isEqualToString:@"EditRoutine"]){
         NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
         NSIndexPath *indexPath = [self getButtonIndexPath:sender];
-        controller.EditThisRoutine=(int)indexPath.row;
-        controller.sentNameArray=[NSMutableArray arrayWithArray:_RoutineNamesArray];
+        controller.EditThisRoutine = (int)indexPath.row;
+        controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];
+        controller.sentCategorieArray = [NSMutableArray arrayWithArray:self.ChartCategoriesArray];
+        controller.sentDescriptionArray = [NSMutableArray arrayWithArray:self.ChartDescriptionsArray];
+        controller.sentEstimatedTimeArray = [NSMutableArray arrayWithArray:self.ChartEstimatedTimesArray];
         [controller editMode];
     }
     
@@ -186,8 +223,8 @@
 
 -(NSIndexPath *) getButtonIndexPath:(UIButton *) button
 {
-    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
-    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
+    CGRect buttonFrame = [button convertRect:button.bounds toView:self.tableView];
+    return [self.tableView indexPathForRowAtPoint:buttonFrame.origin];
 }
 
 #pragma mark Delegate Methods
@@ -206,7 +243,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableData count];
+    return [self.tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -283,6 +320,9 @@
 
 -(IBAction)editButtonPressed:(UIButton*)sender{
     NSLog(@"%ld",(long)sender.tag);
+    NSLog(@"%@",self.ChartDescriptionsArray[sender.tag]);
+    NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
+    NSLog(@"%@",self.ChartEstimatedTimesArray[sender.tag]);
     NSLog(@"%@",self.ChartNamesArray[sender.tag]);
     NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
     NSLog(@"%@",self.WaitTimesArray[sender.tag]);
@@ -299,6 +339,9 @@
     }else{
     
         NSLog(@"%ld",(long)sender.tag);
+        NSLog(@"%@",self.ChartDescriptionsArray[sender.tag]);
+        NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
+        NSLog(@"%@",self.ChartEstimatedTimesArray[sender.tag]);
         NSLog(@"%@",self.ChartNamesArray[sender.tag]);
         NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
         NSLog(@"%@",self.WaitTimesArray[sender.tag]);
