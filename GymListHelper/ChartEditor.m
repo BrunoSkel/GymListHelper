@@ -21,6 +21,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
 @property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
 @property int TouchedIndex;
+@property NSString *retrievedSeries;
+@property NSString *retrievedRep;
+@property NSString *retrievedName;
 //Timer to flash the scroll indicator
 @property NSTimer *timer;
 @end
@@ -206,7 +209,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+    EditChartTableCell* theRow = cell;
+    //Name Decompose
+    [self retrieveInformation:indexPath.row];
+    //
+    [theRow.ExName setText:self.retrievedName];
+    [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
+    
+   // cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
     
     /*
     int max=[[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1;
@@ -227,6 +237,27 @@
     }*/
     
     return cell;
+}
+
+-(void)retrieveInformation:(int) i{
+    
+    //String is recieved as NAME | seriesXrep. Separate those to edit the exercise properly
+    
+    NSString *fullinfo=[self.tableData objectAtIndex:i];
+    
+    NSArray *CurrentExerciseData = [[NSArray alloc] init];
+    CurrentExerciseData=[fullinfo componentsSeparatedByString:@"|"];
+    
+    //stringbyTrimming = Remove spaces from start and the end
+    
+    self.retrievedName=[[CurrentExerciseData objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];;
+    
+    NSArray *RepCountInformation = [[NSArray alloc] init];
+    
+    RepCountInformation=[[CurrentExerciseData objectAtIndex:1]componentsSeparatedByString:@"x"];
+    
+    self.retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (IBAction)OnSegmentPressed:(id)sender {
@@ -266,6 +297,12 @@
 [_SegmentControlOutlet setTitle:_RoutineNameField.text forSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout]replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:_RoutineNameField.text];
+    
+    //Update Names
+    
+    [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
     [self SaveCharts];
     
