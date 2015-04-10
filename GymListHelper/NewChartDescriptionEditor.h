@@ -14,10 +14,14 @@
 @property BOOL isEdit;
 @property NSMutableArray* sentNameArray;
 @property NSMutableArray* sentCategorieArray;
-@property NSMutableArray* sentDescriptionArray;
-@property NSMutableArray* sentEstimatedTimeArray;
+
+@property (strong, nonatomic) NSString *ChartCategories;
 
 @property (strong, nonatomic) IBOutlet UITextField *ChartNameNew;
+//@property (strong, nonatomic) IBOutlet UITextField *ChartCategorieNew;
+//@property (strong, nonatomic) IBOutlet UITextField *ChartDescriptionNew;
+//@property (strong, nonatomic) IBOutlet UITextField *ChartEstimatedTimeNew;
+//@property (strong, nonatomic) IBOutlet UITextField *ChartLanguageNew;
 @property (strong, nonatomic) IBOutlet UILabel *MainLabel;
 
 -(void)editMode;

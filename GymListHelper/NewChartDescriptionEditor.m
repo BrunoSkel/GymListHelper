@@ -12,7 +12,21 @@
 @interface NewChartDescriptionEditor ()
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBut;
-@property (strong, nonatomic) IBOutlet UITextField *ChartObjective;
+
+
+@property (weak, nonatomic) IBOutlet UISwitch *switchHypertrophy;
+@property (weak, nonatomic) IBOutlet UILabel *labelHypertrophy;
+@property (weak, nonatomic) IBOutlet UISwitch *switchDefinition;
+@property (weak, nonatomic) IBOutlet UILabel *labelDefinition;
+@property (weak, nonatomic) IBOutlet UISwitch *switchTonification;
+@property (weak, nonatomic) IBOutlet UILabel *labelTonification;
+@property (weak, nonatomic) IBOutlet UISwitch *switchFatLoss;
+@property (weak, nonatomic) IBOutlet UILabel *labelFatLoss;
+@property (weak, nonatomic) IBOutlet UISwitch *switchStrengh;
+@property (weak, nonatomic) IBOutlet UILabel *labelStrengh;
+
+
+- (IBAction)switchObjective:(id)sender;
 @end
 
 @implementation NewChartDescriptionEditor
@@ -47,6 +61,7 @@
     NSLog(@"view will appear");
     if (self.isEdit==YES){
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
+        self.ChartCategories = self.sentCategorieArray[self.EditThisRoutine];
         [self.MainLabel setText:@"Edit Routine"];
         self.DeleteButton.hidden = NO;
     }
@@ -221,5 +236,7 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (IBAction)switchObjective:(id)sender {
+    
+}
 @end

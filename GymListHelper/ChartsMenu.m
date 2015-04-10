@@ -89,17 +89,9 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDescriptionsFile"];
-    
-    _ChartDescriptionsArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
     
     _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"charthartEstimatedTimesFile"];
-    
-    _ChartEstimatedTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     
     
@@ -171,20 +163,6 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
         [_ChartCategoriesArray writeToFile:filePath atomically:YES];
         
-        //Adding a description for the new routine
-        _ChartDescriptionsArray = [NSMutableArray array];
-        [_ChartDescriptionsArray addObject:@"Hypertrophy workout"];
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDescriptionsFile"];
-        [_ChartDescriptionsArray writeToFile:filePath atomically:YES];
-        
-        //Adding a estimated time for the new routine
-        _ChartEstimatedTimesArray = [NSMutableArray array];
-        [_ChartEstimatedTimesArray addObject: [NSMutableArray array]];
-        [_ChartEstimatedTimesArray[0] addObject:@"1"];
-        [_ChartEstimatedTimesArray[0] addObject:@"30"];
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"charthartEstimatedTimesFile"];
-        [_ChartEstimatedTimesArray writeToFile:filePath atomically:YES];
-        
         
         self.ByUserArray = [NSMutableArray array];
         [self.ByUserArray addObject: @"0§myself§0"]; // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
@@ -214,8 +192,6 @@
         controller.EditThisRoutine = (int)indexPath.row;
         controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];
         controller.sentCategorieArray = [NSMutableArray arrayWithArray:self.ChartCategoriesArray];
-        controller.sentDescriptionArray = [NSMutableArray arrayWithArray:self.ChartDescriptionsArray];
-        controller.sentEstimatedTimeArray = [NSMutableArray arrayWithArray:self.ChartEstimatedTimesArray];
         [controller editMode];
     }
     
@@ -320,9 +296,7 @@
 
 -(IBAction)editButtonPressed:(UIButton*)sender{
     NSLog(@"%ld",(long)sender.tag);
-    NSLog(@"%@",self.ChartDescriptionsArray[sender.tag]);
     NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
-    NSLog(@"%@",self.ChartEstimatedTimesArray[sender.tag]);
     NSLog(@"%@",self.ChartNamesArray[sender.tag]);
     NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
     NSLog(@"%@",self.WaitTimesArray[sender.tag]);
@@ -339,9 +313,7 @@
     }else{
     
         NSLog(@"%ld",(long)sender.tag);
-        NSLog(@"%@",self.ChartDescriptionsArray[sender.tag]);
         NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
-        NSLog(@"%@",self.ChartEstimatedTimesArray[sender.tag]);
         NSLog(@"%@",self.ChartNamesArray[sender.tag]);
         NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
         NSLog(@"%@",self.WaitTimesArray[sender.tag]);
