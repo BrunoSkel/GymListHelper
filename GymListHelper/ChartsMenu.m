@@ -93,6 +93,7 @@
     
     _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    //NSLog(@"Current Categories chart: %@", self.ChartCategoriesArray);
     
     
     //Social
@@ -159,7 +160,12 @@
         
         //Adding a categorie for the new routine
         _ChartCategoriesArray = [NSMutableArray array];
-        [_ChartCategoriesArray addObject:@"Hypertrophy"];
+        [_ChartCategoriesArray addObject: [NSMutableArray array]];
+        [_ChartCategoriesArray[0] addObject:@"YES"]; // Hypertrophy
+        [_ChartCategoriesArray[0] addObject:@"NO"]; // Definition
+        [_ChartCategoriesArray[0] addObject:@"NO"]; // Tonification
+        [_ChartCategoriesArray[0] addObject:@"NO"]; // Fat Loss
+        [_ChartCategoriesArray[0] addObject:@"NO"]; // Strengh
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
         [_ChartCategoriesArray writeToFile:filePath atomically:YES];
         

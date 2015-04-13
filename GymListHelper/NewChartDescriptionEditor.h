@@ -15,7 +15,7 @@
 @property NSMutableArray* sentNameArray;
 @property NSMutableArray* sentCategorieArray;
 
-@property (strong, nonatomic) NSString *ChartCategories;
+@property (strong, nonatomic) NSMutableArray *ChartCategories;
 
 @property (strong, nonatomic) IBOutlet UITextField *ChartNameNew;
 //@property (strong, nonatomic) IBOutlet UITextField *ChartCategorieNew;

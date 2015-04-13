@@ -795,7 +795,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RFs-ox-2XJ">
                                 <rect key="frame" x="16" y="256" width="51" height="31"/>
                                 <connections>
-                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="BEa-Mp-EI0"/>
+                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="PbS-WM-hU7"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hypertrophy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y01-2L-ZkE">
@@ -806,6 +806,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5ah-Vb-OSI">
                                 <rect key="frame" x="16" y="334" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="vBG-c4-dLO"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tonification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybw-jy-w2e">
                                 <rect key="frame" x="73" y="339" width="88" height="21"/>
@@ -815,9 +818,15 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-pz-y8U">
                                 <rect key="frame" x="16" y="412" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="aYu-lp-ZYm"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tfr-2d-ZKI">
                                 <rect key="frame" x="16" y="295" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="kNe-te-7CV"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Definition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-Pe-F3M">
                                 <rect key="frame" x="73" y="300" width="73" height="21"/>
@@ -827,6 +836,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1wl-WK-3wA">
                                 <rect key="frame" x="16" y="373" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchObjective:" destination="nPV-eu-LoU" eventType="valueChanged" id="3o1-hj-PYF"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fat Loss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXg-Fz-Nek">
                                 <rect key="frame" x="73" y="378" width="66" height="21"/>
