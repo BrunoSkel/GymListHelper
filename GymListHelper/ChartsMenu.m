@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
+#import "SharePreview.h"
 #import "ChartsMenu.h"
 #import "ViewController.h"
 #import "NewChartDescriptionEditor.h"
@@ -181,7 +182,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
-    _TouchedIndex=(int)indexPath.row;
+    self.TouchedIndex=(int)indexPath.row;
     NSLog(@"Touched index: %ld",(long)indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
@@ -199,6 +200,19 @@
         controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];
         controller.sentCategorieArray = [NSMutableArray arrayWithArray:self.ChartCategoriesArray];
         [controller editMode];
+    }
+    
+    else if([segue.identifier isEqualToString:@"GoToSharePreview"]){
+        SharePreview *controller = (SharePreview *)segue.destinationViewController;
+
+        controller.ShareThisRoutine=self.TouchedIndex;
+        controller.RoutineNamesArray=[NSMutableArray arrayWithArray:self.RoutineNamesArray];
+        controller.allChartData=self.allChartData;
+        controller.ChartNamesArray=[NSMutableArray arrayWithArray:self.ChartNamesArray];
+        controller.WaitTimesArray=[NSMutableArray arrayWithArray:self.WaitTimesArray];
+        controller.ByUserArray=[NSMutableArray arrayWithArray:self.ByUserArray];
+        
+        NSLog(@"prepareForSegue GoToSharePreview");
     }
     
 }
@@ -317,106 +331,109 @@
         [self performSegueWithIdentifier:@"GoToLogin" sender:self];
         
     }else{
-    
-        NSLog(@"%ld",(long)sender.tag);
-        NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
-        NSLog(@"%@",self.ChartNamesArray[sender.tag]);
-        NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
-        NSLog(@"%@",self.WaitTimesArray[sender.tag]);
-        NSLog(@"%@",self.allChartData[sender.tag]);
-        NSLog(@"%@",self.ByUserArray[sender.tag]);
-        
-        [sender setEnabled:NO];
-        
 
-        NSError *error = NULL;
+        self.TouchedIndex = (int)sender.tag;
         
-        //Serialize ChartNamesArray
-        NSData *jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartNamesArray[sender.tag] error:&error];
-        NSString* jsonSrtChartNames = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        //Serialize WaitTimesArray
-        jsonData = [[CJSONSerializer serializer] serializeObject:self.WaitTimesArray[sender.tag] error:&error];
-        NSString* jsonSrtWaitTimes = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        //Serialize allChartData
-        jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[sender.tag] error:&error];
-        NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        //Create "form" data
-        NSString *sendData = @"userid=";
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
-        
-        sendData = [sendData stringByAppendingString:@"&name="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
-        
-        sendData = [sendData stringByAppendingString:@"&category="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-        
-        sendData = [sendData stringByAppendingString:@"&category1="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-        
-        sendData = [sendData stringByAppendingString:@"&category2="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-        
-        sendData = [sendData stringByAppendingString:@"&category3="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-        
-        sendData = [sendData stringByAppendingString:@"&estimatedTime="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-        
-        sendData = [sendData stringByAppendingString:@"&waitTime="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
-        
-        sendData = [sendData stringByAppendingString:@"&language="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-        
-        sendData = [sendData stringByAppendingString:@"&comment="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-        
-        sendData = [sendData stringByAppendingString:@"&chartNames="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtChartNames]];
-        
-        sendData = [sendData stringByAppendingString:@"&exercises="];
-        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
-        
-        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-        
-        //Here you send your data
-        [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [request setHTTPMethod:@"POST"];
-        NSURLResponse *response = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
-        NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
-        
-        if (error)
-        {
-            NSLog(@"Error");
-        }
-        else
-        {
-            //The response is in data
-            NSLog(@"%@", results);
-            
-            if([results isEqualToString:@"ERROR2"]){
-                NSLog(@"Error2");
-            }else{
-                NSLog(@"Compartilhado");
-                
-                self.ByUserArray[sender.tag] = [NSString stringWithFormat:@"0§myself§%@", results];
-                
-                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
-                [self.ByUserArray writeToFile:filePath atomically:YES];
-                
-            }
-        }
+        [self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
+//        
+//        NSLog(@"%ld",(long)sender.tag);
+//        NSLog(@"%@",self.ChartNamesArray[sender.tag]);
+//        NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
+//        NSLog(@"%@",self.WaitTimesArray[sender.tag]);
+//        NSLog(@"%@",self.allChartData[sender.tag]);
+//        NSLog(@"%@",self.ByUserArray[sender.tag]);
+//        
+//        [sender setEnabled:NO];
+//        
+//
+//        NSError *error = NULL;
+//        
+//        //Serialize ChartNamesArray
+//        NSData *jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartNamesArray[sender.tag] error:&error];
+//        NSString* jsonSrtChartNames = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        
+//        //Serialize WaitTimesArray
+//        jsonData = [[CJSONSerializer serializer] serializeObject:self.WaitTimesArray[sender.tag] error:&error];
+//        NSString* jsonSrtWaitTimes = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        
+//        //Serialize allChartData
+//        jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[sender.tag] error:&error];
+//        NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        
+//        //Create "form" data
+//        NSString *sendData = @"userid=";
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&name="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&category="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&category1="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&category2="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&category3="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&estimatedTime="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&waitTime="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&language="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&comment="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&chartNames="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtChartNames]];
+//        
+//        sendData = [sendData stringByAppendingString:@"&exercises="];
+//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
+//        
+//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
+//        
+//        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+//        
+//        //Here you send your data
+//        [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
+//        
+//        [request setHTTPMethod:@"POST"];
+//        NSURLResponse *response = nil;
+//        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//        
+//        NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        
+//        
+//        if (error)
+//        {
+//            NSLog(@"Error");
+//        }
+//        else
+//        {
+//            //The response is in data
+//            NSLog(@"%@", results);
+//            
+//            if([results isEqualToString:@"ERROR2"]){
+//                NSLog(@"Error2");
+//            }else{
+//                NSLog(@"Compartilhado");
+//                
+//                self.ByUserArray[sender.tag] = [NSString stringWithFormat:@"0§myself§%@", results];
+//                
+//                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//                NSString *documentsDirectory = [paths objectAtIndex:0];
+//                NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
+//                [self.ByUserArray writeToFile:filePath atomically:YES];
+//                
+//            }
+//        }
     }
 }
 

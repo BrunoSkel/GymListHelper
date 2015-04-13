@@ -12,6 +12,8 @@
 @interface DownloadCategories () <UITableViewDelegate, UITableViewDataSource>
     @property (strong,nonatomic)  NSMutableArray *tableData;
     @property NSInteger TouchedIndex;
+
+
 @end
 
 @implementation DownloadCategories
