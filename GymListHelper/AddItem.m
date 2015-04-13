@@ -19,6 +19,7 @@
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
+@property (strong, nonatomic) IBOutlet UITextView *InfoBox;
 @property BOOL isEdit;
 @end
 
@@ -34,6 +35,8 @@
     self.seriesField.delegate=self;
     self.repField.delegate=self;
     self.nameField.delegate=self;
+    self.InfoBox.layer.borderWidth = 0.5f;
+    self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 //Make the keyboard dissapear after editing textfields======================

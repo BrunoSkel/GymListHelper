@@ -13,6 +13,7 @@
 #import "DoExerciseScreen.h"
 #import "EditChartTableCell.h"
 #import "ChartEditor.h"
+#import "ExerciseInfoScreen.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -217,6 +218,17 @@
     if([segue.identifier isEqualToString:@"EditRoutine"]){
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
         controller.ChosenWorkout=_ChosenWorkout;
+    }
+    
+        
+    if([segue.identifier isEqualToString:@"ExerciseInfo"]){
+            ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
+        
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        
+        
+        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
     }
     
     

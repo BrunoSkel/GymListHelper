@@ -219,8 +219,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    [self ShouldShareButtonAppear:cell:indexPath.row];
+
+    
+    return cell;
+}
+
+-(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
+    
+    
+    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:indexPath.row];
+    [editButton setTag:row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
@@ -229,15 +239,22 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
+    // bug fix
+    [shareButton setHidden:NO];
+    [lbUserName setHidden:YES];
+    [imgUserPic setHidden:YES];
+    [shareButton setEnabled:YES];
+    //
+    
+    lbChartName.text = [self.RoutineNamesArray objectAtIndex:row];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     
-    NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
+    NSArray* params = [self.ByUserArray[row] componentsSeparatedByString: @"§"];
     
     if([params[1] isEqualToString:@"myself"]){
         if([params[2] isEqualToString:@"0"]){
             
-            [shareButton setTag:indexPath.row];
+            [shareButton setTag:row];
             [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
@@ -257,11 +274,8 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         imgUserPic.image = image;
-
+        
     }
-
-    
-    return cell;
 }
 
 
