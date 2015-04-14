@@ -246,6 +246,8 @@
     if([segue.identifier isEqualToString:@"GoToPreview"]){
         DownloadPreview *controller = (DownloadPreview *)segue.destinationViewController;
         //controller.ChosenWorkout=_TouchedIndex;
+        
+        NSLog(@"%@",self.tableData[self.TouchedIndex]);
     }
     
 }
