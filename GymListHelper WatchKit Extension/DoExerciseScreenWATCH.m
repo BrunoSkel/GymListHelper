@@ -7,7 +7,6 @@
 //
 
 #import "DoExerciseScreenWATCH.h"
-#import <AudioToolbox/AudioToolbox.h>
 //#import "EndScreen.h"
 @import WatchKit;
 @import UIKit;
@@ -27,7 +26,6 @@
 @property (strong, nonatomic) IBOutlet WKInterfaceLabel *cooldownLabel;
 @property BOOL skipped;
 @property NSString *EndingString;
-@property BOOL isOnCooldown;
 //Timer to change the text on the done button
 @property (strong,nonatomic) NSTimer *syncTimer; //Store the timer
 @property int DoneLabelInt;
@@ -37,7 +35,6 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     _skipped=NO;
-    _isOnCooldown=NO;
     _currentExerciseIndex=0;
     _DoneLabelInt=0;
     //_ChartNameLabel.text=_chartname;
@@ -61,50 +58,44 @@
     //Get the amount of exercises from the chosen chart, and show the first one
     _ExerciseAmount=(int)[_exercisedata count];
     NSLog(@"Exercise Amount on this Chart: %d",_ExerciseAmount);
-    if (self.ExerciseAmount!=0)
+    if (_ExerciseAmount!=0)
         [self ShowExercise:_currentExerciseIndex];
     else{
-        self.EndingString=@"By that, I mean nothing.";
+        _EndingString=@"By that, I mean nothing.";
         [self pushControllerWithName:@"ToEnd" context:_EndingString];
     }
 }
 
 -(void) updateTimerLabel{
     //Changes the Text for the Done Label.
-    if (self.isOnCooldown==YES){
-        [self.DoneLabel setTitle:@"Press to Skip"];
-        return;
-    }
-    self.DoneLabelInt++;
-    if (self.DoneLabelInt>=1){
-    [self.DoneLabel setTitle:@"Press to Skip"];
-        self.DoneLabelInt=-1;
+    _DoneLabelInt++;
+    if (_DoneLabelInt>=1){
+    [_DoneLabel setTitle:@"Press to Skip"];
+        _DoneLabelInt=-1;
     }
     else{
-            [self.DoneLabel setTitle:@"Touch to Continue"];
+            [_DoneLabel setTitle:@"Touch to Continue"];
     }
 }
 
 -(void)HideCooldown{
-    self.isOnCooldown=NO;
     [self.stopWatchTimer invalidate];
     self.stopWatchTimer = nil;
-    self.cooldownLabel.hidden=YES;
-    self.ExerciseName.hidden=NO;
-    self.RepCount.hidden=NO;
-    [self.DoLabel setText:@"Do:"];
-    self.RepsLabel.hidden=NO;
-   // self.DoneLabel.hidden=NO;
+    _cooldownLabel.hidden=YES;
+    _ExerciseName.hidden=NO;
+    _RepCount.hidden=NO;
+    [_DoLabel setText:@"Do:"];
+    _RepsLabel.hidden=NO;
+    _DoneLabel.hidden=NO;
 }
 
 -(void)ShowCooldown{
-    self.isOnCooldown=YES;
-    self.cooldownLabel.hidden=NO;
-    self.ExerciseName.hidden=YES;
-    self.RepCount.hidden=YES;
-    [self.DoLabel setText:@"Wait..."];
-    self.RepsLabel.hidden=YES;
-   // self.DoneLabel.hidden=YES;
+    _cooldownLabel.hidden=NO;
+    _ExerciseName.hidden=YES;
+    _RepCount.hidden=YES;
+    [_DoLabel setText:@"Wait..."];
+    _RepsLabel.hidden=YES;
+    _DoneLabel.hidden=YES;
 }
 
 - (void)ShowExercise:(int)index{
@@ -115,7 +106,7 @@
     
     //Now, index 0 from the new array is the name we want
     
-    self.ExerciseName.text=[NSString stringWithFormat:@"%@",[CurrentExerciseData objectAtIndex:0]];
+    _ExerciseName.text=[NSString stringWithFormat:@"%@",[CurrentExerciseData objectAtIndex:0]];
     
     //However, index 1 is the entire repcount. We need to separate those too, as the series amount are for internal use.
     
@@ -125,27 +116,23 @@
     
     //Now, 0 is the series amount, while 1 is the repcount.
     
-    self.RepCount.text=[NSString stringWithFormat:@"%@",[RepCountInformation objectAtIndex:1]];
+    _RepCount.text=[NSString stringWithFormat:@"%@",[RepCountInformation objectAtIndex:1]];
     
     //Converting the series' NSString to int
     
     NSString *SeriesString=[RepCountInformation objectAtIndex:0];
     
-    self.RemainingSeries=[SeriesString intValue];
+    _RemainingSeries=[SeriesString intValue];
     NSLog(@"Series Amount: %d",_RemainingSeries);
 }
 
 - (IBAction)DonePressed:(id)sender {
-    //Do nothing if its on cooldown
-        if (self.isOnCooldown==YES){
-            return;
-        }
     //When done is pressed, reduce the series number and show the cooldown.
-    if (self.ExerciseAmount==0){
+    if (_ExerciseAmount==0){
         [self pushControllerWithName:@"ToEnd" context:nil];
         return;
     }
-    self.RemainingSeries--;
+    _RemainingSeries--;
     [self Cooldown];
     //[self Proceed];
 }
@@ -153,57 +140,49 @@
     //We check if he skipped, to change the text at the end.
     _skipped=YES;
     //When Skip is pressed, go to the next exercise regardless of the series/cooldown.
-    
-    if (self.isOnCooldown==YES){
-        [self HideCooldown];
-        return;
-    }
-    
     [self HideCooldown];
     [self Proceed];
 }
 
 -(void) Cooldown{
     [self ShowCooldown];
-    self.RemainingCooldownSeconds=self.cooldownAmount;
+    _RemainingCooldownSeconds=_cooldownAmount;
     //StopwatchTimer takes 1 second to initialize, so we do it manually one time
     [self updateTimer];
     self.stopWatchTimer= [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 }
 
 -(void)updateTimer{
-    if (self.RemainingCooldownSeconds==60){
+    if (_RemainingCooldownSeconds==60){
         self.cooldownLabel.text=[NSString stringWithFormat:@"01:00"];
     }
     else{
-        self.cooldownLabel.text=[NSString stringWithFormat:@"00:%02d",self.RemainingCooldownSeconds];
+        self.cooldownLabel.text=[NSString stringWithFormat:@"00:%02d",_RemainingCooldownSeconds];
     }
-    if (self.RemainingCooldownSeconds==0){
+    if (_RemainingCooldownSeconds==0){
         [self HideCooldown];
         //Checks if the series are over
-        if (self.RemainingSeries<=0){
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        if (_RemainingSeries<=0)
             [self Proceed];
-        }
     }
     else
-        self.RemainingCooldownSeconds--;
+        _RemainingCooldownSeconds--;
 }
 
 -(void)Proceed{
     //If there's still more exercises to go, show the next one. Else, finish the app
-    self.currentExerciseIndex++;
-    if (self.currentExerciseIndex<self.ExerciseAmount){
-        [self ShowExercise:self.currentExerciseIndex];
+    _currentExerciseIndex++;
+    if (_currentExerciseIndex<_ExerciseAmount){
+        [self ShowExercise:_currentExerciseIndex];
     }
     else
     {
-        if (self.skipped==YES)
-           self.EndingString=@"Next time, try not to skip.";
+        if (_skipped==YES)
+            _EndingString=@"Next time, try not to skip.";
         else{
-            self.EndingString=@"Nice job!";
+            _EndingString=@"Nice job!";
         }
-        [self pushControllerWithName:@"ToEnd" context:self.EndingString];
+        [self pushControllerWithName:@"ToEnd" context:_EndingString];
     }
 }
 

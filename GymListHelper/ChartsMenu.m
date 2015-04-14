@@ -130,30 +130,6 @@
         [_allChartData writeToFile:filePath atomically:YES];
         
         
-        //Info data file works like the exercise info file
-        
-        _allInfoData = [NSMutableArray array];
-        [_allInfoData addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        //Filling A
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 is like this, this and this."];
-        //Filling B
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 is like this, this and this."];
-        //Filling C
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 is like this, this and this."];
-        
-        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
-        [_allInfoData writeToFile:filePathInfo atomically:YES];
-        
-        
         //Adding new WaitTime array
         _WaitTimesArray = [NSMutableArray array];
         [_WaitTimesArray addObject: [NSMutableArray array]];
@@ -276,18 +252,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    [self ShouldShareButtonAppear:cell:indexPath.row];
-
-    
-    return cell;
-}
-
--(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
-    
-    
-    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:row];
+    [editButton setTag:indexPath.row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
@@ -296,22 +262,15 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     
-    // bug fix
-    [shareButton setHidden:NO];
-    [lbUserName setHidden:YES];
-    [imgUserPic setHidden:YES];
-    [shareButton setEnabled:YES];
-    //
-    
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:row];
+    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     
-    NSArray* params = [self.ByUserArray[row] componentsSeparatedByString: @"§"];
+    NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
     
     if([params[1] isEqualToString:@"myself"]){
         if([params[2] isEqualToString:@"0"]){
             
-            [shareButton setTag:row];
+            [shareButton setTag:indexPath.row];
             [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
@@ -331,8 +290,11 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         imgUserPic.image = image;
-        
+
     }
+
+    
+    return cell;
 }
 
 
