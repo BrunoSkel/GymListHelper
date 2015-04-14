@@ -10,6 +10,5 @@
 #import <WatchKit/WatchKit.h>
 
 @interface WatchTableClass : NSObject
-@property (strong, nonatomic) IBOutlet WKInterfaceLabel *seriesName;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *titleLabel;
 @end

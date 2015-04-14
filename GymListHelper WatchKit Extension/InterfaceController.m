@@ -18,9 +18,6 @@
 @property (strong, nonatomic) IBOutlet WKInterfaceLabel *iPhoneWarningLabel;
 @property (strong, nonatomic) IBOutlet WKInterfaceButton *StartButton;
 @property (strong,nonatomic) NSTimer *syncTimer; //Store the timer
-@property NSString *retrievedSeries;
-@property NSString *retrievedRep;
-@property NSString *retrievedName;
 @end
 
 
@@ -68,7 +65,7 @@
 
 - (void)PullSyncedData{
     //Code below pulls the shared data inside a specific suite name. Sending method on ViewController.m
-    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
+    NSUserDefaults *SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
     //Use example
     //self.myLabel.text = [SharedData stringForKey:@"savedUserInput"];
     
@@ -81,27 +78,6 @@
     NSLog(@"Synced data: %@",_WatchTableData);
 }
 
--(void)retrieveInformation:(int) i{
-    
-    //String is recieved as NAME | seriesXrep. Separate those to edit the exercise properly
-    
-    NSString *fullinfo=[_WatchTableData objectAtIndex:i];
-    
-    NSArray *CurrentExerciseData = [[NSArray alloc] init];
-    CurrentExerciseData=[fullinfo componentsSeparatedByString:@"|"];
-    
-    //stringbyTrimming = Remove spaces from start and the end
-    
-    self.retrievedName=[[CurrentExerciseData objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];;
-    
-    NSArray *RepCountInformation = [[NSArray alloc] init];
-    
-    RepCountInformation=[[CurrentExerciseData objectAtIndex:1]componentsSeparatedByString:@"x"];
-    
-    self.retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-}
-
 
 - (void)populateData {
     //This fills the Watch table. Works differently from the phone table
@@ -109,11 +85,7 @@
     [self.tableView setNumberOfRows:rowno withRowType:@"row"];
     for (NSInteger i = 0; i < self.tableView.numberOfRows; i++) {
         WatchTableClass* theRow = [self.tableView rowControllerAtIndex:i];
-        //Name Decompose
-        [self retrieveInformation:i];
-        //
-        [theRow.titleLabel setText:self.retrievedName];
-        [theRow.seriesName setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
+        [theRow.titleLabel setText:[_WatchTableData objectAtIndex:i]];
     }
 }
 

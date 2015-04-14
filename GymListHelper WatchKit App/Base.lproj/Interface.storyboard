@@ -26,22 +26,17 @@
                         <table alignment="left" id="mHC-Vo-h2i">
                             <items>
                                 <tableRow identifier="row" id="xgu-3t-cTd" customClass="WatchTableClass">
-                                    <group key="rootItem" width="1" height="40" alignment="left" animationDuration="1" layout="vertical" id="7z8-UR-LPc">
+                                    <group key="rootItem" width="1" height="22.5" alignment="left" animationDuration="1" id="7z8-UR-LPc">
                                         <items>
-                                            <label height="17" alignment="left" text="Ex1" id="9UI-eY-3hd" userLabel="ExName">
+                                            <label height="23" alignment="left" text="Ex1" id="9UI-eY-3hd">
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
-                                            </label>
-                                            <label alignment="left" verticalAlignment="center" text="Series: # | Reps: ##" id="fzu-dp-XFa" userLabel="SeriesName">
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                                <fontDescription key="font" type="system" pointSize="13"/>
                                             </label>
                                         </items>
                                         <color key="backgroundColor" red="1" green="0.81530414773445625" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>
                                     <connections>
-                                        <outlet property="seriesName" destination="fzu-dp-XFa" id="Ltz-nd-M8A"/>
-                                        <outlet property="titleLabel" destination="9UI-eY-3hd" id="ctp-0m-y5E"/>
+                                        <outlet property="titleLabel" destination="9UI-eY-3hd" id="y8s-zg-WqC"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -55,7 +50,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="320"/>
+            <point key="canvasLocation" x="220" y="344.5"/>
         </scene>
         <!--DoExerciseWATCH-->
         <scene sceneID="Vzl-eB-JkG">
