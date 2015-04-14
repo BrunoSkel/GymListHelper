@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
-#import "SharePreview.h"
 #import "ChartsMenu.h"
 #import "ViewController.h"
 #import "NewChartDescriptionEditor.h"
@@ -90,12 +89,6 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
-    
-    _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
-    //NSLog(@"Current Categories chart: %@", self.ChartCategoriesArray);
-    
     
     //Social
     
@@ -110,66 +103,78 @@
         //Adding a new chart
         [_allChartData addObject: [NSMutableArray array]];
         //Adding charts A/B/C to the new chart
-        [_allChartData[0] addObject: [NSMutableArray array]];
-        [_allChartData[0] addObject: [NSMutableArray array]];
-        [_allChartData[0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allChartData objectAtIndex:0] addObject: [NSMutableArray array]];
         //Filling A
-        [_allChartData[0][0] addObject:@"Example A1 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A2 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A3 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A4 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 | 4x8"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 | 4x8"];
         //Filling B
-        [_allChartData[0][1] addObject:@"Example B1 | 4x10"];
-        [_allChartData[0][1] addObject:@"Example B2 | 4x10"];
-        [_allChartData[0][1] addObject:@"Example B3 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 | 4x10"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 | 4x10"];
         //Filling C
-        [_allChartData[0][2] addObject:@"Example C1 | 3x15"];
-        [_allChartData[0][2] addObject:@"Example C2 | 3x15"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 | 3x15"];
+        [[[_allChartData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 | 3x15"];
         
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [_allChartData writeToFile:filePath atomically:YES];
+        
+        
+        //Info data file works like the exercise info file
+        
+        _allInfoData = [NSMutableArray array];
+        [_allInfoData addObject: [NSMutableArray array]];
+        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
+        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
+        //Filling A
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 is like this, this and this."];
+        //Filling B
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 is like this, this and this."];
+        //Filling C
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 is like this, this and this."];
+        
+        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+        [_allInfoData writeToFile:filePathInfo atomically:YES];
         
         
         //Adding new WaitTime array
         _WaitTimesArray = [NSMutableArray array];
         [_WaitTimesArray addObject: [NSMutableArray array]];
         //Adding example times to the new chart
-        [_WaitTimesArray[0] addObject: @"30"];
-        [_WaitTimesArray[0] addObject: @"20"];
-        [_WaitTimesArray[0] addObject: @"10"];
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"30"];
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"20"];
+        [[_WaitTimesArray objectAtIndex:0] addObject: @"10"];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
         [_WaitTimesArray writeToFile:filePath atomically:YES];
         
     }
     if (_ChartNamesArray==NULL){
-        //Addind a new routine name
+        
         _RoutineNamesArray = [NSMutableArray array];
         [_RoutineNamesArray addObject: @"Example Workout"];
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
-        [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
-        
-        //Adding charts for the new routine
         _ChartNamesArray = [NSMutableArray array];
+        //Adding a new chart
         [_ChartNamesArray addObject: [NSMutableArray array]];
-        [_ChartNamesArray[0] addObject:@"A"];
-        [_ChartNamesArray[0] addObject:@"B"];
-        [_ChartNamesArray[0] addObject:@"C"];
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"A"];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"B"];
+        [[_ChartNamesArray objectAtIndex:0] addObject:@"C"];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
         [_ChartNamesArray writeToFile:filePath atomically:YES];
         
-        //Adding a categorie for the new routine
-        _ChartCategoriesArray = [NSMutableArray array];
-        [_ChartCategoriesArray addObject: [NSMutableArray array]];
-        [_ChartCategoriesArray[0] addObject:@"YES"]; // Hypertrophy
-        [_ChartCategoriesArray[0] addObject:@"NO"]; // Definition
-        [_ChartCategoriesArray[0] addObject:@"NO"]; // Tonification
-        [_ChartCategoriesArray[0] addObject:@"NO"]; // Fat Loss
-        [_ChartCategoriesArray[0] addObject:@"NO"]; // Strengh
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
-        [_ChartCategoriesArray writeToFile:filePath atomically:YES];
-        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+        [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
         self.ByUserArray = [NSMutableArray array];
         [self.ByUserArray addObject: @"0§myself§0"]; // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
@@ -182,7 +187,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
-    self.TouchedIndex=(int)indexPath.row;
+    _TouchedIndex=(int)indexPath.row;
     NSLog(@"Touched index: %ld",(long)indexPath.row);
     [self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
@@ -196,31 +201,17 @@
     else if([segue.identifier isEqualToString:@"EditRoutine"]){
         NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
         NSIndexPath *indexPath = [self getButtonIndexPath:sender];
-        controller.EditThisRoutine = (int)indexPath.row;
-        controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];
-        controller.sentCategorieArray = [NSMutableArray arrayWithArray:self.ChartCategoriesArray];
+        controller.EditThisRoutine=(int)indexPath.row;
+        controller.sentNameArray=[NSMutableArray arrayWithArray:_RoutineNamesArray];
         [controller editMode];
-    }
-    
-    else if([segue.identifier isEqualToString:@"GoToSharePreview"]){
-        SharePreview *controller = (SharePreview *)segue.destinationViewController;
-
-        controller.ShareThisRoutine=self.TouchedIndex;
-        controller.RoutineNamesArray=[NSMutableArray arrayWithArray:self.RoutineNamesArray];
-        controller.allChartData=self.allChartData;
-        controller.ChartNamesArray=[NSMutableArray arrayWithArray:self.ChartNamesArray];
-        controller.WaitTimesArray=[NSMutableArray arrayWithArray:self.WaitTimesArray];
-        controller.ByUserArray=[NSMutableArray arrayWithArray:self.ByUserArray];
-        
-        NSLog(@"prepareForSegue GoToSharePreview");
     }
     
 }
 
 -(NSIndexPath *) getButtonIndexPath:(UIButton *) button
 {
-    CGRect buttonFrame = [button convertRect:button.bounds toView:self.tableView];
-    return [self.tableView indexPathForRowAtPoint:buttonFrame.origin];
+    CGRect buttonFrame = [button convertRect:button.bounds toView:_tableView];
+    return [_tableView indexPathForRowAtPoint:buttonFrame.origin];
 }
 
 #pragma mark Delegate Methods
@@ -239,7 +230,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tableData count];
+    return [_tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,8 +243,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    [self ShouldShareButtonAppear:cell:indexPath.row];
+
+    
+    return cell;
+}
+
+-(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
+    
+    
+    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:indexPath.row];
+    [editButton setTag:row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
@@ -262,15 +263,22 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
+    // bug fix
+    [shareButton setHidden:NO];
+    [lbUserName setHidden:YES];
+    [imgUserPic setHidden:YES];
+    [shareButton setEnabled:YES];
+    //
+    
+    lbChartName.text = [self.RoutineNamesArray objectAtIndex:row];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     
-    NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
+    NSArray* params = [self.ByUserArray[row] componentsSeparatedByString: @"§"];
     
     if([params[1] isEqualToString:@"myself"]){
         if([params[2] isEqualToString:@"0"]){
             
-            [shareButton setTag:indexPath.row];
+            [shareButton setTag:row];
             [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
@@ -290,11 +298,8 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         imgUserPic.image = image;
-
+        
     }
-
-    
-    return cell;
 }
 
 
@@ -316,7 +321,6 @@
 
 -(IBAction)editButtonPressed:(UIButton*)sender{
     NSLog(@"%ld",(long)sender.tag);
-    NSLog(@"%@",self.ChartCategoriesArray[sender.tag]);
     NSLog(@"%@",self.ChartNamesArray[sender.tag]);
     NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
     NSLog(@"%@",self.WaitTimesArray[sender.tag]);
@@ -331,109 +335,105 @@
         [self performSegueWithIdentifier:@"GoToLogin" sender:self];
         
     }else{
-
-        self.TouchedIndex = (int)sender.tag;
+    
+        NSLog(@"%ld",(long)sender.tag);
+        NSLog(@"%@",self.ChartNamesArray[sender.tag]);
+        NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
+        NSLog(@"%@",self.WaitTimesArray[sender.tag]);
+        NSLog(@"%@",self.allChartData[sender.tag]);
+        NSLog(@"%@",self.ByUserArray[sender.tag]);
         
-        [self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
-//        
-//        NSLog(@"%ld",(long)sender.tag);
-//        NSLog(@"%@",self.ChartNamesArray[sender.tag]);
-//        NSLog(@"%@",self.RoutineNamesArray[sender.tag]);
-//        NSLog(@"%@",self.WaitTimesArray[sender.tag]);
-//        NSLog(@"%@",self.allChartData[sender.tag]);
-//        NSLog(@"%@",self.ByUserArray[sender.tag]);
-//        
-//        [sender setEnabled:NO];
-//        
-//
-//        NSError *error = NULL;
-//        
-//        //Serialize ChartNamesArray
-//        NSData *jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartNamesArray[sender.tag] error:&error];
-//        NSString* jsonSrtChartNames = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        
-//        //Serialize WaitTimesArray
-//        jsonData = [[CJSONSerializer serializer] serializeObject:self.WaitTimesArray[sender.tag] error:&error];
-//        NSString* jsonSrtWaitTimes = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        
-//        //Serialize allChartData
-//        jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[sender.tag] error:&error];
-//        NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        
-//        //Create "form" data
-//        NSString *sendData = @"userid=";
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&name="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&category="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&category1="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&category2="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&category3="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&estimatedTime="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&waitTime="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&language="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&comment="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&chartNames="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtChartNames]];
-//        
-//        sendData = [sendData stringByAppendingString:@"&exercises="];
-//        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
-//        
-//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
-//        
-//        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-//        
-//        //Here you send your data
-//        [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        [request setHTTPMethod:@"POST"];
-//        NSURLResponse *response = nil;
-//        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//        
-//        NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        
-//        
-//        if (error)
-//        {
-//            NSLog(@"Error");
-//        }
-//        else
-//        {
-//            //The response is in data
-//            NSLog(@"%@", results);
-//            
-//            if([results isEqualToString:@"ERROR2"]){
-//                NSLog(@"Error2");
-//            }else{
-//                NSLog(@"Compartilhado");
-//                
-//                self.ByUserArray[sender.tag] = [NSString stringWithFormat:@"0§myself§%@", results];
-//                
-//                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//                NSString *documentsDirectory = [paths objectAtIndex:0];
-//                NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
-//                [self.ByUserArray writeToFile:filePath atomically:YES];
-//                
-//            }
-//        }
+        [sender setEnabled:NO];
+        
+
+        NSError *error = NULL;
+        
+        //Serialize ChartNamesArray
+        NSData *jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartNamesArray[sender.tag] error:&error];
+        NSString* jsonSrtChartNames = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Serialize WaitTimesArray
+        jsonData = [[CJSONSerializer serializer] serializeObject:self.WaitTimesArray[sender.tag] error:&error];
+        NSString* jsonSrtWaitTimes = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Serialize allChartData
+        jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[sender.tag] error:&error];
+        NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        //Create "form" data
+        NSString *sendData = @"userid=";
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
+        
+        sendData = [sendData stringByAppendingString:@"&name="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[sender.tag]]];
+        
+        sendData = [sendData stringByAppendingString:@"&category="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+        
+        sendData = [sendData stringByAppendingString:@"&category1="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&category2="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&category3="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&estimatedTime="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+        
+        sendData = [sendData stringByAppendingString:@"&waitTime="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
+        
+        sendData = [sendData stringByAppendingString:@"&language="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+        
+        sendData = [sendData stringByAppendingString:@"&comment="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
+        
+        sendData = [sendData stringByAppendingString:@"&chartNames="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtChartNames]];
+        
+        sendData = [sendData stringByAppendingString:@"&exercises="];
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
+        
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        //Here you send your data
+        [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [request setHTTPMethod:@"POST"];
+        NSURLResponse *response = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        
+        if (error)
+        {
+            NSLog(@"Error");
+        }
+        else
+        {
+            //The response is in data
+            NSLog(@"%@", results);
+            
+            if([results isEqualToString:@"ERROR2"]){
+                NSLog(@"Error2");
+            }else{
+                NSLog(@"Compartilhado");
+                
+                self.ByUserArray[sender.tag] = [NSString stringWithFormat:@"0§myself§%@", results];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
+                [self.ByUserArray writeToFile:filePath atomically:YES];
+                
+            }
+        }
     }
 }
 
