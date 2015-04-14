@@ -11,7 +11,5 @@
 @interface EditChartTableCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIButton *UpButton;
 @property (strong, nonatomic) IBOutlet UIButton *DownButton;
-@property (strong, nonatomic) IBOutlet UILabel *ExName;
-@property (strong, nonatomic) IBOutlet UILabel *SeriesRepsLabel;
 
 @end
