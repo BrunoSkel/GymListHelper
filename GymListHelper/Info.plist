@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.coffeetime.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.skeletonapocalypse.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -32,7 +32,7 @@
 	<key>FacebookAppID</key>
 	<string>985865358092051</string>
 	<key>FacebookDisplayName</key>
-	<string>GymHelper</string>
+	<string>Mirin</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
