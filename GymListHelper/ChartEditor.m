@@ -21,6 +21,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *RoutineNameField;
 @property (strong, nonatomic) IBOutlet UIButton *AddExerciseLabel;
 @property int TouchedIndex;
+@property NSString *retrievedSeries;
+@property NSString *retrievedRep;
+@property NSString *retrievedName;
 //Timer to flash the scroll indicator
 @property NSTimer *timer;
 @end
@@ -107,6 +110,11 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 - (void)SaveCharts{
@@ -124,6 +132,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     [self.WaitTimesArray writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    [self.allInfoData writeToFile:filePath atomically:YES];
     
 }
 
@@ -206,7 +218,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+    EditChartTableCell* theRow = cell;
+    //Name Decompose
+    [self retrieveInformation:indexPath.row];
+    //
+    [theRow.ExName setText:self.retrievedName];
+    [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
+    
+   // cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
     
     /*
     int max=[[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:_saveToChart] count]-1;
@@ -227,6 +246,27 @@
     }*/
     
     return cell;
+}
+
+-(void)retrieveInformation:(int) i{
+    
+    //String is recieved as NAME | seriesXrep. Separate those to edit the exercise properly
+    
+    NSString *fullinfo=[self.tableData objectAtIndex:i];
+    
+    NSArray *CurrentExerciseData = [[NSArray alloc] init];
+    CurrentExerciseData=[fullinfo componentsSeparatedByString:@"|"];
+    
+    //stringbyTrimming = Remove spaces from start and the end
+    
+    self.retrievedName=[[CurrentExerciseData objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];;
+    
+    NSArray *RepCountInformation = [[NSArray alloc] init];
+    
+    RepCountInformation=[[CurrentExerciseData objectAtIndex:1]componentsSeparatedByString:@"x"];
+    
+    self.retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (IBAction)OnSegmentPressed:(id)sender {
@@ -267,6 +307,12 @@
     
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout]replaceObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex withObject:_RoutineNameField.text];
     
+    //Update Names
+    
+    [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
     [self SaveCharts];
     
 }
@@ -274,6 +320,7 @@
 - (IBAction)DeleteSubRoutine:(id)sender {
     //Delete chart and name array objects
   [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_allInfoData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_WaitTimesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
@@ -297,6 +344,7 @@
 
 - (IBAction)AddSubRoutine:(id)sender {
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
+    [[_allInfoData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
     [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
