@@ -322,6 +322,7 @@
         //Update Data
         [controller.tableData removeAllObjects];
         controller.tableData=[NSMutableArray arrayWithArray:controller.allChartData];
+        [controller.tableView reloadData];
         
     }
 }
