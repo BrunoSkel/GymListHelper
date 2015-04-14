@@ -11,9 +11,7 @@
 
 #import "ViewController.h"
 #import "DoExerciseScreen.h"
-#import "EditChartTableCell.h"
 #import "ChartEditor.h"
-#import "ExerciseInfoScreen.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,10 +21,6 @@
 @property NSMutableArray *ChartNamesArray;
 @property NSString *selectedCooldown;
 @property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
-
-@property NSString *retrievedSeries;
-@property NSString *retrievedRep;
-@property NSString *retrievedName;
 
 @end
 
@@ -50,7 +44,7 @@
     
     [super viewDidLoad];
     //Initialize Watch syncing.
-    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
+    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
     
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
@@ -59,13 +53,15 @@
     [self LoadChartsFromFile];
     
     //Check number of subroutines
-    NSLog(@"%lud",(unsigned long)[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+    NSLog(@"%lud",(unsigned long)[self.allChartData[self.ChosenWorkout] count]);
     [self FillSegment];
+    
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     //_ChosenWorkout=0;
-    _ChartNameLabel.text=[NSString stringWithFormat:@"%@",[_RoutineNamesArray objectAtIndex:_ChosenWorkout]];
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:0]];
+    self.ChartNameLabel.text=[NSString stringWithFormat:@"%@",self.RoutineNamesArray[self.ChosenWorkout]];
+    self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][0]];
+    
     //Reloads the table to show up properly on the screen
     [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
@@ -85,24 +81,24 @@
     for(int i = 0; i < 2; i++)
     {
         [strings addObject: [NSMutableArray array]];
-        [[strings objectAtIndex:i] addObject:[NSMutableArray array]];
-        [[strings objectAtIndex:i] addObject:[NSMutableArray array]];
+        [strings[i] addObject:[NSMutableArray array]];
+        [strings[i] addObject:[NSMutableArray array]];
     }
     
-    [[[strings objectAtIndex:0] objectAtIndex:0] addObject:@"This is 0,0,0"];
-    [[[strings objectAtIndex:1] objectAtIndex:0] addObject:@"This is 1,0,0"];
-    [[[strings objectAtIndex:1] objectAtIndex:0] addObject:@"This is 1,0,1"];
-    NSLog(@"Test: %@",[[[strings objectAtIndex:0] objectAtIndex:0] objectAtIndex:0]);
-    NSLog(@"Test: %@",[[[strings objectAtIndex:1] objectAtIndex:0] objectAtIndex:0]);
-    NSLog(@"Test: %@",[[[strings objectAtIndex:1] objectAtIndex:0] objectAtIndex:1]);
+    [strings[0][0] addObject:@"This is 0,0,0"];
+    [strings[1][0] addObject:@"This is 1,0,0"];
+    [strings[1][0] addObject:@"This is 1,0,1"];
+    NSLog(@"Test: %@",strings[0][0][0]);
+    NSLog(@"Test: %@",strings[1][0][0]);
+    NSLog(@"Test: %@",strings[1][0][1]);
 }
 
 - (void)SyncWithWatch{
     //Adding tableData to PlayerPref currentChart
-    [_SharedData setObject:_tableData forKey:@"currentChart"];
+    [self.SharedData setObject:self.tableData forKey:@"currentChart"];
     //Adding Wait Time (string: converted on Watch) to PlayerPref currentWaitTime
-    [_SharedData setObject:[[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex] forKey:@"currentWaitTime"];
-    [_SharedData synchronize];
+    [self.SharedData setObject:self.WaitTimesArray[self.ChosenWorkout][self.SegmentControlOutlet.selectedSegmentIndex] forKey:@"currentWaitTime"];
+    [self.SharedData synchronize];
 }
 
 - (void)LoadChartsFromFile{
@@ -110,7 +106,7 @@
     //Load the saved charts. If there's nothing, fill the charts with the example data.
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
     _allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
@@ -127,17 +123,13 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
-    
-    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
 }
 
 #pragma mark Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableData count];
+    return [self.tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,36 +142,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    //Name Decompose
-    EditChartTableCell* theRow = cell;
-    [self retrieveInformation:indexPath.row];
-    //
-    [theRow.ExName setText:self.retrievedName];
-    [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
+    cell.textLabel.text = self.tableData[indexPath.row];
     return cell;
 }
-
--(void)retrieveInformation:(int) i{
-    
-    //String is recieved as NAME | seriesXrep. Separate those to edit the exercise properly
-    
-    NSString *fullinfo=[self.tableData objectAtIndex:i];
-    
-    NSArray *CurrentExerciseData = [[NSArray alloc] init];
-    CurrentExerciseData=[fullinfo componentsSeparatedByString:@"|"];
-    
-    //stringbyTrimming = Remove spaces from start and the end
-    
-    self.retrievedName=[[CurrentExerciseData objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];;
-    
-    NSArray *RepCountInformation = [[NSArray alloc] init];
-    
-    RepCountInformation=[[CurrentExerciseData objectAtIndex:1]componentsSeparatedByString:@"x"];
-    
-    self.retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-    self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-}
-
 
 //- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //
@@ -197,9 +162,9 @@
 - (IBAction)OnSegmentPressed:(id)sender {
     //When he changes from A-B-C, I need to reload the tableData according to the correct chart
     
-    [_tableData removeAllObjects];
+    [self.tableData removeAllObjects];
     UISegmentedControl *s = (UISegmentedControl *)sender;
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:s.selectedSegmentIndex]];
+    self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][s.selectedSegmentIndex]];
     [self.tableView reloadData];
     
     //And then, I sync the tableData with the Watch
@@ -211,30 +176,17 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToExercise"]){
         DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
-        controller.exercisedata=_tableData;
-        controller.chartname=[NSString stringWithFormat:@"%@ Chart",[_SegmentControlOutlet titleForSegmentAtIndex:_SegmentControlOutlet.selectedSegmentIndex]];
+        controller.exercisedata=self.tableData;
+        controller.chartname=[NSString stringWithFormat:@"%@ Chart",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
-        _selectedCooldown = [[_WaitTimesArray objectAtIndex:_ChosenWorkout] objectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
-        controller.cooldownAmount=[_selectedCooldown intValue];
+        self.selectedCooldown = self.WaitTimesArray[self.ChosenWorkout][self.SegmentControlOutlet.selectedSegmentIndex];
+        controller.cooldownAmount=[self.selectedCooldown intValue];
         //controller.cooldownAmount=2;
     }
     
     if([segue.identifier isEqualToString:@"EditRoutine"]){
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
-        controller.ChosenWorkout=_ChosenWorkout;
-    }
-    
-        
-    if([segue.identifier isEqualToString:@"ExerciseInfo"]){
-            ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
-        
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-        
-        
-        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
-        
-        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        controller.ChosenWorkout=self.ChosenWorkout;
     }
     
     
@@ -247,8 +199,8 @@
 
 -(void)FillSegment{
     //Starts with 2 segments. Searches chartData to see if there are more, and add them
-    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
-        [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:i animated:NO];
+    for (int i=2; i<[self.allChartData[self.ChosenWorkout] count];i++){
+        [self.SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:i animated:NO];
     }
     
     //Apply subroutine names to segmented control
@@ -258,7 +210,7 @@
 
 -(void)UpdateSegmentNames{
     for (int i=0;i<_SegmentControlOutlet.numberOfSegments;i++){
-        [_SegmentControlOutlet setTitle:[[_ChartNamesArray objectAtIndex:_ChosenWorkout] objectAtIndex:i] forSegmentAtIndex:i];
+        [self.SegmentControlOutlet setTitle:self.ChartNamesArray[self.ChosenWorkout][i] forSegmentAtIndex:i];
     }
 }
 
@@ -267,16 +219,16 @@
     [self LoadChartsFromFile];
     //[self UpdateSegmentNames];
     //Reset Segment Outlet, as there are new subroutines, or deleted ones
-    if (_SegmentControlOutlet.numberOfSegments!=[[_allChartData objectAtIndex:_ChosenWorkout] count]){
-        while (_SegmentControlOutlet.numberOfSegments>2){
-            [_SegmentControlOutlet removeSegmentAtIndex:_SegmentControlOutlet.numberOfSegments-1 animated:NO];
+    if (self.SegmentControlOutlet.numberOfSegments!=[self.allChartData[self.ChosenWorkout] count]){
+        while (self.SegmentControlOutlet.numberOfSegments>2){
+            [self.SegmentControlOutlet removeSegmentAtIndex:self.SegmentControlOutlet.numberOfSegments-1 animated:NO];
         }
-        NSLog(@"NumberOfSegments: %ld | Count: %ld",(unsigned long)_SegmentControlOutlet.numberOfSegments,(unsigned long)[[_allChartData objectAtIndex:_ChosenWorkout] count]);
+        NSLog(@"NumberOfSegments: %ld | Count: %ld",(unsigned long)self.SegmentControlOutlet.numberOfSegments,(unsigned long)[self.allChartData[self.ChosenWorkout] count]);
         [self FillSegment];
     }
     [self UpdateSegmentNames];
-    _SegmentControlOutlet.selectedSegmentIndex=0;
-    _tableData=[NSMutableArray arrayWithArray:[[_allChartData objectAtIndex:_ChosenWorkout] objectAtIndex:[_SegmentControlOutlet selectedSegmentIndex]]];
+    self.SegmentControlOutlet.selectedSegmentIndex=0;
+    self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][[self.SegmentControlOutlet selectedSegmentIndex]]];
     [self.tableView reloadData];
 }
 

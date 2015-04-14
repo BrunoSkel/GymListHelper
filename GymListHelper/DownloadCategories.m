@@ -12,6 +12,8 @@
 @interface DownloadCategories () <UITableViewDelegate, UITableViewDataSource>
     @property (strong,nonatomic)  NSMutableArray *tableData;
     @property NSInteger TouchedIndex;
+
+
 @end
 
 @implementation DownloadCategories
@@ -20,11 +22,11 @@
     [super viewDidLoad];
     
     self.tableData = [NSMutableArray new];
-    [self.tableData addObject:@"Hipertrofia"];
-    [self.tableData addObject:@"Definição"];
-    [self.tableData addObject:@"Tornificação"];
-    [self.tableData addObject:@"Perda de Gordura"];
-    [self.tableData addObject:@"Potência"];
+    [self.tableData addObject:@"Hypertrophy"];
+    [self.tableData addObject:@"Definition"];
+    [self.tableData addObject:@"Tonification"];
+    [self.tableData addObject:@"Fat Loss"];
+    [self.tableData addObject:@"Strengh"];
 
     // Do any additional setup after loading the view.
 }
