@@ -110,6 +110,11 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 - (void)SaveCharts{
@@ -127,6 +132,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     [self.WaitTimesArray writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    [self.allInfoData writeToFile:filePath atomically:YES];
     
 }
 
@@ -311,6 +320,7 @@
 - (IBAction)DeleteSubRoutine:(id)sender {
     //Delete chart and name array objects
   [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_allInfoData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_WaitTimesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
@@ -334,6 +344,7 @@
 
 - (IBAction)AddSubRoutine:(id)sender {
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
+    [[_allInfoData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
     [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];

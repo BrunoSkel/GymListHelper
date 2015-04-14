@@ -21,12 +21,14 @@
 @property NSString *retrievedName;
 @property (strong, nonatomic) IBOutlet UITextView *InfoBox;
 @property BOOL isEdit;
+@property NSMutableArray *allInfoData;
 @end
 
 @implementation AddItem
 
 -(void)editMode{
     NSLog(@"cheguei");
+    //
     _isEdit=YES;
 }
 
@@ -37,6 +39,25 @@
     self.nameField.delegate=self;
     self.InfoBox.layer.borderWidth = 0.5f;
     self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
+    [self loadInfoBoxInfo];
+}
+
+-(void)loadInfoBoxInfo{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+}
+
+-(void)saveInfoBox{
+    //SAVE CHARTS
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    [self.allInfoData writeToFile:filePath atomically:YES];
 }
 
 //Make the keyboard dissapear after editing textfields======================
@@ -61,6 +82,13 @@
         _repField.text=_retrievedRep;
         [_MainLabel setText:@"Edit Exercise"];
         _DeleteButton.hidden=NO;
+        //
+        [self loadInfoBoxInfo];
+        //Fill Box
+         [self.InfoBox setText:self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]];
+        //self.InfoBox.text=@"ay";
+        NSLog(@"Desc= %@",self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
+        //
     }
     else{
         _DeleteButton.hidden=YES;
@@ -85,6 +113,9 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
+        [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
+        [self saveInfoBox];
+        
         //SAVE CHART END
         
         //Update Data
@@ -107,13 +138,19 @@
         
         if (_isEdit==YES){
                 [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:_newitem];
+                [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.InfoBox.text];
+                [self saveInfoBox];
         }
         else{
     [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
+            
+            [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.InfoBox.text];
+            [self saveInfoBox];
         }
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
+        
         
         //SAVE CHART END
         

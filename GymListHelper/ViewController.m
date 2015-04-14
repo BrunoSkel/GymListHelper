@@ -127,6 +127,10 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 #pragma mark Delegate Methods
@@ -229,6 +233,8 @@
         
         
         controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
     }
     
     

@@ -28,6 +28,7 @@
     [self retrieveInformation];
     self.exNameLabel.text=self.retrievedName;
     self.seriesRepsLabel.text=[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep];
+    self.TextView.text=self.infodata;
 }
 
 -(void)retrieveInformation{
