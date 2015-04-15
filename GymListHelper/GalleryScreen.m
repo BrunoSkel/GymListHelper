@@ -21,9 +21,10 @@
     @property ChartsMenu *controller;
 
     @property (strong, nonatomic) NSArray* arrLanguages;
-    @property (nonatomic) NSInteger ChosenLanguage;
 
     @property (nonatomic) NSInteger TouchedIndex;
+
+    @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @end
 
@@ -32,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.ChosenLanguage = 0;
+    //self.ChosenLanguage = 0;
     
     self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
  
@@ -42,6 +43,7 @@
 
     self.lbCategoryName.text = self.ChosenCategoryName;
     
+    [self.picker selectRow:self.ChosenLanguage inComponent:0 animated:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -247,12 +249,17 @@
         DownloadPreview *controller = (DownloadPreview *)segue.destinationViewController;
         //controller.ChosenWorkout=_TouchedIndex;
         
-        NSLog(@"%@",self.tableData[self.TouchedIndex]);
+        controller.currentDownloadChart = [NSArray arrayWithArray:self.tableData[self.TouchedIndex]];
+        
+        controller.currentCategory = self.ChosenCategory;
+        controller.currentCategoryName = self.ChosenCategoryName;
+        controller.currentLanguage = self.ChosenLanguage;
+        
+        
+        //NSLog(@"%@",self.tableData[self.TouchedIndex]);
     }
     
 }
-
-
 //PickerStuff
 
 // The number of rows of data
@@ -293,6 +300,7 @@
 {
     self.ChosenLanguage = row;
     NSLog(@"row chosen = %ld",row);
+    
     
     [self getChartsFromDB];
     

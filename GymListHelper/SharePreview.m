@@ -70,7 +70,39 @@
 //    NSLog(@"SharePreview viewDidLoad");
     self.lbChartName.text = self.RoutineNamesArray[self.ShareThisRoutine];
     
-    self.lbObjective.text = [NSString stringWithFormat:@"Objective: ?"];
+    
+    int firstId = -1;
+    NSMutableString* objectives = [NSMutableString new];
+    for(int i=0;i<[self.ChartCategoriesArray[self.ShareThisRoutine] count];i++){
+        if([self.ChartCategoriesArray[self.ShareThisRoutine][i] isEqualToString:@"YES"]){
+            if((i > firstId)&&(firstId != -1)){
+                [objectives appendString:@", "];
+            }
+            if(firstId == -1){
+                firstId = i;
+            }
+            switch(i){
+                case 0:
+                    [objectives appendString:@"Hypertrophy"];
+                    break;
+                case 1:
+                    [objectives appendString:@"Definition"];
+                    break;
+                case 2:
+                    [objectives appendString:@"Tonification"];
+                    break;
+                case 3:
+                    [objectives appendString:@"Fat Loss"];
+                    break;
+                case 4:
+                    [objectives appendString:@"Strength"];
+                    break;
+            }
+            
+        }
+    }
+    self.lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    
     
     NSMutableString *strExercises = [NSMutableString new];
 
@@ -141,7 +173,16 @@
     //Serialize allChartData
     jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[self.ShareThisRoutine] error:&error];
     NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    NSLog(@"cat = %@",self.ChartCategoriesArray[self.ShareThisRoutine]);
+    
+    //Serialize categories
+    jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartCategoriesArray[self.ShareThisRoutine] error:&error];
+    NSString* jsonSrtCategoriesData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
+    NSLog(@"jsonSrtCategoriesData = %@",jsonSrtCategoriesData);
+    
     //Create "form" data
     NSString *sendData = @"userid=";
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
@@ -150,17 +191,40 @@
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", self.RoutineNamesArray[self.ShareThisRoutine]]];
 
     sendData = [sendData stringByAppendingString:@"&category="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtCategoriesData]];
+    
     sendData = [sendData stringByAppendingString:@"&category1="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-
+    if([self.ChartCategoriesArray[self.ShareThisRoutine][0] isEqualToString:@"YES"]){
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"1"]];
+    }else{
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    }
+    
     sendData = [sendData stringByAppendingString:@"&category2="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    if([self.ChartCategoriesArray[self.ShareThisRoutine][1] isEqualToString:@"YES"]){
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"1"]];
+    }else{
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    }
 
     sendData = [sendData stringByAppendingString:@"&category3="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
-
+    if([self.ChartCategoriesArray[self.ShareThisRoutine][2] isEqualToString:@"YES"]){
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"1"]];
+    }else{
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    }
+    sendData = [sendData stringByAppendingString:@"&category4="];
+    if([self.ChartCategoriesArray[self.ShareThisRoutine][3] isEqualToString:@"YES"]){
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"1"]];
+    }else{
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    }
+    sendData = [sendData stringByAppendingString:@"&category5="];
+    if([self.ChartCategoriesArray[self.ShareThisRoutine][4] isEqualToString:@"YES"]){
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"1"]];
+    }else{
+        sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @"0"]];
+    }
     sendData = [sendData stringByAppendingString:@"&estimatedTime="];
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
 
@@ -168,7 +232,7 @@
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
 
     sendData = [sendData stringByAppendingString:@"&language="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d",self.ChosenLanguage]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld",self.ChosenLanguage]];
 
     sendData = [sendData stringByAppendingString:@"&comment="];
     sendData = [sendData stringByAppendingString:self.txtDescription.text];
@@ -195,7 +259,7 @@
 
     if (error)
     {
-        NSLog(@"Error");
+        NSLog(@"Error = %@", error);
     }
     else
     {

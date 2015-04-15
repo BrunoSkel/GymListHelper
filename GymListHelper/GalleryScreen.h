@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GalleryScreen : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+    @property (nonatomic) NSInteger ChosenLanguage;
+
     @property NSInteger ChosenCategory;
     @property NSString* ChosenCategoryName;
 @end
