@@ -130,30 +130,6 @@
         [_allChartData writeToFile:filePath atomically:YES];
         
         
-        //Info data file works like the exercise info file
-        
-        _allInfoData = [NSMutableArray array];
-        [_allInfoData addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
-        //Filling A
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 is like this, this and this."];
-        //Filling B
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 is like this, this and this."];
-        //Filling C
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 is like this, this and this."];
-        
-        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
-        [_allInfoData writeToFile:filePathInfo atomically:YES];
-        
-        
         //Adding new WaitTime array
         _WaitTimesArray = [NSMutableArray array];
         [_WaitTimesArray addObject: [NSMutableArray array]];
@@ -277,7 +253,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-
+    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
     [editButton setTag:indexPath.row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -348,17 +324,11 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         imgUserPic.image = image;
-        
+
     }
+
     
     return cell;
-}
-
--(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
-    
-    
-    
-
 }
 
 
