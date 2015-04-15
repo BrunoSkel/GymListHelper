@@ -398,7 +398,7 @@
 //The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
+    return [NSString stringWithFormat:@"%ld", (row+PICKER_MIN)];
     //[_PickerView selectedRowInComponent:0];
 }
 

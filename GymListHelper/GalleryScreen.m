@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Rodrigo Dias Takase on 01/04/15.
-//  Copyright (c) 2015 Coffee Time. All rights reserved.
+//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
 //
 
 #import "GalleryScreen.h"
@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //self.ChosenLanguage = 0;
     
     self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
  
@@ -95,6 +97,10 @@
             UIImage * image = [UIImage imageWithData:imageData];
             imgPic.image = image;
             
+//            UIButton *previewBtn = (UIButton *)cell.contentView.subviews[3];
+//                [previewBtn setTag:indexPath.row];
+//                [previewBtn addTarget:self action:@selector(previewBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            
         }
     }
 
@@ -107,10 +113,10 @@
     NSError *error = NULL;
     
     NSString *sendData = @"category=";
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d", (self.ChosenCategory + 1)]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", (self.ChosenCategory + 1)]];
     
     sendData = [sendData stringByAppendingString:@"&language="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d", self.ChosenLanguage]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", self.ChosenLanguage]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/getChartsWithCategory.php"]];
     
@@ -150,6 +156,87 @@
     [self.tableView reloadData];
 }
 
+-(IBAction)previewBtnPressed:(UIButton*)sender{
+
+//    NSLog(@"previewBtnPressed");
+//    
+//    //SAVE CHART
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *filePath;
+//    
+//    //Add downloaded workout, and a subworkouts
+//    [self.controller.allChartData addObject: [NSMutableArray array]];
+//    NSInteger newposition=[self.controller.allChartData count]-1;
+//    [[self.controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
+//    [[self.controller.allChartData objectAtIndex:newposition] addObject: [NSMutableArray array]];
+//    
+//    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
+//    [self.controller.allChartData writeToFile:filePath atomically:YES];
+//    
+//    //Adding new chart name
+//    [self.controller.RoutineNamesArray addObject: self.tableData[sender.tag][4]];
+//    
+//    //Add Subroutines names
+//    [self.controller.ChartNamesArray addObject: [NSMutableArray array]];
+//    NSString *jsonString = self.tableData[sender.tag][14];
+//    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *error = nil;
+//    NSArray *DownloadedChartNamesArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
+//    self.controller.ChartNamesArray[newposition] = DownloadedChartNamesArray;
+//    
+//    //Add Subroutines waitTime
+//    jsonString = self.tableData[sender.tag][9];
+//    jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSArray *DownloadedWaitTimesArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
+//    self.controller.WaitTimesArray[newposition] = DownloadedWaitTimesArray;
+//    
+//    //Add Exercises
+//    jsonString = self.tableData[sender.tag][12];
+//    jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSArray *DownloadedExercisesArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
+//    self.controller.allChartData[newposition] = DownloadedExercisesArray;
+//    //NSLog(@"%@",DownloadedExercisesArray);
+//    
+//    //Adding owner user for this new Chart
+//    // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
+//    NSString* str = [NSString stringWithFormat:@"%@§%@§%@", self.tableData[sender.tag][1],self.tableData[sender.tag][0],@"1"];
+//    [self.controller.ByUserArray addObject: str];
+//    
+//    filePath = [documentsDirectory
+//                stringByAppendingPathComponent:@"chartNamesFile"];
+//    [self.controller.ChartNamesArray writeToFile:filePath atomically:YES];
+//    
+//    filePath = [documentsDirectory
+//                stringByAppendingPathComponent:@"routineNamesFile"];
+//    [self.controller.RoutineNamesArray writeToFile:filePath atomically:YES];
+//    
+//    filePath = [documentsDirectory
+//                stringByAppendingPathComponent:@"waitTimesFile"];
+//    [self.controller.WaitTimesArray writeToFile:filePath atomically:YES];
+//    
+//    filePath = [documentsDirectory
+//                stringByAppendingPathComponent:@"byUserFile"];
+//    [self.controller.ByUserArray writeToFile:filePath atomically:YES];
+//    
+//    filePath = [documentsDirectory
+//                stringByAppendingPathComponent:@"chartDataFile"];
+//    [self.controller.allChartData writeToFile:filePath atomically:YES];
+//    
+//    //SAVE CHART END
+//    
+//    //Update Data
+//    [self.controller.tableData removeAllObjects];
+//    self.controller.tableData=[NSMutableArray arrayWithArray:self.controller.allChartData];
+    
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    
+//        self.controller = (ChartsMenu *)segue.destinationViewController;
+//    
+//}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
     self.TouchedIndex=(int)indexPath.row;
@@ -181,6 +268,13 @@
     return [self.arrLanguages count];
 }
 
+//The data to return for the row and component (column) that's being passed in
+//- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//
+//    return self.arrLanguages[row];
+//}
+
 // The number of columns of data
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -205,11 +299,27 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.ChosenLanguage = row;
-    NSLog(@"row chosen = %ld",(long)row);
+    NSLog(@"row chosen = %ld",row);
     
     
     [self getChartsFromDB];
     
 }
+
+//            username = chartInfo[0];
+//            facebookid = chartInfo[1];
+//            chartid = chartInfo[2];
+//            userid = chartInfo[3];
+//            chartname = chartInfo[4];
+//            category1 = chartInfo[5];
+//            category2 = chartInfo[6];
+//            category3 = chartInfo[7];
+//            estimatedTime = chartInfo[8];
+//            waitTime = chartInfo[9];
+//            language = chartInfo[10];
+//            comment = chartInfo[11];
+//            exercises = chartInfo[12];
+//            charttimestamp = chartInfo[13];
+//            chartNames = chartInfo[14];
 
 @end
