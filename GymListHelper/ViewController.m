@@ -11,7 +11,9 @@
 
 #import "ViewController.h"
 #import "DoExerciseScreen.h"
+#import "EditChartTableCell.h"
 #import "ChartEditor.h"
+#import "ExerciseInfoScreen.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -21,6 +23,10 @@
 @property NSMutableArray *ChartNamesArray;
 @property NSString *selectedCooldown;
 @property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
+
+@property NSString *retrievedSeries;
+@property NSString *retrievedRep;
+@property NSString *retrievedName;
 
 @end
 
@@ -44,7 +50,7 @@
     
     [super viewDidLoad];
     //Initialize Watch syncing.
-    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.GymWatch"];
+    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
     
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
@@ -123,6 +129,10 @@
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 #pragma mark Delegate Methods
@@ -142,9 +152,40 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+<<<<<<< HEAD
     cell.textLabel.text = self.tableData[indexPath.row];
+=======
+    //Name Decompose
+    EditChartTableCell* theRow = cell;
+    [self retrieveInformation:indexPath.row];
+    //
+    [theRow.ExName setText:self.retrievedName];
+    [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
+>>>>>>> Bruno
     return cell;
 }
+
+-(void)retrieveInformation:(int) i{
+    
+    //String is recieved as NAME | seriesXrep. Separate those to edit the exercise properly
+    
+    NSString *fullinfo=[self.tableData objectAtIndex:i];
+    
+    NSArray *CurrentExerciseData = [[NSArray alloc] init];
+    CurrentExerciseData=[fullinfo componentsSeparatedByString:@"|"];
+    
+    //stringbyTrimming = Remove spaces from start and the end
+    
+    self.retrievedName=[[CurrentExerciseData objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];;
+    
+    NSArray *RepCountInformation = [[NSArray alloc] init];
+    
+    RepCountInformation=[[CurrentExerciseData objectAtIndex:1]componentsSeparatedByString:@"x"];
+    
+    self.retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+}
+
 
 //- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //
@@ -187,6 +228,19 @@
     if([segue.identifier isEqualToString:@"EditRoutine"]){
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
         controller.ChosenWorkout=self.ChosenWorkout;
+    }
+    
+        
+    if([segue.identifier isEqualToString:@"ExerciseInfo"]){
+            ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
+        
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        
+        
+        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
     }
     
     
