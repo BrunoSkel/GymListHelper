@@ -11,6 +11,7 @@
 @interface SharePreview : UIViewController
 @property int ShareThisRoutine;
 @property NSMutableArray* RoutineNamesArray;
+@property NSMutableArray* allInfoData;
 @property NSMutableArray* allChartData;
 @property NSMutableArray* ChartNamesArray;
 @property NSMutableArray* WaitTimesArray;

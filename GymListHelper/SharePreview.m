@@ -175,14 +175,18 @@
     NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
     
-    NSLog(@"cat = %@",self.ChartCategoriesArray[self.ShareThisRoutine]);
     
-    //Serialize categories
+    //Serialize allInfoData
+    jsonData = [[CJSONSerializer serializer] serializeObject:self.allInfoData[self.ShareThisRoutine] error:&error];
+    NSString* jsonSrtAllInfoChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    
+    
+        //Serialize categories
     jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartCategoriesArray[self.ShareThisRoutine] error:&error];
     NSString* jsonSrtCategoriesData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
-    NSLog(@"jsonSrtCategoriesData = %@",jsonSrtCategoriesData);
-    
     //Create "form" data
     NSString *sendData = @"userid=";
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserId"]]];
@@ -242,7 +246,12 @@
 
     sendData = [sendData stringByAppendingString:@"&exercises="];
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllChartData]];
-
+    
+    sendData = [sendData stringByAppendingString:@"&exercisesInfo="];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtAllInfoChartData]];
+    
+    
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertChart.php"]];
 
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
