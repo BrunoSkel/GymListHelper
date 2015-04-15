@@ -169,12 +169,6 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
-        //Delete all information
-        
-        [controller.allInfoData removeObjectAtIndex:self.EditThisRoutine];
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
-        [controller.allInfoData writeToFile:filePath atomically:YES];
-        
         //Delete the routine name
         [controller.RoutineNamesArray removeObjectAtIndex:self.EditThisRoutine];
         
@@ -280,15 +274,6 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
-        
-        //Adding Information file for the chart
-        //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
-        [controller.allInfoData addObject: [NSMutableArray array]];
-        [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
-        [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
-        
-        filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
-        [controller.allInfoData writeToFile:filePath atomically:YES];
         
         //Adding new chart name
         [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
