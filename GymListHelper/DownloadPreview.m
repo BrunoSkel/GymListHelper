@@ -171,21 +171,23 @@
         NSArray *DownloadedExercisesArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
         self.allChartData[newposition] = DownloadedExercisesArray;
         
-        NSLog(@"%@", DownloadedExercisesArray);
-        NSLog(@"%@", controller.allChartData[newposition]);
+        //Add Exercises Info
+        
+        [self.allInfoData addObject: [NSMutableArray array]];
+        
+        jsonString = self.currentDownloadChart[18];
+        jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *DownloadedExercisesInfoArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
+        self.allInfoData[newposition] = DownloadedExercisesInfoArray;
+        
         
         //Add Categories
-        
         
         jsonString = self.currentDownloadChart[10];
         jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *DownloadedCategoriesArray = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&error];
-//        controller.ChartCategoriesArray[newposition] = ;
-
         [self.ChartCategoriesArray addObject: DownloadedCategoriesArray];
         
-        NSLog(@"%@", DownloadedCategoriesArray);
-        NSLog(@"%@", controller.ChartCategoriesArray[newposition]);
         
         //Adding owner user for this new Chart
         // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
@@ -216,6 +218,10 @@
                     stringByAppendingPathComponent:@"chartCategoriesFile"];
         [self.ChartCategoriesArray writeToFile:filePath atomically:YES];
         
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"infoDataFile"];
+        [self.allInfoData writeToFile:filePath atomically:YES];
+        
         //SAVE CHART END
         
         //Update Data
@@ -234,12 +240,11 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     self.allChartData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
-    
     self.ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
@@ -253,31 +258,10 @@
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
     self.ByUserArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-}
 
-- (void)SaveCharts{
-    //SAVE CHARTS
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
-    [self.allChartData writeToFile:filePath atomically:YES];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
-    [self.ChartNamesArray writeToFile:filePath atomically:YES];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
-    [self.RoutineNamesArray writeToFile:filePath atomically:YES];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
-    [self.WaitTimesArray writeToFile:filePath atomically:YES];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"chartCategoriesFile"];
-    [self.ChartCategoriesArray writeToFile:filePath atomically:YES];
-    
-    filePath = [documentsDirectory stringByAppendingPathComponent:@"byUserFile"];
-    [self.ByUserArray writeToFile:filePath atomically:YES];
-    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
 }
 
 @end
