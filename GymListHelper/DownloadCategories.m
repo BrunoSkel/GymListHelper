@@ -22,11 +22,23 @@
     [super viewDidLoad];
     
     self.tableData = [NSMutableArray new];
-    [self.tableData addObject:@"Hypertrophy"];
-    [self.tableData addObject:@"Definition"];
-    [self.tableData addObject:@"Tonification"];
-    [self.tableData addObject:@"Fat Loss"];
-    [self.tableData addObject:@"Strengh"];
+    
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if([language isEqualToString:@"pt"]||[language isEqualToString:@"pt_br"]){
+        [self.tableData addObject:@"Hipertrofia"];
+        [self.tableData addObject:@"Definição"];
+        [self.tableData addObject:@"Tornificação"];
+        [self.tableData addObject:@"Perda de Gordura"];
+        [self.tableData addObject:@"Potência"];
+    }else{
+        [self.tableData addObject:@"Hypertrophy"];
+        [self.tableData addObject:@"Definition"];
+        [self.tableData addObject:@"Tonification"];
+        [self.tableData addObject:@"Fat Loss"];
+        [self.tableData addObject:@"Strengh"];
+    }
+    
 
     // Do any additional setup after loading the view.
 }

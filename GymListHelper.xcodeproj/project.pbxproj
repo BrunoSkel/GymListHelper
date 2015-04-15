@@ -16,7 +16,6 @@
 		154F09511AB9948A00EC8087 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154F094F1AB9948A00EC8087 /* Main.storyboard */; };
 		154F09531AB9948A00EC8087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154F09521AB9948A00EC8087 /* Images.xcassets */; };
 		154F09561AB9948A00EC8087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154F09541AB9948A00EC8087 /* LaunchScreen.xib */; };
-		154F09621AB9948A00EC8087 /* GymListHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 154F09611AB9948A00EC8087 /* GymListHelperTests.m */; };
 		154F096C1AB9B41E00EC8087 /* DoExerciseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */; };
 		157C7AB11AC9713800EE25A2 /* FirstScreenPages.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */; };
 		157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C7AB31AC97FB300EE25A2 /* PageCoreViewController.m */; };
@@ -50,13 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		154F095C1AB9948A00EC8087 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 154F093A1AB9948A00EC8087 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 154F09411AB9948A00EC8087;
-			remoteInfo = GymListHelper;
-		};
 		15A40B9B1AC17E09008C82C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 154F093A1AB9948A00EC8087 /* Project object */;
@@ -104,9 +96,6 @@
 		154F09501AB9948A00EC8087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		154F09521AB9948A00EC8087 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		154F09551AB9948A00EC8087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		154F095B1AB9948A00EC8087 /* GymListHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymListHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		154F09601AB9948A00EC8087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		154F09611AB9948A00EC8087 /* GymListHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GymListHelperTests.m; sourceTree = "<group>"; };
 		154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreen.m; sourceTree = "<group>"; };
 		154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreen.h; sourceTree = "<group>"; };
 		157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstScreenPages.m; sourceTree = "<group>"; };
@@ -167,6 +156,9 @@
 		CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = GymListHelper/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CBAE147D1ACB12EB009BE1FA /* LoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreen.h; sourceTree = "<group>"; };
 		CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreen.m; sourceTree = "<group>"; };
+		CBC348821ADEA3D30023C9BF /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		CBC348831ADEA3D30023C9BF /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CBC348841ADEA3D40023C9BF /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Interface.strings; sourceTree = "<group>"; };
 		CBCAB0751AD6B78200FD6004 /* SharePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePreview.h; sourceTree = "<group>"; };
 		CBCAB0761AD6B78200FD6004 /* SharePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePreview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,13 +171,6 @@
 				CBAE147A1ACB0F47009BE1FA /* FBSDKCoreKit.framework in Frameworks */,
 				CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */,
 				CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154F09581AB9948A00EC8087 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +192,6 @@
 				CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */,
 				CBAE146C1ACAFEE4009BE1FA /* libTouchJSON */,
 				154F09441AB9948A00EC8087 /* GymListHelper */,
-				154F095E1AB9948A00EC8087 /* GymListHelperTests */,
 				15A40B8B1AC17E08008C82C4 /* GymListHelper WatchKit Extension */,
 				15A40B9D1AC17E09008C82C4 /* GymListHelper WatchKit App */,
 				154F09431AB9948A00EC8087 /* Products */,
@@ -218,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				154F09421AB9948A00EC8087 /* GymListHelper.app */,
-				154F095B1AB9948A00EC8087 /* GymListHelperTests.xctest */,
 				15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */,
 				15A40B991AC17E09008C82C4 /* GymListHelper WatchKit App.app */,
 			);
@@ -280,23 +263,6 @@
 			children = (
 				154F09461AB9948A00EC8087 /* Info.plist */,
 				154F09471AB9948A00EC8087 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		154F095E1AB9948A00EC8087 /* GymListHelperTests */ = {
-			isa = PBXGroup;
-			children = (
-				154F09611AB9948A00EC8087 /* GymListHelperTests.m */,
-				154F095F1AB9948A00EC8087 /* Supporting Files */,
-			);
-			path = GymListHelperTests;
-			sourceTree = "<group>";
-		};
-		154F095F1AB9948A00EC8087 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				154F09601AB9948A00EC8087 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -389,24 +355,6 @@
 			productReference = 154F09421AB9948A00EC8087 /* GymListHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		154F095A1AB9948A00EC8087 /* GymListHelperTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 154F09681AB9948A00EC8087 /* Build configuration list for PBXNativeTarget "GymListHelperTests" */;
-			buildPhases = (
-				154F09571AB9948A00EC8087 /* Sources */,
-				154F09581AB9948A00EC8087 /* Frameworks */,
-				154F09591AB9948A00EC8087 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				154F095D1AB9948A00EC8087 /* PBXTargetDependency */,
-			);
-			name = GymListHelperTests;
-			productName = GymListHelperTests;
-			productReference = 154F095B1AB9948A00EC8087 /* GymListHelperTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		15A40B891AC17E08008C82C4 /* GymListHelper WatchKit Extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15A40BAD1AC17E09008C82C4 /* Build configuration list for PBXNativeTarget "GymListHelper WatchKit Extension" */;
@@ -451,20 +399,16 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2YVM85P4VJ;
+						DevelopmentTeam = A5JJ9T4T2M;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 						};
 					};
-					154F095A1AB9948A00EC8087 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 154F09411AB9948A00EC8087;
-					};
 					15A40B891AC17E08008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 2YVM85P4VJ;
+						DevelopmentTeam = A5JJ9T4T2M;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -491,7 +435,6 @@
 			projectRoot = "";
 			targets = (
 				154F09411AB9948A00EC8087 /* GymListHelper */,
-				154F095A1AB9948A00EC8087 /* GymListHelperTests */,
 				15A40B891AC17E08008C82C4 /* GymListHelper WatchKit Extension */,
 				15A40B981AC17E09008C82C4 /* GymListHelper WatchKit App */,
 			);
@@ -506,13 +449,6 @@
 				154F09511AB9948A00EC8087 /* Main.storyboard in Resources */,
 				154F09561AB9948A00EC8087 /* LaunchScreen.xib in Resources */,
 				154F09531AB9948A00EC8087 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154F09591AB9948A00EC8087 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,14 +503,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		154F09571AB9948A00EC8087 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				154F09621AB9948A00EC8087 /* GymListHelperTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		15A40B861AC17E08008C82C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,11 +518,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		154F095D1AB9948A00EC8087 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 154F09411AB9948A00EC8087 /* GymListHelper */;
-			targetProxy = 154F095C1AB9948A00EC8087 /* PBXContainerItemProxy */;
-		};
 		15A40B9C1AC17E09008C82C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 15A40B981AC17E09008C82C4 /* GymListHelper WatchKit App */;
@@ -612,6 +535,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				154F09501AB9948A00EC8087 /* Base */,
+				CBC348821ADEA3D30023C9BF /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -620,6 +544,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				154F09551AB9948A00EC8087 /* Base */,
+				CBC348831ADEA3D30023C9BF /* pt */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -628,6 +553,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				15A40BA11AC17E09008C82C4 /* Base */,
+				CBC348841ADEA3D40023C9BF /* pt */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -747,40 +673,6 @@
 			};
 			name = Release;
 		};
-		154F09691AB9948A00EC8087 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GymListHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymListHelper.app/GymListHelper";
-			};
-			name = Debug;
-		};
-		154F096A1AB9948A00EC8087 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GymListHelperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymListHelper.app/GymListHelper";
-			};
-			name = Release;
-		};
 		15A40BA81AC17E09008C82C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -874,15 +766,6 @@
 			buildConfigurations = (
 				154F09661AB9948A00EC8087 /* Debug */,
 				154F09671AB9948A00EC8087 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		154F09681AB9948A00EC8087 /* Build configuration list for PBXNativeTarget "GymListHelperTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				154F09691AB9948A00EC8087 /* Debug */,
-				154F096A1AB9948A00EC8087 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
