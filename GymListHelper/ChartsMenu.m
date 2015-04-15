@@ -212,6 +212,8 @@
         controller.WaitTimesArray=[NSMutableArray arrayWithArray:self.WaitTimesArray];
         controller.ByUserArray=[NSMutableArray arrayWithArray:self.ByUserArray];
         
+        controller.ChartCategoriesArray=[NSMutableArray arrayWithArray:self.ChartCategoriesArray];
+        
         NSLog(@"prepareForSegue GoToSharePreview");
     }
     
@@ -261,10 +263,42 @@
     UILabel *lbChartName = (UILabel *)[cell.contentView.subviews objectAtIndex:2];
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
-    
+    UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
     lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
-    // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     
+    int firstId = -1;
+    NSMutableString* objectives = [NSMutableString new];
+    for(int i=0;i<[self.ChartCategoriesArray[indexPath.row] count];i++){
+        if([self.ChartCategoriesArray[indexPath.row][i] isEqualToString:@"YES"]){
+            if((i > firstId)&&(firstId != -1)){
+                [objectives appendString:@", "];
+            }
+            if(firstId == -1){
+                firstId = i;
+            }
+            switch(i){
+                case 0:
+                    [objectives appendString:@"Hypertrophy"];
+                    break;
+                case 1:
+                    [objectives appendString:@"Definition"];
+                    break;
+                case 2:
+                    [objectives appendString:@"Tonification"];
+                    break;
+                case 3:
+                    [objectives appendString:@"Fat Loss"];
+                    break;
+                case 4:
+                    [objectives appendString:@"Strength"];
+                    break;
+            }
+            
+        }
+    }
+    lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    
+    // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
     
     if([params[1] isEqualToString:@"myself"]){

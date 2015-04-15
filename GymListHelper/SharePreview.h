@@ -14,6 +14,7 @@
 @property NSMutableArray* allChartData;
 @property NSMutableArray* ChartNamesArray;
 @property NSMutableArray* WaitTimesArray;
+@property NSMutableArray* ChartCategoriesArray;
 
 @property NSMutableArray* ByUserArray;
 
