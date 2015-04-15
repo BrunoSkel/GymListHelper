@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <button width="81" height="29" alignment="center" verticalAlignment="bottom" title="Start" id="nfS-2h-o94">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.99607843137254903" green="0.78431372549019607" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="17"/>
+                            <connections>
+                                <action selector="OnStartPressed" destination="AgC-eL-Hgc" id="XmU-Yi-E4S"/>
+                            </connections>
+                        </button>
+                        <label alignment="center" text="Routine" id="Mwc-R4-oxb">
+                            <color key="textColor" red="0.99607843137254903" green="0.78431372549019607" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="thin" pointSize="21"/>
+                        </label>
+                        <label width="120" height="70" alignment="center" text="Select a Routine on your iPhone" numberOfLines="2" id="JH6-Jv-CnG"/>
+                        <table alignment="left" id="mHC-Vo-h2i">
+                            <items>
+                                <tableRow identifier="row" id="xgu-3t-cTd" customClass="WatchTableClass">
+                                    <group key="rootItem" width="1" height="40" alignment="left" animationDuration="1" layout="vertical" id="7z8-UR-LPc">
+                                        <items>
+                                            <label height="17" alignment="left" text="Ex1" id="9UI-eY-3hd" userLabel="ExName">
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="14"/>
+                                            </label>
+                                            <label alignment="left" verticalAlignment="center" text="Series: # | Reps: ##" id="fzu-dp-XFa" userLabel="SeriesName">
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="1" green="0.81530414773445625" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="seriesName" destination="fzu-dp-XFa" id="Ltz-nd-M8A"/>
+                                        <outlet property="titleLabel" destination="9UI-eY-3hd" id="ctp-0m-y5E"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="StartButton" destination="nfS-2h-o94" id="qLa-u5-3Ye"/>
+                        <outlet property="iPhoneWarningLabel" destination="JH6-Jv-CnG" id="gsf-b9-Q9S"/>
+                        <outlet property="tableView" destination="mHC-Vo-h2i" id="xf0-UG-Zik"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="320"/>
+        </scene>
+        <!--DoExerciseWATCH-->
+        <scene sceneID="Vzl-eB-JkG">
+            <objects>
+                <controller identifier="DoExerciseWATCH" id="Iq9-IR-0mi" customClass="DoExerciseScreenWATCH">
+                    <items>
+                        <label alignment="center" text="Do:" textAlignment="center" id="bVm-JG-POg">
+                            <color key="textColor" red="0.99607843137254903" green="0.78431372549019607" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="19"/>
+                        </label>
+                        <label width="136" alignment="center" text="Nothing at all" textAlignment="center" numberOfLines="2" id="sUb-Vu-cEF">
+                            <fontDescription key="font" type="system" pointSize="15"/>
+                        </label>
+                        <label alignment="center" text="Reps:" textAlignment="center" id="X3t-Di-elr">
+                            <color key="textColor" red="0.99607843139999996" green="0.7843137255" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="19"/>
+                        </label>
+                        <label alignment="center" text="No Exercises on this Routine!" textAlignment="center" numberOfLines="2" id="aEj-Zz-xqU">
+                            <fontDescription key="font" type="system" pointSize="15"/>
+                        </label>
+                        <button width="1" alignment="center" verticalAlignment="bottom" title="Touch to Continue" id="wkA-en-413">
+                            <accessibilityTraits key="accessibilityTraits" none="YES" button="YES" updatesFrequently="YES"/>
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.99607843137254903" green="0.78431372549019607" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="DonePressed:" destination="Iq9-IR-0mi" id="11l-KX-TQJ"/>
+                            </connections>
+                        </button>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="00:00" textAlignment="center" id="Gzo-ss-sDS">
+                            <color key="textColor" red="1" green="0.79063798517294792" blue="0.031410454134040644" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="heavy" pointSize="37"/>
+                        </label>
+                    </items>
+                    <menu key="menu" id="F5e-LQ-GO0">
+                        <items>
+                            <menuItem title="Skip" icon="accept" id="zyj-aK-WUR">
+                                <connections>
+                                    <action selector="SkipPressed:" destination="Iq9-IR-0mi" id="YY8-Oj-mxE"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="DoLabel" destination="bVm-JG-POg" id="YXr-el-Gb3"/>
+                        <outlet property="DoneLabel" destination="wkA-en-413" id="FYX-pG-xfs"/>
+                        <outlet property="ExerciseName" destination="sUb-Vu-cEF" id="qUH-Ql-H1K"/>
+                        <outlet property="RepCount" destination="aEj-Zz-xqU" id="4iX-Dg-ccJ"/>
+                        <outlet property="RepsLabel" destination="X3t-Di-elr" id="4tU-Jr-4PN"/>
+                        <outlet property="cooldownLabel" destination="Gzo-ss-sDS" id="fU9-g0-D9w"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="407" y="349"/>
+        </scene>
+        <!--ToEnd-->
+        <scene sceneID="wAT-j4-YuP">
+            <objects>
+                <controller identifier="ToEnd" id="3qh-y9-i4v" customClass="EndScreenWATCH">
+                    <items>
+                        <label alignment="center" text="You did it!" textAlignment="center" id="Axu-M4-vfM">
+                            <color key="textColor" red="0.99215686274509807" green="0.74509803921568629" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="semibold" pointSize="30"/>
+                        </label>
+                        <label alignment="center" verticalAlignment="center" text="Nice job!" textAlignment="center" numberOfLines="3" id="WyQ-h3-SAo">
+                            <color key="textColor" red="0.9786985664641108" green="0.99607843139999996" blue="0.95503519339425735" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                        </label>
+                        <button width="93" height="37" alignment="center" verticalAlignment="bottom" title="Finish" id="ooA-9o-v4J">
+                            <accessibilityTraits key="accessibilityTraits" none="YES" button="YES" updatesFrequently="YES"/>
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.99607843139999996" green="0.7843137255" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="20"/>
+                            <connections>
+                                <segue destination="AgC-eL-Hgc" kind="push" id="WHn-9P-I2J"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="EndLabel" destination="WyQ-h3-SAo" id="3f8-bT-UJ2"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="599" y="349"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>
