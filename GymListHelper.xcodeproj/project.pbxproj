@@ -37,7 +37,6 @@
 		76CEA5071ACB203F00625DA9 /* DoExerciseScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5061ACB203F00625DA9 /* DoExerciseScreenWATCH.m */; };
 		76CEA50A1ACB206900625DA9 /* EndScreenWATCH.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */; };
 		CB297FB21ACC0DCE00849FD2 /* GalleryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CB297FB11ACC0DCE00849FD2 /* GalleryScreen.m */; };
-		CB97FF861ADBE8D70086B32E /* DownloadPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = CB97FF851ADBE8D70086B32E /* DownloadPreview.m */; };
 		CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */; };
 		CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14701ACAFEE4009BE1FA /* CJSONSerializer.m */; };
 		CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE14731ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m */; };
@@ -45,7 +44,6 @@
 		CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */; };
 		CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */; };
 		CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */; };
-		CBCAB0771AD6B78200FD6004 /* SharePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = CBCAB0761AD6B78200FD6004 /* SharePreview.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,8 +148,6 @@
 		76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
 		CB297FB01ACC0DCE00849FD2 /* GalleryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryScreen.h; sourceTree = "<group>"; };
 		CB297FB11ACC0DCE00849FD2 /* GalleryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryScreen.m; sourceTree = "<group>"; };
-		CB97FF841ADBE8D70086B32E /* DownloadPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadPreview.h; sourceTree = "<group>"; };
-		CB97FF851ADBE8D70086B32E /* DownloadPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadPreview.m; sourceTree = "<group>"; };
 		CBAE146D1ACAFEE4009BE1FA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		CBAE146E1ACAFEE4009BE1FA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		CBAE146F1ACAFEE4009BE1FA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -164,8 +160,6 @@
 		CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = GymListHelper/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CBAE147D1ACB12EB009BE1FA /* LoginScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreen.h; sourceTree = "<group>"; };
 		CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreen.m; sourceTree = "<group>"; };
-		CBCAB0751AD6B78200FD6004 /* SharePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePreview.h; sourceTree = "<group>"; };
-		CBCAB0761AD6B78200FD6004 /* SharePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePreview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,10 +256,6 @@
 				CBAE147E1ACB12EB009BE1FA /* LoginScreen.m */,
 				CB297FB01ACC0DCE00849FD2 /* GalleryScreen.h */,
 				CB297FB11ACC0DCE00849FD2 /* GalleryScreen.m */,
-				CBCAB0751AD6B78200FD6004 /* SharePreview.h */,
-				CBCAB0761AD6B78200FD6004 /* SharePreview.m */,
-				CB97FF841ADBE8D70086B32E /* DownloadPreview.h */,
-				CB97FF851ADBE8D70086B32E /* DownloadPreview.m */,
 			);
 			path = GymListHelper;
 			sourceTree = "<group>";
@@ -538,7 +528,6 @@
 			files = (
 				CB297FB21ACC0DCE00849FD2 /* GalleryScreen.m in Sources */,
 				1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */,
-				CBCAB0771AD6B78200FD6004 /* SharePreview.m in Sources */,
 				CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */,
 				CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */,
 				154F096C1AB9B41E00EC8087 /* DoExerciseScreen.m in Sources */,
@@ -550,7 +539,6 @@
 				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
 				CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */,
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
-				CB97FF861ADBE8D70086B32E /* DownloadPreview.m in Sources */,
 				15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */,
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
