@@ -242,6 +242,19 @@
         NSLog(@"prepareForSegue GoToSharePreview");
     }
     
+    else if([segue.identifier isEqualToString:@"ToGallery"]){
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Routine Gallery Beta"
+                                                       message: @"Mirin's Routine Gallery is still under construction. While several features are missing, you can already share and download new workouts."
+                                                      delegate: self
+                                             cancelButtonTitle:@"I understand!"
+                                             otherButtonTitles:nil];
+        
+        [alert setTag:1];
+        [alert show];
+        
+    }
+    
 }
 
 -(NSIndexPath *) getButtonIndexPath:(UIButton *) button
@@ -290,6 +303,8 @@
     UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
     lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
     
+    [shareButton setEnabled:YES];
+    
     int firstId = -1;
     NSMutableString* objectives = [NSMutableString new];
     for(int i=0;i<[self.ChartCategoriesArray[indexPath.row] count];i++){
@@ -320,7 +335,7 @@
             
         }
     }
-    lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    lbObjective.text = [NSString stringWithFormat:@"Goal: %@",objectives];
     
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
