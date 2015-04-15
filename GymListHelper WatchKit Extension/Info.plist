@@ -9,7 +9,11 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
+<<<<<<< HEAD
 	<string>rodrigotakase.GymListHelper.watchextension</string>
+=======
+	<string>com.coffeetime.GymListHelper.watchextension</string>
+>>>>>>> origin/master
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +31,11 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
+<<<<<<< HEAD
 			<string>rodrigotakase.GymListHelper.watchkitapp</string>
+=======
+			<string>com.coffeetime.GymListHelper.watchkitapp</string>
+>>>>>>> origin/master
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
