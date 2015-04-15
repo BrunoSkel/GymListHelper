@@ -210,7 +210,6 @@
         [controller.tableData removeAllObjects];
         controller.tableData=[NSMutableArray arrayWithArray:controller.allChartData];
         [controller.tableView reloadData];
-        
         return;
     }
     //Check if hes editing or creating a new chart

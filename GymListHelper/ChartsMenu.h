@@ -13,6 +13,7 @@
 @interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
 
 @property (strong,nonatomic)  NSMutableArray *allChartData;
+@property (strong,nonatomic)  NSMutableArray *allInfoData;
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
 @property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;

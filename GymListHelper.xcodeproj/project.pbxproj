@@ -27,6 +27,7 @@
 		15A40BA41AC17E09008C82C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA31AC17E09008C82C4 /* Images.xcassets */; };
 		15A40BA71AC17E09008C82C4 /* GymListHelper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
+		15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
 		1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DF0391ACAD280004E294A /* PageViewOverride.m */; };
@@ -133,6 +134,8 @@
 		15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GymListHelper.entitlements; sourceTree = "<group>"; };
 		15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
 		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
+		15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseInfoScreen.h; sourceTree = "<group>"; };
+		15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseInfoScreen.m; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChartTableCell.m; sourceTree = "<group>"; };
 		15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChartTableCell.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */,
 				157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */,
 				157C7AB21AC9715200EE25A2 /* FirstScreenPages.h */,
+				15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */,
+				15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */,
 				154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */,
 				158DF0391ACAD280004E294A /* PageViewOverride.m */,
 				154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */,
@@ -554,6 +559,7 @@
 				15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */,
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
+				15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
