@@ -233,8 +233,44 @@
 }
 
 - (IBAction)DownloadAction:(id)sender {
+    
+    BOOL isfirst=[self CheckifnotFirst];
+    if (isfirst==NO){
+        [self performSegueWithIdentifier: @ "GoToCharts" sender: self];
+        return;
+    }
+    else
+        [self ShowTerms];
+}
+
+-(void)ShowTerms{
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Terms of Use"
+                                                   message: @"To download workouts, please accept our terms."
+                                                  delegate: self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles:@"See Terms",nil];
+    
+    [alert setTag:1];
+    [alert show];
+    
+    //[self performSegueWithIdentifier: @ "GoToCharts" sender: self];
+    
+}
+
+-(BOOL)CheckifnotFirst{
+    int firsttime = (int)[[[NSUserDefaults standardUserDefaults] objectForKey:@"termsofUseFile"] integerValue];
+    if (firsttime==0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    //anti bug
+    return NO;
     [self performSegueWithIdentifier: @ "GoToCharts" sender: self];
 }
+
 
 - (void)LoadChartData{
     
