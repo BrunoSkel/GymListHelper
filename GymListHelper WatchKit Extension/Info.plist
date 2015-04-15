@@ -5,15 +5,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Mirin'</string>
+	<string>Mirin&apos;</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.skeletonapocalypse.GymListHelper.watchextension</string>
+	<string>com.coffeetime.GymListHelper.watchextension</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Mirin'</string>
+	<string>Mirin&apos;</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -27,7 +27,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>com.skeletonapocalypse.GymListHelper.watchkitapp</string>
+			<string>com.coffeetime.GymListHelper.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

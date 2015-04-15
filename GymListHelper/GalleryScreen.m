@@ -3,7 +3,7 @@
 //  GymListHelper
 //
 //  Created by Rodrigo Dias Takase on 01/04/15.
-//  Copyright (c) 2015 Skeleton Apocalypse. All rights reserved.
+//  Copyright (c) 2015 Coffee Time. All rights reserved.
 //
 
 #import "GalleryScreen.h"
@@ -113,10 +113,10 @@
     NSError *error = NULL;
     
     NSString *sendData = @"category=";
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", (self.ChosenCategory + 1)]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d", (self.ChosenCategory + 1)]];
     
     sendData = [sendData stringByAppendingString:@"&language="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", self.ChosenLanguage]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d", self.ChosenLanguage]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/getChartsWithCategory.php"]];
     
@@ -299,7 +299,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.ChosenLanguage = row;
-    NSLog(@"row chosen = %ld",row);
+    NSLog(@"row chosen = %ld",(long)row);
     
     
     [self getChartsFromDB];
