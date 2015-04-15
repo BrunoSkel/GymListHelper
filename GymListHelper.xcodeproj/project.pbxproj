@@ -153,6 +153,9 @@
 		76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
 		CB297FB01ACC0DCE00849FD2 /* GalleryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryScreen.h; sourceTree = "<group>"; };
 		CB297FB11ACC0DCE00849FD2 /* GalleryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryScreen.m; sourceTree = "<group>"; };
+		CB944BBE1ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		CB944BBF1ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CB944BC01ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Interface.strings; sourceTree = "<group>"; };
 		CB97FF841ADBE8D70086B32E /* DownloadPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadPreview.h; sourceTree = "<group>"; };
 		CB97FF851ADBE8D70086B32E /* DownloadPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadPreview.m; sourceTree = "<group>"; };
 		CBAE146D1ACAFEE4009BE1FA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
@@ -612,6 +615,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				154F09501AB9948A00EC8087 /* Base */,
+				CB944BBE1ADEAFEB00D0C427 /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -620,6 +624,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				154F09551AB9948A00EC8087 /* Base */,
+				CB944BBF1ADEAFEB00D0C427 /* pt */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -628,6 +633,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				15A40BA11AC17E09008C82C4 /* Base */,
+				CB944BC01ADEAFEB00D0C427 /* pt */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
