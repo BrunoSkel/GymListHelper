@@ -28,7 +28,11 @@
     [self retrieveInformation];
     self.exNameLabel.text=self.retrievedName;
     self.seriesRepsLabel.text=[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep];
+    if (self.infodata!=NULL)
     self.TextView.text=self.infodata;
+    else{
+        self.TextView.text=@"No Information Available";
+    }
 }
 
 -(void)retrieveInformation{
