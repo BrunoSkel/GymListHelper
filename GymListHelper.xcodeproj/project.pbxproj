@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1543DA831AD7EA7500EC909F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DA821AD7EA7500EC909F /* AudioToolbox.framework */; };
-		1543DA841AD7EAF400EC909F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DA821AD7EA7500EC909F /* AudioToolbox.framework */; };
-		1546FE861ADBF4C800C166AC /* ExerciseInfoScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546FE851ADBF4C800C166AC /* ExerciseInfoScreen.m */; };
 		154DEAC01ABAEDAE00CDBC27 /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */; };
 		154DEAC41ABAFA0800CDBC27 /* ChartEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */; };
 		154DEAC61ABB013000CDBC27 /* AddItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEAC51ABB013000CDBC27 /* AddItem.m */; };
@@ -30,6 +27,7 @@
 		15A40BA41AC17E09008C82C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA31AC17E09008C82C4 /* Images.xcassets */; };
 		15A40BA71AC17E09008C82C4 /* GymListHelper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15A40B8A1AC17E08008C82C4 /* GymListHelper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
+		15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
 		1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DF0391ACAD280004E294A /* PageViewOverride.m */; };
@@ -90,9 +88,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1543DA821AD7EA7500EC909F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		1546FE841ADBE7C900C166AC /* ExerciseInfoScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseInfoScreen.h; sourceTree = "<group>"; };
-		1546FE851ADBF4C800C166AC /* ExerciseInfoScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseInfoScreen.m; sourceTree = "<group>"; };
 		154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
 		154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		154DEAC21ABAF98500CDBC27 /* ChartEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartEditor.h; sourceTree = "<group>"; };
@@ -139,6 +134,8 @@
 		15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GymListHelper.entitlements; sourceTree = "<group>"; };
 		15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
 		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
+		15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseInfoScreen.h; sourceTree = "<group>"; };
+		15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseInfoScreen.m; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChartTableCell.m; sourceTree = "<group>"; };
 		15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChartTableCell.h; sourceTree = "<group>"; };
@@ -179,7 +176,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1543DA831AD7EA7500EC909F /* AudioToolbox.framework in Frameworks */,
 				CBAE147A1ACB0F47009BE1FA /* FBSDKCoreKit.framework in Frameworks */,
 				CBAE147B1ACB0F47009BE1FA /* FBSDKLoginKit.framework in Frameworks */,
 				CBAE147C1ACB0F47009BE1FA /* FBSDKShareKit.framework in Frameworks */,
@@ -197,7 +193,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1543DA841AD7EAF400EC909F /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +202,6 @@
 		154F09391AB9948A00EC8087 = {
 			isa = PBXGroup;
 			children = (
-				1543DA821AD7EA7500EC909F /* AudioToolbox.framework */,
 				CBAE14771ACB0F47009BE1FA /* FBSDKCoreKit.framework */,
 				CBAE14781ACB0F47009BE1FA /* FBSDKLoginKit.framework */,
 				CBAE14791ACB0F47009BE1FA /* FBSDKShareKit.framework */,
@@ -245,14 +239,14 @@
 				15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */,
 				157C7AB01AC9713800EE25A2 /* FirstScreenPages.m */,
 				157C7AB21AC9715200EE25A2 /* FirstScreenPages.h */,
+				15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */,
+				15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */,
 				154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */,
 				158DF0391ACAD280004E294A /* PageViewOverride.m */,
 				154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */,
 				158DF03B1ACAD2B8004E294A /* PageViewOverride.h */,
-				1546FE851ADBF4C800C166AC /* ExerciseInfoScreen.m */,
 				154DEAC21ABAF98500CDBC27 /* ChartEditor.h */,
 				154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */,
-				1546FE841ADBE7C900C166AC /* ExerciseInfoScreen.h */,
 				154F094F1AB9948A00EC8087 /* Main.storyboard */,
 				157C7AB31AC97FB300EE25A2 /* PageCoreViewController.m */,
 				157C7AB51AC97FC400EE25A2 /* PageCoreViewController.h */,
@@ -457,7 +451,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -470,7 +464,7 @@
 					};
 					15A40B891AC17E08008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -479,7 +473,7 @@
 					};
 					15A40B981AC17E09008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 					};
 				};
 			};
@@ -563,9 +557,9 @@
 				154F094B1AB9948A00EC8087 /* AppDelegate.m in Sources */,
 				CB97FF861ADBE8D70086B32E /* DownloadPreview.m in Sources */,
 				15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */,
-				1546FE861ADBF4C800C166AC /* ExerciseInfoScreen.m in Sources */,
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
+				15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,

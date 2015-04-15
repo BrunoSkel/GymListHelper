@@ -152,16 +152,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-<<<<<<< HEAD
-    cell.textLabel.text = self.tableData[indexPath.row];
-=======
     //Name Decompose
     EditChartTableCell* theRow = cell;
     [self retrieveInformation:indexPath.row];
     //
     [theRow.ExName setText:self.retrievedName];
     [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
->>>>>>> Bruno
     return cell;
 }
 

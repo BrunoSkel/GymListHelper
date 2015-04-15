@@ -277,19 +277,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    
-    [self ShouldShareButtonAppear:cell:indexPath.row];
 
-    
-    return cell;
-}
-
--(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
-    
-    
-    
     UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:row];
+    [editButton setTag:indexPath.row];
     [editButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
@@ -297,7 +287,6 @@
     UILabel *lbChartName = (UILabel *)[cell.contentView.subviews objectAtIndex:2];
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
-<<<<<<< HEAD
     UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
     lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
     
@@ -335,25 +324,11 @@
     
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
-=======
-    
-    // bug fix
-    [shareButton setHidden:NO];
-    [lbUserName setHidden:YES];
-    [imgUserPic setHidden:YES];
-    [shareButton setEnabled:YES];
-    //
-    
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:row];
-    // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
-    
-    NSArray* params = [self.ByUserArray[row] componentsSeparatedByString: @"§"];
->>>>>>> Bruno
     
     if([params[1] isEqualToString:@"myself"]){
         if([params[2] isEqualToString:@"0"]){
             
-            [shareButton setTag:row];
+            [shareButton setTag:indexPath.row];
             [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
@@ -375,6 +350,15 @@
         imgUserPic.image = image;
         
     }
+    
+    return cell;
+}
+
+-(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
+    
+    
+    
+
 }
 
 
