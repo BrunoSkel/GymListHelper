@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSArray* arrLanguages;
 @property (nonatomic) NSInteger ChosenLanguage;
 
+@property (nonatomic) Boolean canShare;
+
 @end
 
 @implementation SharePreview
@@ -30,10 +32,20 @@
 - (void)textViewDidBeginEditing:(UITextView *)txtDescription {
     NSLog(@"textViewDidBeginEditing:");
 
-    if([self.txtDescription.text isEqualToString:@"Add your description here"]){
-        self.txtDescription.text = @"";
-    }else if([self.txtDescription.text isEqualToString:@""]){
-        self.txtDescription.text = @"Add your description here";
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        if([self.txtDescription.text isEqualToString:@"Adicione sua descrição aqui"]){
+            self.txtDescription.text = @"";
+        }else if([self.txtDescription.text isEqualToString:@""]){
+            self.txtDescription.text = @"Adicione sua descrição aqui";
+        }
+
+    }else{
+        if([self.txtDescription.text isEqualToString:@"Add your description here"]){
+            self.txtDescription.text = @"";
+        }else if([self.txtDescription.text isEqualToString:@""]){
+            self.txtDescription.text = @"Add your description here";
+        }
+
     }
     
     [txtDescription becomeFirstResponder];
@@ -64,8 +76,12 @@
 //    [singleTap re];
     
     self.ChosenLanguage = 0;
-    
-    self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
+
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.arrLanguages = @[@"Inglês",@"Português",@"Espanhol",@"Chinês",@"Dinamarquês",@"Alemão",@"Filandês",@"Francês",@"Alemão",@"Grego",@"Indonésio",@"Italiano",@"Japonês",@"Coreano",@"Malaia",@"Norueguês",@"Russo",@"Sueco",@"Tailandês",@"Turco",@"Vietnamita",@"Outro"];
+    }else{
+        self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
+    }
     
 //    NSLog(@"SharePreview viewDidLoad");
     self.lbChartName.text = self.RoutineNamesArray[self.ShareThisRoutine];
@@ -81,27 +97,55 @@
             if(firstId == -1){
                 firstId = i;
             }
-            switch(i){
-                case 0:
-                    [objectives appendString:@"Hypertrophy"];
-                    break;
-                case 1:
-                    [objectives appendString:@"Definition"];
-                    break;
-                case 2:
-                    [objectives appendString:@"Tonification"];
-                    break;
-                case 3:
-                    [objectives appendString:@"Fat Loss"];
-                    break;
-                case 4:
-                    [objectives appendString:@"Strength"];
-                    break;
+            if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+                switch(i){
+                    case 0:
+                        [objectives appendString:@"Hipertrofia"];
+                        break;
+                    case 1:
+                        [objectives appendString:@"Definição"];
+                        break;
+                    case 2:
+                        [objectives appendString:@"Tornificação"];
+                        break;
+                    case 3:
+                        [objectives appendString:@"Perda de Gordura"];
+                        break;
+                    case 4:
+                        [objectives appendString:@"Potência"];
+                        break;
+                }
+    
+            }else{
+                switch(i){
+                    case 0:
+                        [objectives appendString:@"Hypertrophy"];
+                        break;
+                    case 1:
+                        [objectives appendString:@"Definition"];
+                        break;
+                    case 2:
+                        [objectives appendString:@"Tonification"];
+                        break;
+                    case 3:
+                        [objectives appendString:@"Fat Loss"];
+                        break;
+                    case 4:
+                        [objectives appendString:@"Strength"];
+                        break;
+                }
+
             }
             
         }
     }
-    self.lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.lbObjective.text = [NSString stringWithFormat:@"Objetivo: %@",objectives];
+    }else{
+        self.lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    }
+    
     
     
     NSMutableString *strExercises = [NSMutableString new];
@@ -136,8 +180,16 @@
         i++;
     }
     
+    self.canShare = YES;
+    
     if(subroutinesWithExercises == 0){
-        strExercises = [NSMutableString stringWithString:@"No exercises added"];
+        if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+            strExercises = [NSMutableString stringWithString:@"Nenhum exercício adicionado"];
+        }else{
+            strExercises = [NSMutableString stringWithString:@"No exercises added"];
+        }
+        
+        self.canShare = NO;
     }
     self.txtExercises.text = strExercises;
     
@@ -147,8 +199,12 @@
     
     self.imgUserpic.image = image;
     
-    self.lbUsername.text = [NSString stringWithFormat:@"by %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"]];
-    ;
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.lbUsername.text = [NSString stringWithFormat:@"por %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"]];
+    }else{
+        self.lbUsername.text = [NSString stringWithFormat:@"by %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"]];
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -160,6 +216,12 @@
 }
 
 - (IBAction)ShareBtnAction:(id)sender{
+    if(!self.canShare){
+        [self.txtExercises setTextColor:[UIColor redColor]];
+        
+        return;
+    }
+    
     NSError *error = NULL;
 
     //Serialize ChartNamesArray
@@ -296,7 +358,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Edit"]){
-        NSLog(@"EditEdit");
+        //NSLog(@"EditEdit");
         NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
         controller.EditThisRoutine=self.ShareThisRoutine;
         controller.sentNameArray=[NSMutableArray arrayWithArray:self.RoutineNamesArray];
