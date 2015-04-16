@@ -122,7 +122,7 @@ loginButton:	(FBSDKLoginButton *)loginButton
 didCompleteWithResult:	(FBSDKLoginManagerLoginResult *)result
 error:	(NSError *)error
 {
-    NSLog(@"LOGIN");
+    //NSLog(@"LOGIN");
 //    self.panel.hidden = false;
     
     if ([FBSDKAccessToken currentAccessToken]) {

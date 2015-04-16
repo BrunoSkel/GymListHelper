@@ -270,7 +270,7 @@
         
         controller.ChartCategoriesArray=[NSMutableArray arrayWithArray:self.ChartCategoriesArray];
         
-        NSLog(@"prepareForSegue GoToSharePreview");
+        //NSLog(@"prepareForSegue GoToSharePreview");
     }
     
     else if([segue.identifier isEqualToString:@"ToGallery"]){
@@ -474,8 +474,9 @@
 }
 
 - (void) loginButtonDidLogOut:(FBSDKLoginButton *)FBLoginBtn{
-    NSLog(@"LOGOUT");
-
+//    NSLog(@"LOGOUT");
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
+    
     self.profileImg.image = [UIImage imageNamed:@"guest"];
     self.profileName.text = @"Guest";
 
@@ -491,7 +492,7 @@ error:	(NSError *)error
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
              if (!error) {
                  
-                 NSLog(@"fetched user:%@", result);
+                 //NSLog(@"fetched user:%@", result);
                  
                  [[NSUserDefaults standardUserDefaults] setValue: result[@"id"] forKey:@"loggedUserFacebookId"];
                  
@@ -533,7 +534,7 @@ error:	(NSError *)error
                  else
                  {
                      //The response is in data
-                     NSLog(@"%@", results);
+                     //NSLog(@"%@", results);
                      
                      if([results isEqualToString:@"ERROR2"]){
                          NSLog(@"InsertUser Error2");
