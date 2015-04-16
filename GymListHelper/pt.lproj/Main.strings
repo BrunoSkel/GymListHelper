@@ -3,25 +3,25 @@
 "10q-OS-ABF.text" = "Idioma:";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "1JI-wR-2fs"; */
-"1JI-wR-2fs.text" = "by Guest User";
+"1JI-wR-2fs.text" = "por Usuário Convidado";
 
 /* Class = "UILabel"; text = "Chart Name"; ObjectID = "1r8-vO-BkK"; */
-"1r8-vO-BkK.text" = "Chart Name";
+"1r8-vO-BkK.text" = "Nome da Ficha";
 
 /* Class = "UILabel"; text = "Objective: Hypertrophy asd asd adas das das das das dasd asas d"; ObjectID = "25e-I9-jS6"; */
-"25e-I9-jS6.text" = "Objective: Hypertrophy asd asd adas das das das das dasd asas d";
+"25e-I9-jS6.text" = "Objetivo: Hipertrofia asd asd adas das das das das dasd asas d";
 
 /* Class = "UILabel"; text = "Edit Routine"; ObjectID = "2YG-cM-isL"; */
-"2YG-cM-isL.text" = "Edit Routine";
+"2YG-cM-isL.text" = "Editar Rotina";
 
 /* Class = "UIButton"; normalTitle = "Edit Sub-routines"; ObjectID = "3uJ-Bp-IEa"; */
-"3uJ-Bp-IEa.normalTitle" = "Edit Sub-routines";
+"3uJ-Bp-IEa.normalTitle" = "Editar Subrotinas";
 
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "41U-6z-74J"; */
-"41U-6z-74J.normalTitle" = "Skip";
+"41U-6z-74J.normalTitle" = "Pular";
 
 /* Class = "UIButton"; normalTitle = "Delete \"A\""; ObjectID = "43m-He-Ygu"; */
-"43m-He-Ygu.normalTitle" = "Delete \"A\"";
+"43m-He-Ygu.normalTitle" = "Apagar \"A\"";
 
 /* Class = "UISegmentedControl"; 5Bi-2P-RnE.segmentTitles[0] = "A"; ObjectID = "5Bi-2P-RnE"; */
 "5Bi-2P-RnE.segmentTitles[0]" = "A";
@@ -39,91 +39,91 @@
 "6go-3h-WG0.text" = "4";
 
 /* Class = "UITextField"; text = "New Routine"; ObjectID = "7Ob-Z4-KYu"; */
-"7Ob-Z4-KYu.text" = "New Routine";
+"7Ob-Z4-KYu.text" = "Nova Rotina";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "7nt-0T-tI5"; */
-"7nt-0T-tI5.normalTitle" = "Start";
+"7nt-0T-tI5.normalTitle" = "Iniciar";
 
 /* Class = "UIButton"; normalTitle = "⬇︎"; ObjectID = "80O-EN-JVt"; */
 "80O-EN-JVt.normalTitle" = "⬇︎";
 
 /* Class = "UIButton"; normalTitle = "Add Exercise to '123456789'"; ObjectID = "9Mi-dZ-A2S"; */
-"9Mi-dZ-A2S.normalTitle" = "Add Exercise to '123456789'";
+"9Mi-dZ-A2S.normalTitle" = "Adicionar Exercício à '123456789'";
 
 /* Class = "UIViewController"; title = "Charts Menu"; ObjectID = "9qR-FV-Wah"; */
-"9qR-FV-Wah.title" = "Charts Menu";
+"9qR-FV-Wah.title" = "Menu de Fichas";
 
 /* Class = "UIButton"; normalTitle = "⬆︎"; ObjectID = "BRe-ZL-7JP"; */
 "BRe-ZL-7JP.normalTitle" = "⬆︎";
 
 /* Class = "UILabel"; text = "Add Item"; ObjectID = "Cdf-fA-8l0"; */
-"Cdf-fA-8l0.text" = "Add Item";
+"Cdf-fA-8l0.text" = "Adicionar Item";
 
 /* Class = "UILabel"; text = "Do:"; ObjectID = "DFM-P7-pgA"; */
-"DFM-P7-pgA.text" = "Do:";
+"DFM-P7-pgA.text" = "Faça:";
 
 /* Class = "UIButton"; normalTitle = "Add Sub-routine"; ObjectID = "EV4-9t-9Nt"; */
-"EV4-9t-9Nt.normalTitle" = "Add Sub-routine";
+"EV4-9t-9Nt.normalTitle" = "Adicionar Subrotina";
 
 /* Class = "UILabel"; text = "#Chart_Name"; ObjectID = "FYF-CZ-aJA"; */
 "FYF-CZ-aJA.text" = "#Chart_Name";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "H1v-1T-AyG"; */
-"H1v-1T-AyG.text" = "Series: # | Reps: ##";
+"H1v-1T-AyG.text" = "Séries: # | Reps: ##";
 
 /* Class = "UILabel"; text = "(No Pictures set)"; ObjectID = "IK8-PX-WSb"; */
-"IK8-PX-WSb.text" = "(No Pictures set)";
+"IK8-PX-WSb.text" = "(Nenhuma imagem disponível)";
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "J5s-kc-w7c"; */
-"J5s-kc-w7c.normalTitle" = "Delete";
+"J5s-kc-w7c.normalTitle" = "Apagar";
 
 /* Class = "UILabel"; text = "Wait..."; ObjectID = "JPU-2e-8Y5"; */
-"JPU-2e-8Y5.text" = "Wait...";
+"JPU-2e-8Y5.text" = "Espere...";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "K5N-in-mMf"; */
-"K5N-in-mMf.normalTitle" = "Save";
+"K5N-in-mMf.normalTitle" = "Salvar";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "KAy-aA-NbQ"; */
-"KAy-aA-NbQ.normalTitle" = "Save";
+"KAy-aA-NbQ.normalTitle" = "Salvar";
 
 /* Class = "UILabel"; text = "#Chart_Name"; ObjectID = "LKd-7k-5Sb"; */
 "LKd-7k-5Sb.text" = "#Chart_Name";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "LMD-6Q-nm0"; */
-"LMD-6Q-nm0.text" = "by Guest User";
+"LMD-6Q-nm0.text" = "por Usuário Convidado";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "Lrp-SU-k7g"; */
-"Lrp-SU-k7g.normalTitle" = "Back";
+"Lrp-SU-k7g.normalTitle" = "Voltar";
 
 /* Class = "UILabel"; text = "Strengh"; ObjectID = "Ltx-3I-NZh"; */
-"Ltx-3I-NZh.text" = "Strengh";
+"Ltx-3I-NZh.text" = "Força";
 
 /* Class = "UILabel"; text = "____________________"; ObjectID = "Mrf-9M-aTx"; */
 "Mrf-9M-aTx.text" = "____________________";
 
 /* Class = "UITextView"; text = "Add your description here"; ObjectID = "Ndb-9F-0YZ"; */
-"Ndb-9F-0YZ.text" = "Add your description here";
+"Ndb-9F-0YZ.text" = "Adicione sua descrição aqui";
 
 /* Class = "UILabel"; text = "Example asdf a asdg asd fasds asa as da"; ObjectID = "OEO-TP-QyX"; */
-"OEO-TP-QyX.text" = "Example asdf a asdg asd fasds asa as da";
+"OEO-TP-QyX.text" = "Exemplo asdf a asdg asd fasds asa as da";
 
 /* Class = "UILabel"; text = "Name:"; ObjectID = "OMl-NV-ciD"; */
-"OMl-NV-ciD.text" = "Name:";
+"OMl-NV-ciD.text" = "Nome:";
 
 /* Class = "UILabel"; text = "Information: (Optional)"; ObjectID = "OwW-1h-iwQ"; */
-"OwW-1h-iwQ.text" = "Information: (Optional)";
+"OwW-1h-iwQ.text" = "Informações: (Opcional)";
 
 /* Class = "UILabel"; text = "My Routines"; ObjectID = "P8e-HX-BH4"; */
-"P8e-HX-BH4.text" = "My Routines";
+"P8e-HX-BH4.text" = "Meus Treinos";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "QjB-0n-Bl5"; */
-"QjB-0n-Bl5.normalTitle" = "Cancel";
+"QjB-0n-Bl5.normalTitle" = "Cancelar";
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "R8s-hf-2uX"; */
-"R8s-hf-2uX.normalTitle" = "Delete";
+"R8s-hf-2uX.normalTitle" = "Apagar";
 
 /* Class = "UILabel"; text = "Login is required to share workout charts, but no personal information other than your public Facebook information will be used."; ObjectID = "Rlz-YF-4yl"; */
-"Rlz-YF-4yl.text" = "Login is required to share workout charts, but no personal information other than your public Facebook information will be used.";
+"Rlz-YF-4yl.text" = "Login é necessário para compartilhar treinos, mas nenhuma informação pessoal além das informações da sua página publica do Facebook será utilizada.";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "TVv-gi-uHs"; */
 "TVv-gi-uHs.text" = "00:00";
@@ -135,70 +135,70 @@
 "UxM-oc-wyf.text" = "10";
 
 /* Class = "UILabel"; text = "Name:"; ObjectID = "VLo-h6-Aoe"; */
-"VLo-h6-Aoe.text" = "Name:";
+"VLo-h6-Aoe.text" = "Nome:";
 
 /* Class = "UIButton"; normalTitle = "Add"; ObjectID = "VRR-LB-Kdt"; */
-"VRR-LB-Kdt.normalTitle" = "Add";
+"VRR-LB-Kdt.normalTitle" = "Adicionar";
 
 /* Class = "UILabel"; text = "Pictures"; ObjectID = "VaU-DU-NBe"; */
-"VaU-DU-NBe.text" = "Pictures";
+"VaU-DU-NBe.text" = "Imagens";
 
 /* Class = "UILabel"; text = "Series:"; ObjectID = "WRd-aF-Xk3"; */
-"WRd-aF-Xk3.text" = "Series:";
+"WRd-aF-Xk3.text" = "Séries:";
 
 /* Class = "UILabel"; text = "Exercises:"; ObjectID = "WaT-QI-wgN"; */
-"WaT-QI-wgN.text" = "Exercises:";
+"WaT-QI-wgN.text" = "Exercícios:";
 
 /* Class = "UILabel"; text = "Reps:"; ObjectID = "XDT-GQ-VNs"; */
 "XDT-GQ-VNs.text" = "Reps:";
 
 /* Class = "UILabel"; text = "Fat Loss"; ObjectID = "XXg-Fz-Nek"; */
-"XXg-Fz-Nek.text" = "Fat Loss";
+"XXg-Fz-Nek.text" = "Perda de Gordura";
 
 /* Class = "UILabel"; text = "Guest"; ObjectID = "YfI-1Y-lHb"; */
-"YfI-1Y-lHb.text" = "Guest";
+"YfI-1Y-lHb.text" = "Convidado";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "ZSm-MM-U2A"; */
-"ZSm-MM-U2A.text" = "Name";
+"ZSm-MM-U2A.text" = "Nome";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "ZY8-ef-zNj"; */
-"ZY8-ef-zNj.normalTitle" = "Cancel";
+"ZY8-ef-zNj.normalTitle" = "Cancelar";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "a9I-8S-eEX"; */
 "a9I-8S-eEX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UIButton"; normalTitle = "Routine Gallery"; ObjectID = "b2S-f2-K2K"; */
-"b2S-f2-K2K.normalTitle" = "Routine Gallery";
+"b2S-f2-K2K.normalTitle" = "Galeria de Treinos";
 
 /* Class = "UILabel"; text = "Share Preview"; ObjectID = "byF-rx-r7Q"; */
-"byF-rx-r7Q.text" = "Share Preview";
+"byF-rx-r7Q.text" = "Visualizar Dados";
 
 /* Class = "UIButton"; normalTitle = "End"; ObjectID = "c8G-Q1-Ey4"; */
-"c8G-Q1-Ey4.normalTitle" = "End";
+"c8G-Q1-Ey4.normalTitle" = "Fim";
 
 /* Class = "UILabel"; text = "Rest Time:"; ObjectID = "cKL-WW-Z58"; */
-"cKL-WW-Z58.text" = "Rest Time:";
+"cKL-WW-Z58.text" = "Descanso:";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "dSe-Dw-T1r"; */
-"dSe-Dw-T1r.normalTitle" = "Cancel";
+"dSe-Dw-T1r.normalTitle" = "Cancelar";
 
 /* Class = "UIButton"; normalTitle = "Share"; ObjectID = "dnF-3q-1d7"; */
-"dnF-3q-1d7.normalTitle" = "Share";
+"dnF-3q-1d7.normalTitle" = "Compartilhar";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "dyh-q4-qsg"; */
-"dyh-q4-qsg.normalTitle" = "Cancel";
+"dyh-q4-qsg.normalTitle" = "Cancelar";
 
 /* Class = "UILabel"; text = "_____________________________________"; ObjectID = "eKN-mL-cnV"; */
 "eKN-mL-cnV.text" = "_____________________________________";
 
 /* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "edC-kb-RzY"; */
-"edC-kb-RzY.normalTitle" = "Edit";
+"edC-kb-RzY.normalTitle" = "Editar";
 
 /* Class = "UILabel"; text = "Objective"; ObjectID = "fYv-7S-4rp"; */
-"fYv-7S-4rp.text" = "Objective";
+"fYv-7S-4rp.text" = "Objetivo";
 
 /* Class = "UITextField"; text = "Deadlift"; ObjectID = "fdZ-24-C6z"; */
-"fdZ-24-C6z.text" = "Deadlift";
+"fdZ-24-C6z.text" = "Levantamento terra";
 
 /* Class = "UISegmentedControl"; foe-z1-6da.segmentTitles[0] = "A"; ObjectID = "foe-z1-6da"; */
 "foe-z1-6da.segmentTitles[0]" = "A";
@@ -210,133 +210,133 @@
 "fuR-fL-RzZ.text" = "Nothing at all";
 
 /* Class = "UILabel"; text = "Information"; ObjectID = "gwK-0H-JWa"; */
-"gwK-0H-JWa.text" = "Information";
+"gwK-0H-JWa.text" = "Informações";
 
 /* Class = "UILabel"; text = "Reps:"; ObjectID = "gxc-MJ-dD9"; */
-"gxc-MJ-dD9.text" = "Reps:";
+"gxc-MJ-dD9.text" = "Repetições:";
 
 /* Class = "UILabel"; text = "Example Workout"; ObjectID = "hGF-Yt-XbB"; */
-"hGF-Yt-XbB.text" = "Example Workout";
+"hGF-Yt-XbB.text" = "Exemplo de treino";
 
 /* Class = "UILabel"; text = "Gallery Categories"; ObjectID = "hHe-dE-yPp"; */
-"hHe-dE-yPp.text" = "Gallery Categories";
+"hHe-dE-yPp.text" = "Categorias da Galeria";
 
 /* Class = "UILabel"; text = "But next time, try not to skip."; ObjectID = "hX2-me-l6O"; */
-"hX2-me-l6O.text" = "But next time, try not to skip.";
+"hX2-me-l6O.text" = "Mas da próxima vez, tente não pular exercícios.";
 
 /* Class = "UILabel"; text = "Goal: Hypertrophy, Definition, Fat Loss"; ObjectID = "hmw-8Z-VtE"; */
-"hmw-8Z-VtE.text" = "Goal: Hypertrophy, Definition, Fat Loss";
+"hmw-8Z-VtE.text" = "Objetivo: Hipertrofia, Definição, Perda de Gordura";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "hrZ-o5-8QG"; */
-"hrZ-o5-8QG.normalTitle" = "Done";
+"hrZ-o5-8QG.normalTitle" = "Finalizar";
 
 /* Class = "UILabel"; text = "Description:"; ObjectID = "iQf-Va-O9T"; */
-"iQf-Va-O9T.text" = "Description:";
+"iQf-Va-O9T.text" = "Descrição:";
 
 /* Class = "UILabel"; text = "Download Preview"; ObjectID = "iYj-Kp-OoT"; */
-"iYj-Kp-OoT.text" = "Download Preview";
+"iYj-Kp-OoT.text" = "Visualizar Treino";
 
 /* Class = "UILabel"; text = "Category Name"; ObjectID = "inC-U4-zYr"; */
-"inC-U4-zYr.text" = "Category Name";
+"inC-U4-zYr.text" = "Nome da categoria";
 
 /* Class = "UIButton"; disabledTitle = "Shared"; ObjectID = "izJ-F6-rUX"; */
-"izJ-F6-rUX.disabledTitle" = "Shared";
+"izJ-F6-rUX.disabledTitle" = "Compartilhado";
 
 /* Class = "UIButton"; normalTitle = "Share"; ObjectID = "izJ-F6-rUX"; */
-"izJ-F6-rUX.normalTitle" = "Share";
+"izJ-F6-rUX.normalTitle" = "Compartilhar";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "jS2-aZ-c5c"; */
-"jS2-aZ-c5c.normalTitle" = "Cancel";
+"jS2-aZ-c5c.normalTitle" = "Cancelar";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "jkv-P5-sPl"; */
-"jkv-P5-sPl.text" = "Series: # | Reps: ##";
+"jkv-P5-sPl.text" = "Séries: # | Reps: ##";
 
 /* Class = "UILabel"; text = "by user"; ObjectID = "k9G-6a-bdN"; */
-"k9G-6a-bdN.text" = "by user";
+"k9G-6a-bdN.text" = "por usuário";
 
 /* Class = "UILabel"; text = "Definition"; ObjectID = "kCU-Pe-F3M"; */
-"kCU-Pe-F3M.text" = "Definition";
+"kCU-Pe-F3M.text" = "Definição";
 
 /* Class = "UILabel"; text = "Objective: Hypertrophy"; ObjectID = "kVJ-34-iPb"; */
-"kVJ-34-iPb.text" = "Objective: Hypertrophy";
+"kVJ-34-iPb.text" = "Objetivo: Hipertrofia";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "kfX-gf-gAz"; */
-"kfX-gf-gAz.text" = "Series: # | Reps: ##";
+"kfX-gf-gAz.text" = "Séries: # | Reps: ##";
 
 /* Class = "UILabel"; text = "You haven't added any Exercise!"; ObjectID = "lXd-Aq-tpE"; */
-"lXd-Aq-tpE.text" = "You haven't added any Exercise!";
+"lXd-Aq-tpE.text" = "Nenhum exercício adicionado!";
 
 /* Class = "UILabel"; text = "____________________"; ObjectID = "lYl-60-sJP"; */
 "lYl-60-sJP.text" = "____________________";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "lqH-pg-9M4"; */
-"lqH-pg-9M4.normalTitle" = "Back";
+"lqH-pg-9M4.normalTitle" = "Voltar";
 
 /* Class = "UILabel"; text = "You did it!"; ObjectID = "mIz-Rt-hRt"; */
-"mIz-Rt-hRt.text" = "You did it!";
+"mIz-Rt-hRt.text" = "Você conseguiu!";
 
 /* Class = "UILabel"; text = "Login Required"; ObjectID = "mQD-Y8-Fna"; */
-"mQD-Y8-Fna.text" = "Login Required";
+"mQD-Y8-Fna.text" = "Login obrigatório";
 
 /* Class = "UIViewController"; title = "Download Categories"; ObjectID = "mXV-ad-kdg"; */
-"mXV-ad-kdg.title" = "Download Categories";
+"mXV-ad-kdg.title" = "Categorias de Download";
 
 /* Class = "UILabel"; text = "#Ex_Name"; ObjectID = "mbk-NS-U72"; */
 "mbk-NS-U72.text" = "#Ex_Name";
 
 /* Class = "UIViewController"; title = "New Chart Description Editor"; ObjectID = "nPV-eu-LoU"; */
-"nPV-eu-LoU.title" = "New Chart Description Editor";
+"nPV-eu-LoU.title" = "Edição da Descrição de Novo Treino";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "nfM-aJ-yC6"; */
-"nfM-aJ-yC6.normalTitle" = "Back";
+"nfM-aJ-yC6.normalTitle" = "Voltar";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "o2t-UW-RaH"; */
-"o2t-UW-RaH.normalTitle" = "Back";
+"o2t-UW-RaH.normalTitle" = "Voltar";
 
 /* Class = "UIButton"; normalTitle = "Get Started!"; ObjectID = "p5m-X5-wJo"; */
-"p5m-X5-wJo.normalTitle" = "Get Started!";
+"p5m-X5-wJo.normalTitle" = "Iniciar Treino!";
 
 /* Class = "UILabel"; text = "Add New Routine"; ObjectID = "pHG-IF-CXL"; */
-"pHG-IF-CXL.text" = "Add New Routine";
+"pHG-IF-CXL.text" = "Adicionar Nova Rotina";
 
 /* Class = "UILabel"; text = "Example asdf a asdg asd fasds asa as da"; ObjectID = "pIf-os-bye"; */
-"pIf-os-bye.text" = "Example asdf a asdg asd fasds asa as da";
+"pIf-os-bye.text" = "Exemplo asdf a asdg asd fasds asa as da";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "qQN-AX-Dou"; */
-"qQN-AX-Dou.normalTitle" = "Back";
+"qQN-AX-Dou.normalTitle" = "Voltar";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "rgB-8r-HLN"; */
-"rgB-8r-HLN.normalTitle" = "Back";
+"rgB-8r-HLN.normalTitle" = "Voltar";
 
 /* Class = "UILabel"; text = "Gym Helper"; ObjectID = "tEj-dh-6tl"; */
 "tEj-dh-6tl.text" = "Gym Helper";
 
 /* Class = "UIViewController"; title = "Start Screen"; ObjectID = "tKk-JF-Cdd"; */
-"tKk-JF-Cdd.title" = "Start Screen";
+"tKk-JF-Cdd.title" = "Tela Inicial";
 
 /* Class = "UILabel"; text = "Description:"; ObjectID = "tRC-8R-D9B"; */
-"tRC-8R-D9B.text" = "Description:";
+"tRC-8R-D9B.text" = "Descrição:";
 
 /* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "tSp-dN-9ad"; */
-"tSp-dN-9ad.normalTitle" = "Edit";
+"tSp-dN-9ad.normalTitle" = "Editar";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "teS-aW-wxZ"; */
 "teS-aW-wxZ.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UILabel"; text = "Exercises:"; ObjectID = "trY-aG-gfa"; */
-"trY-aG-gfa.text" = "Exercises:";
+"trY-aG-gfa.text" = "Exercícios:";
 
 /* Class = "UILabel"; text = "Filter:"; ObjectID = "vw2-Yv-HbV"; */
-"vw2-Yv-HbV.text" = "Filter:";
+"vw2-Yv-HbV.text" = "Filtro:";
 
 /* Class = "UILabel"; text = "Hypertrophy"; ObjectID = "y01-2L-ZkE"; */
-"y01-2L-ZkE.text" = "Hypertrophy";
+"y01-2L-ZkE.text" = "Hipertrofia";
 
 /* Class = "UILabel"; text = "Tonification"; ObjectID = "ybw-jy-w2e"; */
-"ybw-jy-w2e.text" = "Tonification";
+"ybw-jy-w2e.text" = "Tonificação";
 
 /* Class = "UILabel"; text = "EX_NAME"; ObjectID = "yhz-E7-CVd"; */
 "yhz-E7-CVd.text" = "EX_NAME";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "zfg-D8-ERg"; */
-"zfg-D8-ERg.text" = "by Guest User";
+"zfg-D8-ERg.text" = "por Usuário Convidado";
