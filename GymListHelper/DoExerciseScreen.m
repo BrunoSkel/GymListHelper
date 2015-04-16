@@ -26,12 +26,29 @@
 @property int RemainingCooldownSeconds;
 @property (strong,nonatomic) NSTimer *stopWatchTimer; //Store the timer
 @property (strong, nonatomic) IBOutlet UILabel *cooldownLabel;
+@property NSString* result0;
+@property NSString* result1;
+@property NSString* result2;
+@property NSString* language;
 @property BOOL skipped;
 @end
 
 @implementation DoExerciseScreen
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _result0=@"And by that, I mean... nothing?";
+    _result1=@"But next time, try not to skip.";
+    _result2=@"Now, don't give up!";
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+    
+        _result0=@"Mas não havia nada!";
+        _result1=@"Mas na próxima, tente não pular.";
+        _result2=@"Continue assim!";
+        
+    }
+    
     _skipped=NO;
     _currentExerciseIndex=0;
     _ChartNameLabel.text=_chartname;
@@ -177,13 +194,13 @@
         EndScreen *controller = (EndScreen *)segue.destinationViewController;
         //Shows if there's no exercise
         if (self.ExerciseAmount==0){
-            controller.endtext=[NSString stringWithFormat:@"And by that, I mean... nothing?"];
+            controller.endtext=self.result0;
             return;
         }
         if (self.skipped==YES)
-        controller.endtext=[NSString stringWithFormat:@"But next time, try not to skip."];
+        controller.endtext=self.result1;
         else
-         controller.endtext=[NSString stringWithFormat:@"Now, don't give up!"];
+         controller.endtext=self.result2;
     }
 }
 

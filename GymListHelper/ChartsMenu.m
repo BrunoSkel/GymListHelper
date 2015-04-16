@@ -19,7 +19,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *FBLoginBtn;
 @property NSString *language;
-
+@property NSString* hipertrofia;
+@property NSString* definition;
+@property NSString* tonification;
+@property NSString* fatloss;
+@property NSString* strength;
 @property NSTimer *timer;
 @property int TouchedIndex;
 @end
@@ -28,6 +32,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _hipertrofia=@"Hypertrophy";
+    _definition=@"Definition";
+    _tonification=@"Tonification";
+    _strength=@"Strength";
+    _fatloss=@"Fat Loss";
     _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     //Load charts
     [self LoadChartData];
@@ -48,6 +57,18 @@
         self.profileName.text = @"Guest";
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     }
+    
+    //
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+    _hipertrofia=@"Hipertrofia";
+    _definition=@"Definição";
+    _tonification=@"Tonificação";
+    _strength=@"Potência";
+    _fatloss=@"Perda de Gordura";
+    }
+    //
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -286,11 +307,17 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    NSString *tapstring=@"Tap to Select";
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            tapstring=@"Toque para Selecionar";
+    }
+    
     NSString *sectionName;
     switch (section)
     {
         default:
-            sectionName = @"Tap to Select";
+            sectionName = tapstring;
             break;
     }
     return sectionName;
@@ -336,19 +363,19 @@
             }
             switch(i){
                 case 0:
-                    [objectives appendString:@"Hypertrophy"];
+                    [objectives appendString:self.hipertrofia];
                     break;
                 case 1:
-                    [objectives appendString:@"Definition"];
+                    [objectives appendString:self.definition];
                     break;
                 case 2:
-                    [objectives appendString:@"Tonification"];
+                    [objectives appendString:self.tonification];
                     break;
                 case 3:
-                    [objectives appendString:@"Fat Loss"];
+                    [objectives appendString:self.fatloss];
                     break;
                 case 4:
-                    [objectives appendString:@"Strength"];
+                    [objectives appendString:self.strength];
                     break;
             }
             
