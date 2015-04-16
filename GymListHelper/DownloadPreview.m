@@ -30,7 +30,12 @@
     
     self.lbChartName.text = self.currentDownloadChart[4];
     
-    self.lbUsername.text = [NSString stringWithFormat:@"by %@",self.currentDownloadChart[0]];
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.lbUsername.text = [NSString stringWithFormat:@"por %@",self.currentDownloadChart[0]];
+    }else{
+        self.lbUsername.text = [NSString stringWithFormat:@"by %@",self.currentDownloadChart[0]];
+    }
+    
     
     self.txtDescription.text = self.currentDownloadChart[14];
     
@@ -59,27 +64,54 @@
             if(firstId == -1){
                 firstId = i;
             }
-            switch(i){
-                case 0:
-                    [objectives appendString:@"Hypertrophy"];
-                    break;
-                case 1:
-                    [objectives appendString:@"Definition"];
-                    break;
-                case 2:
-                    [objectives appendString:@"Tonification"];
-                    break;
-                case 3:
-                    [objectives appendString:@"Fat Loss"];
-                    break;
-                case 4:
-                    [objectives appendString:@"Strength"];
-                    break;
+            
+            if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+                switch(i){
+                    case 0:
+                        [objectives appendString:@"Hipertrofia"];
+                        break;
+                    case 1:
+                        [objectives appendString:@"Definição"];
+                        break;
+                    case 2:
+                        [objectives appendString:@"Tornificação"];
+                        break;
+                    case 3:
+                        [objectives appendString:@"Perda de Gordura"];
+                        break;
+                    case 4:
+                        [objectives appendString:@"Potência"];
+                        break;
+                }
+            }else{
+                switch(i){
+                    case 0:
+                        [objectives appendString:@"Hypertrophy"];
+                        break;
+                    case 1:
+                        [objectives appendString:@"Definition"];
+                        break;
+                    case 2:
+                        [objectives appendString:@"Tonification"];
+                        break;
+                    case 3:
+                        [objectives appendString:@"Fat Loss"];
+                        break;
+                    case 4:
+                        [objectives appendString:@"Strength"];
+                        break;
+                }
             }
             
         }
     }
-    self.lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.lbObjective.text = [NSString stringWithFormat:@"Objetivo: %@",objectives];
+    }else{
+        self.lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    }
+    
     
     
     NSMutableString *strExercises = [NSMutableString new];
@@ -106,7 +138,11 @@
     }
     
     if(subroutinesWithExercises == 0){
-        strExercises = [NSMutableString stringWithString:@"No exercises added"];
+        if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+            strExercises = [NSMutableString stringWithString:@"Nenhum exercício adicionado"];
+        }else{
+            strExercises = [NSMutableString stringWithString:@"No exercises added"];
+        }
     }
     self.txtExercises.text = strExercises;
     
@@ -131,8 +167,6 @@
         NSLog(@"GoToCharts segue");
         
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
-        
-        NSLog(@"controller = %@",controller);
         
         //SAVE CHART
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -244,13 +278,21 @@
 }
 
 -(void)ShowTerms{
+    UIAlertView *alert;
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Terms of Use"
-                                                   message: @"To download workouts, please accept our terms."
-                                                  delegate: self
-                                         cancelButtonTitle:@"Cancel"
-                                         otherButtonTitles:@"See Terms",nil];
-    
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        alert = [[UIAlertView alloc]initWithTitle: @"Termos de Uso"
+                                                       message: @"Para fazer download de treinos, por favor aceite nossos termos."
+                                                      delegate: self
+                                             cancelButtonTitle:@"Cancelar"
+                                             otherButtonTitles:@"Ver termos",nil];
+    }else{
+        alert = [[UIAlertView alloc]initWithTitle: @"Terms of Use"
+                                          message: @"To download workouts, please accept our terms."
+                                         delegate: self
+                                cancelButtonTitle:@"Cancel"
+                                otherButtonTitles:@"See Terms",nil];
+    }
     [alert setTag:1];
     [alert show];
     

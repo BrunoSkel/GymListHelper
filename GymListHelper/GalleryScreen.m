@@ -33,8 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
- 
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.arrLanguages = @[@"Inglês",@"Português",@"Espanhol",@"Chinês",@"Dinamarquês",@"Alemão",@"Filandês",@"Francês",@"Alemão",@"Grego",@"Indonésio",@"Italiano",@"Japonês",@"Coreano",@"Malaia",@"Norueguês",@"Russo",@"Sueco",@"Tailandês",@"Turco",@"Vietnamita",@"Outro"];
+    }else{
+        self.arrLanguages = @[@"English",@"Portuguese",@"Spanish",@"Chinese",@"Danish",@"Dutch",@"Finnish",@"French",@"German",@"Greek",@"Indonesian",@"Italian",@"Japanese",@"Korean",@"Malay",@"Norwegian",@"Russian",@"Swedish",@"Thai",@"Turkish",@"Vietnamese",@"Other"];
+    }
+    
     self.tableData = [NSMutableArray new];
     
     [self getChartsFromDB];
@@ -87,7 +91,13 @@
             lbChartName.text = self.tableData[indexPath.row][4];
             
             UILabel *lbUserName = (UILabel *)cell.contentView.subviews[1];
-            lbUserName.text = [NSString stringWithFormat:@"by %@",self.tableData[indexPath.row][0]];
+            
+            if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+                lbUserName.text = [NSString stringWithFormat:@"por %@",self.tableData[indexPath.row][0]];
+            }else{
+                lbUserName.text = [NSString stringWithFormat:@"by %@",self.tableData[indexPath.row][0]];
+            }
+            
             
             UIImageView *imgPic = (UIImageView *)cell.contentView.subviews[2];
             NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=100&height=100",self.tableData[indexPath.row][1]]];
@@ -205,9 +215,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     self.ChosenLanguage = row;
-    NSLog(@"row chosen = %ld",row);
-    
-    
+
     [self getChartsFromDB];
     
 }

@@ -64,7 +64,12 @@
     switch (section)
     {
         default:
-            sectionName = @"Tap to select";
+            if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+                sectionName = @"Toque para selecionar";
+            }else{
+                sectionName = @"Tap to select";
+            }
+            
             break;
     }
     return sectionName;
