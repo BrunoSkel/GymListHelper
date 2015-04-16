@@ -18,8 +18,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImg;
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *FBLoginBtn;
-
-
+@property NSString *language;
+@property NSString* hipertrofia;
+@property NSString* definition;
+@property NSString* tonification;
+@property NSString* fatloss;
+@property NSString* strength;
 @property NSTimer *timer;
 @property int TouchedIndex;
 @end
@@ -28,6 +32,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _hipertrofia=@"Hypertrophy";
+    _definition=@"Definition";
+    _tonification=@"Tonification";
+    _strength=@"Strength";
+    _fatloss=@"Fat Loss";
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     //Load charts
     [self LoadChartData];
     _tableData=[NSMutableArray arrayWithArray:_allChartData];
@@ -47,6 +57,18 @@
         self.profileName.text = @"Guest";
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     }
+    
+    //
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+    _hipertrofia=@"Hipertrofia";
+    _definition=@"Definição";
+    _tonification=@"Tonificação";
+    _strength=@"Potência";
+    _fatloss=@"Perda de Gordura";
+    }
+    //
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -71,6 +93,15 @@
 - (void)LoadChartData{
     
     //Load the saved charts. If there's nothing, fill the charts with the example data.
+    NSString *Example=@"Example";
+    NSString *likethis=@"is like this, this and this";
+    NSString *WorkoutName=@"Example Workout";
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        Example=@"Exemplo";
+        likethis=@"é realizado assim, assim, e assim.";
+        WorkoutName=@"Treino Exemplo";
+    }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -114,17 +145,17 @@
         [_allChartData[0] addObject: [NSMutableArray array]];
         [_allChartData[0] addObject: [NSMutableArray array]];
         //Filling A
-        [_allChartData[0][0] addObject:@"Example A1 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A2 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A3 | 4x8"];
-        [_allChartData[0][0] addObject:@"Example A4 | 4x8"];
+        [_allChartData[0][0] addObject:[NSString stringWithFormat:@"%@ A1 | 4x8",Example]];
+        [_allChartData[0][0] addObject:[NSString stringWithFormat:@"%@ A2 | 4x8",Example]];
+        [_allChartData[0][0] addObject:[NSString stringWithFormat:@"%@ A3 | 4x8",Example]];
+        [_allChartData[0][0] addObject:[NSString stringWithFormat:@"%@ A4 | 4x8",Example]];
         //Filling B
-        [_allChartData[0][1] addObject:@"Example B1 | 4x10"];
-        [_allChartData[0][1] addObject:@"Example B2 | 4x10"];
-        [_allChartData[0][1] addObject:@"Example B3 | 4x10"];
+        [_allChartData[0][1] addObject:[NSString stringWithFormat:@"%@ B1 | 4x10",Example]];
+        [_allChartData[0][1] addObject:[NSString stringWithFormat:@"%@ B2 | 4x10",Example]];
+        [_allChartData[0][1] addObject:[NSString stringWithFormat:@"%@ B3 | 4x10",Example]];
         //Filling C
-        [_allChartData[0][2] addObject:@"Example C1 | 3x15"];
-        [_allChartData[0][2] addObject:@"Example C2 | 3x15"];
+        [_allChartData[0][2] addObject:[NSString stringWithFormat:@"%@ C1 | 3x15",Example]];
+        [_allChartData[0][2] addObject:[NSString stringWithFormat:@"%@ C2 | 3x15",Example]];
         
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [_allChartData writeToFile:filePath atomically:YES];
@@ -138,17 +169,17 @@
         [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
         [[_allInfoData objectAtIndex:0] addObject: [NSMutableArray array]];
         //Filling A
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A3 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:@"Example A4 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:[NSString stringWithFormat:@"%@ A1 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:[NSString stringWithFormat:@"%@ A2 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:[NSString stringWithFormat:@"%@ A3 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:0] addObject:[NSString stringWithFormat:@"%@ A4 %@",Example,likethis]];
         //Filling B
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B2 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:@"Example B3 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:[NSString stringWithFormat:@"%@ B1 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:[NSString stringWithFormat:@"%@ B2 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:1] addObject:[NSString stringWithFormat:@"%@ B3 %@",Example,likethis]];
         //Filling C
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C1 is like this, this and this."];
-        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:@"Example C2 is like this, this and this."];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:[NSString stringWithFormat:@"%@ C1 %@",Example,likethis]];
+        [[[_allInfoData objectAtIndex:0] objectAtIndex:2] addObject:[NSString stringWithFormat:@"%@ C2 %@",Example,likethis]];
         
         NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
         [_allInfoData writeToFile:filePathInfo atomically:YES];
@@ -169,7 +200,7 @@
     if (_ChartNamesArray==NULL){
         //Addind a new routine name
         _RoutineNamesArray = [NSMutableArray array];
-        [_RoutineNamesArray addObject: @"Example Workout"];
+        [_RoutineNamesArray addObject: WorkoutName];
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
         [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
@@ -244,10 +275,19 @@
     
     else if([segue.identifier isEqualToString:@"ToGallery"]){
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Routine Gallery Beta"
-                                                       message: @"Mirin's Routine Gallery is still under construction. While several features are missing, you can already share and download new workouts."
+        NSString *title=@"Routine Gallery Beta";
+        NSString *message=@"Mirin's Routine Gallery is still under construction. While several features are missing, you can already share and download new workouts.";
+        NSString *understand=@"I understand!";
+        
+        if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            title=@"Beta da Galeria de Rotinas";
+            message=@"A Galeria de Rotinas do Mirin ainda está em construção. Apesar de várias funcionalidades ainda estarem faltando, você já pode baixar e compartilhar novos treinos.";
+            understand=@"Entendi!";
+        }
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: title                                                       message: message
                                                       delegate: self
-                                             cancelButtonTitle:@"I understand!"
+                                             cancelButtonTitle:understand
                                              otherButtonTitles:nil];
         
         [alert setTag:1];
@@ -267,11 +307,17 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    NSString *tapstring=@"Tap to Select";
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            tapstring=@"Toque para Selecionar";
+    }
+    
     NSString *sectionName;
     switch (section)
     {
         default:
-            sectionName = @"Tap to Select";
+            sectionName = tapstring;
             break;
     }
     return sectionName;
@@ -317,25 +363,31 @@
             }
             switch(i){
                 case 0:
-                    [objectives appendString:@"Hypertrophy"];
+                    [objectives appendString:self.hipertrofia];
                     break;
                 case 1:
-                    [objectives appendString:@"Definition"];
+                    [objectives appendString:self.definition];
                     break;
                 case 2:
-                    [objectives appendString:@"Tonification"];
+                    [objectives appendString:self.tonification];
                     break;
                 case 3:
-                    [objectives appendString:@"Fat Loss"];
+                    [objectives appendString:self.fatloss];
                     break;
                 case 4:
-                    [objectives appendString:@"Strength"];
+                    [objectives appendString:self.strength];
                     break;
             }
             
         }
     }
-    lbObjective.text = [NSString stringWithFormat:@"Objective: %@",objectives];
+    
+    NSString *goal=@"Goal";
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+                goal=@"Objetivo";
+            }
+    
+    lbObjective.text = [NSString stringWithFormat:@"%@: %@",goal,objectives];
     
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];

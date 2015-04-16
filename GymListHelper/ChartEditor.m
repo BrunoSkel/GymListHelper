@@ -24,6 +24,11 @@
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
+@property NSString* language;
+@property NSString* addexerciseto;
+@property NSString* deletestring;
+@property NSString* addsubworkout;
+@property NSString* exerciselist;
 //Timer to flash the scroll indicator
 @property NSTimer *timer;
 @end
@@ -32,6 +37,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    _addexerciseto=@"Add Exercise to";
+    _deletestring=@"Delete";
+    _addsubworkout=@"Add sub-routines";
+    _exerciselist=@"Exercise List: Touch to Edit";
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            _addexerciseto=@"Adicionar Exercicio em";
+            _deletestring=@"Deletar";
+            _addsubworkout=@"Adicionar sub-treino";
+            _exerciselist=@"Ficha: Toque para Editar";
+    }
+    
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
@@ -45,7 +62,7 @@
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     self.DeleteSubRoutine.hidden=YES;
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
    // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
@@ -197,7 +214,7 @@
     switch (section)
     {
         default:
-            sectionName = @"Exercise List: Touch to Edit";
+            sectionName = self.exerciselist;
             break;
     }
     return sectionName;
@@ -279,10 +296,10 @@
     [self.tableView reloadData];
     
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
     if (s.selectedSegmentIndex>1) {
-        [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+        [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
         
         self.DeleteSubRoutine.hidden=NO;
     } else
@@ -309,9 +326,9 @@
     
     //Update Names
     
-    [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"Delete '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add Exercise to '%@'",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
     [self SaveCharts];
     
