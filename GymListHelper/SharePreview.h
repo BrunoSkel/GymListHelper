@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SharePreview : UIViewController
+@interface SharePreview : UIViewController <UITextFieldDelegate>
 @property int ShareThisRoutine;
 @property NSMutableArray* RoutineNamesArray;
 @property NSMutableArray* allInfoData;

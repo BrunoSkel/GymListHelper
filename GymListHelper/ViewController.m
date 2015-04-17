@@ -27,7 +27,8 @@
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
-
+@property NSString *chartstring;
+@property NSString* language;
 @end
 
 @implementation ViewController
@@ -35,6 +36,17 @@
 #pragma mark OnLoad
 
 - (void)viewDidLoad {
+    
+    
+    _chartstring=@"%@ Chart";
+    
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _chartstring=@"Treino %@";
+        
+    }
     
     //HOW TO SYNC STUFF: Init with a suite name (think of how PlayerPrefs work), add stuff with a "key input" (Just like the playerpref strings), and use the sync method
     
@@ -214,7 +226,7 @@
     if([segue.identifier isEqualToString:@"goToExercise"]){
         DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
         controller.exercisedata=self.tableData;
-        controller.chartname=[NSString stringWithFormat:@"%@ Chart",[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
+        controller.chartname=[NSString stringWithFormat:self.chartstring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
         self.selectedCooldown = self.WaitTimesArray[self.ChosenWorkout][self.SegmentControlOutlet.selectedSegmentIndex];
         controller.cooldownAmount=[self.selectedCooldown intValue];
