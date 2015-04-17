@@ -626,9 +626,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2S-f2-K2K">
-                                <rect key="frame" x="74" y="509" width="173" height="44"/>
+                                <rect key="frame" x="60" y="509" width="201" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Routine Gallery">
+                                <state key="normal" title="Browse Workouts">
                                     <color key="titleColor" red="0.24313725489999999" green="0.5568627451" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1903,10 +1903,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HVw-Hb-giL"/>
-        <segue reference="3DK-aJ-MmR"/>
         <segue reference="KJf-3N-029"/>
-        <segue reference="JtQ-aO-jQZ"/>
+        <segue reference="3DK-aJ-MmR"/>
+        <segue reference="Ge1-7x-rbg"/>
         <segue reference="omY-P0-a6Z"/>
+        <segue reference="HVw-Hb-giL"/>
     </inferredMetricsTieBreakers>
 </document>
