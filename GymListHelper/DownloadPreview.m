@@ -282,22 +282,28 @@
     
     if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
         alert = [[UIAlertView alloc]initWithTitle: @"Termos de Uso"
-                                                       message: @"Para fazer download de treinos, por favor aceite nossos termos."
+                                                       message: @"Para fazer download de treinos, por favor aceite nossos termos de uso."
                                                       delegate: self
                                              cancelButtonTitle:@"Cancelar"
-                                             otherButtonTitles:@"Ver termos",nil];
+                                             otherButtonTitles:@"Ver Termos",nil];
     }else{
         alert = [[UIAlertView alloc]initWithTitle: @"Terms of Use"
-                                          message: @"To download workouts, please accept our terms."
+                                          message: @"To download workouts, please accept our terms of use."
                                          delegate: self
                                 cancelButtonTitle:@"Cancel"
                                 otherButtonTitles:@"See Terms",nil];
     }
     [alert setTag:1];
     [alert show];
-    
     //[self performSegueWithIdentifier: @ "GoToCharts" sender: self];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    // the user clicked See Terms
+    if (buttonIndex == 1) {
+        [self performSegueWithIdentifier: @ "ToTerms" sender: self];
+    }
 }
 
 -(BOOL)CheckifnotFirst{
@@ -340,6 +346,10 @@
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+}
+
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue{
+    
 }
 
 @end

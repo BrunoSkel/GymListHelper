@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153B4ED51ADFDC0700AC3E10 /* TermsScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */; };
 		154DEAC01ABAEDAE00CDBC27 /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */; };
 		154DEAC41ABAFA0800CDBC27 /* ChartEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */; };
 		154DEAC61ABB013000CDBC27 /* AddItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEAC51ABB013000CDBC27 /* AddItem.m */; };
@@ -88,6 +89,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsScreen.m; sourceTree = "<group>"; };
+		153B4ED61ADFDC5500AC3E10 /* TermsScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermsScreen.h; sourceTree = "<group>"; };
 		154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
 		154DEAC11ABAEDBA00CDBC27 /* EndScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		154DEAC21ABAF98500CDBC27 /* ChartEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartEditor.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				154DEAC21ABAF98500CDBC27 /* ChartEditor.h */,
 				154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */,
 				154F094F1AB9948A00EC8087 /* Main.storyboard */,
+				153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */,
+				153B4ED61ADFDC5500AC3E10 /* TermsScreen.h */,
 				157C7AB31AC97FB300EE25A2 /* PageCoreViewController.m */,
 				157C7AB51AC97FC400EE25A2 /* PageCoreViewController.h */,
 				76661E6B1AC4435A007599B9 /* NewChartDescriptionEditor.h */,
@@ -563,6 +568,7 @@
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
 				15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */,
+				153B4ED51ADFDC0700AC3E10 /* TermsScreen.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
