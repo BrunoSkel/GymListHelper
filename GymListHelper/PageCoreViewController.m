@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
 @property (weak, nonatomic) IBOutlet UIButton *StartBut;
-
+@property NSString *language;
 @end
 
 @implementation PageCoreViewController
@@ -25,6 +25,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:NO];
+    
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    
     //XCODE BUG FIXER
     //[PageViewOverride _bugFix];
     //
@@ -35,8 +39,12 @@
         return;
     }
     // Create the data model
-    _pageTitles = @[@"Welcome!", @"Easy", @"Helpful", @"Apple Watch"];
-    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
+    _pageTitles = @[@"Welcome!", @"Easy", @"Helpful", @"Apple Watch",@"Start"];
+    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png",@"page5.png"];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+    _pageImages = @[@"page1br.png", @"page2br.png", @"page3br.png", @"page4br.png",@"page5br.png"];
+    }
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -83,7 +91,7 @@
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.titleText = self.pageTitles[index];
     pageContentViewController.ShouldHide=YES;
-    if (index==3){
+    if (index==4){
        pageContentViewController.ShouldHide=NO;
         NSLog(@"ShowGetStarted");
     }

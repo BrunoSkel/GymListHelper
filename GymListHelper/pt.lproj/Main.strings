@@ -294,7 +294,7 @@
 "o2t-UW-RaH.normalTitle" = "Voltar";
 
 /* Class = "UIButton"; normalTitle = "Get Started!"; ObjectID = "p5m-X5-wJo"; */
-"p5m-X5-wJo.normalTitle" = "Iniciar Treino!";
+"p5m-X5-wJo.normalTitle" = "Menu Principal";
 
 /* Class = "UILabel"; text = "Add New Routine"; ObjectID = "pHG-IF-CXL"; */
 "pHG-IF-CXL.text" = "Adicionar Novo Treino";

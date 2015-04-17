@@ -18,10 +18,26 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-    self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
+    
+    //screensize
+    CGRect screenBound=[[UIScreen mainScreen]bounds];
+    CGSize screenSize= screenBound.size;
+    //
+    
+    CGRect myImageRect = CGRectMake(0.0f, 0.0f, screenSize.width, screenSize.height);
+    UIImageView *result = [[UIImageView alloc] initWithFrame:myImageRect];
+    
+    result.contentMode=UIViewContentModeScaleToFill;
+    
+    result.image = [UIImage imageNamed:self.imageFile];
     self.titleLabel.text = self.titleText;
     self.StartBut.hidden=self.ShouldHide;
+    
+    [self.view addSubview:result];
+    
+    [self.view addSubview:self.StartBut];
 }
 
 @end
