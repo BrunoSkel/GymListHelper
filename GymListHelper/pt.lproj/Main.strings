@@ -12,10 +12,10 @@
 "25e-I9-jS6.text" = "Objetivo: Hipertrofia asd asd adas das das das das dasd asas d";
 
 /* Class = "UILabel"; text = "Edit Routine"; ObjectID = "2YG-cM-isL"; */
-"2YG-cM-isL.text" = "Editar Rotina";
+"2YG-cM-isL.text" = "Editar Treino";
 
 /* Class = "UIButton"; normalTitle = "Edit Sub-routines"; ObjectID = "3uJ-Bp-IEa"; */
-"3uJ-Bp-IEa.normalTitle" = "Editar Subrotinas";
+"3uJ-Bp-IEa.normalTitle" = "Editar Sub-treinos";
 
 /* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "41U-6z-74J"; */
 "41U-6z-74J.normalTitle" = "Pular";
@@ -39,7 +39,7 @@
 "6go-3h-WG0.text" = "4";
 
 /* Class = "UITextField"; text = "New Routine"; ObjectID = "7Ob-Z4-KYu"; */
-"7Ob-Z4-KYu.text" = "Nova Rotina";
+"7Ob-Z4-KYu.text" = "Novo Treino";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "7nt-0T-tI5"; */
 "7nt-0T-tI5.normalTitle" = "Iniciar";
@@ -63,7 +63,7 @@
 "DFM-P7-pgA.text" = "Faça:";
 
 /* Class = "UIButton"; normalTitle = "Add Sub-routine"; ObjectID = "EV4-9t-9Nt"; */
-"EV4-9t-9Nt.normalTitle" = "Adicionar Subrotina";
+"EV4-9t-9Nt.normalTitle" = "Adicionar Sub-treino";
 
 /* Class = "UILabel"; text = "#Chart_Name"; ObjectID = "FYF-CZ-aJA"; */
 "FYF-CZ-aJA.text" = "#Chart_Name";
@@ -228,7 +228,7 @@
 "hmw-8Z-VtE.text" = "Objetivo: Hipertrofia, Definição, Perda de Gordura";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "hrZ-o5-8QG"; */
-"hrZ-o5-8QG.normalTitle" = "Finalizar";
+"hrZ-o5-8QG.normalTitle" = "Pronto";
 
 /* Class = "UILabel"; text = "Description:"; ObjectID = "iQf-Va-O9T"; */
 "iQf-Va-O9T.text" = "Descrição:";
@@ -297,7 +297,7 @@
 "p5m-X5-wJo.normalTitle" = "Iniciar Treino!";
 
 /* Class = "UILabel"; text = "Add New Routine"; ObjectID = "pHG-IF-CXL"; */
-"pHG-IF-CXL.text" = "Adicionar Nova Rotina";
+"pHG-IF-CXL.text" = "Adicionar Novo Treino";
 
 /* Class = "UILabel"; text = "Example asdf a asdg asd fasds asa as da"; ObjectID = "pIf-os-bye"; */
 "pIf-os-bye.text" = "Exemplo asdf a asdg asd fasds asa as da";

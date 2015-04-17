@@ -12,7 +12,9 @@
 @interface NewChartDescriptionEditor ()
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBut;
-
+@property NSString *editroutinestring;
+@property NSString *addroutinestring;
+@property NSString *newroutinestring;
 
 @property (weak, nonatomic) IBOutlet UISwitch *switchHypertrophy;
 @property (weak, nonatomic) IBOutlet UILabel *labelHypertrophy;
@@ -32,6 +34,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _editroutinestring=@"Edit Routine";
+    _addroutinestring=@"Add New Routine";
+    _newroutinestring=@"New Routine";
+    
     // Do any additional setup after loading the view.
     self.ChartNameNew.delegate = self;
     
@@ -66,7 +73,7 @@
     NSLog(@"view will appear");
     if (self.isEdit==YES){
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
-        [self.MainLabel setText:@"Edit Routine"];
+        [self.MainLabel setText:self.editroutinestring];
         self.DeleteButton.hidden = NO;
         
         // Check categories data and change switches
@@ -119,8 +126,8 @@
     }
     else{
         self.DeleteButton.hidden = YES;
-        self.ChartNameNew.text = @"New Routine";
-        [self.MainLabel setText:@"Add New Routine"];
+        self.ChartNameNew.text = self.newroutinestring;
+        [self.MainLabel setText:self.addroutinestring];
         
         self.ChartCategories = [NSMutableArray array];
         [self.ChartCategories addObject:@"YES"]; // Hypertrophy
