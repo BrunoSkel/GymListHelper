@@ -29,6 +29,19 @@
 
 @implementation SharePreview
 
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//==========================================================================
+
 - (void)textViewDidBeginEditing:(UITextView *)txtDescription {
     NSLog(@"textViewDidBeginEditing:");
 
@@ -61,6 +74,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt"]||[[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"pt_br"]){
+        self.txtDescription.text=@"Adicione sua descrição aqui";
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)

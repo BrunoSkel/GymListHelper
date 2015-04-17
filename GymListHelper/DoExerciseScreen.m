@@ -26,6 +26,7 @@
 @property int RemainingCooldownSeconds;
 @property (strong,nonatomic) NSTimer *stopWatchTimer; //Store the timer
 @property (strong, nonatomic) IBOutlet UILabel *cooldownLabel;
+@property NSString* chartstring;
 @property NSString* result0;
 @property NSString* result1;
 @property NSString* result2;
@@ -36,6 +37,7 @@
 @implementation DoExerciseScreen
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _result0=@"And by that, I mean... nothing?";
     _result1=@"But next time, try not to skip.";
     _result2=@"Now, don't give up!";
@@ -46,7 +48,6 @@
         _result0=@"Mas não havia nada!";
         _result1=@"Mas na próxima, tente não pular.";
         _result2=@"Continue assim!";
-        
     }
     
     _skipped=NO;

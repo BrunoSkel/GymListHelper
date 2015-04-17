@@ -174,7 +174,7 @@
 "byF-rx-r7Q.text" = "Visualizar Dados";
 
 /* Class = "UIButton"; normalTitle = "End"; ObjectID = "c8G-Q1-Ey4"; */
-"c8G-Q1-Ey4.normalTitle" = "Fim";
+"c8G-Q1-Ey4.normalTitle" = "Terminar";
 
 /* Class = "UILabel"; text = "Rest Time:"; ObjectID = "cKL-WW-Z58"; */
 "cKL-WW-Z58.text" = "Descanso:";

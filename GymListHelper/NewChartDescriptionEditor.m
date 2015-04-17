@@ -15,6 +15,7 @@
 @property NSString *editroutinestring;
 @property NSString *addroutinestring;
 @property NSString *newroutinestring;
+@property NSString *language;
 
 @property (weak, nonatomic) IBOutlet UISwitch *switchHypertrophy;
 @property (weak, nonatomic) IBOutlet UILabel *labelHypertrophy;
@@ -38,6 +39,17 @@
     _editroutinestring=@"Edit Routine";
     _addroutinestring=@"Add New Routine";
     _newroutinestring=@"New Routine";
+    
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+    
+        _editroutinestring=@"Editar Treino";
+        _addroutinestring=@"Novo Treino";
+        _newroutinestring=@"Novo Treino";
+        
+    }
     
     // Do any additional setup after loading the view.
     self.ChartNameNew.delegate = self;

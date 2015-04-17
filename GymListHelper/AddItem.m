@@ -22,6 +22,10 @@
 @property (strong, nonatomic) IBOutlet UITextView *InfoBox;
 @property BOOL isEdit;
 @property NSMutableArray *allInfoData;
+
+@property NSString *language;
+@property NSString *addstring;
+@property NSString *editstring;
 @end
 
 @implementation AddItem
@@ -34,6 +38,18 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    _addstring=@"New Exercise";
+    _editstring=@"Edit Exercise";
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _addstring=@"Novo Exercício";
+        _editstring=@"Editar Exercício";
+        [self.InfoBox setText:@"Coloque algumas informações aqui!"];
+    }
+    
     self.seriesField.delegate=self;
     self.repField.delegate=self;
     self.nameField.delegate=self;
@@ -80,7 +96,7 @@
         _nameField.text=_retrievedName;
         _seriesField.text=_retrievedSeries;
         _repField.text=_retrievedRep;
-        [_MainLabel setText:@"Edit Exercise"];
+        [_MainLabel setText:self.editstring];
         _DeleteButton.hidden=NO;
         //
         [self loadInfoBoxInfo];
@@ -92,8 +108,8 @@
     }
     else{
         _DeleteButton.hidden=YES;
-        _nameField.text=@"Deadlift";
-        [_MainLabel setText:@"Add Exercise"];
+        _nameField.text=@"";
+        [_MainLabel setText:self.addstring];
     }
 }
 
