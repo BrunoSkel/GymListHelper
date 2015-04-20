@@ -42,8 +42,21 @@
     _pageTitles = @[@"Welcome!", @"Easy", @"Helpful", @"Apple Watch",@"Start"];
     _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png",@"page5.png"];
     
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-    _pageImages = @[@"page1br.png", @"page2br.png", @"page3br.png", @"page4br.png",@"page5br.png"];
+    
+    CGRect screenBound=[[UIScreen mainScreen]bounds];
+    NSLog(@"%f",screenBound.size.height);
+    if (screenBound.size.height==480){
+        NSLog(@"iPhone 4");
+            _pageImages = @[@"page14.png", @"page24.png", @"page34.png", @"page44.png",@"page54.png"];
+        if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            _pageImages = @[@"page14pt.png", @"page24pt.png", @"page34pt.png", @"page44pt.png",@"page54pt.png"];
+        }
+    }
+    else    {
+        NSLog(@"iPhone 5 forward");
+        if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            _pageImages = @[@"page1br.png", @"page2br.png", @"page3br.png", @"page4br.png",@"page5br.png"];
+        }
     }
     
     // Create page view controller
