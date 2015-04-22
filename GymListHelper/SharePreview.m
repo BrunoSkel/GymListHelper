@@ -252,16 +252,17 @@
     //Serialize allChartData
     jsonData = [[CJSONSerializer serializer] serializeObject:self.allChartData[self.ShareThisRoutine] error:&error];
     NSString* jsonSrtAllChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    
-    
+
+    for(int i=0;i<[self.allInfoData[self.ShareThisRoutine] count];i++){
+        for(int j=0;j<[self.allInfoData[self.ShareThisRoutine][i] count];j++){
+            self.allInfoData[self.ShareThisRoutine][i][j] = [self.allInfoData[self.ShareThisRoutine][i][j] stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+        }
+    }
+
     //Serialize allInfoData
     jsonData = [[CJSONSerializer serializer] serializeObject:self.allInfoData[self.ShareThisRoutine] error:&error];
     NSString* jsonSrtAllInfoChartData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    
-    
-    
+
         //Serialize categories
     jsonData = [[CJSONSerializer serializer] serializeObject:self.ChartCategoriesArray[self.ShareThisRoutine] error:&error];
     NSString* jsonSrtCategoriesData = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
