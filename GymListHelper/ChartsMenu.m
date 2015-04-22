@@ -117,6 +117,10 @@
     
     _RoutineNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
+    
+    _allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
     _WaitTimesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
