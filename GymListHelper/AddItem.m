@@ -9,6 +9,7 @@
 #import "AddItem.h"
 
 @interface AddItem ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *seriesField;
 @property (strong, nonatomic) IBOutlet UITextField *repField;
 @property (strong, nonatomic) IBOutlet UILabel *saveButton;
@@ -81,6 +82,11 @@
     [theTextField resignFirstResponder];
     return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
@@ -90,6 +96,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+        self.scrollView.contentSize = CGSizeMake(320, 1000);
     NSLog(@"view will appear");
     if (_isEdit==YES){
         [self retrieveInformation];
