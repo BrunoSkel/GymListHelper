@@ -78,11 +78,6 @@
     [theTextField resignFirstResponder];
     return YES;
 }
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
@@ -303,7 +298,7 @@
     
     [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-    if (s.selectedSegmentIndex>0) {
+    if (s.selectedSegmentIndex>1) {
         [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
         
         self.DeleteSubRoutine.hidden=NO;
@@ -350,14 +345,10 @@
     
     _SegmentControlOutlet.selectedSegmentIndex=0;
     
-    if (_SegmentControlOutlet.selectedSegmentIndex==0)
-        _DeleteSubRoutine.hidden=YES;
-    else
+    if (_SegmentControlOutlet.selectedSegmentIndex>1)
         _DeleteSubRoutine.hidden=NO;
-    
-    if ([_SegmentControlOutlet numberOfSegments]<5){
-        _AddSubRoutine.hidden=NO;
-    }
+    else
+        _DeleteSubRoutine.hidden=YES;
     
     //Update table data to the first segment
     
@@ -369,30 +360,17 @@
 }
 
 - (IBAction)AddSubRoutine:(id)sender {
-    
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_allInfoData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
-    [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"B"];
+    [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
-    [_SegmentControlOutlet insertSegmentWithTitle:@"B" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
+    [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
     
     [self SaveCharts];
-    
-    //Prevent user from having more than 5 subrouts
-    
-    if ([_SegmentControlOutlet numberOfSegments]>=5){
-        _AddSubRoutine.hidden=YES;
-    }
-    
 }
 
 -(void)FillSegment{
-    
-    while (self.SegmentControlOutlet.numberOfSegments>1){
-        [self.SegmentControlOutlet removeSegmentAtIndex:self.SegmentControlOutlet.numberOfSegments-1 animated:NO];
-    }
-    
-    for (int i=1; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
         [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
     }
     

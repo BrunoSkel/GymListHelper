@@ -68,10 +68,6 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
@@ -294,18 +290,20 @@
         NSString *documentsDirectory = paths[0];
         NSString *filePath;
         
-        //Add new workout, and a subworkout A
+        //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
         [controller.allChartData addObject: [NSMutableArray array]];
         NSInteger newposition=[controller.allChartData count]-1;
         NSLog(@"New position = %ld",(long)newposition);
+        [controller.allChartData[newposition] addObject: [NSMutableArray array]];
         [controller.allChartData[newposition] addObject: [NSMutableArray array]];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
         //Adding Information file for the chart
-        //Add new workout, and a subworkout A
+        //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
         [controller.allInfoData addObject: [NSMutableArray array]];
+        [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
         [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
@@ -314,12 +312,14 @@
         //Adding new chart name
         [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
         
-        //And A string names
+        //And A and B string names
         [controller.ChartNamesArray addObject: [NSMutableArray array]];
         
         [controller.ChartNamesArray[newposition] addObject: @"A"];
+        [controller.ChartNamesArray[newposition] addObject: @"B"];
         
         [controller.WaitTimesArray addObject: [NSMutableArray array]];
+        [controller.WaitTimesArray[newposition] addObject: @"30"];
         [controller.WaitTimesArray[newposition] addObject: @"30"];
         
         //Adding categories
