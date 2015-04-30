@@ -33,27 +33,26 @@
 
 @implementation NewChartDescriptionEditor
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        
+        //Translation initialization
+        
+        _editroutinestring=@"Edit Routine";
+        _addroutinestring=@"Add New Routine";
+        _newroutinestring=@"New Routine";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _editroutinestring=@"Edit Routine";
-    _addroutinestring=@"Add New Routine";
-    _newroutinestring=@"New Routine";
-    
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-    
-        _editroutinestring=@"Editar Treino";
-        _addroutinestring=@"Novo Treino";
-        _newroutinestring=@"Novo Treino";
-        
-    }
-    
     // Do any additional setup after loading the view.
     self.ChartNameNew.delegate = self;
-    
     self.switchHypertrophy.tag = 0;
     self.switchDefinition.tag = 1;
     self.switchTonification.tag = 2;
@@ -62,31 +61,17 @@
     //_isEdit=NO;
 }
 
-//Make the keyboard dissapear after editing textfields======================
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-        [theTextField resignFirstResponder];
-    return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //hides keyboard when another part of layout was touched
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
-//==========================================================================
-
--(void)editMode{
-    NSLog(@"cheguei");
-    _isEdit=YES;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"view will appear");
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _editroutinestring=@"Editar Treino";
+        _addroutinestring=@"Novo Treino";
+        _newroutinestring=@"Novo Treino";
+        
+    }
+
     if (self.isEdit==YES){
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
         [self.MainLabel setText:self.editroutinestring];
@@ -165,9 +150,31 @@
         [self.ChartCategories addObject:@"NO"]; // Strengh
         [self.switchStrengh setOn:NO];
         self.labelStrengh.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-
+        
         NSLog(@"Current chart: %@", self.ChartCategories);
     }
+}
+
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+        [theTextField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//==========================================================================
+
+-(void)editMode{
+    NSLog(@"cheguei");
+    _isEdit=YES;
 }
 
 - (void)didReceiveMemoryWarning {

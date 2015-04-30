@@ -30,19 +30,22 @@
 
 @implementation ChartsMenu
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _hipertrofia=@"Hypertrophy";
+        _definition=@"Definition";
+        _tonification=@"Tonification";
+        _strength=@"Strength";
+        _fatloss=@"Fat Loss";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _hipertrofia=@"Hypertrophy";
-    _definition=@"Definition";
-    _tonification=@"Tonification";
-    _strength=@"Strength";
-    _fatloss=@"Fat Loss";
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    //Load charts
-    [self LoadChartData];
-    _tableData=[NSMutableArray arrayWithArray:_allChartData];
-    [self.tableView reloadData];
-    // Do any additional setup after loading the view.
     
     if ([FBSDKAccessToken currentAccessToken]) {
         NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
@@ -58,22 +61,31 @@
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     }
     
-    //
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-    _hipertrofia=@"Hipertrofia";
-    _definition=@"Definição";
-    _tonification=@"Tonificação";
-    _strength=@"Potência";
-    _fatloss=@"Perda de Gordura";
-    }
-    //
-    
-    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    //Load charts
+    [self LoadChartData];
+    _tableData=[NSMutableArray arrayWithArray:_allChartData];
+    [self.tableView reloadData];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        _hipertrofia=@"Hipertrofia";
+        _definition=@"Definição";
+        _tonification=@"Tonificação";
+        _strength=@"Potência";
+        _fatloss=@"Perda de Gordura";
+    }
+    //
+}
+
+//Flash scroll indicator
 -(void)viewDidAppear:(BOOL)animated{
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
     
 }
 

@@ -35,18 +35,17 @@
 
 #pragma mark OnLoad
 
-- (void)viewDidLoad {
-    
-    
-    _chartstring=@"%@ Chart";
-    
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-        
-        _chartstring=@"Treino %@";
-        
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _chartstring=@"%@ Chart";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     }
+    return self;
+}
+
+- (void)viewDidLoad {
     
     //HOW TO SYNC STUFF: Init with a suite name (think of how PlayerPrefs work), add stuff with a "key input" (Just like the playerpref strings), and use the sync method
     
@@ -67,6 +66,20 @@
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
     _tableData= [[NSMutableArray alloc]init];
+    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _chartstring=@"Treino %@";
+        
+    }
+    
     //The chart data is loaded from a file.
     [self LoadChartsFromFile];
     

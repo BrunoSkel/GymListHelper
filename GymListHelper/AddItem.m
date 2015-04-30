@@ -31,18 +31,38 @@
 
 @implementation AddItem
 
--(void)editMode{
-    NSLog(@"cheguei");
-    //
-    _isEdit=YES;
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    //Initialize language strings
+    self.language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    self.addstring=@"New Exercise";
+    self.editstring=@"Edit Exercise";
+    
+    
+    return self;
 }
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    _addstring=@"New Exercise";
-    _editstring=@"Edit Exercise";
+    //Loaded: Apply outlet settings
+    
+    self.seriesField.delegate=self;
+    self.repField.delegate=self;
+    self.nameField.delegate=self;
+    self.InfoBox.layer.borderWidth = 0.5f;
+    self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    //Appeared: Load Info box, apply translation and Scroll size and check information sent from the previous UIViewController
+    
+    [self loadInfoBoxInfo];
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
         
@@ -51,12 +71,36 @@
         [self.InfoBox setText:@"Coloque algumas informações aqui!"];
     }
     
-    self.seriesField.delegate=self;
-    self.repField.delegate=self;
-    self.nameField.delegate=self;
-    self.InfoBox.layer.borderWidth = 0.5f;
-    self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
-    [self loadInfoBoxInfo];
+    self.scrollView.contentSize = CGSizeMake(320, 1000);
+    
+    if (_isEdit==YES){
+        
+        [self retrieveInformation];
+        
+        _nameField.text=_retrievedName;
+        _seriesField.text=_retrievedSeries;
+        _repField.text=_retrievedRep;
+        [_MainLabel setText:self.editstring];
+        _DeleteButton.hidden=NO;
+
+        //Fill Box
+        
+        [self.InfoBox setText:self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]];
+        NSLog(@"Desc= %@",self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
+    }
+    
+    else{ //Not editing, creating new exercise
+        _DeleteButton.hidden=YES;
+        _nameField.text=@"";
+        [_MainLabel setText:self.addstring];
+    }
+    
+}
+
+-(void)editMode{
+    NSLog(@"cheguei");
+    //
+    self.isEdit=YES;
 }
 
 -(void)loadInfoBoxInfo{
@@ -94,32 +138,8 @@
 }
 //================================================================
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-        self.scrollView.contentSize = CGSizeMake(320, 1000);
-    NSLog(@"view will appear");
-    if (_isEdit==YES){
-        [self retrieveInformation];
-        _nameField.text=_retrievedName;
-        _seriesField.text=_retrievedSeries;
-        _repField.text=_retrievedRep;
-        [_MainLabel setText:self.editstring];
-        _DeleteButton.hidden=NO;
-        //
-        [self loadInfoBoxInfo];
-        //Fill Box
-         [self.InfoBox setText:self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]];
-        //self.InfoBox.text=@"ay";
-        NSLog(@"Desc= %@",self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
-        //
-    }
-    else{
-        _DeleteButton.hidden=YES;
-        _nameField.text=@"";
-        [_MainLabel setText:self.addstring];
-    }
-}
 
+//Getting out of the viewcontroller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     //If he deleted it
@@ -149,6 +169,7 @@
         return;
     }
     
+    //Creating new exercise
     if (self.nameField.text.length > 0 && sender!=self.cancelBut) {
         _newitem=[NSString stringWithFormat:@"%@ | %@x%@",self.nameField.text,self.seriesField.text,self.repField.text];
         NSLog(@"%@",_newitem);

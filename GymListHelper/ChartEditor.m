@@ -35,23 +35,38 @@
 
 @implementation ChartEditor
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        _addexerciseto=@"Add Exercise to";
+        _deletestring=@"Delete";
+        _addsubworkout=@"Add sub-routines";
+        _exerciselist=@"Exercise List: Touch to Edit";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    _addexerciseto=@"Add Exercise to";
-    _deletestring=@"Delete";
-    _addsubworkout=@"Add sub-routines";
-    _exerciselist=@"Exercise List: Touch to Edit";
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-            _addexerciseto=@"Adicionar Exercicio em";
-            _deletestring=@"Deletar";
-            _addsubworkout=@"Adicionar sub-treino";
-            _exerciselist=@"Ficha: Toque para Editar";
-    }
     
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+        [super viewWillAppear:animated];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        _addexerciseto=@"Adicionar Exercicio em";
+        _deletestring=@"Deletar";
+        _addsubworkout=@"Adicionar sub-treino";
+        _exerciselist=@"Ficha: Toque para Editar";
+    }
     
     [self loadInitialData];
     [self FillSegment];
@@ -63,14 +78,26 @@
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     self.DeleteSubRoutine.hidden=YES;
     [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
-   // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
+    // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
-        self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
-        self.RoutineNameField.delegate=self;
+    self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
+    self.RoutineNameField.delegate=self;
     
     [self UpdateWaitPicker];
     
+}
+
+//Flash scroll indicator
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_timer invalidate];
 }
 
 //Make the keyboard dissapear after editing textfields======================
@@ -101,16 +128,6 @@
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return (newLength > 10) ? NO : YES;
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
-    
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_timer invalidate];
 }
 
 -(void)indicator:(BOOL)animated{
