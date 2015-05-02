@@ -141,6 +141,7 @@
     
     _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    
     //NSLog(@"Current Categories chart: %@", self.ChartCategoriesArray);
     
     
@@ -249,6 +250,52 @@
         [self.ByUserArray writeToFile:filePath atomically:YES];
         
     }
+    
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //PICDATA: To avoid breaking previous versions, the new files checked the workouts, and get created accordingly
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    if (_allPicData==NULL){
+        //Cloning
+        _allPicData = [NSMutableArray array];
+        for (int i=0;i<[_allChartData count];i++){
+            //This is the routine
+            [_allPicData addObject: [NSMutableArray array]];
+            for (int j=0;j<[_allChartData[i] count];j++){
+                //This is the subroutines
+                [_allPicData[i] addObject: [NSMutableArray array]];
+                for (int k=0;k<[_allChartData[i][j] count];k++){
+                    //Exercises and filling it
+                    [_allPicData[i][j] addObject: [NSMutableArray array]];
+                    [_allPicData[i][j][k] addObject: @"NoPic"];
+                    [_allPicData[i][j][k] addObject: @"NoPic"];
+                }
+            }
+        }
+        
+                NSLog(_allPicData[0][0][0][0]);
+                NSLog(_allPicData[0][0][0][1]);
+        
+        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+        [_allPicData writeToFile:filePathInfo atomically:YES];
+    }
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

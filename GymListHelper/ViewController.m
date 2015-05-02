@@ -158,6 +158,10 @@
     
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 #pragma mark Delegate Methods
