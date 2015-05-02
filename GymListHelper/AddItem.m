@@ -55,21 +55,19 @@
     [super viewDidLoad];
     
     //Loaded: Apply outlet settings
-    self.defaultPic=self.PIC1.image;
     
     self.seriesField.delegate=self;
     self.repField.delegate=self;
     self.nameField.delegate=self;
     self.InfoBox.layer.borderWidth = 0.5f;
     self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
-    
+    [self PrepareForShow];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)PrepareForShow {
     
     //Appeared: Load Info box, apply translation and Scroll size and check information sent from the previous UIViewController
-    
+    self.defaultPic=self.PIC1.image;
     [self loadInfoBoxInfo];
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
@@ -123,6 +121,9 @@
         _nameField.text=@"";
         [_MainLabel setText:self.addstring];
     }
+    
+        self.PIC1.contentMode=UIViewContentModeScaleAspectFit;
+        self.PIC2.contentMode=UIViewContentModeScaleAspectFit;
     
 }
 
@@ -245,6 +246,11 @@
 
 //Getting out of the viewcontroller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if (sender==self.cancelBut){
+        NSLog(@"Canceled");
+    return;
+    }
     
     //If he deleted it
     if (sender==self.DeleteButton){

@@ -217,6 +217,9 @@
         //Delete wait times associated to this chart
         [controller.WaitTimesArray removeObjectAtIndex:self.EditThisRoutine];
         
+        //Delete pictures associated to this chart
+        [controller.allPicData removeObjectAtIndex:self.EditThisRoutine];
+        
         //Delete the owner data
         [controller.ByUserArray removeObjectAtIndex:self.EditThisRoutine];
         
@@ -241,6 +244,10 @@
         filePath = [documentsDirectory
                     stringByAppendingPathComponent:@"byUserFile"];
         [controller.ByUserArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"picDataFile"];
+        [controller.allPicData writeToFile:filePath atomically:YES];
         
         //Now reload
         [controller.tableData removeAllObjects];
@@ -317,6 +324,14 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
         [controller.allInfoData writeToFile:filePath atomically:YES];
+        
+        //Adding Pictures file for the chart
+        //Add new workout, and a subworkout A
+        [controller.allPicData addObject: [NSMutableArray array]];
+        [controller.allPicData[newposition] addObject: [NSMutableArray array]];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+        [controller.allPicData writeToFile:filePath atomically:YES];
         
         //Adding new chart name
         [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
