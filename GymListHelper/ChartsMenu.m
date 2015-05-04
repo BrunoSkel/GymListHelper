@@ -141,6 +141,7 @@
     
     _ChartCategoriesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    
     //NSLog(@"Current Categories chart: %@", self.ChartCategoriesArray);
     
     
@@ -249,6 +250,52 @@
         [self.ByUserArray writeToFile:filePath atomically:YES];
         
     }
+    
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //PICDATA: To avoid breaking previous versions, the new files checked the workouts, and get created accordingly
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    if (_allPicData==NULL){
+        //Cloning
+        _allPicData = [NSMutableArray array];
+        for (int i=0;i<[_allChartData count];i++){
+            //This is the routine
+            [_allPicData addObject: [NSMutableArray array]];
+            for (int j=0;j<[_allChartData[i] count];j++){
+                //This is the subroutines
+                [_allPicData[i] addObject: [NSMutableArray array]];
+                for (int k=0;k<[_allChartData[i][j] count];k++){
+                    //Exercises and filling it
+                    [_allPicData[i][j] addObject: [NSMutableArray array]];
+                    [_allPicData[i][j][k] addObject: @"NoPic"];
+                    [_allPicData[i][j][k] addObject: @"NoPic"];
+                }
+            }
+        }
+        
+                NSLog(_allPicData[0][0][0][0]);
+                NSLog(_allPicData[0][0][0][1]);
+        
+        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+        [_allPicData writeToFile:filePathInfo atomically:YES];
+    }
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    //=========================================
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -286,18 +333,19 @@
         
         controller.ChartCategoriesArray=[NSMutableArray arrayWithArray:self.ChartCategoriesArray];
         
-        //NSLog(@"prepareForSegue GoToSharePreview");
+        NSLog(@"prepareForSegue GoToSharePreview");
+        //[self ShowBetaAlert];
     }
     
     else if([segue.identifier isEqualToString:@"ToGallery"]){
         
         NSString *title=@"Routine Gallery Beta";
-        NSString *message=@"Mirin's Routine Gallery is still under construction. While several features are missing, you can already share and download new workouts.";
+        NSString *message=@"Mirin's Routine Gallery is still under construction. Soon, you'll be able to share and download workouts. Try again later!";
         NSString *understand=@"I understand!";
         
         if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
             title=@"Beta da Galeria de Rotinas";
-            message=@"A Galeria de Rotinas do Mirin ainda está em construção. Apesar de várias funcionalidades ainda estarem faltando, você já pode baixar e compartilhar novos treinos.";
+            message=@"A Galeria de Rotinas do Mirin ainda está em construção. Em breve, você poderá baixar e compartilhar treinos. Tente novamente mais tarde!";
             understand=@"Entendi!";
         }
         
@@ -469,8 +517,8 @@
 
         self.TouchedIndex = (int)sender.tag;
         
-        [self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
-
+        //[self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
+                [self ShowBetaAlert];
     }
 }
 
@@ -574,6 +622,31 @@ error:	(NSError *)error
     }else{
         NSLog(@"Not Logged");
     }
+}
+- (IBAction)BrowseWorkouts:(id)sender {
+    
+    [self ShowBetaAlert];
+    
+}
+
+-(void)ShowBetaAlert{
+    NSString *title=@"Routine Gallery Beta";
+    NSString *message=@"Mirin's Routine Gallery is still under construction. Soon, you'll be able to share and download workouts. Try again later!";
+    NSString *understand=@"I understand!";
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        title=@"Beta da Galeria de Rotinas";
+        message=@"A Galeria de Rotinas do Mirin ainda está em construção. Em breve, você poderá baixar e compartilhar treinos. Tente novamente mais tarde!";
+        understand=@"Entendi!";
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: title                                                       message: message
+                                                  delegate: self
+                                         cancelButtonTitle:understand
+                                         otherButtonTitles:nil];
+    
+    [alert setTag:1];
+    [alert show];
 }
 
 @end

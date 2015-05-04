@@ -55,11 +55,7 @@
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
     
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    
-        [super viewWillAppear:animated];
+    // Old viewonappear
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
         _addexerciseto=@"Adicionar Exercicio em";
@@ -85,6 +81,16 @@
     self.RoutineNameField.delegate=self;
     
     [self UpdateWaitPicker];
+    
+    //
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+        [super viewWillAppear:animated];
+    
+    NSLog(@"Showing Chart Editor");
     
 }
 
@@ -154,6 +160,10 @@
     
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    self.allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 - (void)SaveCharts{
@@ -175,6 +185,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     
     [self.allInfoData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    [self.allPicData writeToFile:filePath atomically:YES];
     
 }
 
@@ -360,6 +374,7 @@
     //Delete chart and name array objects
   [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_allInfoData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_allPicData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_WaitTimesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
@@ -389,6 +404,7 @@
     
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_allInfoData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
+    [[_allPicData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"B"];
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
     [_SegmentControlOutlet insertSegmentWithTitle:@"B" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];

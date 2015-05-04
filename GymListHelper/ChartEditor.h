@@ -18,6 +18,7 @@
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
 @property (strong,nonatomic)  NSMutableArray *allInfoData;
+@property (strong,nonatomic)  NSMutableArray *allPicData;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property int ChosenWorkout;

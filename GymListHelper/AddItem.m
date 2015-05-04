@@ -8,11 +8,11 @@
 
 #import "AddItem.h"
 
-@interface AddItem ()
+@interface AddItem () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *seriesField;
 @property (strong, nonatomic) IBOutlet UITextField *repField;
-@property (strong, nonatomic) IBOutlet UILabel *saveButton;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UILabel *MainLabel;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBut;
@@ -23,10 +23,17 @@
 @property (strong, nonatomic) IBOutlet UITextView *InfoBox;
 @property BOOL isEdit;
 @property NSMutableArray *allInfoData;
+@property NSMutableArray *allPicData;
+@property (strong, nonatomic) IBOutlet UIImageView *PIC1;
+@property (strong, nonatomic) IBOutlet UIImageView *PIC2;
+@property (strong, nonatomic) IBOutlet UIButton *PIC1Button;
+@property (strong, nonatomic) IBOutlet UIButton *PIC2Button;
 
 @property NSString *language;
 @property NSString *addstring;
 @property NSString *editstring;
+@property UIImageView* touchedImage;
+@property UIImage *defaultPic;
 @end
 
 @implementation AddItem
@@ -54,14 +61,13 @@
     self.nameField.delegate=self;
     self.InfoBox.layer.borderWidth = 0.5f;
     self.InfoBox.layer.borderColor = [[UIColor blackColor] CGColor];
-    
+    [self PrepareForShow];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)PrepareForShow {
     
     //Appeared: Load Info box, apply translation and Scroll size and check information sent from the previous UIViewController
-    
+    self.defaultPic=self.PIC1.image;
     [self loadInfoBoxInfo];
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
@@ -71,7 +77,7 @@
         [self.InfoBox setText:@"Coloque algumas informações aqui!"];
     }
     
-    self.scrollView.contentSize = CGSizeMake(320, 1000);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 930);
     
     if (_isEdit==YES){
         
@@ -86,7 +92,28 @@
         //Fill Box
         
         [self.InfoBox setText:self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]];
-        NSLog(@"Desc= %@",self.allInfoData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
+        
+        //Fill Pics
+        if (![self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0] isEqual:@"NoPic"]){
+            
+            self.PIC1.image=[UIImage imageWithData:self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0]];
+            
+        }
+        
+        else{
+            NSLog(@"Pic 1 is not filled (NoPic)");
+        }
+        
+        if (![self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][1] isEqual:@"NoPic"]){
+        
+            self.PIC2.image=[UIImage imageWithData:self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][1]];
+    
+        }
+        
+        else{
+            NSLog(@"Pic 2 is not filled (NoPic)");
+        }
+    
     }
     
     else{ //Not editing, creating new exercise
@@ -94,6 +121,74 @@
         _nameField.text=@"";
         [_MainLabel setText:self.addstring];
     }
+    
+        self.PIC1.contentMode=UIViewContentModeScaleAspectFit;
+        self.PIC2.contentMode=UIViewContentModeScaleAspectFit;
+    
+}
+
+
+- (IBAction)imageTouched:(UIButton *)sender{
+    
+    if (sender==self.PIC1Button)
+        self.touchedImage=self.PIC1;
+    if (sender==self.PIC2Button)
+        self.touchedImage=self.PIC2;
+    
+    UIActionSheet* attachmentMenuSheet;
+    attachmentMenuSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"Take Photo", @"Photo Library", nil];
+    
+    // Show the sheet
+    [attachmentMenuSheet showInView:self.view];
+}
+
+- (void)takePhoto {
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        return;
+    }
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+   // self.touchedImage=self.PIC1;
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+- (void)choosePhoto {
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        return;
+    }
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+   // self.touchedImage=self.PIC2;
+    [self presentViewController:picker animated:YES completion:NULL];
     
 }
 
@@ -110,6 +205,11 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    self.allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 -(void)saveInfoBox{
@@ -119,6 +219,11 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     
     [self.allInfoData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    [self.allPicData writeToFile:filePath atomically:YES];
+    
 }
 
 //Make the keyboard dissapear after editing textfields======================
@@ -142,6 +247,11 @@
 //Getting out of the viewcontroller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    if (sender==self.cancelBut){
+        NSLog(@"Canceled");
+    return;
+    }
+    
     //If he deleted it
     if (sender==self.DeleteButton){
         //SAVE CHART
@@ -157,6 +267,9 @@
         [controller.allChartData writeToFile:filePath atomically:YES];
         
         [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
+        
+        [self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout] removeObjectAtIndex:self.EditThisExercise];
+        
         [self saveInfoBox];
         
         //SAVE CHART END
@@ -183,12 +296,60 @@
         if (_isEdit==YES){
                 [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:_newitem];
                 [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.InfoBox.text];
+            
+            if (self.PIC1.image!=self.defaultPic){
+                NSLog(@"Pic1 was edited: Swapping stuff");
+                NSData* imageData = UIImageJPEGRepresentation(self.PIC1.image, 1.0);
+                
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][self.EditThisExercise] replaceObjectAtIndex:0 withObject:imageData];
+                
+            }
+            
+            if (self.PIC2.image!=self.defaultPic){
+                NSLog(@"Pic2 was edited: Swapping stuff");
+                NSData* imageData = UIImageJPEGRepresentation(self.PIC2.image, 1.0);
+                
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][self.EditThisExercise] replaceObjectAtIndex:1 withObject:imageData];
+                
+            }
+            
                 [self saveInfoBox];
         }
         else{
-    [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
+            [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
             
             [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.InfoBox.text];
+            
+            [self.allPicData[controller.ChosenWorkout][controller.saveToChart] addObject: [NSMutableArray array]];
+            
+            NSInteger newpos=[self.allPicData[controller.ChosenWorkout][controller.saveToChart] count]-1;
+            
+            //On new exercises, check if a picture was added, otherwise, say it didnt changed
+            
+            if (self.PIC1.image!=self.defaultPic){
+                
+                NSData* imageData = UIImageJPEGRepresentation(self.PIC1.image, 1.0);
+                
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][newpos] addObject:imageData];
+                
+            }
+            
+            else{
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][newpos] addObject:@"NoPic"];
+            }
+            
+            if (self.PIC2.image!=self.defaultPic){
+                
+                NSData* imageData = UIImageJPEGRepresentation(self.PIC2.image, 1.0);
+                
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][newpos] addObject:imageData];
+                
+            }
+            
+            else{
+                [self.allPicData[controller.ChosenWorkout][controller.saveToChart][newpos] addObject:@"NoPic"];
+            }
+            
             [self saveInfoBox];
         }
         
@@ -248,6 +409,62 @@
     
     _retrievedSeries=[[RepCountInformation objectAtIndex:0] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     _retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+}
+
+-(void)CheckifChangedPicture{
+    
+    //On edit mode, check if he added a new pic on place of the default one
+    
+    if (self.PIC1.image!=self.defaultPic){
+    
+    NSData* imageData = UIImageJPEGRepresentation(self.PIC1.image, 1.0);
+    
+    [self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise] replaceObjectAtIndex:0 withObject:imageData];
+        
+    }
+    
+    if (self.PIC2.image!=self.defaultPic){
+    
+    NSData* imageData = UIImageJPEGRepresentation(self.PIC2.image, 1.0);
+    
+    [self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise] replaceObjectAtIndex:1 withObject:imageData];
+        
+    }
+}
+
+
+//ImagePicker Delegates
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.touchedImage.image = chosenImage;
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+//ActionSheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+        switch (buttonIndex) {
+                
+            case 0:
+                [self takePhoto];
+                break;
+                
+            case 1:
+                [self choosePhoto];
+                break;
+                
+            default:
+                break;
+        }
 }
 
 @end
