@@ -22,22 +22,26 @@
 
 @implementation PageCoreViewController
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:NO];
     
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
+    BOOL isfirst=[self CheckifnotFirst];
+    if (isfirst==NO){
+        NSLog(@"cheguei");
+        [self performSegueWithIdentifier:@"ToMain" sender:self];
+        return;
+    }
     
     //XCODE BUG FIXER
     //[PageViewOverride _bugFix];
     //
     //Check if it's not the first time he sees this screen..
-    BOOL isfirst=[self CheckifnotFirst];
-    if (isfirst==NO){
-        [self performSegueWithIdentifier:@"ToMain" sender:self];
-        return;
-    }
     // Create the data model
     _pageTitles = @[@"Welcome!", @"Easy", @"Helpful", @"Apple Watch",@"Start"];
     _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png",@"page5.png"];

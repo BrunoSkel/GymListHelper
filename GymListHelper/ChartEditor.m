@@ -35,23 +35,34 @@
 
 @implementation ChartEditor
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        _addexerciseto=@"Add Exercise to";
+        _deletestring=@"Delete";
+        _addsubworkout=@"Add sub-routines";
+        _exerciselist=@"Exercise List: Touch to Edit";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    _addexerciseto=@"Add Exercise to";
-    _deletestring=@"Delete";
-    _addsubworkout=@"Add sub-routines";
-    _exerciselist=@"Exercise List: Touch to Edit";
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-            _addexerciseto=@"Adicionar Exercicio em";
-            _deletestring=@"Deletar";
-            _addsubworkout=@"Adicionar sub-treino";
-            _exerciselist=@"Ficha: Toque para Editar";
-    }
     
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
+    
+    // Old viewonappear
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        _addexerciseto=@"Adicionar Exercicio em";
+        _deletestring=@"Deletar";
+        _addsubworkout=@"Adicionar sub-treino";
+        _exerciselist=@"Ficha: Toque para Editar";
+    }
     
     [self loadInitialData];
     [self FillSegment];
@@ -63,14 +74,36 @@
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     self.DeleteSubRoutine.hidden=YES;
     [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
-   // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
+    // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
-        self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
-        self.RoutineNameField.delegate=self;
+    self.RoutineNameField.text=[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex];
+    self.RoutineNameField.delegate=self;
     
     [self UpdateWaitPicker];
     
+    //
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+        [super viewWillAppear:animated];
+    
+    NSLog(@"Showing Chart Editor");
+    
+}
+
+//Flash scroll indicator
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_timer invalidate];
 }
 
 //Make the keyboard dissapear after editing textfields======================
@@ -78,6 +111,11 @@
     [theTextField resignFirstResponder];
     return YES;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //hides keyboard when another part of layout was touched
     [self.view endEditing:YES];
@@ -96,16 +134,6 @@
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return (newLength > 10) ? NO : YES;
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
-    
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_timer invalidate];
 }
 
 -(void)indicator:(BOOL)animated{
@@ -132,6 +160,10 @@
     
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    self.allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 - (void)SaveCharts{
@@ -153,6 +185,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     
     [self.allInfoData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    [self.allPicData writeToFile:filePath atomically:YES];
     
 }
 
@@ -298,7 +334,7 @@
     
     [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-    if (s.selectedSegmentIndex>1) {
+    if (s.selectedSegmentIndex>0) {
         [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
         
         self.DeleteSubRoutine.hidden=NO;
@@ -338,6 +374,7 @@
     //Delete chart and name array objects
   [[_allChartData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_allInfoData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
+  [[_allPicData objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_ChartNamesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
   [[_WaitTimesArray objectAtIndex:_ChosenWorkout] removeObjectAtIndex:_SegmentControlOutlet.selectedSegmentIndex];
     
@@ -345,10 +382,14 @@
     
     _SegmentControlOutlet.selectedSegmentIndex=0;
     
-    if (_SegmentControlOutlet.selectedSegmentIndex>1)
-        _DeleteSubRoutine.hidden=NO;
-    else
+    if (_SegmentControlOutlet.selectedSegmentIndex==0)
         _DeleteSubRoutine.hidden=YES;
+    else
+        _DeleteSubRoutine.hidden=NO;
+    
+    if ([_SegmentControlOutlet numberOfSegments]<5){
+        _AddSubRoutine.hidden=NO;
+    }
     
     //Update table data to the first segment
     
@@ -360,17 +401,31 @@
 }
 
 - (IBAction)AddSubRoutine:(id)sender {
+    
     [[_allChartData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
     [[_allInfoData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
-    [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"New"];
+    [[_allPicData objectAtIndex:_ChosenWorkout] addObject: [NSMutableArray array]];
+    [[_ChartNamesArray objectAtIndex:_ChosenWorkout] addObject:@"B"];
     [[_WaitTimesArray objectAtIndex:_ChosenWorkout] addObject:@"30"];
-    [_SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
+    [_SegmentControlOutlet insertSegmentWithTitle:@"B" atIndex:[_SegmentControlOutlet numberOfSegments] animated:YES];
     
     [self SaveCharts];
+    
+    //Prevent user from having more than 5 subrouts
+    
+    if ([_SegmentControlOutlet numberOfSegments]>=5){
+        _AddSubRoutine.hidden=YES;
+    }
+    
 }
 
 -(void)FillSegment{
-    for (int i=2; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
+    
+    while (self.SegmentControlOutlet.numberOfSegments>1){
+        [self.SegmentControlOutlet removeSegmentAtIndex:self.SegmentControlOutlet.numberOfSegments-1 animated:NO];
+    }
+    
+    for (int i=1; i<[[_allChartData objectAtIndex:_ChosenWorkout] count];i++){
         [_SegmentControlOutlet insertSegmentWithTitle:@"C" atIndex:i animated:NO];
     }
     

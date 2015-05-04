@@ -35,18 +35,17 @@
 
 #pragma mark OnLoad
 
-- (void)viewDidLoad {
-    
-    
-    _chartstring=@"%@ Chart";
-    
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-        
-        _chartstring=@"Treino %@";
-        
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _chartstring=@"%@ Chart";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     }
+    return self;
+}
+
+- (void)viewDidLoad {
     
     //HOW TO SYNC STUFF: Init with a suite name (think of how PlayerPrefs work), add stuff with a "key input" (Just like the playerpref strings), and use the sync method
     
@@ -67,6 +66,20 @@
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
     _tableData= [[NSMutableArray alloc]init];
+    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _chartstring=@"Treino %@";
+        
+    }
+    
     //The chart data is loaded from a file.
     [self LoadChartsFromFile];
     
@@ -144,6 +157,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
     
     self.allInfoData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+    
+    _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
 }
 
@@ -249,6 +266,7 @@
         controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
         
         controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
     }
     
     
@@ -260,8 +278,16 @@
 }
 
 -(void)FillSegment{
-    //Starts with 2 segments. Searches chartData to see if there are more, and add them
-    for (int i=2; i<[self.allChartData[self.ChosenWorkout] count];i++){
+    
+    //Reset Segments to 1 (storyboard only allows 2)
+    while (self.SegmentControlOutlet.numberOfSegments>1){
+        [self.SegmentControlOutlet removeSegmentAtIndex:self.SegmentControlOutlet.numberOfSegments-1 animated:NO];
+    }
+    
+    NSLog(@"%d",[self.allChartData[self.ChosenWorkout] count]);
+    
+    //Searches chartData to see if there are more segments, and add them
+    for (int i=1; i<[self.allChartData[self.ChosenWorkout] count];i++){
         [self.SegmentControlOutlet insertSegmentWithTitle:@"New" atIndex:i animated:NO];
     }
     
@@ -282,7 +308,7 @@
     //[self UpdateSegmentNames];
     //Reset Segment Outlet, as there are new subroutines, or deleted ones
     if (self.SegmentControlOutlet.numberOfSegments!=[self.allChartData[self.ChosenWorkout] count]){
-        while (self.SegmentControlOutlet.numberOfSegments>2){
+        while (self.SegmentControlOutlet.numberOfSegments>1){
             [self.SegmentControlOutlet removeSegmentAtIndex:self.SegmentControlOutlet.numberOfSegments-1 animated:NO];
         }
         NSLog(@"NumberOfSegments: %ld | Count: %ld",(unsigned long)self.SegmentControlOutlet.numberOfSegments,(unsigned long)[self.allChartData[self.ChosenWorkout] count]);

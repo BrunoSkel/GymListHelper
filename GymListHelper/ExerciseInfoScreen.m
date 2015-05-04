@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "ExerciseInfoScreen.h"
+#import "ZoomImage.h"
 
 @interface ExerciseInfoScreen ()
 @property (strong, nonatomic) IBOutlet UITextView *TextView;
@@ -15,6 +16,11 @@
 @property NSString *retrievedRep;
 @property (strong, nonatomic) IBOutlet UILabel *exNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *seriesRepsLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *PIC1;
+@property (strong, nonatomic) IBOutlet UIImageView *PIC2;
+@property (strong, nonatomic) IBOutlet UIButton *PIC1BUT;
+@property (strong, nonatomic) IBOutlet UIButton *PIC2BUT;
+@property UIImage *defaultImage;
 @property NSString *retrievedName;
 @end
 
@@ -22,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.defaultImage=self.PIC1.image;
     // Do any additional setup after loading the view.
     self.TextView.layer.borderWidth = 0.5f;
     self.TextView.layer.borderColor = [[UIColor blackColor] CGColor];
@@ -33,6 +40,26 @@
     else{
         self.TextView.text=@"No Information Available";
     }
+    
+    if (![self.picdata[0] isEqual:@"NoPic"]){
+        
+        self.PIC1.image=[UIImage imageWithData:self.picdata[0]];
+        
+    }
+    
+    else{
+        NSLog(@"Pic 1 is not filled (NoPic)");
+    }
+    
+    if (![self.picdata[1] isEqual:@"NoPic"]){
+        
+        self.PIC2.image=[UIImage imageWithData:self.picdata[1]];
+        
+    }
+    
+    self.PIC1.contentMode=UIViewContentModeScaleAspectFit;
+    self.PIC2.contentMode=UIViewContentModeScaleAspectFit;
+    
 }
 
 -(void)retrieveInformation{
@@ -56,4 +83,15 @@
     self.retrievedRep=[[RepCountInformation objectAtIndex:1] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"toImageView"]){
+        
+        UINavigationController *navController = [segue destinationViewController];
+        ZoomImage *controller = (ZoomImage *)([navController viewControllers][0]);
+        if (sender==self.PIC1BUT)
+            controller.sentimage=self.PIC1.image;
+        if (sender==self.PIC2BUT)
+            controller.sentimage=self.PIC2.image;
+    }
+}
 @end

@@ -35,13 +35,17 @@
 @end
 
 @implementation DoExerciseScreen
-- (void)viewDidLoad {
+
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
     _result0=@"And by that, I mean... nothing?";
     _result1=@"But next time, try not to skip.";
     _result2=@"Now, don't give up!";
     _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
     
@@ -167,10 +171,10 @@
     self.cooldownLabel.text=[NSString stringWithFormat:@"00:%02d",self.RemainingCooldownSeconds];
     }
     if (self.RemainingCooldownSeconds==0){
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         [self HideCooldown];
         //Checks if the series are over
         if (self.RemainingSeries<=0){
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             [self Proceed];
         }
     }

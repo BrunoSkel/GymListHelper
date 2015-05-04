@@ -11,4 +11,5 @@
 @interface ExerciseInfoScreen : UIViewController
 @property NSString *fullname;
 @property NSString *infodata;
+@property NSArray *picdata;
 @end

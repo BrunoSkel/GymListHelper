@@ -31,6 +31,7 @@
 		15AF28981AE17AA900293E95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AF28971AE17AA900293E95 /* QuartzCore.framework */; };
 		15AF289A1AE17AB900293E95 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AF28991AE17AB900293E95 /* AudioToolbox.framework */; };
 		15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */; };
+		15E044DD1AF78E2F00C5DE6A /* ZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E044DC1AF78E2F00C5DE6A /* ZoomImage.m */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
 		1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DF0391ACAD280004E294A /* PageViewOverride.m */; };
@@ -143,6 +144,8 @@
 		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
 		15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseInfoScreen.h; sourceTree = "<group>"; };
 		15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseInfoScreen.m; sourceTree = "<group>"; };
+		15E044DB1AF78E2F00C5DE6A /* ZoomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImage.h; sourceTree = "<group>"; };
+		15E044DC1AF78E2F00C5DE6A /* ZoomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImage.m; sourceTree = "<group>"; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChartTableCell.m; sourceTree = "<group>"; };
 		15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChartTableCell.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				154DEAC21ABAF98500CDBC27 /* ChartEditor.h */,
 				154DEAC31ABAFA0800CDBC27 /* ChartEditor.m */,
 				154F094F1AB9948A00EC8087 /* Main.storyboard */,
+				15E044DB1AF78E2F00C5DE6A /* ZoomImage.h */,
+				15E044DC1AF78E2F00C5DE6A /* ZoomImage.m */,
 				153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */,
 				153B4ED61ADFDC5500AC3E10 /* TermsScreen.h */,
 				157C7AB31AC97FB300EE25A2 /* PageCoreViewController.m */,
@@ -560,6 +565,7 @@
 				CB297FB21ACC0DCE00849FD2 /* GalleryScreen.m in Sources */,
 				1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */,
 				CBCAB0771AD6B78200FD6004 /* SharePreview.m in Sources */,
+				15E044DD1AF78E2F00C5DE6A /* ZoomImage.m in Sources */,
 				CBAE14741ACAFEE4009BE1FA /* CJSONDeserializer.m in Sources */,
 				CBAE147F1ACB12EB009BE1FA /* LoginScreen.m in Sources */,
 				154F096C1AB9B41E00EC8087 /* DoExerciseScreen.m in Sources */,
@@ -789,7 +795,7 @@
 				INFOPLIST_FILE = GymListHelperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymListHelper.app/GymListHelper";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -805,7 +811,7 @@
 				INFOPLIST_FILE = GymListHelperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymListHelper.app/GymListHelper";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};

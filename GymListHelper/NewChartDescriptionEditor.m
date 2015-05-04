@@ -33,27 +33,26 @@
 
 @implementation NewChartDescriptionEditor
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        
+        //Translation initialization
+        
+        _editroutinestring=@"Edit Routine";
+        _addroutinestring=@"Add New Routine";
+        _newroutinestring=@"New Routine";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _editroutinestring=@"Edit Routine";
-    _addroutinestring=@"Add New Routine";
-    _newroutinestring=@"New Routine";
-    
-    _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    
-    
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-    
-        _editroutinestring=@"Editar Treino";
-        _addroutinestring=@"Novo Treino";
-        _newroutinestring=@"Novo Treino";
-        
-    }
-    
     // Do any additional setup after loading the view.
     self.ChartNameNew.delegate = self;
-    
     self.switchHypertrophy.tag = 0;
     self.switchDefinition.tag = 1;
     self.switchTonification.tag = 2;
@@ -62,27 +61,17 @@
     //_isEdit=NO;
 }
 
-//Make the keyboard dissapear after editing textfields======================
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-        [theTextField resignFirstResponder];
-    return YES;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //hides keyboard when another part of layout was touched
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
-//==========================================================================
-
--(void)editMode{
-    NSLog(@"cheguei");
-    _isEdit=YES;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"view will appear");
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _editroutinestring=@"Editar Treino";
+        _addroutinestring=@"Novo Treino";
+        _newroutinestring=@"Novo Treino";
+        
+    }
+
     if (self.isEdit==YES){
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
         [self.MainLabel setText:self.editroutinestring];
@@ -161,9 +150,31 @@
         [self.ChartCategories addObject:@"NO"]; // Strengh
         [self.switchStrengh setOn:NO];
         self.labelStrengh.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-
+        
         NSLog(@"Current chart: %@", self.ChartCategories);
     }
+}
+
+//Make the keyboard dissapear after editing textfields======================
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+        [theTextField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+//==========================================================================
+
+-(void)editMode{
+    NSLog(@"cheguei");
+    _isEdit=YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -206,6 +217,9 @@
         //Delete wait times associated to this chart
         [controller.WaitTimesArray removeObjectAtIndex:self.EditThisRoutine];
         
+        //Delete pictures associated to this chart
+        [controller.allPicData removeObjectAtIndex:self.EditThisRoutine];
+        
         //Delete the owner data
         [controller.ByUserArray removeObjectAtIndex:self.EditThisRoutine];
         
@@ -230,6 +244,10 @@
         filePath = [documentsDirectory
                     stringByAppendingPathComponent:@"byUserFile"];
         [controller.ByUserArray writeToFile:filePath atomically:YES];
+        
+        filePath = [documentsDirectory
+                    stringByAppendingPathComponent:@"picDataFile"];
+        [controller.allPicData writeToFile:filePath atomically:YES];
         
         //Now reload
         [controller.tableData removeAllObjects];
@@ -290,36 +308,40 @@
         NSString *documentsDirectory = paths[0];
         NSString *filePath;
         
-        //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
+        //Add new workout, and a subworkout A
         [controller.allChartData addObject: [NSMutableArray array]];
         NSInteger newposition=[controller.allChartData count]-1;
         NSLog(@"New position = %ld",(long)newposition);
-        [controller.allChartData[newposition] addObject: [NSMutableArray array]];
         [controller.allChartData[newposition] addObject: [NSMutableArray array]];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
         //Adding Information file for the chart
-        //Add new workout, and a subworkout A and B since segmented control doesnt allow only one segment
+        //Add new workout, and a subworkout A
         [controller.allInfoData addObject: [NSMutableArray array]];
-        [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
         [controller.allInfoData[newposition] addObject: [NSMutableArray array]];
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"infoDataFile"];
         [controller.allInfoData writeToFile:filePath atomically:YES];
         
+        //Adding Pictures file for the chart
+        //Add new workout, and a subworkout A
+        [controller.allPicData addObject: [NSMutableArray array]];
+        [controller.allPicData[newposition] addObject: [NSMutableArray array]];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
+        [controller.allPicData writeToFile:filePath atomically:YES];
+        
         //Adding new chart name
         [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
         
-        //And A and B string names
+        //And A string names
         [controller.ChartNamesArray addObject: [NSMutableArray array]];
         
         [controller.ChartNamesArray[newposition] addObject: @"A"];
-        [controller.ChartNamesArray[newposition] addObject: @"B"];
         
         [controller.WaitTimesArray addObject: [NSMutableArray array]];
-        [controller.WaitTimesArray[newposition] addObject: @"30"];
         [controller.WaitTimesArray[newposition] addObject: @"30"];
         
         //Adding categories
