@@ -171,10 +171,10 @@
     self.cooldownLabel.text=[NSString stringWithFormat:@"00:%02d",self.RemainingCooldownSeconds];
     }
     if (self.RemainingCooldownSeconds==0){
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         [self HideCooldown];
         //Checks if the series are over
         if (self.RemainingSeries<=0){
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             [self Proceed];
         }
     }

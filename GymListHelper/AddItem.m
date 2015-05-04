@@ -77,7 +77,7 @@
         [self.InfoBox setText:@"Coloque algumas informações aqui!"];
     }
     
-    self.scrollView.contentSize = CGSizeMake(320, 1000);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 930);
     
     if (_isEdit==YES){
         

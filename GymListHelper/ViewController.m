@@ -266,6 +266,7 @@
         controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
         
         controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
     }
     
     
