@@ -10,8 +10,8 @@
 #import "ChartsMenu.h"
 
 @interface NewChartDescriptionEditor ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBut;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
-@property (strong, nonatomic) IBOutlet UIButton *cancelBut;
 @property NSString *editroutinestring;
 @property NSString *addroutinestring;
 @property NSString *newroutinestring;
@@ -41,7 +41,6 @@
         //Translation initialization
         
         _editroutinestring=@"Edit Routine";
-        _addroutinestring=@"Add New Routine";
         _newroutinestring=@"New Routine";
         _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     }
@@ -67,14 +66,13 @@
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
         
         _editroutinestring=@"Editar Treino";
-        _addroutinestring=@"Novo Treino";
         _newroutinestring=@"Novo Treino";
         
     }
 
     if (self.isEdit==YES){
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
-        [self.MainLabel setText:self.editroutinestring];
+        [self.navigationItem setTitle:self.editroutinestring];
         self.DeleteButton.hidden = NO;
         
         // Check categories data and change switches
@@ -128,7 +126,7 @@
     else{
         self.DeleteButton.hidden = YES;
         self.ChartNameNew.text = self.newroutinestring;
-        [self.MainLabel setText:self.addroutinestring];
+        [self.navigationItem setTitle:self.newroutinestring];
         
         self.ChartCategories = [NSMutableArray array];
         [self.ChartCategories addObject:@"YES"]; // Hypertrophy

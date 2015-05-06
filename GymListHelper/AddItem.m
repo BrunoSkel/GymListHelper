@@ -14,8 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *seriesField;
 @property (strong, nonatomic) IBOutlet UITextField *repField;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
-@property (strong, nonatomic) IBOutlet UILabel *MainLabel;
-@property (strong, nonatomic) IBOutlet UIButton *cancelBut;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBut;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
@@ -86,7 +85,7 @@
         _nameField.text=_retrievedName;
         _seriesField.text=_retrievedSeries;
         _repField.text=_retrievedRep;
-        [_MainLabel setText:self.editstring];
+        [self.navigationItem setTitle:self.editstring];
         _DeleteButton.hidden=NO;
 
         //Fill Box
@@ -119,7 +118,7 @@
     else{ //Not editing, creating new exercise
         _DeleteButton.hidden=YES;
         _nameField.text=@"";
-        [_MainLabel setText:self.addstring];
+        [self.navigationItem setTitle:self.addstring];
     }
     
         self.PIC1.contentMode=UIViewContentModeScaleAspectFit;

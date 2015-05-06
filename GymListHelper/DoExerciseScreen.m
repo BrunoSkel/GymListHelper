@@ -11,7 +11,6 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface DoExerciseScreen ()
-@property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *ExerciseName;
 @property (strong, nonatomic) IBOutlet UILabel *RepCount;
 @property int currentExerciseIndex;
@@ -56,7 +55,7 @@
     
     _skipped=NO;
     _currentExerciseIndex=0;
-    _ChartNameLabel.text=_chartname;
+    self.navigationItem.title=_chartname;
     [self Initiate];
 }
 

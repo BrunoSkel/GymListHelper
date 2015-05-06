@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *TextView;
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
-@property (strong, nonatomic) IBOutlet UILabel *exNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *seriesRepsLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC1;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC2;
@@ -33,7 +32,7 @@
     self.TextView.layer.borderWidth = 0.5f;
     self.TextView.layer.borderColor = [[UIColor blackColor] CGColor];
     [self retrieveInformation];
-    self.exNameLabel.text=self.retrievedName;
+    self.navigationItem.title=self.retrievedName;
     self.seriesRepsLabel.text=[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep];
     if (self.infodata!=NULL)
     self.TextView.text=self.infodata;

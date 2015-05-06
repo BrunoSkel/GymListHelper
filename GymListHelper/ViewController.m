@@ -241,7 +241,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToExercise"]){
-        DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
+        
+        UINavigationController *navController = [segue destinationViewController];
+        
+        DoExerciseScreen *controller = (DoExerciseScreen *)([navController viewControllers][0]);
         controller.exercisedata=self.tableData;
         controller.chartname=[NSString stringWithFormat:self.chartstring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
@@ -257,7 +260,10 @@
     
         
     if([segue.identifier isEqualToString:@"ExerciseInfo"]){
-            ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
+        
+        UINavigationController *navController = [segue destinationViewController];
+        
+        ExerciseInfoScreen *controller = (ExerciseInfoScreen *)([navController viewControllers][0]);
         
         CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];

@@ -20,9 +20,15 @@
 
 @synthesize imageView = _imageView;
 
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 1
+    [self setNeedsStatusBarAppearanceUpdate];
     UIImage *image = self.sentimage;
     self.imageView = [[UIImageView alloc] initWithImage:image];
     self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};

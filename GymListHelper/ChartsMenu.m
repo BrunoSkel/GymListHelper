@@ -312,7 +312,10 @@
     }
     
     else if([segue.identifier isEqualToString:@"EditRoutine"]){
-        NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
+        
+        UINavigationController *navController = [segue destinationViewController];
+        
+        NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)([navController viewControllers][0]);
         NSIndexPath *indexPath = [self getButtonIndexPath:sender];
         controller.EditThisRoutine = (int)indexPath.row;
         controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];

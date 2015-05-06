@@ -439,7 +439,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"EditExercise"]){
-        AddItem *controller = (AddItem *)segue.destinationViewController;
+        
+        UINavigationController *navController = [segue destinationViewController];
+        AddItem *controller = (AddItem *)([navController viewControllers][0]);
         controller.EditThisExercise=_TouchedIndex;
         controller.ChosenSubWorkout=_saveToChart;
         controller.ChosenWorkout=_ChosenWorkout;
