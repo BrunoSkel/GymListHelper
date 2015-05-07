@@ -117,10 +117,10 @@
     NSError *error = NULL;
     
     NSString *sendData = @"category=";
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", (self.ChosenCategory + 1)]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%d", (self.ChosenCategory + 1)]];
     
     sendData = [sendData stringByAppendingString:@"&language="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", self.ChosenLanguage]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)self.ChosenLanguage]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/getChartsWithCategory.php"]];
     

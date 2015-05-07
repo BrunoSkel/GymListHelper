@@ -180,7 +180,7 @@
             
             
             if([self.allChartData[self.ShareThisRoutine][i] count] != 0){
-                NSLog(@"%lu",[self.allChartData[self.ShareThisRoutine][i] count]);
+                NSLog(@"%lu",(unsigned long)[self.allChartData[self.ShareThisRoutine][i] count]);
                 NSLog(@"%@",self.allChartData[self.ShareThisRoutine][i]);
                 
                 subroutinesWithExercises++;
@@ -316,7 +316,7 @@
     sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", jsonSrtWaitTimes]];
 
     sendData = [sendData stringByAppendingString:@"&language="];
-    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld",self.ChosenLanguage]];
+    sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.ChosenLanguage]];
 
     sendData = [sendData stringByAppendingString:@"&comment="];
     sendData = [sendData stringByAppendingString:self.txtDescription.text];

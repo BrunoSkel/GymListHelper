@@ -33,7 +33,6 @@
     
     BOOL isfirst=[self CheckifnotFirst];
     if (isfirst==NO){
-        NSLog(@"cheguei");
         [self performSegueWithIdentifier:@"ToMain" sender:self];
         return;
     }

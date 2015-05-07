@@ -8,29 +8,17 @@
 
 #import "NewChartDescriptionEditor.h"
 #import "ChartsMenu.h"
+#import "GoalPicker.h"
+#import "GoalCellController.h"
 
 @interface NewChartDescriptionEditor ()
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBut;
+@property (strong, nonatomic) IBOutlet UIButton *saveBut;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property NSString *editroutinestring;
 @property NSString *addroutinestring;
 @property NSString *newroutinestring;
 @property NSString *language;
-
-@property (weak, nonatomic) IBOutlet UISwitch *switchHypertrophy;
-@property (weak, nonatomic) IBOutlet UILabel *labelHypertrophy;
-@property (weak, nonatomic) IBOutlet UISwitch *switchDefinition;
-@property (weak, nonatomic) IBOutlet UILabel *labelDefinition;
-@property (weak, nonatomic) IBOutlet UISwitch *switchTonification;
-@property (weak, nonatomic) IBOutlet UILabel *labelTonification;
-@property (weak, nonatomic) IBOutlet UISwitch *switchFatLoss;
-@property (weak, nonatomic) IBOutlet UILabel *labelFatLoss;
-@property (weak, nonatomic) IBOutlet UISwitch *switchStrengh;
-@property (weak, nonatomic) IBOutlet UILabel *labelStrengh;
-
-- (IBAction)switchObjective:(id)sender;
 @end
-
 @implementation NewChartDescriptionEditor
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -43,6 +31,16 @@
         _editroutinestring=@"Edit Routine";
         _newroutinestring=@"New Routine";
         _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        
+        
+        //Chart categories needs to be created now, as the ViewController info will be soon be sent to the GoalPicker tableview
+        self.ChartCategories = [NSMutableArray array];
+        [self.ChartCategories addObject:@"YES"]; // Hypertrophy
+        [self.ChartCategories addObject:@"NO"]; // Definition
+        [self.ChartCategories addObject:@"NO"]; // Tonification
+        [self.ChartCategories addObject:@"NO"]; // Fat Loss
+        [self.ChartCategories addObject:@"NO"]; // Strength
+        
     }
     return self;
 }
@@ -52,11 +50,11 @@
     
     // Do any additional setup after loading the view.
     self.ChartNameNew.delegate = self;
-    self.switchHypertrophy.tag = 0;
+   /* self.switchHypertrophy.tag = 0;
     self.switchDefinition.tag = 1;
     self.switchTonification.tag = 2;
     self.switchFatLoss.tag = 3;
-    self.switchStrengh.tag = 4;
+    self.switchStrengh.tag = 4;*/
     //_isEdit=NO;
 }
 
@@ -78,76 +76,11 @@
         // Check categories data and change switches
         self.ChartCategories = self.sentCategorieArray[self.EditThisRoutine];
         
-        if([self.ChartCategories[0] isEqual: @"YES"]) {
-            [self.switchHypertrophy setOn:YES];
-            self.labelHypertrophy.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        }
-        else {
-            [self.switchHypertrophy setOn:NO];
-            self.labelHypertrophy.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        }
-        
-        if([self.ChartCategories[1] isEqual: @"YES"]) {
-            [self.switchDefinition setOn:YES];
-            self.labelDefinition.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        } else {
-            [self.switchDefinition setOn:NO];
-            self.labelDefinition.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        }
-        
-        if([self.ChartCategories[2] isEqual: @"YES"]) {
-            [self.switchTonification setOn:YES];
-            self.labelTonification.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        }
-        else {
-            [self.switchTonification setOn:NO];
-            self.labelTonification.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        }
-        
-        if([self.ChartCategories[3] isEqual: @"YES"]) {
-            [self.switchFatLoss setOn:YES];
-            self.labelFatLoss.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        }
-        else {
-            [self.switchFatLoss setOn:NO];
-            self.labelFatLoss.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        }
-        
-        if([self.ChartCategories[4] isEqual: @"YES"]) {
-            [self.switchStrengh setOn:YES];
-            self.labelStrengh.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        }
-        else {
-            [self.switchStrengh setOn:NO];
-            self.labelStrengh.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        }
-        NSLog(@"Current chart: %@", self.ChartCategories);
     }
     else{
         self.DeleteButton.hidden = YES;
         self.ChartNameNew.text = self.newroutinestring;
         [self.navigationItem setTitle:self.newroutinestring];
-        
-        self.ChartCategories = [NSMutableArray array];
-        [self.ChartCategories addObject:@"YES"]; // Hypertrophy
-        [self.switchHypertrophy setOn:YES];
-        self.labelHypertrophy.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
-        
-        [self.ChartCategories addObject:@"NO"]; // Definition
-        [self.switchDefinition setOn:NO];
-        self.labelDefinition.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        
-        [self.ChartCategories addObject:@"NO"]; // Tonification
-        [self.switchTonification setOn:NO];
-        self.labelTonification.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        
-        [self.ChartCategories addObject:@"NO"]; // Fat Loss
-        [self.switchFatLoss setOn:NO];
-        self.labelFatLoss.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        
-        [self.ChartCategories addObject:@"NO"]; // Strengh
-        [self.switchStrengh setOn:NO];
-        self.labelStrengh.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
         
         NSLog(@"Current chart: %@", self.ChartCategories);
     }
@@ -183,6 +116,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     //Checking if he pressed the delete button
     UIButton *button = (UIButton *)sender;
+    
+    if ([segue.identifier isEqualToString:@"ContainerConnection"]){
+        GoalCellController *controller = (GoalCellController *)segue.destinationViewController;
+        controller.parent=self;
+        return;
+    }
+    
     if (button==self.DeleteButton){
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
         
@@ -256,7 +196,7 @@
     //Check if hes editing or creating a new chart
     if (self.isEdit==YES){
         NSLog(@"Saving Edition");
-        if (self.ChartNameNew.text.length > 0 && sender!=self.cancelBut) {
+        if (button==self.saveBut && self.ChartNameNew.text.length > 0) {
             ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
             
             //SAVE CHART
@@ -298,7 +238,7 @@
         return;
     }
     
-    if (self.ChartNameNew.text.length > 0 && sender!=self.cancelBut) {
+    if (self.ChartNameNew.text.length > 0 && button==self.saveBut) {
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
         
         //SAVE CHART
@@ -381,7 +321,7 @@
 
 #pragma mark Auxiliar
 - (void) SaveSwitchValues {
-    if(self.switchHypertrophy.isOn) [self.ChartCategories replaceObjectAtIndex:0 withObject:@"YES"];
+  /*  if(self.switchHypertrophy.isOn) [self.ChartCategories replaceObjectAtIndex:0 withObject:@"YES"];
     else [self.ChartCategories replaceObjectAtIndex:0 withObject:@"NO"];
     
     if(self.switchDefinition.isOn) [self.ChartCategories replaceObjectAtIndex:1 withObject:@"YES"];
@@ -394,7 +334,7 @@
     else [self.ChartCategories replaceObjectAtIndex:3 withObject:@"NO"];
     
     if(self.switchStrengh.isOn) [self.ChartCategories replaceObjectAtIndex:4 withObject:@"YES"];
-    else [self.ChartCategories replaceObjectAtIndex:4 withObject:@"NO"];
+    else [self.ChartCategories replaceObjectAtIndex:4 withObject:@"NO"];*/
 }
 
 //Picker stuff
@@ -407,7 +347,7 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)switchObjective:(id)sender {
+/*- (IBAction)switchObjective:(id)sender {
     if([sender tag] == 0) {
         if(!self.switchHypertrophy.isOn) {
             self.labelHypertrophy.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
@@ -448,5 +388,5 @@
             self.labelStrengh.textColor = [UIColor colorWithRed:0.10588235 green:0.61176471 blue:0.090196078 alpha:1.0];
         }
     }
-}
+}*/
 @end
