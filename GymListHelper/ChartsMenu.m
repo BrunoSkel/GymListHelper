@@ -15,6 +15,7 @@
 #import "CJSONDeserializer.h"
 
 @interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITabBar *tabBar;
 @property NSString *language;
 @property NSString* hipertrofia;
 @property NSString* definition;
@@ -51,6 +52,9 @@
     
     [super viewWillAppear:animated];
     
+    //Tabbar default selection
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:1]];
+    
     //Load charts
     [self LoadChartData];
     _tableData=[NSMutableArray arrayWithArray:_allChartData];
@@ -64,6 +68,7 @@
         _fatloss=@"Perda de Gordura";
     }
     //
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,11 +82,13 @@
     NSString *Example=@"Example";
     NSString *likethis=@"is like this, this and this";
     NSString *WorkoutName=@"Example Workout";
+    NSString *WorkoutDescription=@"This is just an example of what you can do in Mirin. Blablablablabla. Bla.";
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
         Example=@"Exemplo";
         likethis=@"é realizado assim, assim, e assim.";
         WorkoutName=@"Treino Exemplo";
+        WorkoutDescription=@"Isso é apenas um exemplo do que pode ser feito no Mirin. Blablablabla. Bla.";
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -186,7 +193,9 @@
     if (_ChartNamesArray==NULL){
         //Addind a new routine name
         _RoutineNamesArray = [NSMutableArray array];
-        [_RoutineNamesArray addObject: WorkoutName];
+        [_RoutineNamesArray addObject: [NSMutableArray array]];
+        [_RoutineNamesArray[0] addObject: WorkoutName];
+        [_RoutineNamesArray[0] addObject: WorkoutDescription];
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
         [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
@@ -229,6 +238,8 @@
     //=========================================
     //PICDATA: To avoid breaking previous versions, the new files checked the workouts, and get created accordingly
     
+    //PicData
+    
     filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
     
     _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
@@ -251,7 +262,7 @@
             }
         }
         
-
+        
         
         NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
         [_allPicData writeToFile:filePathInfo atomically:YES];
@@ -263,6 +274,19 @@
     //=========================================
     //=========================================
     //=========================================
+    
+    //Routine Names -> Now an array with name and description
+    for (int i=0;i<[_RoutineNamesArray count];i++){
+        if(![_RoutineNamesArray[i] isKindOfClass:[NSMutableArray class]]){
+            NSString* namebackup=_RoutineNamesArray[i];
+            [_RoutineNamesArray replaceObjectAtIndex:i withObject:[NSMutableArray array]];
+            [_RoutineNamesArray[i] addObject:namebackup];
+            [_RoutineNamesArray[i] addObject:@" "];
+        }
+    }
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+    [_RoutineNamesArray writeToFile:filePath atomically:YES];
     
 }
 
@@ -398,7 +422,7 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
+    lbChartName.text = self.RoutineNamesArray[indexPath.row][0];
     
     [shareButton setEnabled:YES];
     

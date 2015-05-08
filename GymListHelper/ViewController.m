@@ -29,6 +29,7 @@
 @property NSString *retrievedName;
 @property NSString *chartstring;
 @property NSString* language;
+@property int TouchedIndex;
 @end
 
 @implementation ViewController
@@ -90,7 +91,7 @@
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     //_ChosenWorkout=0;
-    self.ChartNameLabel.text=[NSString stringWithFormat:@"%@",self.RoutineNamesArray[self.ChosenWorkout]];
+    self.navigationItem.title=[NSString stringWithFormat:@"%@",self.RoutineNamesArray[self.ChosenWorkout][0]];
     self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][0]];
     
     //Reloads the table to show up properly on the screen
@@ -165,6 +166,11 @@
 }
 
 #pragma mark Delegate Methods
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    self.TouchedIndex=(int)indexPath.row;
+    [self performSegueWithIdentifier: @ "ExerciseInfo" sender: self];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -241,10 +247,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToExercise"]){
+
+        DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
         
-        UINavigationController *navController = [segue destinationViewController];
-        
-        DoExerciseScreen *controller = (DoExerciseScreen *)([navController viewControllers][0]);
         controller.exercisedata=self.tableData;
         controller.chartname=[NSString stringWithFormat:self.chartstring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
         //Converting cooldown string to int
@@ -261,18 +266,12 @@
         
     if([segue.identifier isEqualToString:@"ExerciseInfo"]){
         
-        UINavigationController *navController = [segue destinationViewController];
+        ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
         
-        ExerciseInfoScreen *controller = (ExerciseInfoScreen *)([navController viewControllers][0]);
+        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
         
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-        
-        
-        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
-        
-        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
-        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
     }
     
     

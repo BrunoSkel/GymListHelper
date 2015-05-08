@@ -94,18 +94,6 @@
     
 }
 
-//Flash scroll indicator
-
--(void)viewDidAppear:(BOOL)animated{
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
-    
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_timer invalidate];
-}
-
 //Make the keyboard dissapear after editing textfields======================
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     [theTextField resignFirstResponder];
@@ -240,6 +228,9 @@
 //Deletes the exercise, when it's touched, according to the chosen segment
 //When Touched, trigger the Edit window
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     _TouchedIndex=(int)indexPath.row;
     [self performSegueWithIdentifier:@"EditExercise" sender:self];
 }
@@ -440,8 +431,7 @@
     
     if([segue.identifier isEqualToString:@"EditExercise"]){
         
-        UINavigationController *navController = [segue destinationViewController];
-        AddItem *controller = (AddItem *)([navController viewControllers][0]);
+        AddItem *controller = (AddItem *)segue.destinationViewController;
         controller.EditThisExercise=_TouchedIndex;
         controller.ChosenSubWorkout=_saveToChart;
         controller.ChosenWorkout=_ChosenWorkout;

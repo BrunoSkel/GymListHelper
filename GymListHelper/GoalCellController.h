@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NewChartDescriptionEditor.h"
 @interface GoalCellController : UITableViewController
+@property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 @property NewChartDescriptionEditor* parent;
 @end

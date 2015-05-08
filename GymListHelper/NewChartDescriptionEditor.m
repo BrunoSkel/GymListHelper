@@ -17,6 +17,7 @@
 @property NSString *editroutinestring;
 @property NSString *addroutinestring;
 @property NSString *newroutinestring;
+@property (strong, nonatomic) IBOutlet UITextView *routineInfoBox;
 @property NSString *language;
 @end
 @implementation NewChartDescriptionEditor
@@ -69,7 +70,9 @@
     }
 
     if (self.isEdit==YES){
-        self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine];
+        NSLog(@"%@",self.sentNameArray[self.EditThisRoutine][0]);
+        self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine][0];
+        self.routineInfoBox.text = self.sentNameArray[self.EditThisRoutine][1];
         [self.navigationItem setTitle:self.editroutinestring];
         self.DeleteButton.hidden = NO;
         
@@ -208,9 +211,8 @@
             
             
             //Adding new chart name
-            NSLog(@"Old: %@",controller.RoutineNamesArray[self.EditThisRoutine]);
-            [controller.RoutineNamesArray replaceObjectAtIndex:self.EditThisRoutine withObject:self.ChartNameNew.text];
-                        NSLog(@"New: %@",[controller.RoutineNamesArray objectAtIndex:self.EditThisRoutine]);
+            [controller.RoutineNamesArray[self.EditThisRoutine] replaceObjectAtIndex:0 withObject:self.ChartNameNew.text];
+            [controller.RoutineNamesArray[self.EditThisRoutine] replaceObjectAtIndex:1 withObject:self.routineInfoBox.text];
             
             filePath = [documentsDirectory
                         stringByAppendingPathComponent:@"routineNamesFile"];
@@ -271,8 +273,10 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
         [controller.allPicData writeToFile:filePath atomically:YES];
         
-        //Adding new chart name
-        [controller.RoutineNamesArray addObject: self.ChartNameNew.text];
+        //Adding new chart name and description
+        [controller.RoutineNamesArray addObject: [NSMutableArray array]];
+        [controller.RoutineNamesArray[newposition] addObject: self.ChartNameNew.text];
+        [controller.RoutineNamesArray[newposition] addObject: self.routineInfoBox.text];
         
         //And A string names
         [controller.ChartNamesArray addObject: [NSMutableArray array]];
