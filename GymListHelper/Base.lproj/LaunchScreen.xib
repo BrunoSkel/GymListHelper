@@ -9,10 +9,26 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mirinlaunch" translatesAutoresizingMaskIntoConstraints="NO" id="Ir8-Am-NM2">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ir8-Am-NM2" secondAttribute="bottom" id="6jg-D3-bDQ"/>
+                <constraint firstAttribute="centerX" secondItem="Ir8-Am-NM2" secondAttribute="centerX" id="8SO-95-cnV"/>
+                <constraint firstItem="Ir8-Am-NM2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9Pc-he-K97"/>
+                <constraint firstItem="Ir8-Am-NM2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QtB-9I-tDg"/>
+                <constraint firstAttribute="centerY" secondItem="Ir8-Am-NM2" secondAttribute="centerY" id="wfm-jC-dHK"/>
+                <constraint firstAttribute="trailing" secondItem="Ir8-Am-NM2" secondAttribute="trailing" id="wqu-BC-n84"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="mirinlaunch" width="640" height="1136"/>
+    </resources>
 </document>

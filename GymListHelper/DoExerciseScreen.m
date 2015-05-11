@@ -11,10 +11,14 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface DoExerciseScreen ()
+@property (strong, nonatomic) IBOutlet UIView *NoCooldownView;
+@property (strong, nonatomic) IBOutlet UILabel *SeriesIndicatorLabel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *DoneBarButton;
 @property (strong, nonatomic) IBOutlet UILabel *ExerciseName;
 @property (strong, nonatomic) IBOutlet UILabel *RepCount;
 @property int currentExerciseIndex;
 @property int RemainingSeries;
+@property int TotalSeries;
 @property int ExerciseAmount;
 @property (strong, nonatomic) IBOutlet UILabel *DoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *RepsLabel;
@@ -37,6 +41,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    _RemainingSeries=99; //anti bug
     _result0=@"And by that, I mean... nothing?";
     _result1=@"But next time, try not to skip.";
     _result2=@"Now, don't give up!";
@@ -70,31 +75,47 @@
     }
     else
     [self ShowExercise:self.currentExerciseIndex];
+    
 }
 
 -(void)HideCooldown{
     [self.stopWatchTimer invalidate];
     self.stopWatchTimer = nil;
-    self.cooldownLabel.hidden=YES;
-    self.WaitLabel.hidden=YES;
-    self.ExerciseName.hidden=NO;
-    self.RepCount.hidden=NO;
-    self.DoLabel.hidden=NO;
-    self.RepsLabel.hidden=NO;
-    self.HowLabel.hidden=NO;
-    self.DoneLabel.hidden=NO;
+    
+    self.NoCooldownView.hidden=NO;
+    self.DoneBarButton.enabled=YES;
+   // self.cooldownLabel.hidden=YES;
+   // self.WaitLabel.hidden=YES;
+   // self.ExerciseName.hidden=NO;
+   // self.RepCount.hidden=NO;
+   // self.DoLabel.hidden=NO;
+   // self.RepsLabel.hidden=NO;
+   // self.HowLabel.hidden=NO;
+   // self.DoneLabel.hidden=NO;
    // _SkipLabel.hidden=NO;
+    
+    //Checks if the series are over
+    if (self.RemainingSeries<=0){
+        [self Proceed];
+    }
+    
+    self.SeriesIndicatorLabel.text=[NSString stringWithFormat:@"Series %d of %d",self.TotalSeries-self.RemainingSeries+1,self.TotalSeries];
+    
 }
 
 -(void)ShowCooldown{
-    self.cooldownLabel.hidden=NO;
-    self.WaitLabel.hidden=NO;
-    self.ExerciseName.hidden=YES;
-    self.RepCount.hidden=YES;
-    self.DoLabel.hidden=YES;
-    self.RepsLabel.hidden=YES;
-    self.HowLabel.hidden=YES;
-    self.DoneLabel.hidden=YES;
+    
+    self.NoCooldownView.hidden=YES;
+    self.DoneBarButton.enabled=NO;
+    
+   // self.cooldownLabel.hidden=NO;
+   // self.WaitLabel.hidden=NO;
+   // self.ExerciseName.hidden=YES;
+   // self.RepCount.hidden=YES;
+   // self.DoLabel.hidden=YES;
+   // self.RepsLabel.hidden=YES;
+   // self.HowLabel.hidden=YES;
+   // self.DoneLabel.hidden=YES;
    // _SkipLabel.hidden=YES;
 }
 
@@ -122,8 +143,12 @@
     
     NSString *SeriesString=[RepCountInformation objectAtIndex:0];
     
+    self.TotalSeries=[SeriesString intValue];
     self.RemainingSeries=[SeriesString intValue];
         NSLog(@"Series Amount: %d",self.RemainingSeries);
+    
+    self.SeriesIndicatorLabel.text=[NSString stringWithFormat:@"Series %d of %d",self.TotalSeries-self.RemainingSeries+1,self.TotalSeries];
+    
 }
 
 - (IBAction)DonePressed:(id)sender {
@@ -143,7 +168,7 @@
     //When Skip is pressed, go to the next exercise regardless of the series/cooldown.
     
     //Checking if he skipped the cooldown or the exercise
-    if (self.WaitLabel.hidden==NO){
+    if (self.NoCooldownView.hidden==YES){
      [self HideCooldown];
      return;
     }
@@ -172,10 +197,6 @@
     if (self.RemainingCooldownSeconds==0){
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         [self HideCooldown];
-        //Checks if the series are over
-        if (self.RemainingSeries<=0){
-            [self Proceed];
-        }
     }
     else
     self.RemainingCooldownSeconds--;

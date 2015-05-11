@@ -52,6 +52,12 @@
     
     [super viewWillAppear:animated];
     
+    BOOL isfirst=[self CheckifnotFirst];
+    if (isfirst==YES){
+        [self performSegueWithIdentifier:@"Tutorial" sender:self];
+        return;
+    }
+    
     //Tabbar default selection
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:1]];
     
@@ -69,6 +75,20 @@
     }
     //
 
+}
+
+-(BOOL)CheckifnotFirst{
+    int firsttime = (int)[[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
+    if (firsttime==0){
+        firsttime++;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:firsttime] forKey:@"firstTimeFile"];
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    //anti bug
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +120,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
     
@@ -287,6 +311,34 @@
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
     [_RoutineNamesArray writeToFile:filePath atomically:YES];
+    
+    //Weigth Data
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    if (_allWeightData==NULL){
+        //Cloning
+        _allWeightData = [NSMutableArray array];
+        for (int i=0;i<[_allChartData count];i++){
+            //This is the routine
+            [_allWeightData addObject: [NSMutableArray array]];
+            for (int j=0;j<[_allChartData[i] count];j++){
+                //This is the subroutines
+                [_allWeightData[i] addObject: [NSMutableArray array]];
+                for (int k=0;k<[_allChartData[i][j] count];k++){
+                    //Exercises and filling it
+                    [_allWeightData[i][j] addObject: @"None"];
+                }
+            }
+        }
+        
+        
+        
+        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [_allWeightData writeToFile:filePathInfo atomically:YES];
+    }
     
 }
 

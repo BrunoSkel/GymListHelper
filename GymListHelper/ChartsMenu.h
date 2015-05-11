@@ -11,6 +11,7 @@
 @interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong,nonatomic)  NSMutableArray *allChartData;
+@property (strong,nonatomic)  NSMutableArray *allWeightData;
 @property (strong,nonatomic)  NSMutableArray *allInfoData;
 @property (strong,nonatomic)  NSMutableArray *allPicData;
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;

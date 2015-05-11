@@ -31,12 +31,6 @@
 {
     [super viewDidAppear:NO];
     
-    BOOL isfirst=[self CheckifnotFirst];
-    if (isfirst==NO){
-        [self performSegueWithIdentifier:@"ToMain" sender:self];
-        return;
-    }
-    
     //XCODE BUG FIXER
     //[PageViewOverride _bugFix];
     //
@@ -80,20 +74,6 @@
     
 
     
-}
-
--(BOOL)CheckifnotFirst{
-    int firsttime = (int)[[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
-    if (firsttime==0){
-        firsttime++;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:firsttime] forKey:@"firstTimeFile"];
-                return YES;
-    }
-    else{
-        return NO;
-    }
-    //anti bug
-    return NO;
 }
 
 - (FirstScreenPages *)viewControllerAtIndex:(NSUInteger)index

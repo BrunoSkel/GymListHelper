@@ -247,7 +247,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToExercise"]){
-
         DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
         
         controller.exercisedata=self.tableData;
@@ -329,6 +328,11 @@
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     NSLog(@"Called");
     [self Unwinded];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 5;
 }
 
 @end

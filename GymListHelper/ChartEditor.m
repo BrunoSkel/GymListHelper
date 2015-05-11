@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "EditChartTableCell.h"
 #import "AddItem.h"
+
 #define PICKER_MIN 0
 #define PICKER_MAX 60
 
@@ -51,6 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _child=(AddItemSave*)self.childViewControllers[0];
+    
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
@@ -73,7 +76,9 @@
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     self.DeleteSubRoutine.hidden=YES;
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
+    
     // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
@@ -124,10 +129,6 @@
     return (newLength > 10) ? NO : YES;
 }
 
--(void)indicator:(BOOL)animated{
-    [_tableView flashScrollIndicators];
-}
-
 - (void)loadInitialData {
     //Loads Chart data. Doesn't need the null check this time, as they will be filled by now
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -139,6 +140,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
@@ -161,6 +166,10 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
     [self.allChartData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    [self.allWeightData writeToFile:filePath atomically:YES];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
@@ -323,7 +332,7 @@
     [self.tableView reloadData];
     
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
     
     if (s.selectedSegmentIndex>0) {
         [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
@@ -355,7 +364,7 @@
     
     [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
     
     [self SaveCharts];
     
@@ -470,6 +479,11 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
 }
 
 

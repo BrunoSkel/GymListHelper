@@ -10,6 +10,7 @@
 
 @interface AddItem () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UITextField *weightBox;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *seriesField;
 @property (strong, nonatomic) IBOutlet UITextField *repField;
@@ -23,6 +24,7 @@
 @property BOOL isEdit;
 @property NSMutableArray *allInfoData;
 @property NSMutableArray *allPicData;
+@property NSMutableArray *allWeightData;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC1;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC2;
 @property (strong, nonatomic) IBOutlet UIButton *PIC1Button;
@@ -85,6 +87,8 @@
         _nameField.text=_retrievedName;
         _seriesField.text=_retrievedSeries;
         _repField.text=_retrievedRep;
+        NSLog(@"%@",self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
+        _weightBox.text=self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise];
         [self.navigationItem setTitle:self.editstring];
         _DeleteButton.hidden=NO;
 
@@ -96,6 +100,7 @@
         if (![self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0] isEqual:@"NoPic"]){
             
             self.PIC1.image=[UIImage imageWithData:self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0]];
+            
             
         }
         
@@ -209,6 +214,10 @@
     
     self.allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    self.allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 -(void)saveInfoBox{
@@ -243,14 +252,19 @@
 //================================================================
 
 
+-(void)Save{
+    [self performSegueWithIdentifier:@"OnSave" sender:self.saveButCell];
+}
+
 //Getting out of the viewcontroller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if (sender==self.cancelBut){
+    if ([segue.identifier isEqual:@"ContainerConnection"]){
+        return;
+    }
+    if (sender==self.cancelBut && ![segue.identifier isEqual:@"OnSave"]){
         NSLog(@"Canceled");
     return;
     }
-    
     //If he deleted it
     if (sender==self.DeleteButton){
         //SAVE CHART
@@ -264,6 +278,11 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
+        
+        [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
         
         [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
         
@@ -282,7 +301,7 @@
     }
     
     //Creating new exercise
-    if (self.nameField.text.length > 0 && sender!=self.cancelBut) {
+    if (self.nameField.text.length > 0) {
         _newitem=[NSString stringWithFormat:@"%@ | %@x%@",self.nameField.text,self.seriesField.text,self.repField.text];
         NSLog(@"%@",_newitem);
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
@@ -294,6 +313,7 @@
         
         if (_isEdit==YES){
                 [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:_newitem];
+                [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.weightBox.text];
                 [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.InfoBox.text];
             
             if (self.PIC1.image!=self.defaultPic){
@@ -316,6 +336,8 @@
         }
         else{
             [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
+            
+            [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.weightBox.text];
             
             [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.InfoBox.text];
             
@@ -354,6 +376,8 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
         
         
         //SAVE CHART END
@@ -464,6 +488,22 @@
             default:
                 break;
         }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.saveButCell;
 }
 
 @end
