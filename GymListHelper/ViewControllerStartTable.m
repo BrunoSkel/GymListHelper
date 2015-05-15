@@ -17,8 +17,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    
-    if (indexPath.section==1){
+    if (indexPath.section==0){
+        ViewController* controller=(ViewController*)self.parentViewController;
+        [controller SyncWithWatch];
+    }
+    else if (indexPath.section==1){
     ViewController* controller=(ViewController*)self.parentViewController;
     [controller performSegueWithIdentifier:@"goToExercise" sender:nil];
     }

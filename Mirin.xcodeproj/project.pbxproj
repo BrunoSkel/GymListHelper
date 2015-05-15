@@ -31,6 +31,7 @@
 		15A40BB01AC18513008C82C4 /* WatchTableClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A40BAF1AC18513008C82C4 /* WatchTableClass.m */; };
 		15AF28981AE17AA900293E95 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AF28971AE17AA900293E95 /* QuartzCore.framework */; };
 		15AF289A1AE17AB900293E95 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AF28991AE17AB900293E95 /* AudioToolbox.framework */; };
+		15C6CB581B04BD9200B46BF1 /* CircularTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C6CB4D1B04BD9200B46BF1 /* CircularTimerView.m */; };
 		15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D7210D1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m */; };
 		15DD01E21AFBC4E10038232C /* ImageRounder.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DD01E11AFBC4E10038232C /* ImageRounder.m */; };
 		15DD01E51AFBCAD90038232C /* GoalPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DD01E41AFBCAD90038232C /* GoalPicker.m */; };
@@ -38,6 +39,10 @@
 		15DD01EE1AFBE0240038232C /* ProfileTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DD01ED1AFBE0240038232C /* ProfileTableCell.m */; };
 		15E044DD1AF78E2F00C5DE6A /* ZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E044DC1AF78E2F00C5DE6A /* ZoomImage.m */; };
 		15E75E671B00D59200081A95 /* ViewControllerStartTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E75E661B00D59200081A95 /* ViewControllerStartTable.m */; };
+		15E75E6B1B00E9D700081A95 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E75E6A1B00E9D700081A95 /* AVFoundation.framework */; };
+		15E75E6F1B00EC4500081A95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E75E6E1B00EC4500081A95 /* CoreGraphics.framework */; };
+		15E75E711B00EC4B00081A95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E75E701B00EC4B00081A95 /* UIKit.framework */; };
+		15E75E731B00EC5900081A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E75E721B00EC5900081A95 /* Foundation.framework */; };
 		15E894B51AC1B11800C04424 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A40BA01AC17E09008C82C4 /* Interface.storyboard */; };
 		15F68C111ACC3C1300D24E9C /* EditChartTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */; };
 		1D4234531ACDF695008E83AA /* PageViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 158DF0391ACAD280004E294A /* PageViewOverride.m */; };
@@ -148,6 +153,8 @@
 		15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GymListHelper.entitlements; sourceTree = "<group>"; };
 		15AF28971AE17AA900293E95 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		15AF28991AE17AB900293E95 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		15C6CB4C1B04BD9200B46BF1 /* CircularTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularTimerView.h; path = CircularTimerDemo/Vendor/CircularTimerView/CircularTimerView.h; sourceTree = "<group>"; };
+		15C6CB4D1B04BD9200B46BF1 /* CircularTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircularTimerView.m; path = GymListHelper/CircularTimerDemo/Vendor/CircularTimerView/CircularTimerView.m; sourceTree = SOURCE_ROOT; };
 		15D27D251ACAB6C500B60725 /* DoExerciseScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExerciseScreenWATCH.m; sourceTree = "<group>"; };
 		15D27D271ACAB6DD00B60725 /* DoExerciseScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoExerciseScreenWATCH.h; sourceTree = "<group>"; };
 		15D7210C1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseInfoScreen.h; sourceTree = "<group>"; };
@@ -164,6 +171,10 @@
 		15E044DC1AF78E2F00C5DE6A /* ZoomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImage.m; sourceTree = "<group>"; };
 		15E75E651B00D59200081A95 /* ViewControllerStartTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerStartTable.h; sourceTree = "<group>"; };
 		15E75E661B00D59200081A95 /* ViewControllerStartTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerStartTable.m; sourceTree = "<group>"; };
+		15E75E6A1B00E9D700081A95 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		15E75E6E1B00EC4500081A95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		15E75E701B00EC4B00081A95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		15E75E721B00EC5900081A95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		15E894AB1AC19A7200C04424 /* GymListHelper WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GymListHelper WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChartTableCell.m; sourceTree = "<group>"; };
 		15F68C121ACC3C2800D24E9C /* EditChartTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChartTableCell.h; sourceTree = "<group>"; };
@@ -207,6 +218,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E75E731B00EC5900081A95 /* Foundation.framework in Frameworks */,
+				15E75E711B00EC4B00081A95 /* UIKit.framework in Frameworks */,
+				15E75E6F1B00EC4500081A95 /* CoreGraphics.framework in Frameworks */,
+				15E75E6B1B00E9D700081A95 /* AVFoundation.framework in Frameworks */,
 				15AF289A1AE17AB900293E95 /* AudioToolbox.framework in Frameworks */,
 				15AF28981AE17AA900293E95 /* QuartzCore.framework in Frameworks */,
 				CBAE147A1ACB0F47009BE1FA /* FBSDKCoreKit.framework in Frameworks */,
@@ -235,6 +250,10 @@
 		154F09391AB9948A00EC8087 = {
 			isa = PBXGroup;
 			children = (
+				15E75E721B00EC5900081A95 /* Foundation.framework */,
+				15E75E701B00EC4B00081A95 /* UIKit.framework */,
+				15E75E6E1B00EC4500081A95 /* CoreGraphics.framework */,
+				15E75E6A1B00E9D700081A95 /* AVFoundation.framework */,
 				15AF28991AE17AB900293E95 /* AudioToolbox.framework */,
 				15AF28971AE17AA900293E95 /* QuartzCore.framework */,
 				CBAE14771ACB0F47009BE1FA /* FBSDKCoreKit.framework */,
@@ -267,6 +286,8 @@
 				154F09491AB9948A00EC8087 /* AppDelegate.h */,
 				154F094A1AB9948A00EC8087 /* AppDelegate.m */,
 				154F094C1AB9948A00EC8087 /* ViewController.h */,
+				15C6CB4C1B04BD9200B46BF1 /* CircularTimerView.h */,
+				15C6CB4D1B04BD9200B46BF1 /* CircularTimerView.m */,
 				154F094D1AB9948A00EC8087 /* ViewController.m */,
 				154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */,
 				154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */,
@@ -623,6 +644,7 @@
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
 				154F09481AB9948A00EC8087 /* main.m in Sources */,
+				15C6CB581B04BD9200B46BF1 /* CircularTimerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +815,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};

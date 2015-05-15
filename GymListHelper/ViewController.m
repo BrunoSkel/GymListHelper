@@ -22,7 +22,6 @@
 @property NSArray *pickerData;
 @property NSMutableArray *ChartNamesArray;
 @property NSString *selectedCooldown;
-@property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
 
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
@@ -101,7 +100,9 @@
     //Test
     //[self MultiDimensionTest];
     //Now let's send the _tableData and resttime contents to the Watch
-    [self SyncWithWatch];
+    //[self SyncWithWatch];
+    
+    [self.SegmentControlOutlet setSelectedSegmentIndex:0];
     
 }
 
@@ -162,6 +163,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
     
     _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
 }
 
@@ -240,7 +245,8 @@
     [self.tableView reloadData];
     
     //And then, I sync the tableData with the Watch
-    [self SyncWithWatch];
+    //Data now sent via table button
+    //[self SyncWithWatch];
 }
 
 #pragma mark OnSegue
@@ -251,6 +257,9 @@
         
         controller.exercisedata=self.tableData;
         controller.chartname=[NSString stringWithFormat:self.chartstring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
+        controller.weightdata=_allWeightData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
         //Converting cooldown string to int
         self.selectedCooldown = self.WaitTimesArray[self.ChosenWorkout][self.SegmentControlOutlet.selectedSegmentIndex];
         controller.cooldownAmount=[self.selectedCooldown intValue];

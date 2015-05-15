@@ -12,7 +12,7 @@
 #import "AddItem.h"
 
 #define PICKER_MIN 0
-#define PICKER_MAX 60
+#define PICKER_MAX 120
 
 @interface ChartEditor ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;

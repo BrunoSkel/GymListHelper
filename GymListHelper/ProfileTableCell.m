@@ -24,6 +24,8 @@
         UIImage * image = [UIImage imageWithData:imageData];
         self.profileImg.image = image;
         
+        NSLog(@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]);
+        
         self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
     }else{
         self.profileImg.image = [UIImage imageNamed:@"guest"];

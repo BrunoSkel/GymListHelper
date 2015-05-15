@@ -85,8 +85,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"toImageView"]){
         
-        UINavigationController *navController = [segue destinationViewController];
-        ZoomImage *controller = (ZoomImage *)([navController viewControllers][0]);
+        ZoomImage *controller = (ZoomImage *)segue.destinationViewController;
         if (sender==self.PIC1BUT)
             controller.sentimage=self.PIC1.image;
         if (sender==self.PIC2BUT)

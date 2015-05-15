@@ -20,9 +20,9 @@
 
 @synthesize imageView = _imageView;
 
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad {
@@ -52,9 +52,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"  Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];
-    backButton.tintColor=[UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = backButton;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor=self.view.backgroundColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
     // 4
     CGRect scrollViewFrame = self.scrollView.frame;
@@ -69,6 +71,16 @@
     
     // 6
     [self centerScrollViewContents];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.tintColor=nil;
+    self.navigationController.navigationBar.barTintColor=nil;
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
 }
 
 - (void)centerScrollViewContents {
