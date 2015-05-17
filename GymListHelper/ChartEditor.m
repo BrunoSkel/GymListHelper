@@ -95,8 +95,6 @@
     
         [super viewWillAppear:animated];
     
-    NSLog(@"Showing Chart Editor");
-    
 }
 
 //Make the keyboard dissapear after editing textfields======================

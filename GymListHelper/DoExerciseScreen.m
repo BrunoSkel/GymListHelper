@@ -183,7 +183,7 @@
 - (IBAction)DonePressed:(id)sender {
     //When done is pressed, reduce the series number and show the cooldown.
     //Check if he started without anything
-    if (self.ExerciseAmount==0){
+    if (self.RemainingSeries-1==0 && self.currentExerciseIndex==_ExerciseAmount-1){
         [self performSegueWithIdentifier:@"toEnd" sender:nil];
         return;
     }
@@ -230,6 +230,7 @@
 -(void)Proceed{
     //If there's still more exercises to go, show the next one. Else, finish the app
     self.currentExerciseIndex++;
+    NSLog([NSString stringWithFormat:@"%d",self.currentExerciseIndex]);
     if (self.currentExerciseIndex<self.ExerciseAmount){
         [self ShowExercise:self.currentExerciseIndex];
     }

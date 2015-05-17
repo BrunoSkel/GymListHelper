@@ -131,7 +131,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="EBz-lA-uXC">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="EBz-lA-uXC">
                                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="Y5U-gT-Luz"/>
@@ -345,6 +345,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9Xy-mE-G5y" id="pYR-Sd-CYO"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBx-q1-27h">
                                                 <rect key="frame" x="83" y="312" width="154" height="39"/>
@@ -371,7 +374,10 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9Xy-mE-G5y" id="qiL-Ge-ea0"/>
+                                                </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pictures" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydB-ET-g6G">
                                                 <rect key="frame" x="83" y="524" width="154" height="39"/>
@@ -520,6 +526,7 @@
                         <outlet property="PIC2Button" destination="bUX-Dj-0vd" id="e1Q-t6-FNT"/>
                         <outlet property="nameField" destination="fdq-ia-XPc" id="2eR-Zc-emU"/>
                         <outlet property="repField" destination="hbK-sA-jfA" id="Uh1-M3-weW"/>
+                        <outlet property="scrollView" destination="eeT-TI-7FC" id="HHG-La-sop"/>
                         <outlet property="seriesField" destination="X4V-VZ-PVN" id="RAy-Hz-42R"/>
                         <outlet property="weightBox" destination="CgO-I3-Jpa" id="wIn-NX-92O"/>
                         <segue destination="iXJ-5s-hz6" kind="unwind" identifier="OnSave" unwindAction="prepareForUnwind:" id="eMX-kZ-DmP"/>
@@ -748,7 +755,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N9N-JA-DGe" id="fXn-iN-if8">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="Ka9-xG-6v2" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="Ka9-xG-6v2" customClass="ImageRounder">
                                                     <rect key="frame" x="8" y="8" width="40" height="40"/>
                                                 </imageView>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izJ-F6-rUX">
@@ -1205,7 +1212,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pnH-08-cY2" id="P9P-nz-Qwa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-1p-D5U" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-1p-D5U" customClass="ImageRounder">
                                                     <rect key="frame" x="15" y="2" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hypertrophy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-qu-Hga">
@@ -1222,7 +1229,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AvT-82-MAf" id="gdO-vb-Ol5">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-Kf-bg8" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="V2x-Kf-bg8" customClass="ImageRounder">
                                                     <rect key="frame" x="15" y="2" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Definition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xw-EQ-u7k">
@@ -1239,7 +1246,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C8l-Bg-yZw" id="VDJ-zh-sFJ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="Ghm-9x-Ze2" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="Ghm-9x-Ze2" customClass="ImageRounder">
                                                     <rect key="frame" x="15" y="2" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tonification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXc-sg-IxO">
@@ -1256,7 +1263,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ng-Jq-ssY" id="5lW-UJ-zfN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="goJ-VJ-g3P" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="goJ-VJ-g3P" customClass="ImageRounder">
                                                     <rect key="frame" x="15" y="2" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fat Loss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6P-yL-wdc">
@@ -1273,7 +1280,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ch8-kp-AGd" id="oBQ-aQ-xos">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="XgK-Je-70S" customClass="ImageRounder">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="XgK-Je-70S" customClass="ImageRounder">
                                                     <rect key="frame" x="15" y="2" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cff-hr-tH4">
@@ -1508,7 +1515,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mjM-Ys-3J0" id="WP6-5y-cTd">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hypertrophy" translatesAutoresizingMaskIntoConstraints="NO" id="uhi-kc-GCy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="routinetag0" translatesAutoresizingMaskIntoConstraints="NO" id="uhi-kc-GCy">
                                                     <rect key="frame" x="8" y="7" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="K3n-i8-FzA"/>
@@ -2519,10 +2526,10 @@ These Terms and Conditions shall be governed by and construed in accordance with
     </scenes>
     <resources>
         <image name="guest" width="512" height="512"/>
-        <image name="hypertrophy" width="120" height="120"/>
         <image name="mirinaddpicture" width="200" height="324"/>
         <image name="mirinlaunch" width="640" height="1136"/>
         <image name="mirinnopicture" width="200" height="324"/>
+        <image name="routinetag0" width="120" height="120"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -2530,11 +2537,11 @@ These Terms and Conditions shall be governed by and construed in accordance with
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rah-RP-b99"/>
         <segue reference="1R2-Sl-5Sa"/>
-        <segue reference="kTX-dD-sTC"/>
-        <segue reference="o0w-fR-L6D"/>
+        <segue reference="rah-RP-b99"/>
+        <segue reference="YB8-ts-GGX"/>
         <segue reference="szV-bp-fm0"/>
+        <segue reference="kTX-dD-sTC"/>
         <segue reference="cUT-Oo-Pll"/>
     </inferredMetricsTieBreakers>
 </document>

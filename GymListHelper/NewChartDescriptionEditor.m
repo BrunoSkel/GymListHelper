@@ -140,6 +140,11 @@
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
         
+        //Delete weight data
+        [controller.allWeightData removeObjectAtIndex:self.EditThisRoutine];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
+        
         //Delete all information
         
         [controller.allInfoData removeObjectAtIndex:self.EditThisRoutine];
@@ -272,6 +277,14 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
         [controller.allPicData writeToFile:filePath atomically:YES];
+        
+        //Adding Weight file for the chart
+        //Add new workout, and a subworkout A
+        [controller.allWeightData addObject: [NSMutableArray array]];
+        [controller.allWeightData[newposition] addObject: [NSMutableArray array]];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
         
         //Adding new chart name and description
         [controller.RoutineNamesArray addObject: [NSMutableArray array]];

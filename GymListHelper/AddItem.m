@@ -35,6 +35,7 @@
 @property NSString *editstring;
 @property UIImageView* touchedImage;
 @property UIImage *defaultPic;
+@property CGPoint svos;
 @end
 
 @implementation AddItem
@@ -66,6 +67,11 @@
 }
 
 - (void)PrepareForShow {
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(hideKeyboard)];
+    [self.scrollView addGestureRecognizer:singleFingerTap];
     
     //Appeared: Load Info box, apply translation and Scroll size and check information sent from the previous UIViewController
     self.defaultPic=self.PIC1.image;
@@ -236,18 +242,19 @@
 
 //Make the keyboard dissapear after editing textfields======================
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
     [theTextField resignFirstResponder];
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
     [textField resignFirstResponder];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //hides keyboard when another part of layout was touched
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
+- (void)textViewDidEndEditing:(UITextView *)textField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
+    [textField resignFirstResponder];
 }
 //================================================================
 
@@ -504,6 +511,34 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.saveButCell;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.svos = self.scrollView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textField bounds];
+    rc = [textField convertRect:rc toView:self.scrollView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= 120;
+    [self.scrollView setContentOffset:pt animated:YES];
+    
+}
+
+- (void)textViewDidBeginEditing:(UITextField *)textField {
+    self.svos = self.scrollView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textField bounds];
+    rc = [textField convertRect:rc toView:self.scrollView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= 120;
+    [self.scrollView setContentOffset:pt animated:YES];
+    
+}
+
+- (void)hideKeyboard {
+    [_InfoBox endEditing:YES];
 }
 
 @end

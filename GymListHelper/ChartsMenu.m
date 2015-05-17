@@ -465,8 +465,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:indexPath.row];
+    //UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
+    //[editButton setTag:indexPath.row];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
     
@@ -474,12 +474,17 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
+    
     lbChartName.text = self.RoutineNamesArray[indexPath.row][0];
     
     [shareButton setEnabled:YES];
     
+    UIImageView *lbImageTag = (UIImageView *)[cell.contentView.subviews objectAtIndex:0];
+    
     int firstId = -1;
     NSMutableString* objectives = [NSMutableString new];
+    NSMutableString* tagimagefile=@"routinetagother.png";
+    BOOL tagset=NO;
     for(int i=0;i<[self.ChartCategoriesArray[indexPath.row] count];i++){
         if([self.ChartCategoriesArray[indexPath.row][i] isEqualToString:@"YES"]){
             if((i > firstId)&&(firstId != -1)){
@@ -505,12 +510,15 @@
                     [objectives appendString:self.strength];
                     break;
             }
-            
+            if (tagset==NO){
+                tagset=YES;
+                tagimagefile=[NSString stringWithFormat:@"routinetag%d.png",i];
+            }
         }
     }
     
     lbObjective.text = [NSString stringWithFormat:@"%@",objectives];
-    
+    lbImageTag.image=[UIImage imageNamed:tagimagefile];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
     
