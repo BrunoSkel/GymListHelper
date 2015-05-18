@@ -1794,14 +1794,8 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mpd-KR-qp3" id="f26-K8-O38">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jm0-Ne-5x6">
-                                                            <rect key="frame" x="8" y="11" width="68" height="49"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
-                                                            <color key="textColor" red="0.88235294117647056" green="0.80392156862745101" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#Exercise_Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxP-AZ-4c7">
-                                                            <rect key="frame" x="48" y="19" width="272" height="33"/>
+                                                            <rect key="frame" x="8" y="16" width="272" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                             <color key="textColor" red="0.88235294117647056" green="0.80392156862745101" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
