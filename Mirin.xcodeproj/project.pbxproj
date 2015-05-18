@@ -136,6 +136,7 @@
 		158DF03B1ACAD2B8004E294A /* PageViewOverride.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewOverride.h; sourceTree = "<group>"; };
 		158DF03C1ACAE3B2004E294A /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
 		158DF03E1ACAE3C2004E294A /* EndScreenWATCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndScreenWATCH.h; sourceTree = "<group>"; };
+		159767FE1B09FCC2004B3EA8 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		15A40B8A1AC17E08008C82C4 /* Mirin WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mirin WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A40B8D1AC17E08008C82C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A40B8E1AC17E08008C82C4 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -192,7 +193,6 @@
 		76CEA5091ACB206900625DA9 /* EndScreenWATCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreenWATCH.m; sourceTree = "<group>"; };
 		CB297FB01ACC0DCE00849FD2 /* GalleryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryScreen.h; sourceTree = "<group>"; };
 		CB297FB11ACC0DCE00849FD2 /* GalleryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryScreen.m; sourceTree = "<group>"; };
-		CB944BBE1ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		CB944BBF1ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CB944BC01ADEAFEB00D0C427 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Interface.strings; sourceTree = "<group>"; };
 		CB97FF841ADBE8D70086B32E /* DownloadPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadPreview.h; sourceTree = "<group>"; };
@@ -693,7 +693,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				154F09501AB9948A00EC8087 /* Base */,
-				CB944BBE1ADEAFEB00D0C427 /* pt */,
+				159767FE1B09FCC2004B3EA8 /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -1,27 +1,30 @@
 
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "0Ek-tc-VTh"; */
+"0Ek-tc-VTh.title" = "Voltar";
+
 /* Class = "UILabel"; text = "Language:"; ObjectID = "10q-OS-ABF"; */
-"10q-OS-ABF.text" = "Idioma:";
+"10q-OS-ABF.text" = "Língua:";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "1JI-wR-2fs"; */
-"1JI-wR-2fs.text" = "por Usuário Convidado";
+"1JI-wR-2fs.text" = "por Guest User";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "1ch-re-rmj"; */
+"1ch-re-rmj.normalTitle" = "Pronto";
 
 /* Class = "UILabel"; text = "Chart Name"; ObjectID = "1r8-vO-BkK"; */
-"1r8-vO-BkK.text" = "Nome da Ficha";
+"1r8-vO-BkK.text" = "Nome do Treino";
 
 /* Class = "UILabel"; text = "Objective: Hypertrophy asd asd adas das das das das dasd asas d"; ObjectID = "25e-I9-jS6"; */
-"25e-I9-jS6.text" = "Objetivo: Hipertrofia asd asd adas das das das das dasd asas d";
+"25e-I9-jS6.text" = "Objective: Hypertrophy asd asd adas das das das das dasd asas d";
 
-/* Class = "UILabel"; text = "Edit Routine"; ObjectID = "2YG-cM-isL"; */
-"2YG-cM-isL.text" = "Editar Treino";
-
-/* Class = "UIButton"; normalTitle = "Edit Sub-routines"; ObjectID = "3uJ-Bp-IEa"; */
-"3uJ-Bp-IEa.normalTitle" = "Editar Sub-treinos";
-
-/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "41U-6z-74J"; */
-"41U-6z-74J.normalTitle" = "Pular";
+/* Class = "UILabel"; text = "Definition"; ObjectID = "2xw-EQ-u7k"; */
+"2xw-EQ-u7k.text" = "Definição";
 
 /* Class = "UIButton"; normalTitle = "Delete \"A\""; ObjectID = "43m-He-Ygu"; */
 "43m-He-Ygu.normalTitle" = "Apagar \"A\"";
+
+/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "4vS-9O-7vc"; */
+"4vS-9O-7vc.normalTitle" = "Apagar";
 
 /* Class = "UISegmentedControl"; 5Bi-2P-RnE.segmentTitles[0] = "A"; ObjectID = "5Bi-2P-RnE"; */
 "5Bi-2P-RnE.segmentTitles[0]" = "A";
@@ -30,148 +33,166 @@
 "5Bi-2P-RnE.segmentTitles[1]" = "B";
 
 /* Class = "UIButton"; normalTitle = "Download"; ObjectID = "6OI-2N-t2G"; */
-"6OI-2N-t2G.normalTitle" = "Download";
+"6OI-2N-t2G.normalTitle" = "Baixar";
 
 /* Class = "UILabel"; text = "#Ex_Name"; ObjectID = "6T9-6c-hSD"; */
 "6T9-6c-hSD.text" = "#Ex_Name";
 
-/* Class = "UITextField"; text = "4"; ObjectID = "6go-3h-WG0"; */
-"6go-3h-WG0.text" = "4";
-
 /* Class = "UITextField"; text = "New Routine"; ObjectID = "7Ob-Z4-KYu"; */
 "7Ob-Z4-KYu.text" = "Novo Treino";
-
-/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "7nt-0T-tI5"; */
-"7nt-0T-tI5.normalTitle" = "Iniciar";
 
 /* Class = "UIButton"; normalTitle = "⬇︎"; ObjectID = "80O-EN-JVt"; */
 "80O-EN-JVt.normalTitle" = "⬇︎";
 
-/* Class = "UIButton"; normalTitle = "Add Exercise to '123456789'"; ObjectID = "9Mi-dZ-A2S"; */
-"9Mi-dZ-A2S.normalTitle" = "Adicionar Exercício à '123456789'";
+/* Class = "UILabel"; text = "Add Exercise to '123456789'"; ObjectID = "9Bg-3T-jF2"; */
+"9Bg-3T-jF2.text" = "Add Exercise to '123456789'";
 
-/* Class = "UIViewController"; title = "Charts Menu"; ObjectID = "9qR-FV-Wah"; */
-"9qR-FV-Wah.title" = "Menu de Fichas";
+/* Class = "UIButton"; normalTitle = "Add Exercise to '123456789'"; ObjectID = "9Mi-dZ-A2S"; */
+"9Mi-dZ-A2S.normalTitle" = "Add Exercise to '123456789'";
+
+/* Class = "UINavigationItem"; title = "Edit Routine"; ObjectID = "9RX-lE-7uE"; */
+"9RX-lE-7uE.title" = "Editar Treino";
+
+/* Class = "UIViewController"; title = "Menu de Fichas"; ObjectID = "9qR-FV-Wah"; */
+"9qR-FV-Wah.title" = "Menu de Treinos";
+
+/* Class = "UILabel"; text = "12-10-8-6"; ObjectID = "A0w-vL-2Jg"; */
+"A0w-vL-2Jg.text" = "12-10-8-6";
 
 /* Class = "UIButton"; normalTitle = "⬆︎"; ObjectID = "BRe-ZL-7JP"; */
 "BRe-ZL-7JP.normalTitle" = "⬆︎";
 
-/* Class = "UILabel"; text = "Add Item"; ObjectID = "Cdf-fA-8l0"; */
-"Cdf-fA-8l0.text" = "Adicionar Item";
+/* Class = "UILabel"; text = "Tonification"; ObjectID = "CXc-sg-IxO"; */
+"CXc-sg-IxO.text" = "Tonificação";
 
-/* Class = "UILabel"; text = "Do:"; ObjectID = "DFM-P7-pgA"; */
-"DFM-P7-pgA.text" = "Faça:";
+/* Class = "UILabel"; text = "Strength"; ObjectID = "Cff-hr-tH4"; */
+"Cff-hr-tH4.text" = "Potência";
+
+/* Class = "UITextField"; text = "100"; ObjectID = "CgO-I3-Jpa"; */
+"CgO-I3-Jpa.text" = "100";
+
+/* Class = "UILabel"; text = "Save"; ObjectID = "Cxe-m3-XgI"; */
+"Cxe-m3-XgI.text" = "Salvar";
+
+/* Class = "UINavigationItem"; title = "#Chart_Name"; ObjectID = "Dc7-a6-7Ub"; */
+"Dc7-a6-7Ub.title" = "#Chart_Name";
+
+/* Class = "UILabel"; text = "Reps:"; ObjectID = "E9l-Eo-8fy"; */
+"E9l-Eo-8fy.text" = "Reps:";
+
+/* Class = "UIButton"; normalTitle = "Agree"; ObjectID = "EOf-WE-1Ir"; */
+"EOf-WE-1Ir.normalTitle" = "Aceitar";
 
 /* Class = "UIButton"; normalTitle = "Add Sub-routine"; ObjectID = "EV4-9t-9Nt"; */
 "EV4-9t-9Nt.normalTitle" = "Adicionar Sub-treino";
 
-/* Class = "UILabel"; text = "#Chart_Name"; ObjectID = "FYF-CZ-aJA"; */
-"FYF-CZ-aJA.text" = "#Chart_Name";
+/* Class = "UILabel"; text = "Name:"; ObjectID = "FAi-C0-Dzm"; */
+"FAi-C0-Dzm.text" = "Nome:";
+
+/* Class = "UILabel"; text = "Series 1 of 4"; ObjectID = "G0b-Eu-u7w"; */
+"G0b-Eu-u7w.text" = "Series 1 of 4";
+
+/* Class = "UILabel"; text = "Adding goals is optional, but necessary in order to share the routine. "; ObjectID = "G9G-Gb-lib"; */
+"G9G-Gb-lib.text" = "Os objetivos são opcionais, mas necessários para compartilhar o treino. ";
+
+/* Class = "UILabel"; text = "Guest User"; ObjectID = "GRs-GC-dAY"; */
+"GRs-GC-dAY.text" = "Guest User";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "H1v-1T-AyG"; */
 "H1v-1T-AyG.text" = "Séries: # | Reps: ##";
 
-/* Class = "UILabel"; text = "(No Pictures set)"; ObjectID = "IK8-PX-WSb"; */
-"IK8-PX-WSb.text" = "(Nenhuma imagem disponível)";
+/* Class = "UILabel"; text = "Optionals"; ObjectID = "J4y-z7-WLO"; */
+"J4y-z7-WLO.text" = "Opcionais";
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "J5s-kc-w7c"; */
 "J5s-kc-w7c.normalTitle" = "Apagar";
 
-/* Class = "UILabel"; text = "Wait..."; ObjectID = "JPU-2e-8Y5"; */
-"JPU-2e-8Y5.text" = "Espere...";
+/* Class = "UIBarButtonItem"; title = "Skip"; ObjectID = "Jwc-NF-wr2"; */
+"Jwc-NF-wr2.title" = "Pular";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "K5N-in-mMf"; */
 "K5N-in-mMf.normalTitle" = "Salvar";
 
-/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "KAy-aA-NbQ"; */
-"KAy-aA-NbQ.normalTitle" = "Salvar";
-
-/* Class = "UILabel"; text = "#Chart_Name"; ObjectID = "LKd-7k-5Sb"; */
-"LKd-7k-5Sb.text" = "#Chart_Name";
+/* Class = "UINavigationItem"; title = "New Routine"; ObjectID = "Ke4-Qg-gLS"; */
+"Ke4-Qg-gLS.title" = "Novo Treino";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "LMD-6Q-nm0"; */
-"LMD-6Q-nm0.text" = "por Usuário Convidado";
-
-/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "Lrp-SU-k7g"; */
-"Lrp-SU-k7g.normalTitle" = "Voltar";
-
-/* Class = "UILabel"; text = "Strengh"; ObjectID = "Ltx-3I-NZh"; */
-"Ltx-3I-NZh.text" = "Força";
-
-/* Class = "UILabel"; text = "____________________"; ObjectID = "Mrf-9M-aTx"; */
-"Mrf-9M-aTx.text" = "____________________";
+"LMD-6Q-nm0.text" = "by Guest User";
 
 /* Class = "UITextView"; text = "Add your description here"; ObjectID = "Ndb-9F-0YZ"; */
-"Ndb-9F-0YZ.text" = "Adicione sua descrição aqui";
+"Ndb-9F-0YZ.text" = "Coloque sua descrição aqui";
 
 /* Class = "UILabel"; text = "Example asdf a asdg asd fasds asa as da"; ObjectID = "OEO-TP-QyX"; */
-"OEO-TP-QyX.text" = "Exemplo asdf a asdg asd fasds asa as da";
+"OEO-TP-QyX.text" = "Example asdf a asdg asd fasds asa as da";
 
 /* Class = "UILabel"; text = "Name:"; ObjectID = "OMl-NV-ciD"; */
 "OMl-NV-ciD.text" = "Nome:";
 
-/* Class = "UILabel"; text = "Information: (Optional)"; ObjectID = "OwW-1h-iwQ"; */
-"OwW-1h-iwQ.text" = "Informações: (Opcional)";
+/* Class = "UILabel"; text = "Series:"; ObjectID = "OdZ-yP-WFN"; */
+"OdZ-yP-WFN.text" = "Séries:";
 
-/* Class = "UILabel"; text = "My Routines"; ObjectID = "P8e-HX-BH4"; */
-"P8e-HX-BH4.text" = "Meus Treinos";
+/* Class = "UILabel"; text = "Hypertrophy"; ObjectID = "PFR-qu-Hga"; */
+"PFR-qu-Hga.text" = "Hipertrofia";
+
+/* Class = "UILabel"; text = "Goals (Optional)"; ObjectID = "POs-zc-dWO"; */
+"POs-zc-dWO.text" = "Objetivos (Opcional)";
+
+/* Class = "UILabel"; text = "Terms and Conditions"; ObjectID = "Pef-uW-80M"; */
+"Pef-uW-80M.text" = "Termos de Uso";
+
+/* Class = "UILabel"; text = "Level 1"; ObjectID = "QDZ-qs-6Ex"; */
+"QDZ-qs-6Ex.text" = "Nível 1";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "QjB-0n-Bl5"; */
 "QjB-0n-Bl5.normalTitle" = "Cancelar";
 
-/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "R8s-hf-2uX"; */
-"R8s-hf-2uX.normalTitle" = "Apagar";
-
 /* Class = "UILabel"; text = "Login is required to share workout charts, but no personal information other than your public Facebook information will be used."; ObjectID = "Rlz-YF-4yl"; */
-"Rlz-YF-4yl.text" = "Login é necessário para compartilhar treinos, mas nenhuma informação pessoal além das informações da sua página publica do Facebook será utilizada.";
+"Rlz-YF-4yl.text" = "Login is required to share workout charts, but no personal information other than your public Facebook information will be used.";
 
-/* Class = "UILabel"; text = "00:00"; ObjectID = "TVv-gi-uHs"; */
-"TVv-gi-uHs.text" = "00:00";
+/* Class = "UILabel"; text = "Not Set"; ObjectID = "SsN-Yy-reU"; */
+"SsN-Yy-reU.text" = "(Nenhum)";
 
-/* Class = "UIButton"; normalTitle = "ℹ︎"; ObjectID = "UVj-bf-UfS"; */
-"UVj-bf-UfS.normalTitle" = "ℹ︎";
+/* Class = "UILabel"; text = "30"; ObjectID = "TVv-gi-uHs"; */
+"TVv-gi-uHs.text" = "30";
 
-/* Class = "UITextField"; text = "10"; ObjectID = "UxM-oc-wyf"; */
-"UxM-oc-wyf.text" = "10";
+/* Class = "UILabel"; text = "Weight:"; ObjectID = "U4G-ZB-II0"; */
+"U4G-ZB-II0.text" = "Peso:";
 
-/* Class = "UILabel"; text = "Name:"; ObjectID = "VLo-h6-Aoe"; */
-"VLo-h6-Aoe.text" = "Nome:";
+/* Class = "UIBarButtonItem"; title = "Routines"; ObjectID = "UIw-te-4Xy"; */
+"UIw-te-4Xy.title" = "Treinos";
 
-/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "VRR-LB-Kdt"; */
-"VRR-LB-Kdt.normalTitle" = "Adicionar";
+/* Class = "UINavigationItem"; title = "My Routines"; ObjectID = "Uxu-Ap-fPX"; */
+"Uxu-Ap-fPX.title" = "Meus Treinos";
 
 /* Class = "UILabel"; text = "Pictures"; ObjectID = "VaU-DU-NBe"; */
-"VaU-DU-NBe.text" = "Imagens";
-
-/* Class = "UILabel"; text = "Series:"; ObjectID = "WRd-aF-Xk3"; */
-"WRd-aF-Xk3.text" = "Séries:";
+"VaU-DU-NBe.text" = "Fotos";
 
 /* Class = "UILabel"; text = "Exercises:"; ObjectID = "WaT-QI-wgN"; */
 "WaT-QI-wgN.text" = "Exercícios:";
 
-/* Class = "UILabel"; text = "Reps:"; ObjectID = "XDT-GQ-VNs"; */
-"XDT-GQ-VNs.text" = "Reps:";
-
-/* Class = "UILabel"; text = "Fat Loss"; ObjectID = "XXg-Fz-Nek"; */
-"XXg-Fz-Nek.text" = "Perda de Gordura";
+/* Class = "UITextField"; text = "4"; ObjectID = "X4V-VZ-PVN"; */
+"X4V-VZ-PVN.text" = "4";
 
 /* Class = "UILabel"; text = "Guest"; ObjectID = "YfI-1Y-lHb"; */
-"YfI-1Y-lHb.text" = "Convidado";
+"YfI-1Y-lHb.text" = "Usuário";
+
+/* Class = "UILabel"; text = "s"; ObjectID = "Yty-gs-S6V"; */
+"Yty-gs-S6V.text" = "s";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "ZSm-MM-U2A"; */
 "ZSm-MM-U2A.text" = "Nome";
 
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "ZY8-ef-zNj"; */
-"ZY8-ef-zNj.normalTitle" = "Cancelar";
-
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "a9I-8S-eEX"; */
 "a9I-8S-eEX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
-/* Class = "UIButton"; normalTitle = "Routine Gallery"; ObjectID = "b2S-f2-K2K"; */
-"b2S-f2-K2K.normalTitle" = "Galeria de Treinos";
+/* Class = "UILabel"; text = "Guest User"; ObjectID = "aIf-Nd-ywI"; */
+"aIf-Nd-ywI.text" = "Usuário";
+
+/* Class = "UITextView"; text = "1  Acceptance The Use Of Mirin Terms and Conditions\n\nYour access to and use of Mirin is subject exclusively to these Terms and Conditions. You will not use the app for any purpose that is unlawful or prohibited by these Terms and Conditions. By using the app you are fully accepting the terms, conditions and disclaimers contained in this notice. If you do not accept these Terms and Conditions you must immediately stop using the app.\n\n2  CREDIT CARD DETAILS\n\nMirin will never ask for your credit card details and we advice our customers to not enter their credit cards details on Mirin app or by submitting such details in any other form.\n\n3  LEGAL ADVICE\n\nThe contents of Mirin website do not constitute advice and should not be relied upon in making or refraining from making, any decision.\nAll material contained on Mirin is provided without any or warranty of any kind. You use the material on Mirin at your own discretion\n\n4  CHANGE OF USE\n\nMirin reserves the right to:\n4.1  change or remove (temporarily or permanently) the Website or any part of it without notice and you confirm that Mirin shall not be liable to you for any such change or removal and.\n4.2  change these Terms and Conditions at any time, and your continued use of the Website following any changes shall be deemed to be your acceptance of such change.\n\n5  Links to Third Party Websites\n\nMirin Website may include links to third party websites that are controlled and maintained by others. Any link to other websites is not an endorsement of such websites and you acknowledge and agree that we are not responsible for the content or availability of any such sites.\n\n6  COPYRIGHT\n\n6.1  All copyright, trade marks and all other intellectual property rights in the Website and its content (including without limitation the Website design, text, graphics and all software and source codes connected with the Website) are owned by or licensed to Mirin or otherwise used by Mirin as permitted by law.\n6.2  In accessing the Website you agree that you will access the content solely for your personal, non-commercial use. None of the content may be downloaded, copied, reproduced, transmitted, stored, sold or distributed without the prior written consent of the copyright holder. This excludes the downloading, copying and/or printing of pages of the Website for personal, non-commercial home use only.\n\n7  LINKS TO AND FROM OTHER WEBSITES\n\n7.1  Throughout this Website you may find links to third party websites. The provision of a link to such a website does not mean that we endorse that website. If you visit any website via a link on this Website you do so at your own risk.\n7.2  Any party wishing to link to this website is entitled to do so provided that the conditions below are observed:\n   (a)  you do not seek to imply that we are endorsing the services or products of another party unless this has been agreed with us in writing;\n   (b)  you do not misrepresent your relationship with this website; and\n   (c) ; the website from which you link to this Website does not contain offensive or otherwise controversial content or, content that infringes any intellectual property rights or other rights of a third party.\n7.3  By linking to this Website in breach of our terms, you shall indemnify us for any loss or damage suffered to this Website as a result of such linking.\n\n8   DISCLAIMERS AND LIMITATION OF LIABILITY\n\n8.1  The Website is provided on an AS IS and AS AVAILABLE basis without any representation or endorsement made and without warranty of any kind whether express or implied, including but not limited to the implied warranties of satisfactory quality, fitness for a particular purpose, non-infringement, compatibility, security and accuracy.\n8.2  To the extent permitted by law, Mirin will not be liable for any indirect or consequential loss or damage whatever (including without limitation loss of business, opportunity, data, profits) arising out of or in connection with the use of the Website.\n8.3  Mirin makes no warranty that the functionality of the Website will be uninterrupted or error free, that defects will be corrected or that the Website or the server that makes it available are free of viruses or anything else which may be harmful or destructive.\n8.4  Nothing in these Terms and Conditions shall be construed so as to exclude or limit the liability of Mirin for death or personal injury as a result of the negligence of Mirin or that of its employees or agents.\n\n9  INDEMNITY\n\nYou agree to indemnify and hold Mirin and its employees and agents harmless from and against all liabilities, legal fees, damages, losses, costs and other expenses in relation to any claims or actions brought against Mirin arising out of any breach by you of these Terms and Conditions or other liabilities arising out of your use of this Website.\n\n10  SEVERANCE\n\nIf any of these Terms and Conditions should be determined to be invalid, illegal or unenforceable for any reason by any court of competent jurisdiction then such Term or Condition shall be severed and the remaining Terms and Conditions shall survive and remain in full force and effect and continue to be binding and enforceable.\n\n11  WAIVER\n\nIf you breach these Conditions of Use and we take no action, we will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use.\n\n12  GOVERNING LAW\n\nThese Terms and Conditions shall be governed by and construed in accordance with the law of Brazil and you hereby submit to the exclusive jurisdiction of the Brazil courts."; ObjectID = "aSt-ey-2TM"; */
+"aSt-ey-2TM.text" = "1  Acceptance The Use Of Mirin Terms and Conditions\n\nYour access to and use of Mirin is subject exclusively to these Terms and Conditions. You will not use the app for any purpose that is unlawful or prohibited by these Terms and Conditions. By using the app you are fully accepting the terms, conditions and disclaimers contained in this notice. If you do not accept these Terms and Conditions you must immediately stop using the app.\n\n2  CREDIT CARD DETAILS\n\nMirin will never ask for your credit card details and we advice our customers to not enter their credit cards details on Mirin app or by submitting such details in any other form.\n\n3  LEGAL ADVICE\n\nThe contents of Mirin website do not constitute advice and should not be relied upon in making or refraining from making, any decision.\nAll material contained on Mirin is provided without any or warranty of any kind. You use the material on Mirin at your own discretion\n\n4  CHANGE OF USE\n\nMirin reserves the right to:\n4.1  change or remove (temporarily or permanently) the Website or any part of it without notice and you confirm that Mirin shall not be liable to you for any such change or removal and.\n4.2  change these Terms and Conditions at any time, and your continued use of the Website following any changes shall be deemed to be your acceptance of such change.\n\n5  Links to Third Party Websites\n\nMirin Website may include links to third party websites that are controlled and maintained by others. Any link to other websites is not an endorsement of such websites and you acknowledge and agree that we are not responsible for the content or availability of any such sites.\n\n6  COPYRIGHT\n\n6.1  All copyright, trade marks and all other intellectual property rights in the Website and its content (including without limitation the Website design, text, graphics and all software and source codes connected with the Website) are owned by or licensed to Mirin or otherwise used by Mirin as permitted by law.\n6.2  In accessing the Website you agree that you will access the content solely for your personal, non-commercial use. None of the content may be downloaded, copied, reproduced, transmitted, stored, sold or distributed without the prior written consent of the copyright holder. This excludes the downloading, copying and/or printing of pages of the Website for personal, non-commercial home use only.\n\n7  LINKS TO AND FROM OTHER WEBSITES\n\n7.1  Throughout this Website you may find links to third party websites. The provision of a link to such a website does not mean that we endorse that website. If you visit any website via a link on this Website you do so at your own risk.\n7.2  Any party wishing to link to this website is entitled to do so provided that the conditions below are observed:\n   (a)  you do not seek to imply that we are endorsing the services or products of another party unless this has been agreed with us in writing;\n   (b)  you do not misrepresent your relationship with this website; and\n   (c) ; the website from which you link to this Website does not contain offensive or otherwise controversial content or, content that infringes any intellectual property rights or other rights of a third party.\n7.3  By linking to this Website in breach of our terms, you shall indemnify us for any loss or damage suffered to this Website as a result of such linking.\n\n8   DISCLAIMERS AND LIMITATION OF LIABILITY\n\n8.1  The Website is provided on an AS IS and AS AVAILABLE basis without any representation or endorsement made and without warranty of any kind whether express or implied, including but not limited to the implied warranties of satisfactory quality, fitness for a particular purpose, non-infringement, compatibility, security and accuracy.\n8.2  To the extent permitted by law, Mirin will not be liable for any indirect or consequential loss or damage whatever (including without limitation loss of business, opportunity, data, profits) arising out of or in connection with the use of the Website.\n8.3  Mirin makes no warranty that the functionality of the Website will be uninterrupted or error free, that defects will be corrected or that the Website or the server that makes it available are free of viruses or anything else which may be harmful or destructive.\n8.4  Nothing in these Terms and Conditions shall be construed so as to exclude or limit the liability of Mirin for death or personal injury as a result of the negligence of Mirin or that of its employees or agents.\n\n9  INDEMNITY\n\nYou agree to indemnify and hold Mirin and its employees and agents harmless from and against all liabilities, legal fees, damages, losses, costs and other expenses in relation to any claims or actions brought against Mirin arising out of any breach by you of these Terms and Conditions or other liabilities arising out of your use of this Website.\n\n10  SEVERANCE\n\nIf any of these Terms and Conditions should be determined to be invalid, illegal or unenforceable for any reason by any court of competent jurisdiction then such Term or Condition shall be severed and the remaining Terms and Conditions shall survive and remain in full force and effect and continue to be binding and enforceable.\n\n11  WAIVER\n\nIf you breach these Conditions of Use and we take no action, we will still be entitled to use our rights and remedies in any other situation where you breach these Conditions of Use.\n\n12  GOVERNING LAW\n\nThese Terms and Conditions shall be governed by and construed in accordance with the law of Brazil and you hereby submit to the exclusive jurisdiction of the Brazil courts.";
 
 /* Class = "UILabel"; text = "Share Preview"; ObjectID = "byF-rx-r7Q"; */
-"byF-rx-r7Q.text" = "Visualizar Dados";
+"byF-rx-r7Q.text" = "Share Preview";
 
 /* Class = "UIButton"; normalTitle = "End"; ObjectID = "c8G-Q1-Ey4"; */
 "c8G-Q1-Ey4.normalTitle" = "Terminar";
@@ -183,22 +204,25 @@
 "dSe-Dw-T1r.normalTitle" = "Cancelar";
 
 /* Class = "UIButton"; normalTitle = "Share"; ObjectID = "dnF-3q-1d7"; */
-"dnF-3q-1d7.normalTitle" = "Compartilhar";
+"dnF-3q-1d7.normalTitle" = "Share";
 
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "dyh-q4-qsg"; */
-"dyh-q4-qsg.normalTitle" = "Cancelar";
+/* Class = "UILabel"; text = "Fat Loss"; ObjectID = "e6P-yL-wdc"; */
+"e6P-yL-wdc.text" = "Perda de Gordura";
 
-/* Class = "UILabel"; text = "_____________________________________"; ObjectID = "eKN-mL-cnV"; */
-"eKN-mL-cnV.text" = "_____________________________________";
+/* Class = "UILabel"; text = "Hypertrophy"; ObjectID = "eAA-Tn-br8"; */
+"eAA-Tn-br8.text" = "Hipertrofia";
+
+/* Class = "UILabel"; text = "________________________________________________________________________"; ObjectID = "eKN-mL-cnV"; */
+"eKN-mL-cnV.text" = "________________________________________________________________________";
+
+/* Class = "UILabel"; text = "Weight:"; ObjectID = "eTj-FH-SoG"; */
+"eTj-FH-SoG.text" = "Peso:";
 
 /* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "edC-kb-RzY"; */
 "edC-kb-RzY.normalTitle" = "Editar";
 
-/* Class = "UILabel"; text = "Objective"; ObjectID = "fYv-7S-4rp"; */
-"fYv-7S-4rp.text" = "Objetivo";
-
-/* Class = "UITextField"; text = "Deadlift"; ObjectID = "fdZ-24-C6z"; */
-"fdZ-24-C6z.text" = "Levantamento terra";
+/* Class = "UITextField"; text = "Deadlift"; ObjectID = "fdq-ia-XPc"; */
+"fdq-ia-XPc.text" = "Deadlift";
 
 /* Class = "UISegmentedControl"; foe-z1-6da.segmentTitles[0] = "A"; ObjectID = "foe-z1-6da"; */
 "foe-z1-6da.segmentTitles[0]" = "A";
@@ -206,68 +230,71 @@
 /* Class = "UISegmentedControl"; foe-z1-6da.segmentTitles[1] = "B"; ObjectID = "foe-z1-6da"; */
 "foe-z1-6da.segmentTitles[1]" = "B";
 
-/* Class = "UILabel"; text = "Nothing at all"; ObjectID = "fuR-fL-RzZ"; */
-"fuR-fL-RzZ.text" = "Nothing at all";
+/* Class = "UILabel"; text = "Start"; ObjectID = "fsS-xE-nLV"; */
+"fsS-xE-nLV.text" = "Começar";
 
 /* Class = "UILabel"; text = "Information"; ObjectID = "gwK-0H-JWa"; */
-"gwK-0H-JWa.text" = "Informações";
+"gwK-0H-JWa.text" = "Informação";
 
-/* Class = "UILabel"; text = "Reps:"; ObjectID = "gxc-MJ-dD9"; */
-"gxc-MJ-dD9.text" = "Repetições:";
+/* Class = "UILabel"; text = "Send to Apple Watch"; ObjectID = "h4Z-qe-e8P"; */
+"h4Z-qe-e8P.text" = "Mandar para o Apple Watch";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "hD4-Fe-mOk"; */
+"hD4-Fe-mOk.text" = "Descrição";
 
 /* Class = "UILabel"; text = "Example Workout"; ObjectID = "hGF-Yt-XbB"; */
-"hGF-Yt-XbB.text" = "Exemplo de treino";
+"hGF-Yt-XbB.text" = "Treino Exemplo";
 
 /* Class = "UILabel"; text = "Gallery Categories"; ObjectID = "hHe-dE-yPp"; */
-"hHe-dE-yPp.text" = "Categorias da Galeria";
+"hHe-dE-yPp.text" = "Gallery Categories";
 
 /* Class = "UILabel"; text = "But next time, try not to skip."; ObjectID = "hX2-me-l6O"; */
-"hX2-me-l6O.text" = "Mas da próxima vez, tente não pular exercícios.";
+"hX2-me-l6O.text" = "But next time, try not to skip.";
 
-/* Class = "UILabel"; text = "Goal: Hypertrophy, Definition, Fat Loss"; ObjectID = "hmw-8Z-VtE"; */
+/* Class = "UITextField"; text = "8"; ObjectID = "hbK-sA-jfA"; */
+"hbK-sA-jfA.text" = "8";
+
+/* Class = "UILabel"; text = "Objetivo: Hipertrofia, Definição, Perda de Gordura"; ObjectID = "hmw-8Z-VtE"; */
 "hmw-8Z-VtE.text" = "Objetivo: Hipertrofia, Definição, Perda de Gordura";
 
-/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "hrZ-o5-8QG"; */
-"hrZ-o5-8QG.normalTitle" = "Pronto";
+/* Class = "UINavigationItem"; title = "Login Required"; ObjectID = "hpz-EW-g1M"; */
+"hpz-EW-g1M.title" = "Login Required";
 
 /* Class = "UILabel"; text = "Description:"; ObjectID = "iQf-Va-O9T"; */
 "iQf-Va-O9T.text" = "Descrição:";
 
 /* Class = "UILabel"; text = "Download Preview"; ObjectID = "iYj-Kp-OoT"; */
-"iYj-Kp-OoT.text" = "Visualizar Treino";
+"iYj-Kp-OoT.text" = "Download Preview";
 
 /* Class = "UILabel"; text = "Category Name"; ObjectID = "inC-U4-zYr"; */
-"inC-U4-zYr.text" = "Nome da categoria";
+"inC-U4-zYr.text" = "Category Name";
 
 /* Class = "UIButton"; disabledTitle = "Shared"; ObjectID = "izJ-F6-rUX"; */
-"izJ-F6-rUX.disabledTitle" = "Compartilhado";
+"izJ-F6-rUX.disabledTitle" = "Shared";
 
 /* Class = "UIButton"; normalTitle = "Share"; ObjectID = "izJ-F6-rUX"; */
-"izJ-F6-rUX.normalTitle" = "Compartilhar";
+"izJ-F6-rUX.normalTitle" = "Share";
 
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "jS2-aZ-c5c"; */
-"jS2-aZ-c5c.normalTitle" = "Cancelar";
+/* Class = "UINavigationItem"; title = "Add Item"; ObjectID = "jh8-36-bGV"; */
+"jh8-36-bGV.title" = "Add Item";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "jkv-P5-sPl"; */
 "jkv-P5-sPl.text" = "Séries: # | Reps: ##";
 
-/* Class = "UILabel"; text = "by user"; ObjectID = "k9G-6a-bdN"; */
-"k9G-6a-bdN.text" = "por usuário";
+/* Class = "UILabel"; text = "Do:"; ObjectID = "jm0-Ne-5x6"; */
+"jm0-Ne-5x6.text" = "Faça:";
 
-/* Class = "UILabel"; text = "Definition"; ObjectID = "kCU-Pe-F3M"; */
-"kCU-Pe-F3M.text" = "Definição";
+/* Class = "UILabel"; text = "by user"; ObjectID = "k9G-6a-bdN"; */
+"k9G-6a-bdN.text" = "by user";
 
 /* Class = "UILabel"; text = "Objective: Hypertrophy"; ObjectID = "kVJ-34-iPb"; */
-"kVJ-34-iPb.text" = "Objetivo: Hipertrofia";
+"kVJ-34-iPb.text" = "Objective: Hypertrophy";
+
+/* Class = "UILabel"; text = "________________________________________________________________________________"; ObjectID = "kcm-8n-fxH"; */
+"kcm-8n-fxH.text" = "________________________________________________________________________________";
 
 /* Class = "UILabel"; text = "Series: # | Reps: ##"; ObjectID = "kfX-gf-gAz"; */
 "kfX-gf-gAz.text" = "Séries: # | Reps: ##";
-
-/* Class = "UILabel"; text = "You haven't added any Exercise!"; ObjectID = "lXd-Aq-tpE"; */
-"lXd-Aq-tpE.text" = "Nenhum exercício adicionado!";
-
-/* Class = "UILabel"; text = "____________________"; ObjectID = "lYl-60-sJP"; */
-"lYl-60-sJP.text" = "____________________";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "lqH-pg-9M4"; */
 "lqH-pg-9M4.normalTitle" = "Voltar";
@@ -275,68 +302,68 @@
 /* Class = "UILabel"; text = "You did it!"; ObjectID = "mIz-Rt-hRt"; */
 "mIz-Rt-hRt.text" = "Você conseguiu!";
 
-/* Class = "UILabel"; text = "Login Required"; ObjectID = "mQD-Y8-Fna"; */
-"mQD-Y8-Fna.text" = "Login obrigatório";
-
 /* Class = "UIViewController"; title = "Download Categories"; ObjectID = "mXV-ad-kdg"; */
-"mXV-ad-kdg.title" = "Categorias de Download";
+"mXV-ad-kdg.title" = "Download Categories";
 
 /* Class = "UILabel"; text = "#Ex_Name"; ObjectID = "mbk-NS-U72"; */
 "mbk-NS-U72.text" = "#Ex_Name";
 
 /* Class = "UIViewController"; title = "New Chart Description Editor"; ObjectID = "nPV-eu-LoU"; */
-"nPV-eu-LoU.title" = "Edição da Descrição de Novo Treino";
+"nPV-eu-LoU.title" = "New Chart Description Editor";
 
-/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "nfM-aJ-yC6"; */
-"nfM-aJ-yC6.normalTitle" = "Voltar";
+/* Class = "UILabel"; text = "Information"; ObjectID = "oBx-q1-27h"; */
+"oBx-q1-27h.text" = "Informação";
 
-/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "o2t-UW-RaH"; */
-"o2t-UW-RaH.normalTitle" = "Voltar";
+/* Class = "UINavigationItem"; title = "Image View"; ObjectID = "obs-oT-1te"; */
+"obs-oT-1te.title" = "Imagem";
 
-/* Class = "UIButton"; normalTitle = "Get Started!"; ObjectID = "p5m-X5-wJo"; */
-"p5m-X5-wJo.normalTitle" = "Menu Principal";
+/* Class = "UIButton"; normalTitle = "To Main Menu"; ObjectID = "p5m-X5-wJo"; */
+"p5m-X5-wJo.normalTitle" = "To Main Menu";
 
-/* Class = "UILabel"; text = "Add New Routine"; ObjectID = "pHG-IF-CXL"; */
-"pHG-IF-CXL.text" = "Adicionar Novo Treino";
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "p6x-aW-qtI"; */
+"p6x-aW-qtI.normalTitle" = "Cancel";
 
 /* Class = "UILabel"; text = "Example asdf a asdg asd fasds asa as da"; ObjectID = "pIf-os-bye"; */
-"pIf-os-bye.text" = "Exemplo asdf a asdg asd fasds asa as da";
+"pIf-os-bye.text" = "Example asdf a asdg asd fasds asa as da";
 
-/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "qQN-AX-Dou"; */
-"qQN-AX-Dou.normalTitle" = "Voltar";
+/* Class = "UILabel"; text = "Reps:"; ObjectID = "q6M-sB-BFN"; */
+"q6M-sB-BFN.text" = "Reps:";
 
-/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "rgB-8r-HLN"; */
+/* Class = "UILabel"; text = "Level 1"; ObjectID = "raO-Lc-Ww4"; */
+"raO-Lc-Ww4.text" = "Nível 1";
+
+/* Class = "UIButton"; normalTitle = "Voltar"; ObjectID = "rgB-8r-HLN"; */
 "rgB-8r-HLN.normalTitle" = "Voltar";
 
-/* Class = "UILabel"; text = "Gym Helper"; ObjectID = "tEj-dh-6tl"; */
-"tEj-dh-6tl.text" = "Gym Helper";
-
 /* Class = "UIViewController"; title = "Start Screen"; ObjectID = "tKk-JF-Cdd"; */
-"tKk-JF-Cdd.title" = "Tela Inicial";
+"tKk-JF-Cdd.title" = "Start Screen";
 
 /* Class = "UILabel"; text = "Description:"; ObjectID = "tRC-8R-D9B"; */
 "tRC-8R-D9B.text" = "Descrição:";
-
-/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "tSp-dN-9ad"; */
-"tSp-dN-9ad.normalTitle" = "Editar";
 
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "teS-aW-wxZ"; */
 "teS-aW-wxZ.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UILabel"; text = "Exercises:"; ObjectID = "trY-aG-gfa"; */
-"trY-aG-gfa.text" = "Exercícios:";
+"trY-aG-gfa.text" = "Exercises:";
 
 /* Class = "UILabel"; text = "Filter:"; ObjectID = "vw2-Yv-HbV"; */
-"vw2-Yv-HbV.text" = "Filtro:";
+"vw2-Yv-HbV.text" = "Filter:";
 
-/* Class = "UILabel"; text = "Hypertrophy"; ObjectID = "y01-2L-ZkE"; */
-"y01-2L-ZkE.text" = "Hipertrofia";
+/* Class = "UILabel"; text = "#Exercise_Name"; ObjectID = "wxP-AZ-4c7"; */
+"wxP-AZ-4c7.text" = "#Exercise_Name";
 
-/* Class = "UILabel"; text = "Tonification"; ObjectID = "ybw-jy-w2e"; */
-"ybw-jy-w2e.text" = "Tonificação";
+/* Class = "UINavigationItem"; title = "#EX_NAME"; ObjectID = "xQu-Bd-P9X"; */
+"xQu-Bd-P9X.title" = "#EX_NAME";
+
+/* Class = "UINavigationItem"; title = "#Chart_Name"; ObjectID = "y9X-cp-Hl9"; */
+"y9X-cp-Hl9.title" = "#Chart_Name";
+
+/* Class = "UILabel"; text = "Pictures"; ObjectID = "ydB-ET-g6G"; */
+"ydB-ET-g6G.text" = "Fotos";
 
 /* Class = "UILabel"; text = "EX_NAME"; ObjectID = "yhz-E7-CVd"; */
 "yhz-E7-CVd.text" = "EX_NAME";
 
 /* Class = "UILabel"; text = "by Guest User"; ObjectID = "zfg-D8-ERg"; */
-"zfg-D8-ERg.text" = "por Usuário Convidado";
+"zfg-D8-ERg.text" = "by Guest User";

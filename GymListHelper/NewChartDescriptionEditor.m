@@ -13,7 +13,7 @@
 
 @interface NewChartDescriptionEditor ()
 @property (strong, nonatomic) IBOutlet UIButton *saveBut;
-@property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *DeleteButton;
 @property NSString *editroutinestring;
 @property NSString *addroutinestring;
 @property NSString *newroutinestring;
@@ -74,14 +74,14 @@
         self.ChartNameNew.text = self.sentNameArray[self.EditThisRoutine][0];
         self.routineInfoBox.text = self.sentNameArray[self.EditThisRoutine][1];
         [self.navigationItem setTitle:self.editroutinestring];
-        self.DeleteButton.hidden = NO;
+        self.DeleteButton.enabled = YES;
         
         // Check categories data and change switches
         self.ChartCategories = self.sentCategorieArray[self.EditThisRoutine];
         
     }
     else{
-        self.DeleteButton.hidden = YES;
+        self.DeleteButton.enabled = NO;
         self.ChartNameNew.text = self.newroutinestring;
         [self.navigationItem setTitle:self.newroutinestring];
         
@@ -126,7 +126,7 @@
         return;
     }
     
-    if (button==self.DeleteButton){
+    if (button==(UIButton*)self.DeleteButton){
         ChartsMenu *controller = (ChartsMenu *)segue.destinationViewController;
         
         //SAVE CHART

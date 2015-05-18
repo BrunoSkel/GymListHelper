@@ -9,9 +9,25 @@
 #import "ProfileTableCell.h"
 
 @interface ProfileTableCell ()
+@property NSString* GuestString;
+@property NSString* language;
 @end
 
 @implementation ProfileTableCell
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _GuestString=@"Guest";
+        _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+            _GuestString=@"Usuário";
+        }
+    }
+    return self;
+}
+
 -(void) viewDidLoad{
     [super viewDidLoad];
     self.fbButton.delegate=self;
@@ -29,7 +45,7 @@
         self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
     }else{
         self.profileImg.image = [UIImage imageNamed:@"guest"];
-        self.profileName.text = @"Guest";
+        self.profileName.text = _GuestString;
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     }
     
@@ -42,7 +58,7 @@
     }else{
         //Logout
         self.profileImg.image = [UIImage imageNamed:@"guest"];
-        self.profileName.text = @"Guest";
+        self.profileName.text = _GuestString;
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
         //[FBSDKLoginManager finalize];
         //[FBSDKAccessToken ];
@@ -54,7 +70,7 @@
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
     
     self.profileImg.image = [UIImage imageNamed:@"guest"];
-    self.profileName.text = @"Guest";
+    self.profileName.text = _GuestString;
     
 }
 

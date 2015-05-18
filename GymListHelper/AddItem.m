@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *repField;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBut;
-@property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *DeleteButton;
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
@@ -96,7 +96,7 @@
         NSLog(@"%@",self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
         _weightBox.text=self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise];
         [self.navigationItem setTitle:self.editstring];
-        _DeleteButton.hidden=NO;
+        _DeleteButton.enabled=YES;
 
         //Fill Box
         
@@ -127,7 +127,7 @@
     }
     
     else{ //Not editing, creating new exercise
-        _DeleteButton.hidden=YES;
+        _DeleteButton.enabled=NO;
         _nameField.text=@"";
         [self.navigationItem setTitle:self.addstring];
     }

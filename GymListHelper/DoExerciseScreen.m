@@ -41,6 +41,7 @@
 @property (nonatomic, strong) CircularTimerView *circularTimer;
 @property NSArray *RepCountInformation;
 @property NSArray *CurrentExerciseData;
+@property NSString* SeriesCounterString;
 @end
 
 @implementation DoExerciseScreen
@@ -56,7 +57,17 @@
     _result0=@"And by that, I mean... nothing?";
     _result1=@"But next time, try not to skip.";
     _result2=@"Now, don't give up!";
+    _SeriesCounterString=@"Series %d of %d";
     _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
+        
+        _result0=@"Mas não havia nada!";
+        _result1=@"Mas na próxima, tente não pular.";
+        _result2=@"Continue assim!";
+        _SeriesCounterString=@"Série %d de %d";
+    }
+    
     [self Initiate];
    // [_tableView reloadData];
 }
@@ -69,12 +80,6 @@
     self.navigationController.navigationBar.tintColor=self.cooldownLabel.textColor;
     self.navigationController.navigationBar.barTintColor=self.view.backgroundColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : self.cooldownLabel.textColor};
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-    
-        _result0=@"Mas não havia nada!";
-        _result1=@"Mas na próxima, tente não pular.";
-        _result2=@"Continue assim!";
-    }
     
     _skipped=NO;
     _currentExerciseIndex=0;
@@ -110,7 +115,7 @@
 -(void)HideCooldown{
     [self.stopWatchTimer invalidate];
     self.stopWatchTimer = nil;
-    
+    [self.circularTimer removeFromSuperview];
     self.NoCooldownView.hidden=NO;
    // self.DoneBarButton.enabled=YES;
    // self.cooldownLabel.hidden=YES;
@@ -351,7 +356,7 @@
     
     if (indexPath.row==3){
         UILabel *sNoLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:0];
-        sNoLabel.text=[NSString stringWithFormat:@"Series %d of %d",self.TotalSeries-self.RemainingSeries+1,self.TotalSeries];
+        sNoLabel.text=[NSString stringWithFormat:_SeriesCounterString,self.TotalSeries-self.RemainingSeries+1,self.TotalSeries];
     }
     }
     else{
