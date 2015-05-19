@@ -18,9 +18,10 @@
 @property (strong,nonatomic)  NSMutableArray *allPicData;
 @property (strong,nonatomic)  NSMutableArray *RoutineNamesArray;
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
+@property (strong,nonatomic)  NSMutableArray *allWeightData;
 @property NSUserDefaults *SharedData;
 @property int ChosenWorkout;
-
+-(void)SyncWithWatch;
 -(void)Unwinded;
 
 @end

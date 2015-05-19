@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddItemSave.h"
 
 @interface ChartEditor : UIViewController <UITableViewDelegate, UITableViewDataSource, NSObject, UITextFieldDelegate>
 
@@ -19,8 +20,9 @@
 @property (strong,nonatomic)  NSMutableArray *WaitTimesArray;
 @property (strong,nonatomic)  NSMutableArray *allInfoData;
 @property (strong,nonatomic)  NSMutableArray *allPicData;
+@property (strong,nonatomic)  NSMutableArray *allWeightData;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property AddItemSave* child;
 @property int ChosenWorkout;
 @property int saveToChart;
 

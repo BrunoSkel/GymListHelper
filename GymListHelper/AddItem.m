@@ -10,13 +10,13 @@
 
 @interface AddItem () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UITextField *weightBox;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *seriesField;
 @property (strong, nonatomic) IBOutlet UITextField *repField;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
-@property (strong, nonatomic) IBOutlet UILabel *MainLabel;
-@property (strong, nonatomic) IBOutlet UIButton *cancelBut;
-@property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBut;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *DeleteButton;
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
@@ -24,6 +24,7 @@
 @property BOOL isEdit;
 @property NSMutableArray *allInfoData;
 @property NSMutableArray *allPicData;
+@property NSMutableArray *allWeightData;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC1;
 @property (strong, nonatomic) IBOutlet UIImageView *PIC2;
 @property (strong, nonatomic) IBOutlet UIButton *PIC1Button;
@@ -34,6 +35,7 @@
 @property NSString *editstring;
 @property UIImageView* touchedImage;
 @property UIImage *defaultPic;
+@property CGPoint svos;
 @end
 
 @implementation AddItem
@@ -66,6 +68,11 @@
 
 - (void)PrepareForShow {
     
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(hideKeyboard)];
+    [self.scrollView addGestureRecognizer:singleFingerTap];
+    
     //Appeared: Load Info box, apply translation and Scroll size and check information sent from the previous UIViewController
     self.defaultPic=self.PIC1.image;
     [self loadInfoBoxInfo];
@@ -86,8 +93,10 @@
         _nameField.text=_retrievedName;
         _seriesField.text=_retrievedSeries;
         _repField.text=_retrievedRep;
-        [_MainLabel setText:self.editstring];
-        _DeleteButton.hidden=NO;
+        NSLog(@"%@",self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise]);
+        _weightBox.text=self.allWeightData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise];
+        [self.navigationItem setTitle:self.editstring];
+        _DeleteButton.enabled=YES;
 
         //Fill Box
         
@@ -97,6 +106,7 @@
         if (![self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0] isEqual:@"NoPic"]){
             
             self.PIC1.image=[UIImage imageWithData:self.allPicData[self.ChosenWorkout][self.ChosenSubWorkout][self.EditThisExercise][0]];
+            
             
         }
         
@@ -117,9 +127,9 @@
     }
     
     else{ //Not editing, creating new exercise
-        _DeleteButton.hidden=YES;
+        _DeleteButton.enabled=NO;
         _nameField.text=@"";
-        [_MainLabel setText:self.addstring];
+        [self.navigationItem setTitle:self.addstring];
     }
     
         self.PIC1.contentMode=UIViewContentModeScaleAspectFit;
@@ -210,6 +220,10 @@
     
     self.allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    self.allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 -(void)saveInfoBox{
@@ -228,30 +242,36 @@
 
 //Make the keyboard dissapear after editing textfields======================
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
     [theTextField resignFirstResponder];
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
     [textField resignFirstResponder];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //hides keyboard when another part of layout was touched
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
+- (void)textViewDidEndEditing:(UITextView *)textField {
+    [self.scrollView setContentOffset:self.svos animated:YES];
+    [textField resignFirstResponder];
 }
 //================================================================
 
 
+-(void)Save{
+    [self performSegueWithIdentifier:@"OnSave" sender:self.saveButCell];
+}
+
 //Getting out of the viewcontroller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if (sender==self.cancelBut){
+    if ([segue.identifier isEqual:@"ContainerConnection"]){
+        return;
+    }
+    if (sender==self.cancelBut && ![segue.identifier isEqual:@"OnSave"]){
         NSLog(@"Canceled");
     return;
     }
-    
     //If he deleted it
     if (sender==self.DeleteButton){
         //SAVE CHART
@@ -265,6 +285,11 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
+        
+        [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
+        
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
         
         [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] removeObjectAtIndex:_EditThisExercise];
         
@@ -283,7 +308,7 @@
     }
     
     //Creating new exercise
-    if (self.nameField.text.length > 0 && sender!=self.cancelBut) {
+    if (self.nameField.text.length > 0) {
         _newitem=[NSString stringWithFormat:@"%@ | %@x%@",self.nameField.text,self.seriesField.text,self.repField.text];
         NSLog(@"%@",_newitem);
         ChartEditor *controller = (ChartEditor *)segue.destinationViewController;
@@ -295,6 +320,7 @@
         
         if (_isEdit==YES){
                 [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:_newitem];
+                [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.weightBox.text];
                 [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] replaceObjectAtIndex:_EditThisExercise withObject:self.InfoBox.text];
             
             if (self.PIC1.image!=self.defaultPic){
@@ -317,6 +343,8 @@
         }
         else{
             [[[controller.allChartData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:_newitem];
+            
+            [[[controller.allWeightData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.weightBox.text];
             
             [[[self.allInfoData objectAtIndex:controller.ChosenWorkout] objectAtIndex:controller.saveToChart] addObject:self.InfoBox.text];
             
@@ -355,6 +383,8 @@
         
         filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
         [controller.allChartData writeToFile:filePath atomically:YES];
+        filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [controller.allWeightData writeToFile:filePath atomically:YES];
         
         
         //SAVE CHART END
@@ -465,6 +495,50 @@
             default:
                 break;
         }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.saveButCell;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.svos = self.scrollView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textField bounds];
+    rc = [textField convertRect:rc toView:self.scrollView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= 120;
+    [self.scrollView setContentOffset:pt animated:YES];
+    
+}
+
+- (void)textViewDidBeginEditing:(UITextField *)textField {
+    self.svos = self.scrollView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textField bounds];
+    rc = [textField convertRect:rc toView:self.scrollView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= 120;
+    [self.scrollView setContentOffset:pt animated:YES];
+    
+}
+
+- (void)hideKeyboard {
+    [_InfoBox endEditing:YES];
 }
 
 @end

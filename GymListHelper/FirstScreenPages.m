@@ -15,6 +15,9 @@
 @end
 
 @implementation FirstScreenPages
+- (IBAction)OnStart:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidLoad
 {

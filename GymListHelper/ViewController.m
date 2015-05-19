@@ -22,13 +22,13 @@
 @property NSArray *pickerData;
 @property NSMutableArray *ChartNamesArray;
 @property NSString *selectedCooldown;
-@property (strong, nonatomic) IBOutlet UILabel *ChartNameLabel;
 
 @property NSString *retrievedSeries;
 @property NSString *retrievedRep;
 @property NSString *retrievedName;
 @property NSString *chartstring;
 @property NSString* language;
+@property int TouchedIndex;
 @end
 
 @implementation ViewController
@@ -90,7 +90,7 @@
     //When he opens the app, workout A from the first chart will show up.
     //First objectAtIndex = Chart. Second = A/B/C/D/E as 0/1/2/3/4/5
     //_ChosenWorkout=0;
-    self.ChartNameLabel.text=[NSString stringWithFormat:@"%@",self.RoutineNamesArray[self.ChosenWorkout]];
+    self.navigationItem.title=[NSString stringWithFormat:@"%@",self.RoutineNamesArray[self.ChosenWorkout][0]];
     self.tableData=[NSMutableArray arrayWithArray:self.allChartData[self.ChosenWorkout][0]];
     
     //Reloads the table to show up properly on the screen
@@ -100,7 +100,9 @@
     //Test
     //[self MultiDimensionTest];
     //Now let's send the _tableData and resttime contents to the Watch
-    [self SyncWithWatch];
+    //[self SyncWithWatch];
+    
+    [self.SegmentControlOutlet setSelectedSegmentIndex:0];
     
 }
 
@@ -162,9 +164,18 @@
     
     _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
 }
 
 #pragma mark Delegate Methods
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    self.TouchedIndex=(int)indexPath.row;
+    [self performSegueWithIdentifier: @ "ExerciseInfo" sender: self];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -234,7 +245,8 @@
     [self.tableView reloadData];
     
     //And then, I sync the tableData with the Watch
-    [self SyncWithWatch];
+    //Data now sent via table button
+    //[self SyncWithWatch];
 }
 
 #pragma mark OnSegue
@@ -242,8 +254,12 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToExercise"]){
         DoExerciseScreen *controller = (DoExerciseScreen *)segue.destinationViewController;
+        
         controller.exercisedata=self.tableData;
         controller.chartname=[NSString stringWithFormat:self.chartstring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]];
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
+        controller.weightdata=_allWeightData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex];
         //Converting cooldown string to int
         self.selectedCooldown = self.WaitTimesArray[self.ChosenWorkout][self.SegmentControlOutlet.selectedSegmentIndex];
         controller.cooldownAmount=[self.selectedCooldown intValue];
@@ -257,16 +273,13 @@
     
         
     if([segue.identifier isEqualToString:@"ExerciseInfo"]){
-            ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
         
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        ExerciseInfoScreen *controller = (ExerciseInfoScreen *)segue.destinationViewController;
         
+        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
         
-        controller.fullname=_allChartData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
-        
-        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
-        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][indexPath.row];
+        controller.infodata=_allInfoData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
+        controller.picdata=_allPicData[_ChosenWorkout][_SegmentControlOutlet.selectedSegmentIndex][self.TouchedIndex];
     }
     
     
@@ -324,6 +337,11 @@
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     NSLog(@"Called");
     [self Unwinded];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 5;
 }
 
 @end

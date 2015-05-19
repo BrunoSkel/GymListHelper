@@ -22,7 +22,6 @@
 //@property (strong, nonatomic) IBOutlet UITextField *ChartDescriptionNew;
 //@property (strong, nonatomic) IBOutlet UITextField *ChartEstimatedTimeNew;
 //@property (strong, nonatomic) IBOutlet UITextField *ChartLanguageNew;
-@property (strong, nonatomic) IBOutlet UILabel *MainLabel;
 
 -(void)editMode;
 

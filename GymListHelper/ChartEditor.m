@@ -10,8 +10,9 @@
 #import "ViewController.h"
 #import "EditChartTableCell.h"
 #import "AddItem.h"
+
 #define PICKER_MIN 0
-#define PICKER_MAX 60
+#define PICKER_MAX 120
 
 @interface ChartEditor ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegmentControlOutlet;
@@ -51,6 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _child=(AddItemSave*)self.childViewControllers[0];
+    
     //Save to chart indicates the currently chosen chart. It's to know which chart to save. Starts at 0 because the first chart is the first that shows up
     self.saveToChart=0;
     self.allChartData = [NSMutableArray array];
@@ -73,7 +76,9 @@
     
     //Delete only shows up if it's C onwards. Cant have less than 2 segments.
     self.DeleteSubRoutine.hidden=YES;
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
+    
     // [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"Add exercise to routine"] forState:UIControlStateNormal];
     
     //Namefield initial text=Subroutine saved name
@@ -90,20 +95,6 @@
     
         [super viewWillAppear:animated];
     
-    NSLog(@"Showing Chart Editor");
-    
-}
-
-//Flash scroll indicator
-
--(void)viewDidAppear:(BOOL)animated{
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
-    
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_timer invalidate];
 }
 
 //Make the keyboard dissapear after editing textfields======================
@@ -136,10 +127,6 @@
     return (newLength > 10) ? NO : YES;
 }
 
--(void)indicator:(BOOL)animated{
-    [_tableView flashScrollIndicators];
-}
-
 - (void)loadInitialData {
     //Loads Chart data. Doesn't need the null check this time, as they will be filled by now
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -151,6 +138,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"waitTimesFile"];
     
@@ -173,6 +164,10 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"chartDataFile"];
     
     [self.allChartData writeToFile:filePath atomically:YES];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    [self.allWeightData writeToFile:filePath atomically:YES];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
@@ -240,6 +235,9 @@
 //Deletes the exercise, when it's touched, according to the chosen segment
 //When Touched, trigger the Edit window
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     _TouchedIndex=(int)indexPath.row;
     [self performSegueWithIdentifier:@"EditExercise" sender:self];
 }
@@ -332,7 +330,7 @@
     [self.tableView reloadData];
     
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
     
     if (s.selectedSegmentIndex>0) {
         [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
@@ -364,7 +362,7 @@
     
     [self.DeleteSubRoutine setTitle:[NSString stringWithFormat:@"%@ '%@'",self.deletestring,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
     
-    [self.AddExerciseLabel setTitle:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]] forState:UIControlStateNormal];
+    [_child.AddExerciseLabel setText:[NSString stringWithFormat:@"%@ '%@'",self.addexerciseto,[self.SegmentControlOutlet titleForSegmentAtIndex:self.SegmentControlOutlet.selectedSegmentIndex]]];
     
     [self SaveCharts];
     
@@ -439,6 +437,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"EditExercise"]){
+        
         AddItem *controller = (AddItem *)segue.destinationViewController;
         controller.EditThisExercise=_TouchedIndex;
         controller.ChosenSubWorkout=_saveToChart;
@@ -470,7 +469,7 @@
 //The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%ld", (row+PICKER_MIN)];
+    return [NSString stringWithFormat:@"%d", (row+PICKER_MIN)];
     //[_PickerView selectedRowInComponent:0];
 }
 
@@ -478,6 +477,11 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
 }
 
 

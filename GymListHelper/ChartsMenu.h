@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
+@interface ChartsMenu : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong,nonatomic)  NSMutableArray *allChartData;
+@property (strong,nonatomic)  NSMutableArray *allWeightData;
 @property (strong,nonatomic)  NSMutableArray *allInfoData;
 @property (strong,nonatomic)  NSMutableArray *allPicData;
 @property (strong,nonatomic)  NSMutableArray *ChartNamesArray;
@@ -23,5 +22,4 @@
 @property (strong) IBOutlet UITableView *tableView;
 //Social
 @property (strong,nonatomic)  NSMutableArray *ByUserArray;
-
 @end

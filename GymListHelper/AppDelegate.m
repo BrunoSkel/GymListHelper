@@ -20,8 +20,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor blackColor];
     pageControl.currentPageIndicatorTintColor = [UIColor yellowColor];
