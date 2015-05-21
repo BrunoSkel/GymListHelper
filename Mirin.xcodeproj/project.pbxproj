@@ -286,9 +286,9 @@
 				154F09491AB9948A00EC8087 /* AppDelegate.h */,
 				154F094A1AB9948A00EC8087 /* AppDelegate.m */,
 				154F094C1AB9948A00EC8087 /* ViewController.h */,
+				154F094D1AB9948A00EC8087 /* ViewController.m */,
 				15C6CB4C1B04BD9200B46BF1 /* CircularTimerView.h */,
 				15C6CB4D1B04BD9200B46BF1 /* CircularTimerView.m */,
-				154F094D1AB9948A00EC8087 /* ViewController.m */,
 				154F096D1AB9B43000EC8087 /* DoExerciseScreen.h */,
 				154F096B1AB9B41E00EC8087 /* DoExerciseScreen.m */,
 				15F68C101ACC3C1300D24E9C /* EditChartTableCell.m */,
@@ -523,7 +523,7 @@
 				TargetAttributes = {
 					154F09411AB9948A00EC8087 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -536,7 +536,7 @@
 					};
 					15A40B891AC17E08008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -545,7 +545,7 @@
 					};
 					15A40B981AC17E09008C82C4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = WZ2UP2QF9G;
+						DevelopmentTeam = 2YVM85P4VJ;
 					};
 				};
 			};
@@ -804,7 +804,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymListHelper/GymListHelper.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -824,7 +824,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymListHelper/GymListHelper.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -842,7 +842,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Danilo Marshall (2YVM85P4VJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -862,7 +862,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Danilo Marshall (2YVM85P4VJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -878,7 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "GymListHelper WatchKit Extension/GymListHelper WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -899,7 +899,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "GymListHelper WatchKit Extension/GymListHelper WatchKit Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -916,7 +916,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconWatch;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -939,7 +939,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconWatch;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruno da Rocha e Silva (WZ2UP2QF9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
