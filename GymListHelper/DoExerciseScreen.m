@@ -42,6 +42,7 @@
 @property NSArray *RepCountInformation;
 @property NSArray *CurrentExerciseData;
 @property NSString* SeriesCounterString;
+@property NSString* DoString;
 @end
 
 @implementation DoExerciseScreen
@@ -58,6 +59,7 @@
     _result1=@"But next time, try not to skip.";
     _result2=@"Now, don't give up!";
     _SeriesCounterString=@"Series %d of %d";
+    _DoString=@"Do:";
     _language = [[NSLocale preferredLanguages] objectAtIndex:0];
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
@@ -66,6 +68,7 @@
         _result1=@"Mas na próxima, tente não pular.";
         _result2=@"Continue assim!";
         _SeriesCounterString=@"Série %d de %d";
+        _DoString=@"Faça:";
     }
     
     [self Initiate];
@@ -302,7 +305,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *tapstring=@"Information";
+    NSString *tapstring=_DoString;
     
     NSString *sectionName;
     switch (section)
@@ -345,7 +348,7 @@
     
     
     if (indexPath.row==0){
-        UILabel *NameLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:1];
+        UILabel *NameLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:0];
         NameLabel.text=[NSString stringWithFormat:@"%@",[_CurrentExerciseData objectAtIndex:0]];
     }
     
