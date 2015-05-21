@@ -271,7 +271,7 @@
     
     EditChartTableCell* theRow = cell;
     //Name Decompose
-    [self retrieveInformation:indexPath.row];
+    [self retrieveInformation:(int)indexPath.row];
     //
     [theRow.ExName setText:self.retrievedName];
     [theRow.SeriesRepsLabel setText:[NSString stringWithFormat:@"Series: %@ | Reps: %@",self.retrievedSeries,self.retrievedRep]];
