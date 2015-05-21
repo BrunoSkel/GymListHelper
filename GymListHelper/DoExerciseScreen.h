@@ -11,6 +11,9 @@
 @interface DoExerciseScreen : UIViewController
 
 @property (strong,nonatomic)  NSMutableArray *exercisedata;
+@property (strong,nonatomic)  NSMutableArray *infodata;
+@property (strong,nonatomic)  NSMutableArray *weightdata;
+@property (strong,nonatomic)  NSMutableArray *picdata;
 
 @property (strong,nonatomic) NSString* chartname;
 

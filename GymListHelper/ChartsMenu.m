@@ -14,10 +14,8 @@
 #import "CJSONSerializer.h"
 #import "CJSONDeserializer.h"
 
-@interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource,FBSDKLoginButtonDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *profileImg;
-@property (weak, nonatomic) IBOutlet UILabel *profileName;
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *FBLoginBtn;
+@interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITabBar *tabBar;
 @property NSString *language;
 @property NSString* hipertrofia;
 @property NSString* definition;
@@ -26,6 +24,7 @@
 @property NSString* strength;
 @property NSTimer *timer;
 @property int TouchedIndex;
+@property BOOL isEditing;
 @end
 
 @implementation ChartsMenu
@@ -40,32 +39,27 @@
         _strength=@"Strength";
         _fatloss=@"Fat Loss";
         _language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        _isEditing=YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if ([FBSDKAccessToken currentAccessToken]) {
-        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage * image = [UIImage imageWithData:imageData];
-        
-        self.profileImg.image = image;
-        
-        self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
-    }else{
-        self.profileImg.image = [UIImage imageNamed:@"guest"];
-        self.profileName.text = @"Guest";
-        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
-    }
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    BOOL isfirst=[self CheckifnotFirst];
+    if (isfirst==YES){
+        [self performSegueWithIdentifier:@"Tutorial" sender:self];
+        return;
+    }
+    
+    //Tabbar default selection
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:1]];
     
     //Load charts
     [self LoadChartData];
@@ -80,21 +74,21 @@
         _fatloss=@"Perda de Gordura";
     }
     //
+
 }
 
-//Flash scroll indicator
--(void)viewDidAppear:(BOOL)animated{
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(indicator:) userInfo:nil repeats:YES];
-    
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_timer invalidate];
-}
-
--(void)indicator:(BOOL)animated{
-    [_tableView flashScrollIndicators];
+-(BOOL)CheckifnotFirst{
+    int firsttime = (int)[[[NSUserDefaults standardUserDefaults] objectForKey:@"firstTimeFile"] integerValue];
+    if (firsttime==0){
+        firsttime++;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:firsttime] forKey:@"firstTimeFile"];
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    //anti bug
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,11 +102,13 @@
     NSString *Example=@"Example";
     NSString *likethis=@"is like this, this and this";
     NSString *WorkoutName=@"Example Workout";
+    NSString *WorkoutDescription=@"This is just an example of what you can do in Mirin. Blablablablabla. Bla.";
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
         Example=@"Exemplo";
         likethis=@"é realizado assim, assim, e assim.";
         WorkoutName=@"Treino Exemplo";
+        WorkoutDescription=@"Isso é apenas um exemplo do que pode ser feito no Mirin. Blablablabla. Bla.";
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -124,6 +120,10 @@
     filePath = [documentsDirectory stringByAppendingPathComponent:@"chartNamesFile"];
     
     _ChartNamesArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
     
     filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
     
@@ -217,7 +217,9 @@
     if (_ChartNamesArray==NULL){
         //Addind a new routine name
         _RoutineNamesArray = [NSMutableArray array];
-        [_RoutineNamesArray addObject: WorkoutName];
+        [_RoutineNamesArray addObject: [NSMutableArray array]];
+        [_RoutineNamesArray[0] addObject: WorkoutName];
+        [_RoutineNamesArray[0] addObject: WorkoutDescription];
         NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
         [_RoutineNamesArray writeToFile:filePath atomically:YES];
         
@@ -260,6 +262,8 @@
     //=========================================
     //PICDATA: To avoid breaking previous versions, the new files checked the workouts, and get created accordingly
     
+    //PicData
+    
     filePath = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
     
     _allPicData = [NSMutableArray arrayWithContentsOfFile:filePath];
@@ -282,8 +286,7 @@
             }
         }
         
-                NSLog(_allPicData[0][0][0][0]);
-                NSLog(_allPicData[0][0][0][1]);
+        
         
         NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"picDataFile"];
         [_allPicData writeToFile:filePathInfo atomically:YES];
@@ -296,25 +299,78 @@
     //=========================================
     //=========================================
     
+    //Routine Names -> Now an array with name and description
+    for (int i=0;i<[_RoutineNamesArray count];i++){
+        if(![_RoutineNamesArray[i] isKindOfClass:[NSMutableArray class]]){
+            NSString* namebackup=_RoutineNamesArray[i];
+            [_RoutineNamesArray replaceObjectAtIndex:i withObject:[NSMutableArray array]];
+            [_RoutineNamesArray[i] addObject:namebackup];
+            [_RoutineNamesArray[i] addObject:@" "];
+        }
+    }
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"routineNamesFile"];
+    [_RoutineNamesArray writeToFile:filePath atomically:YES];
+    
+    //Weigth Data
+    
+    filePath = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+    
+    _allWeightData = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    if (_allWeightData==NULL){
+        //Cloning
+        _allWeightData = [NSMutableArray array];
+        for (int i=0;i<[_allChartData count];i++){
+            //This is the routine
+            [_allWeightData addObject: [NSMutableArray array]];
+            for (int j=0;j<[_allChartData[i] count];j++){
+                //This is the subroutines
+                [_allWeightData[i] addObject: [NSMutableArray array]];
+                for (int k=0;k<[_allChartData[i][j] count];k++){
+                    //Exercises and filling it
+                    [_allWeightData[i][j] addObject: @"None"];
+                }
+            }
+        }
+        
+        
+        
+        NSString *filePathInfo = [documentsDirectory stringByAppendingPathComponent:@"weightDataFile"];
+        [_allWeightData writeToFile:filePathInfo atomically:YES];
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    self.TouchedIndex=(int)indexPath.row;
+    [self performSegueWithIdentifier: @ "EditRoutine" sender: self];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //When the chart is touched, open the start screen, sending the chart ID to the next screen
-    self.TouchedIndex=(int)indexPath.row;
-    NSLog(@"Touched index: %ld",(long)indexPath.row);
-    [self performSegueWithIdentifier: @ "GoToMain" sender: self];
+    //self.TouchedIndex=(int)indexPath.row;
+    //NSLog(@"Touched index: %ld",(long)indexPath.row);
+    //[self performSegueWithIdentifier: @ "GoToMain" sender: self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ContainerConnection"]){
+        return;
+    }
+    
     if([segue.identifier isEqualToString:@"GoToMain"]){
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        self.TouchedIndex=indexPath.row;
         ViewController *controller = (ViewController *)segue.destinationViewController;
         controller.ChosenWorkout=_TouchedIndex;
     }
     
     else if([segue.identifier isEqualToString:@"EditRoutine"]){
+        
         NewChartDescriptionEditor *controller = (NewChartDescriptionEditor *)segue.destinationViewController;
-        NSIndexPath *indexPath = [self getButtonIndexPath:sender];
-        controller.EditThisRoutine = (int)indexPath.row;
+        controller.EditThisRoutine = self.TouchedIndex;
         controller.sentNameArray = [NSMutableArray arrayWithArray:self.RoutineNamesArray];
         controller.sentCategorieArray = [NSMutableArray arrayWithArray:self.ChartCategoriesArray];
         [controller editMode];
@@ -371,10 +427,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *tapstring=@"Tap to Select";
+    NSString *tapstring=@"Routines";
     
     if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-            tapstring=@"Toque para Selecionar";
+            tapstring=@"Treinos";
     }
     
     NSString *sectionName;
@@ -401,9 +457,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
+    
+    if (_isEditing == YES) {
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 
-    UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
-    [editButton setTag:indexPath.row];
+    //UIButton *editButton = (UIButton *)[cell.contentView.subviews objectAtIndex:0];
+    //[editButton setTag:indexPath.row];
     
     UIButton *shareButton = (UIButton *)[cell.contentView.subviews objectAtIndex:1];
     
@@ -411,12 +474,17 @@
     UILabel *lbUserName = (UILabel *)[cell.contentView.subviews objectAtIndex:3];
     UIImageView *imgUserPic = (UIImageView *)[cell.contentView.subviews objectAtIndex:4];
     UILabel *lbObjective = (UILabel*)cell.contentView.subviews[5];
-    lbChartName.text = [self.RoutineNamesArray objectAtIndex:indexPath.row];
+    
+    lbChartName.text = self.RoutineNamesArray[indexPath.row][0];
     
     [shareButton setEnabled:YES];
     
+    UIImageView *lbImageTag = (UIImageView *)[cell.contentView.subviews objectAtIndex:0];
+    
     int firstId = -1;
     NSMutableString* objectives = [NSMutableString new];
+    NSMutableString* tagimagefile=@"routinetagother.png";
+    BOOL tagset=NO;
     for(int i=0;i<[self.ChartCategoriesArray[indexPath.row] count];i++){
         if([self.ChartCategoriesArray[indexPath.row][i] isEqualToString:@"YES"]){
             if((i > firstId)&&(firstId != -1)){
@@ -442,17 +510,15 @@
                     [objectives appendString:self.strength];
                     break;
             }
-            
+            if (tagset==NO){
+                tagset=YES;
+                tagimagefile=[NSString stringWithFormat:@"routinetag%d.png",i];
+            }
         }
     }
     
-    NSString *goal=@"Goal";
-    if([self.language isEqualToString:@"pt"]||[self.language isEqualToString:@"pt_br"]){
-                goal=@"Objetivo";
-            }
-    
-    lbObjective.text = [NSString stringWithFormat:@"%@: %@",goal,objectives];
-    
+    lbObjective.text = [NSString stringWithFormat:@"%@",objectives];
+    lbImageTag.image=[UIImage imageNamed:tagimagefile];
     // separation char: § , param1: userid param2:user name, param3:shared = chartid or 0 if not shared
     NSArray* params = [self.ByUserArray[indexPath.row] componentsSeparatedByString: @"§"];
     
@@ -486,10 +552,22 @@
 }
 
 -(void)ShouldShareButtonAppear:(UITableViewCell*)cell:(int)row{
-    
-    
-    
+}
 
+
+- (IBAction)EditPressed:(id)sender {
+    if (_isEditing==NO){
+    self.navigationItem.leftBarButtonItem.title=@"Done";
+    _isEditing=YES;
+        
+    }
+    else{
+        self.navigationItem.leftBarButtonItem.title=@"Edit";
+        _isEditing=NO;
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 
@@ -522,107 +600,6 @@
     }
 }
 
-- (IBAction)LogInOutAction:(id)sender {
-    if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){
-        //Go To Login Screen
-        [self performSegueWithIdentifier:@"GoToLogin" sender:self];
-    }else{
-        //Logout
-        self.profileImg.image = [UIImage imageNamed:@"guest"];
-        self.profileName.text = @"Guest";
-        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
-        //[FBSDKLoginManager finalize];
-        //[FBSDKAccessToken ];
-    }
-    
-}
-
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)FBLoginBtn{
-//    NSLog(@"LOGOUT");
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"loggedUserId"];
-    
-    self.profileImg.image = [UIImage imageNamed:@"guest"];
-    self.profileName.text = @"Guest";
-
-}
-
-- (void)
-loginButton:	(FBSDKLoginButton *)FBLoginBtn
-didCompleteWithResult:	(FBSDKLoginManagerLoginResult *)result
-error:	(NSError *)error
-{
-    if ([FBSDKAccessToken currentAccessToken]) {
-        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
-         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-             if (!error) {
-                 
-                 //NSLog(@"fetched user:%@", result);
-                 
-                 [[NSUserDefaults standardUserDefaults] setValue: result[@"id"] forKey:@"loggedUserFacebookId"];
-                 
-                 [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@ %@", result[@"first_name"],result[@"last_name"]] forKey:@"loggedUserName"];
-                 
-                 NSString *sendData = @"facebookid=";
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", result[@"id"]]];
-                 
-                 sendData = [sendData stringByAppendingString:@"&name="];
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@ %@", result[@"first_name"],result[@"last_name"]]]];
-                 
-                 sendData = [sendData stringByAppendingString:@"&email="];
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-                 
-                 sendData = [sendData stringByAppendingString:@"&password="];
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-                 
-                 sendData = [sendData stringByAppendingString:@"&pic="];
-                 sendData = [sendData stringByAppendingString:[NSString stringWithFormat:@"%@", @""]];
-                 
-                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gamescamp.com.br/gymhelper/webservices/insertUser.php"]];
-                 
-                 [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-                 
-                 //Here you send your data
-                 [request setHTTPBody:[sendData dataUsingEncoding:NSUTF8StringEncoding]];
-                 
-                 [request setHTTPMethod:@"POST"];
-                 NSURLResponse *response = nil;
-                 NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-                 
-                 NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                 
-                 
-                 if (error)
-                 {
-                     NSLog(@"Error");
-                 }
-                 else
-                 {
-                     //The response is in data
-                     //NSLog(@"%@", results);
-                     
-                     if([results isEqualToString:@"ERROR2"]){
-                         NSLog(@"InsertUser Error2");
-                     }else{
-                         NSLog(@"InsertUser ok = %@",results);
-                         
-                         [[NSUserDefaults standardUserDefaults] setInteger:[results intValue] forKey:@"loggedUserId"];
-                         
-                         NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=200&height=200",[[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserFacebookId"]]];
-                         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-                         UIImage * image = [UIImage imageWithData:imageData];
-                         
-                         self.profileImg.image = image;
-                         
-                         self.profileName.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"loggedUserName"];
-                     }
-                 }
-                 
-             }
-         }];
-    }else{
-        NSLog(@"Not Logged");
-    }
-}
 - (IBAction)BrowseWorkouts:(id)sender {
     
     [self ShowBetaAlert];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChartEditor.h"
 
-@interface AddItem: UIViewController <UITextFieldDelegate>
+@interface AddItem: UIViewController <UITextFieldDelegate,UITableViewDataSource>
 
 @property NSString *newitem;
 -(void)editMode;
@@ -17,5 +17,6 @@
 @property int ChosenSubWorkout;
 @property int ChosenWorkout;
 @property NSMutableArray *sentArray;
-
+@property (strong, nonatomic) IBOutlet UITableViewCell *saveButCell;
+-(void)Save;
 @end
