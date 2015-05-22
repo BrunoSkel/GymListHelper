@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *PIC2;
 @property (strong, nonatomic) IBOutlet UIButton *PIC1Button;
 @property (strong, nonatomic) IBOutlet UIButton *PIC2Button;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property NSString *language;
 @property NSString *addstring;
@@ -66,6 +67,13 @@
     [self PrepareForShow];
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.scrollView.contentSize = self.contentView.frame.size;
+    
+}
+
 - (void)PrepareForShow {
     
     UITapGestureRecognizer *singleFingerTap =
@@ -84,7 +92,8 @@
         [self.InfoBox setText:@"Coloque algumas informações aqui!"];
     }
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 930);
+    //self.scrollView.contentSize = self.contentView.frame.size;
+    
     
     if (_isEdit==YES){
         
