@@ -1505,16 +1505,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPB-Zf-vBw">
-                                <rect key="frame" x="0.0" y="358" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="390" width="320" height="168"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="kJr-AI-VAC"/>
+                                    <constraint firstAttribute="height" constant="168" id="QcX-kf-dVM"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Y8K-H7-WfR" kind="embed" identifier="ContainerConnection" id="KEZ-2M-xHw"/>
                                 </connections>
                             </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="54" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="XSH-KV-2O1">
-                                <rect key="frame" x="0.0" y="119" width="320" height="229"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="321"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableItem" rowHeight="54" id="mjM-Ys-3J0" customClass="EditChartTableCell">
@@ -1595,7 +1595,7 @@
                             <constraint firstItem="5Bi-2P-RnE" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="acd-Fz-pBp"/>
                             <constraint firstItem="XSH-KV-2O1" firstAttribute="top" secondItem="5Bi-2P-RnE" secondAttribute="bottom" constant="15" id="ev5-bd-CEk"/>
                             <constraint firstAttribute="trailing" secondItem="XSH-KV-2O1" secondAttribute="trailing" id="hec-gd-lZX"/>
-                            <constraint firstItem="FPB-Zf-vBw" firstAttribute="top" secondItem="XSH-KV-2O1" secondAttribute="bottom" constant="10" id="hkY-mD-ES4"/>
+                            <constraint firstItem="FPB-Zf-vBw" firstAttribute="top" secondItem="XSH-KV-2O1" secondAttribute="bottom" constant="-50" id="hkY-mD-ES4"/>
                             <constraint firstItem="XSH-KV-2O1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="lOE-GQ-5OD"/>
                         </constraints>
                     </view>
