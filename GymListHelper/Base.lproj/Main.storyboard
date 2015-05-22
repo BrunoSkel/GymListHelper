@@ -253,7 +253,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="eeT-TI-7FC">
-                                <rect key="frame" x="0.0" y="44" width="320" height="956"/>
+                                <rect key="frame" x="0.0" y="-70" width="320" height="1070"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYl-qR-49u">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="957"/>
@@ -475,11 +475,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="hYl-qR-49u" firstAttribute="top" secondItem="eeT-TI-7FC" secondAttribute="top" id="8K2-gW-eEw"/>
                                     <constraint firstAttribute="trailing" secondItem="hYl-qR-49u" secondAttribute="trailing" id="D6i-Ab-kkP"/>
-                                    <constraint firstAttribute="bottom" secondItem="hYl-qR-49u" secondAttribute="bottom" id="cHB-Ob-dLf"/>
+                                    <constraint firstAttribute="bottom" secondItem="hYl-qR-49u" secondAttribute="bottom" constant="-1" id="cHB-Ob-dLf"/>
                                     <constraint firstAttribute="centerX" secondItem="hYl-qR-49u" secondAttribute="centerX" id="gMe-QF-tQY"/>
                                     <constraint firstItem="hYl-qR-49u" firstAttribute="leading" secondItem="eeT-TI-7FC" secondAttribute="leading" id="syH-cE-B3J"/>
-                                    <constraint firstItem="hYl-qR-49u" firstAttribute="top" secondItem="eeT-TI-7FC" secondAttribute="top" id="zO4-9i-vVq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
@@ -493,7 +493,7 @@
                             <constraint firstItem="sjm-xt-R5h" firstAttribute="top" secondItem="eeT-TI-7FC" secondAttribute="bottom" id="1xY-IO-Uv1"/>
                             <constraint firstAttribute="trailing" secondItem="eeT-TI-7FC" secondAttribute="trailing" id="Aix-av-LrU"/>
                             <constraint firstItem="eeT-TI-7FC" firstAttribute="leading" secondItem="hvC-zt-pEq" secondAttribute="leading" id="MWW-3M-iH0"/>
-                            <constraint firstItem="eeT-TI-7FC" firstAttribute="top" secondItem="pf9-tO-Y37" secondAttribute="bottom" id="nMy-Hc-Cgs"/>
+                            <constraint firstItem="eeT-TI-7FC" firstAttribute="top" secondItem="pf9-tO-Y37" secondAttribute="bottom" constant="-70" id="wln-la-pGj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item" id="jh8-36-bGV">
@@ -504,7 +504,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
@@ -1513,7 +1514,7 @@
                                 </connections>
                             </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="54" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="XSH-KV-2O1">
-                                <rect key="frame" x="0.0" y="99" width="320" height="249"/>
+                                <rect key="frame" x="0.0" y="119" width="320" height="229"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableItem" rowHeight="54" id="mjM-Ys-3J0" customClass="EditChartTableCell">
@@ -1547,15 +1548,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVj-bf-UfS">
-                                                    <rect key="frame" x="250" y="12" width="30" height="30"/>
-                                                    <state key="normal" title="ℹ︎">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="cOJ-7k-20A" kind="modal" identifier="ExerciseInfo" id="YaD-te-aD0"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uhi-kc-GCy" firstAttribute="leading" secondItem="WP6-5y-cTd" secondAttribute="leadingMargin" id="DQu-GZ-bPC"/>
@@ -1601,7 +1593,7 @@
                             <constraint firstAttribute="centerX" secondItem="XSH-KV-2O1" secondAttribute="centerX" id="QkG-GM-p3x"/>
                             <constraint firstItem="bYL-Gr-aC1" firstAttribute="top" secondItem="FPB-Zf-vBw" secondAttribute="bottom" constant="10" id="aI1-St-2GV"/>
                             <constraint firstItem="5Bi-2P-RnE" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="acd-Fz-pBp"/>
-                            <constraint firstItem="XSH-KV-2O1" firstAttribute="top" secondItem="5Bi-2P-RnE" secondAttribute="bottom" constant="-5" id="ev5-bd-CEk"/>
+                            <constraint firstItem="XSH-KV-2O1" firstAttribute="top" secondItem="5Bi-2P-RnE" secondAttribute="bottom" constant="15" id="ev5-bd-CEk"/>
                             <constraint firstAttribute="trailing" secondItem="XSH-KV-2O1" secondAttribute="trailing" id="hec-gd-lZX"/>
                             <constraint firstItem="FPB-Zf-vBw" firstAttribute="top" secondItem="XSH-KV-2O1" secondAttribute="bottom" constant="10" id="hkY-mD-ES4"/>
                             <constraint firstItem="XSH-KV-2O1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="lOE-GQ-5OD"/>
@@ -2577,10 +2569,10 @@ These Terms and Conditions shall be governed by and construed in accordance with
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="szV-bp-fm0"/>
+        <segue reference="YB8-ts-GGX"/>
         <segue reference="bck-QQ-APH"/>
         <segue reference="1R2-Sl-5Sa"/>
-        <segue reference="o0w-fR-L6D"/>
-        <segue reference="szV-bp-fm0"/>
         <segue reference="53Y-IQ-keJ"/>
         <segue reference="cUT-Oo-Pll"/>
     </inferredMetricsTieBreakers>

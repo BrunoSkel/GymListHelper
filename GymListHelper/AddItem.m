@@ -70,7 +70,7 @@
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.scrollView.contentSize = self.contentView.frame.size;
+   // self.scrollView.contentSize = self.contentView.frame.size;
     
 }
 
