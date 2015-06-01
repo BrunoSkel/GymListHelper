@@ -56,8 +56,6 @@
 - (void)Initiate{
     //Inititate timer to change the text on the done button
         self.syncTimer= [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
-    //Hide the Cooldown Stuff
-    [self HideCooldown];
     //Get the amount of exercises from the chosen chart, and show the first one
     _ExerciseAmount=(int)[_exercisedata count];
     NSLog(@"Exercise Amount on this Chart: %d",_ExerciseAmount);
@@ -67,6 +65,10 @@
         self.EndingString=@"By that, I mean nothing.";
         [self pushControllerWithName:@"ToEnd" context:_EndingString];
     }
+    
+    //Hide the Cooldown Stuff
+    [self HideCooldown];
+    
 }
 
 -(void) updateTimerLabel{
@@ -94,6 +96,11 @@
     self.RepCount.hidden=NO;
     [self.DoLabel setText:@"Do:"];
     self.RepsLabel.hidden=NO;
+    
+    if (self.RemainingSeries<=0){
+        [self Proceed];
+    }
+    
    // self.DoneLabel.hidden=NO;
 }
 

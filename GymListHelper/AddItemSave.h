@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddItemSave : UITableViewController
+@interface AddItemSave : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *AddExerciseLabel;
 
 @end

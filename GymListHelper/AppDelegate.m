@@ -25,6 +25,7 @@
     pageControl.currentPageIndicatorTintColor = [UIColor yellowColor];
     pageControl.backgroundColor = [UIColor clearColor];
     
+    
     //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"logged_in"];
     
     [FBSDKLoginButton class];

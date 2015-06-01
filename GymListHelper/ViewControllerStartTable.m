@@ -20,6 +20,7 @@
     if (indexPath.section==0){
         ViewController* controller=(ViewController*)self.parentViewController;
         [controller SyncWithWatch];
+        NSLog(@"Sent to Watch");
     }
     else if (indexPath.section==1){
     ViewController* controller=(ViewController*)self.parentViewController;

@@ -11,7 +11,7 @@
 #import "ViewController.h"
 #import "NewChartDescriptionEditor.h"
 
-#import "CJSONSerializer.h"
+//#import "CJSONSerializer.h"
 #import "CJSONDeserializer.h"
 
 @interface ChartsMenu () <UITableViewDelegate, UITableViewDataSource>
@@ -22,6 +22,9 @@
 @property NSString* tonification;
 @property NSString* fatloss;
 @property NSString* strength;
+@property NSString* tab0;
+@property NSString* tab1;
+@property NSString* tab2;
 @property NSTimer *timer;
 @property int TouchedIndex;
 @property BOOL isEditing;
@@ -38,8 +41,11 @@
         _tonification=@"Tonification";
         _strength=@"Strength";
         _fatloss=@"Fat Loss";
+        _tab0=@"Gym";
+        _tab1=@"Charts";
         _language = [[NSLocale preferredLanguages] objectAtIndex:0];
         _isEditing=YES;
+        
     }
     return self;
 }
@@ -52,11 +58,11 @@
     
     [super viewWillAppear:animated];
     
-    BOOL isfirst=[self CheckifnotFirst];
-    if (isfirst==YES){
-        [self performSegueWithIdentifier:@"Tutorial" sender:self];
-        return;
-    }
+    //BOOL isfirst=[self CheckifnotFirst];
+    //if (isfirst==YES){
+    //    [self performSegueWithIdentifier:@"Tutorial" sender:self];
+    //    return;
+    //}
     
     //Tabbar default selection
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:1]];
@@ -72,7 +78,16 @@
         _tonification=@"Tonificação";
         _strength=@"Potência";
         _fatloss=@"Perda de Gordura";
+        _tab0=@"Academia";
+        _tab1=@"Fichas";
     }
+    
+    UITabBarItem *item0 = [_tabBar.items objectAtIndex:0];
+    item0.title=_tab0;
+    UITabBarItem *item1 = [_tabBar.items objectAtIndex:1];
+    item1.title=_tab1;
+    [item1 setSelectedImage:[UIImage imageNamed:@"tab1sel"]];
+    
     //
 
 }
@@ -587,6 +602,11 @@
 }
 
 -(IBAction)shareButtonPressed:(UIButton*)sender{
+    
+                    [self ShowBetaAlert];
+                    return;
+    
+    
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"loggedUserId"] == 0){ //0 means user is not logged in, go to login screen
         
         [self performSegueWithIdentifier:@"GoToLogin" sender:self];
@@ -595,8 +615,8 @@
 
         self.TouchedIndex = (int)sender.tag;
         
-        //[self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
-                [self ShowBetaAlert];
+        [self performSegueWithIdentifier:@"GoToSharePreview" sender:self];
+               // [self ShowBetaAlert];
     }
 }
 

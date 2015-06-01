@@ -356,6 +356,11 @@
         UILabel *RepsLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:0];
         RepsLabel.text=[NSString stringWithFormat:@"%@",[_RepCountInformation objectAtIndex:1]];
     }
+        
+    if (indexPath.row==2){
+        UILabel *WeightLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:0];
+        WeightLabel.text=[NSString stringWithFormat:@"%@",[_weightdata objectAtIndex:_currentExerciseIndex]];
+    }
     
     if (indexPath.row==3){
         UILabel *sNoLabel = (UILabel *)[cell.contentView.subviews objectAtIndex:0];

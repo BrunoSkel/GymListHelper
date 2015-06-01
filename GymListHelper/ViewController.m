@@ -61,7 +61,7 @@
     
     [super viewDidLoad];
     //Initialize Watch syncing.
-    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.danilomarshall.GymWatch"];
+    _SharedData = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.coffeetime.Watch"];
     
     //Table data is where the chart data is written to. It's the array that gets printed on the screen.
     
