@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153A5DC01B21E49A0013A62F /* ExerciseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 153A5DBB1B21E49A0013A62F /* ExerciseClass.m */; };
+		153A5DC11B21E49A0013A62F /* RoutineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 153A5DBD1B21E49A0013A62F /* RoutineClass.m */; };
+		153A5DC21B21E49A0013A62F /* SubRoutineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 153A5DBF1B21E49A0013A62F /* SubRoutineClass.m */; };
 		153B4ED51ADFDC0700AC3E10 /* TermsScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */; };
 		154928471AFFA52D00B216AA /* AddItemSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 154928461AFFA52D00B216AA /* AddItemSave.m */; };
 		154DEAC01ABAEDAE00CDBC27 /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 154DEABF1ABAEDAE00CDBC27 /* EndScreen.m */; };
@@ -103,6 +106,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		153A5DBA1B21E49A0013A62F /* ExerciseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseClass.h; sourceTree = "<group>"; };
+		153A5DBB1B21E49A0013A62F /* ExerciseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseClass.m; sourceTree = "<group>"; };
+		153A5DBC1B21E49A0013A62F /* RoutineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutineClass.h; sourceTree = "<group>"; };
+		153A5DBD1B21E49A0013A62F /* RoutineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutineClass.m; sourceTree = "<group>"; };
+		153A5DBE1B21E49A0013A62F /* SubRoutineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubRoutineClass.h; sourceTree = "<group>"; };
+		153A5DBF1B21E49A0013A62F /* SubRoutineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubRoutineClass.m; sourceTree = "<group>"; };
 		153B4ED41ADFDC0700AC3E10 /* TermsScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsScreen.m; sourceTree = "<group>"; };
 		153B4ED61ADFDC5500AC3E10 /* TermsScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermsScreen.h; sourceTree = "<group>"; };
 		154928451AFFA52D00B216AA /* AddItemSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemSave.h; sourceTree = "<group>"; };
@@ -247,6 +256,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153A5DB91B21E49A0013A62F /* Routine Classes */ = {
+			isa = PBXGroup;
+			children = (
+				153A5DBA1B21E49A0013A62F /* ExerciseClass.h */,
+				153A5DBB1B21E49A0013A62F /* ExerciseClass.m */,
+				153A5DBC1B21E49A0013A62F /* RoutineClass.h */,
+				153A5DBD1B21E49A0013A62F /* RoutineClass.m */,
+				153A5DBE1B21E49A0013A62F /* SubRoutineClass.h */,
+				153A5DBF1B21E49A0013A62F /* SubRoutineClass.m */,
+			);
+			path = "Routine Classes";
+			sourceTree = "<group>";
+		};
 		154F09391AB9948A00EC8087 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				15A40BB21AC197C5008C82C4 /* GymListHelper.entitlements */,
+				153A5DB91B21E49A0013A62F /* Routine Classes */,
 				154F09491AB9948A00EC8087 /* AppDelegate.h */,
 				154F094A1AB9948A00EC8087 /* AppDelegate.m */,
 				154F094C1AB9948A00EC8087 /* ViewController.h */,
@@ -628,6 +651,7 @@
 				154DEAC61ABB013000CDBC27 /* AddItem.m in Sources */,
 				154928471AFFA52D00B216AA /* AddItemSave.m in Sources */,
 				154DEAC41ABAFA0800CDBC27 /* ChartEditor.m in Sources */,
+				153A5DC01B21E49A0013A62F /* ExerciseClass.m in Sources */,
 				157C7AB11AC9713800EE25A2 /* FirstScreenPages.m in Sources */,
 				76661E641AC441E8007599B9 /* DownloadCategories.m in Sources */,
 				CBAE14761ACAFEE4009BE1FA /* NSDictionary_JSONExtensions.m in Sources */,
@@ -639,11 +663,13 @@
 				76661E6A1AC44330007599B9 /* ChartsMenu.m in Sources */,
 				76661E6D1AC4435A007599B9 /* NewChartDescriptionEditor.m in Sources */,
 				15D7210E1ADE8AAF00FBF4F3 /* ExerciseInfoScreen.m in Sources */,
+				153A5DC21B21E49A0013A62F /* SubRoutineClass.m in Sources */,
 				153B4ED51ADFDC0700AC3E10 /* TermsScreen.m in Sources */,
 				157C7AB41AC97FB300EE25A2 /* PageCoreViewController.m in Sources */,
 				15DD01E51AFBCAD90038232C /* GoalPicker.m in Sources */,
 				CBAE14751ACAFEE4009BE1FA /* CJSONSerializer.m in Sources */,
 				76661E671AC442D6007599B9 /* StartScreen.m in Sources */,
+				153A5DC11B21E49A0013A62F /* RoutineClass.m in Sources */,
 				154F09481AB9948A00EC8087 /* main.m in Sources */,
 				15C6CB581B04BD9200B46BF1 /* CircularTimerView.m in Sources */,
 			);
